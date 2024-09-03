@@ -26,7 +26,7 @@ export class MobileNavbarComponent implements OnInit {
       this.activeLink == '/account/profile' ||
       this.activeLink == '/account/personal-details'
     ) {
-      this.activeLink = '/account';
+      this.activeLink = '/account-menu';
     }
   }
 
