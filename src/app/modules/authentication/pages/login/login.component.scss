@@ -1,0 +1,147 @@
+:host {
+  width: 100%;
+}
+.form-wrapper {
+  i {
+    cursor: pointer;
+  }
+  h2 {
+    color: #3f514a;
+  }
+
+  form {
+    .inputs-container {
+      .input-field {
+        background: #f3f3f3;
+        border-radius: 8px;
+        border: 1px solid #f3f3f3;
+        transition: 0.3s;
+        width: 500px;
+        input {
+          background: transparent;
+          outline: none;
+          border: 0;
+          width: 100%;
+          font-size: 18px;
+          font-weight: light;
+        }
+        img {
+          width: 25px;
+          height: 25px;
+          &.eye {
+            cursor: pointer;
+          }
+        }
+        &:focus-within {
+          background-color: #d7e9e2;
+          border: 1px solid #3f514a;
+        }
+      }
+    }
+
+    .options {
+      font-size: 17px;
+      .forgot-password {
+        text-decoration: underline;
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.5);
+      }
+      p {
+        color: #1f1f1f63;
+        span {
+          text-decoration: underline;
+          cursor: pointer;
+          color: #637f74;
+        }
+      }
+    }
+
+    .secondary-btn {
+      transition: 0.5s;
+      &:hover,
+      &:focus {
+        background: #ecd09f;
+        color: #3f514a;
+      }
+    }
+  }
+  .separator {
+    .line {
+      width: 100%;
+      height: 1px;
+      background: #6f6f6f;
+    }
+    p {
+      font-size: 18px;
+      color: #6f6f6f;
+    }
+  }
+
+  .social-methods {
+    .method {
+      background: #f3f3f3;
+      border-radius: 8px;
+      cursor: pointer;
+      p {
+        font-size: 18px;
+      }
+      img {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+app-mobile-navbar {
+  display: none;
+}
+@media (max-width: 775px) {
+  .form-wrapper {
+    form {
+      .inputs-container {
+        .input-field {
+          width: 100%;
+          input {
+            font-size: 13px;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
+      .options {
+        font-size: 13px;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 20px !important;
+      }
+    }
+
+    .social-methods {
+      .method {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px !important;
+        gap: 10px;
+        background: #e5e5e5 !important;
+        img {
+          width: 20px !important;
+          height: 20px !important;
+        }
+        p {
+          font-size: 13px !important;
+        }
+      }
+    }
+  }
+
+  app-mobile-navbar {
+    display: block;
+  }
+}

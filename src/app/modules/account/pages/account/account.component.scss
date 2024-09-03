@@ -1,0 +1,146 @@
+.profile-menu {
+  max-width: 860px;
+  padding-bottom: 100px !important;
+  .border-bottom {
+    border-bottom: 1px solid #7b7b7b !important;
+  }
+  .header {
+    i {
+      font-size: 1.5rem;
+    }
+  }
+  .profile {
+    .details {
+      .image {
+        width: 70px;
+        height: 70px;
+        border-radius: 100%;
+        overflow: hidden;
+      }
+      p {
+        color: #9b9b9b;
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+  .banner {
+    background: #fff;
+    border: 1px solid #7b7b7b;
+    box-shadow: 5px 5px 18px 0px #0000004d;
+    border-radius: 10px;
+    .image {
+      width: 100px;
+    }
+    h3 {
+      color: #3f514a;
+    }
+    p {
+      color: #9b9b9b;
+      font-size: 0.75rem;
+    }
+  }
+
+  .personal-details {
+    .icon {
+      width: 40px;
+      height: 40px;
+      background: #d9d9d9;
+      border-radius: 100%;
+      img {
+        width: 25px;
+        height: auto;
+      }
+    }
+    p {
+      color: #9b9b9b;
+    }
+  }
+
+  .support {
+    ul {
+      li {
+        a {
+          color: #9b9b9b;
+          text-decoration: none;
+          font-weight: 300;
+          img {
+            width: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  .buttons {
+    .control-btn {
+      background: transparent;
+      color: #4a594f;
+      border: 0;
+      outline: none;
+      font-weight: 300;
+      font-size: 0.8rem;
+    }
+  }
+
+  .outlined-btn {
+    background: transparent;
+    color: #4a594f;
+    border: 1px solid #4a594f;
+    border-radius: 30px;
+    padding: 13px;
+    font-size: 1rem;
+    transition: 0.3s;
+    &:hover {
+      background: #4a594f;
+      color: #ffffff;
+    }
+  }
+
+  .privacy-link {
+    color: #9b9b9b;
+  }
+}
+
+.currency-popup {
+  width: 700px;
+  background: white;
+  border-radius: 20px;
+  i {
+    cursor: pointer;
+    color: #222;
+  }
+
+  h3 {
+    color: #222;
+  }
+  .currency {
+    font-weight: 400;
+    font-size: 20px;
+    cursor: pointer;
+    color: #222;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+
+    &.active,
+    &:hover {
+      border: 1px solid #222;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .currency-popup {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .currency-popup {
+    .currency {
+      font-size: 16px;
+      font-size: 600;
+    }
+  }
+}

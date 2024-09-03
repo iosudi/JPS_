@@ -1,0 +1,37 @@
+.modal-wrapper {
+  form {
+    .input-box {
+      label {
+        color: #1e1e1e;
+        font-size: 16px;
+      }
+      .input-field {
+        background: transparent;
+        border-radius: 8px;
+        border: 1px solid #cccbcb;
+        transition: 0.3s;
+        input {
+          background: transparent;
+          outline: none;
+          border: 0;
+          width: 100%;
+          font-size: 16px;
+          font-weight: light;
+        }
+
+        &:focus-within {
+          background-color: #d7e9e2;
+          border: 1px solid #3f514a;
+        }
+      }
+    }
+    .btn {
+      font-size: 14px;
+      transition: 0.2s;
+      &:hover {
+        background: #395c4e;
+        color: #ffffff;
+      }
+    }
+  }
+}

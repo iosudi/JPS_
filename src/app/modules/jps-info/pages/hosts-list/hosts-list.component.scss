@@ -1,0 +1,615 @@
+.host-info {
+  padding-top: 250px;
+  .host {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    transition: 0.5s;
+    .host-analysis {
+      .host-image {
+        position: relative;
+        background: #fff;
+        border: 1px solid #0000000e;
+        border-radius: 25px;
+        box-shadow: 0px 6.41px 21.38px 0px #00000033;
+
+        .avatar {
+          position: relative;
+          width: 120px;
+          height: 120px;
+          box-shadow: -1.07px -2.14px 4.28px 0px #00000040 inset;
+          border-radius: 50%;
+
+          img {
+            border-radius: 50%;
+            width: 100%;
+            height: auto;
+          }
+
+          .badge {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            bottom: 0;
+            left: 0;
+            background: #3f514a;
+            border-radius: 100%;
+            border: 2px solid #fff;
+            box-shadow: 0px 2.14px 8.55px 0px #00000029;
+
+            img {
+              width: 18px;
+              height: auto;
+              border-radius: 0%;
+            }
+          }
+        }
+
+        .name {
+          font-size: 23px;
+        }
+        .role {
+          font-size: 18px;
+          color: #aeaeae;
+        }
+        .analysis-overlay {
+          position: absolute;
+          background: #ecd09f;
+          border: 1px solid #ecd09f;
+          top: 0;
+          left: -34%;
+          width: 100%;
+          height: 100%;
+          border-radius: 25px;
+          z-index: -1;
+          box-shadow: 0px 6.41px 21.38px 0px #00000033;
+
+          .border-bottom {
+            border-bottom: 2px solid #d89e38 !important;
+          }
+          li {
+            p {
+              font-size: 14px;
+              &.number {
+                font-size: 18px;
+                line-height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .host-social {
+      background: #f9f9f9;
+      border: 0.69px solid #ebebeb;
+      padding: 32px 19px 32px 19px;
+      border-radius: 11.05px;
+
+      i {
+        font-size: 20px;
+        color: #3f514a;
+        cursor: pointer;
+      }
+      img {
+        width: 25px;
+        height: auto;
+        cursor: pointer;
+      }
+
+      .secondary-btn {
+        img {
+          width: 20px;
+        }
+
+        &:hover {
+          background-color: #3f514a;
+          color: #fff;
+        }
+      }
+    }
+
+    .report {
+      display: flex !important;
+    }
+  }
+
+  .host-details {
+    padding-bottom: 70px;
+    p {
+      font-size: 18px;
+      line-height: 25px;
+    }
+    .details {
+      p {
+        img {
+          width: 30px;
+          height: auto;
+        }
+      }
+    }
+  }
+
+  .reviews {
+    button {
+      border-radius: 10px;
+    }
+
+    .review-box:last-child {
+      border-bottom: 0px !important;
+    }
+    .review {
+      .image {
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 100%;
+        }
+      }
+
+      .review-details {
+        color: #1a1a1a;
+        i {
+          font-size: 13px;
+          color: #d3d3d3;
+          margin: 0 2px;
+          &.rating-color {
+            color: #fdc820;
+          }
+        }
+        .date {
+          font-size: 14px;
+          color: #909090;
+        }
+        .content {
+          font-size: 18px;
+          display: -webkit-box;
+          line-clamp: 3;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      }
+    }
+
+    .btn-outline-dark {
+      padding: 14px 24px 14px 24px;
+    }
+  }
+
+  .leave-review {
+    .rating {
+      p {
+        font-size: 15px;
+      }
+      .star {
+        color: #d3d3d3;
+        font-size: 14px;
+        margin: 0 2px;
+        position: relative;
+        display: inline-block;
+        &.full {
+          color: #fdc820;
+        }
+      }
+    }
+
+    .text-area {
+      position: relative;
+      border: 1px solid #1a1a1a;
+      border-radius: 15px;
+      label {
+        position: absolute;
+        top: -15px;
+        right: 15px;
+        padding: 0 10px;
+        background: #f3f3f3;
+      }
+      textarea {
+        background: transparent;
+        outline: none;
+        border: 0;
+        resize: none;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+          width: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #ccc;
+        }
+      }
+    }
+
+    button {
+      padding: 12px 24px 12px 24px;
+      gap: 10px;
+      border-radius: 8px;
+      font-size: 16px;
+
+      i {
+        color: #ecd09f;
+        font-size: 20px;
+      }
+    }
+  }
+
+  .host-apartments {
+    .card {
+      background: #fff;
+      transition: 0.2s;
+
+      border: 0;
+      cursor: pointer;
+      border-radius: 20px;
+      .apartment-preview {
+        position: relative;
+        overflow: hidden;
+        border-radius: 15px;
+        width: 100%;
+        height: 255.99px;
+
+        .arrow {
+          position: absolute;
+          top: 55%;
+          right: 10px;
+          display: none !important;
+          border-radius: 100%;
+          transform: translateY(-50%);
+          width: 15px;
+          height: 15px;
+          background: #fff;
+          color: black;
+          cursor: pointer;
+          font-size: 8px;
+        }
+
+        .reserved-duration {
+          position: absolute;
+          background: rgb(0, 0, 0, 0.3);
+          color: #fff;
+          top: 15px;
+          left: 15px;
+          padding: 8px 10px;
+          font-size: 13px;
+          backdrop-filter: blur(5px);
+          border-radius: 15px;
+        }
+
+        .paginator {
+          position: absolute;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          z-index: 1;
+          .dot {
+            width: 7px;
+            height: 7px;
+            background: rgba(255, 255, 255, 0.596);
+            border-radius: 100%;
+            &.active {
+              background: #ffffff;
+            }
+          }
+        }
+
+        .host-preview {
+          position: absolute;
+          bottom: 15px;
+          left: 15px;
+          width: 64px;
+          height: 70px;
+          border-radius: 20px;
+          background: #e7e7e7;
+          box-shadow: -1px -2px 4px 0px #00000040 inset;
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 100%;
+            box-shadow: 0px 4px 4px 0px #00000040 inset,
+              0px -4px 4px 0px #00000040 inset;
+          }
+        }
+      }
+
+      .apartment-information {
+        position: relative;
+        margin-right: 5px;
+
+        .apartment-name {
+          h3 {
+            font-size: 18px;
+            color: #060503;
+            transition: 0.2s;
+          }
+
+          p {
+            font-size: 12px;
+            font-weight: normal;
+            transition: 0.2s;
+
+            img {
+              width: 12px;
+              opacity: 60%;
+              height: auto;
+            }
+          }
+
+          .rating {
+            color: #4a594f;
+            font-size: 15px;
+            transition: 0.2s;
+          }
+        }
+
+        .chip {
+          background: #d1dbd7;
+          padding: 3px 13px;
+          border-radius: 20px;
+          font-size: 14px;
+          color: #4a594f;
+          img {
+            width: 18px;
+            height: 18px;
+          }
+        }
+
+        .price {
+          color: #060503;
+          font-size: 20px;
+          transition: 0.2s;
+        }
+
+        p {
+          color: #717171;
+        }
+
+        .controls {
+          background: #d1dbd7;
+          border-radius: 15px;
+          button {
+            transition: 0.2s;
+          }
+          img {
+            width: 20px;
+            height: auto;
+          }
+        }
+      }
+
+      &:hover {
+        background: #4a594f;
+
+        .apartment-name {
+          h3 {
+            color: #fff !important;
+          }
+
+          p {
+            color: #d1dbd7;
+          }
+
+          .rating {
+            color: #fff !important;
+          }
+        }
+
+        .price {
+          color: #fff !important;
+        }
+
+        .controls {
+          button {
+            background: #ecd09f;
+            color: #4a594f;
+          }
+        }
+
+        .apartment-preview .arrow {
+          display: flex !important;
+        }
+      }
+    }
+  }
+
+  .report {
+    display: none !important;
+    img {
+      width: 25px;
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 1399px) {
+  .host-info {
+    .host {
+      .host-analysis {
+        .host-image {
+          width: 70% !important;
+          .avatar {
+            width: 90px;
+            height: 90px;
+
+            .badge {
+              width: 30px;
+              height: 30px;
+              img {
+                width: 15px;
+              }
+            }
+          }
+
+          .name {
+            font-size: 17px;
+          }
+          .role {
+            font-size: 16px;
+          }
+          .analysis-overlay {
+            left: -40%;
+
+            li {
+              p {
+                font-size: 13px;
+                &.number {
+                  font-size: 15px;
+                  line-height: 18px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .host-social {
+        i {
+          font-size: 18px;
+        }
+        img {
+          width: 23px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .host-info {
+    .host {
+      .host-analysis {
+        .host-image {
+          width: 65% !important;
+
+          .analysis-overlay {
+            left: -50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .host-info {
+    padding-top: 220px;
+    .host {
+      .host-analysis {
+        padding-right: 80px;
+        .host-image {
+          .avatar {
+            width: 120px;
+            height: 120px;
+
+            .badge {
+              width: 40px;
+              height: 40px;
+
+              img {
+                width: 18px;
+              }
+            }
+          }
+
+          .name {
+            font-size: 23px;
+          }
+          .role {
+            font-size: 18px;
+          }
+          .analysis-overlay {
+            left: -34%;
+
+            li {
+              p {
+                font-size: 14px;
+                &.number {
+                  font-size: 18px;
+                  line-height: 20px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .host-social {
+        width: 75%;
+        margin: 0 auto;
+        i {
+          font-size: 20px;
+        }
+        img {
+          width: 25px;
+        }
+
+        .secondary-btn {
+          img {
+            width: 20px;
+          }
+        }
+      }
+
+      .report {
+        display: none !important;
+      }
+    }
+
+    .report {
+      display: flex !important;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .host-info {
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 767px) {
+  .host-info {
+    .host {
+      .host-analysis {
+        padding-right: 0 !important;
+        .host-image {
+          width: 65% !important;
+
+          .analysis-overlay {
+            left: -50%;
+          }
+        }
+      }
+
+      .host-social {
+        width: 100%;
+      }
+    }
+
+    .host-details {
+      p {
+        font-size: 15px;
+        line-height: 25px;
+      }
+      .details {
+        p {
+          font-size: 18px;
+        }
+      }
+    }
+
+    .reviews {
+      .review {
+        .review-details {
+          .content {
+            font-size: 15px;
+          }
+        }
+      }
+
+      .btn-outline-dark {
+        padding: 14px 24px 14px 24px;
+      }
+    }
+  }
+}

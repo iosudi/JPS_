@@ -1,0 +1,387 @@
+.hero {
+  height: 80vh;
+  padding: 20px 100px;
+  .container-fluid {
+    overflow: hidden;
+    border-radius: 20px;
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      animation: slide-right 2s;
+      overflow: hidden;
+
+      .gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background: linear-gradient(
+          269.41deg,
+          rgba(74, 89, 79, 0.75) 43.36%,
+          rgba(74, 89, 79, 0.75) 110.68%
+        );
+      }
+
+      .blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    .heading {
+      color: white;
+      h1 {
+        font-size: 100px;
+        span {
+          color: #e5bf7d;
+        }
+      }
+      p {
+        font-size: 24px;
+      }
+    }
+
+    .man {
+      width: 1000px;
+      bottom: 0;
+      right: 0;
+      z-index: -1;
+    }
+    .shape {
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+}
+
+.rates-reviews {
+  padding: 20px 100px;
+  color: #222222;
+  form {
+    .rating {
+      h3 {
+        font-size: 40px;
+      }
+      .star {
+        color: #d3d3d3;
+        font-size: 50px;
+        line-height: 70px;
+        position: relative;
+        display: inline-block;
+        &.full {
+          color: #fdc820;
+        }
+      }
+    }
+
+    .review-input {
+      p {
+        color: #222222;
+        font-size: 14px;
+      }
+      .input-field {
+        img {
+          width: 25px;
+        }
+        .form-control {
+          border: 1ox solid #969696 !important;
+          background: transparent;
+          &:focus {
+            box-shadow: none !important;
+            background-color: #d7e9e2 !important;
+            border: 1px solid #3f514a !important;
+          }
+        }
+      }
+    }
+
+    .review-body {
+      textarea {
+        background: #e9e9e9;
+        border-radius: 8px;
+        border: 1px solid #e9e9e9;
+        outline: none;
+        width: 100%;
+        font-size: 20px;
+        font-weight: 500;
+        transition: 0.5s;
+        &:focus {
+          background: #d7e9e2;
+          border: 1px solid #3f514a;
+        }
+      }
+      p {
+        color: #444444;
+        font-size: 14px;
+      }
+    }
+
+    button {
+      border-radius: 10px;
+      i {
+        color: #ecd09f;
+      }
+    }
+  }
+
+  .reviews {
+    button {
+      border-radius: 10px;
+    }
+    .review {
+      .image {
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 100%;
+        }
+      }
+
+      .review-details {
+        color: #1a1a1a;
+        i {
+          font-size: 13px;
+          color: #d3d3d3;
+          margin: 0 2px;
+          &.rating-color {
+            color: #fdc820;
+          }
+        }
+        .date {
+          font-size: 14px;
+          color: #909090;
+        }
+        .content {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1666px) {
+  .hero {
+    padding: 20px 50px;
+    .container-fluid {
+      .heading {
+        h1 {
+          font-size: 75px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+
+      .man {
+        width: 800px;
+      }
+    }
+  }
+
+  .rates-reviews {
+    padding: 20px 50px;
+    form {
+      .rating {
+        h3 {
+          font-size: 30px;
+        }
+        .star {
+          color: #d3d3d3;
+          font-size: 50px;
+          line-height: 60px;
+        }
+      }
+
+      .review-body {
+        textarea {
+          font-size: 16px;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .reviews {
+      .review {
+        .image {
+          img {
+            width: 80px;
+            height: 80px;
+          }
+        }
+
+        .review-details {
+          i {
+            font-size: 10px;
+          }
+          .date {
+            font-size: 12px;
+          }
+          .content {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .hero {
+    padding: 20px 50px;
+    height: 650px;
+    .container-fluid {
+      padding-top: 90px;
+      align-items: start !important;
+      .heading {
+        h1 {
+          font-size: 75px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+
+      .man {
+        width: 700px;
+      }
+      .shape {
+        left: -180px;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    .container-fluid {
+      align-items: start !important;
+      .heading {
+        h1 {
+          font-size: 75px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+
+      .man {
+        width: 600px;
+      }
+      .shape {
+        left: -180px;
+      }
+    }
+  }
+
+  .rates-reviews {
+    padding: 20px;
+    .row {
+      flex-direction: column-reverse;
+    }
+    form {
+      .rating {
+        h3 {
+          font-size: 30px;
+        }
+        .star {
+          color: #d3d3d3;
+          font-size: 50px;
+          line-height: 60px;
+        }
+      }
+      .review-inputs {
+        display: none !important;
+      }
+
+      .review-body {
+        textarea {
+          font-size: 16px;
+        }
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+
+    .reviews {
+      padding: 0 !important;
+      .content {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+@media (max-width: 635px) {
+  .hero {
+    padding: 60px 10px 20px;
+    .container-fluid {
+      padding: 50px 20px 0 !important;
+      .heading {
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+
+      .man {
+        width: 700px;
+        right: -200px;
+      }
+      .shape {
+        width: 250%;
+        left: -400px;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    padding: 60px 10px 20px;
+    height: 580px;
+    .container-fluid {
+      padding: 50px 20px 0 !important;
+      .heading {
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          font-size: 16px;
+        }
+      }
+
+      .man {
+        width: 500px;
+        right: -100px;
+      }
+      .shape {
+        width: 250%;
+        left: -400px;
+      }
+    }
+  }
+}

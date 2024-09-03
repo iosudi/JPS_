@@ -1,0 +1,96 @@
+<nav class="w-100 px-5 py-3">
+  <div class="navbar py-2">
+    <ul class="d-flex justify-content-around align-items-center m-0 p-0 w-100">
+      <li class="p-0">
+        <a
+          class="d-flex align-items-center flex-row-reverse justify-content gap-2 p-3 rounded-5"
+          routerLink="/home"
+          routerLinkActive="active-link"
+        >
+          <img
+            [src]="
+              activeLink === '/home'
+                ? './assets/imgs/icons/home-light.png'
+                : './assets/imgs/icons/home-dark.png'
+            "
+            alt="home icon"
+          />
+          <p class="mb-0">الرئيسية</p>
+        </a>
+      </li>
+
+      <li class="p-0">
+        <a
+          class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
+          routerLink="/your-favorites"
+          routerLinkActive="active-link"
+        >
+          <img
+            [src]="
+              activeLink === '/your-favorites'
+                ? './assets/imgs/icons/fav-light.png'
+                : './assets/imgs/icons/fav-dark.png'
+            "
+            alt="heart icon"
+          />
+          <p class="mb-0">المفضلة</p>
+        </a>
+      </li>
+
+      <li class="p-0">
+        <a
+          class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
+          routerLink="/contact"
+          routerLinkActive="active-link"
+        >
+          <img
+            [src]="
+              activeLink === '/contact'
+                ? './assets/imgs/icons/phone-light.png'
+                : './assets/imgs/icons/phone-dark.png'
+            "
+            alt="phone icon"
+          />
+          <p class="mb-0">اتصل بنا</p>
+        </a>
+      </li>
+
+      <li class="p-0">
+        <a
+          class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
+          routerLink="/auth"
+          routerLinkActive="active-link"
+          *ngIf="!loggedUser; else loggedUser"
+        >
+          <img
+            [src]="
+              activeLink === '/auth'
+                ? './assets/imgs/icons/user-light.png'
+                : './assets/imgs/icons/user-dark.png'
+            "
+            alt="user icon"
+          />
+          <p class="mb-0">الحساب</p>
+        </a>
+
+        <ng-template #loggedUser>
+          <a
+            class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
+            routerLink="/account"
+            routerLinkActive="active-link"
+          >
+            <img
+              [src]="
+                activeLink === '/account'
+                  ? './assets/imgs/icons/user-light.png'
+                  : './assets/imgs/icons/user-dark.png'
+              "
+              alt="user icon"
+            />
+            <p class="mb-0">الحساب</p>
+          </a>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+</nav>

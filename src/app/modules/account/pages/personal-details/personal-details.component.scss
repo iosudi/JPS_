@@ -1,0 +1,139 @@
+.container {
+  padding: 150px 20px 50px;
+
+  .header {
+    display: none !important;
+  }
+
+  .change-avatar {
+    position: relative;
+    cursor: pointer;
+    background: #d9d9d9;
+    border-radius: 15px;
+    max-height: 300px;
+    min-height: 280px;
+    overflow: hidden;
+    .image {
+      width: 150px;
+      height: auto;
+
+      &.avatar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    p {
+      font-weight: 500;
+    }
+  }
+
+  .personal-details {
+    .personal-info {
+      p {
+        font-size: 20px;
+        color: #8c8c8c;
+      }
+      .btn {
+        color: #383838;
+        font-size: 1.18rem;
+        border: 0 !important;
+        &:active {
+          border: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .container {
+    .change-avatar {
+      max-height: 230px;
+      min-height: 230px;
+
+      .image {
+        width: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 989px) {
+  .container {
+    .change-avatar {
+      max-height: 230px;
+      min-height: 230px;
+      max-width: 230px;
+      border-radius: 100%;
+      margin: 0 auto;
+
+      .image {
+        width: 100px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .container {
+    padding: 50px 20px 120px;
+    .header {
+      display: flex !important;
+    }
+    p-breadcrumb {
+      display: none;
+    }
+
+    .personal-details {
+      h1 {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .container {
+    .change-avatar {
+      max-height: 170px;
+      min-height: 170px;
+      max-width: 170px;
+      border-radius: 100%;
+      margin: 0 auto;
+      .image {
+        width: 80px;
+      }
+
+      p {
+        font-size: 0.7rem;
+      }
+    }
+
+    .personal-details {
+      padding: 0 !important;
+      h1 {
+        display: none;
+      }
+      .personal-info {
+        padding-bottom: 5px !important;
+        h3 {
+          font-size: 1.1rem;
+        }
+        p {
+          font-size: 0.95rem;
+        }
+        .btn {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

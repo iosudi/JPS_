@@ -1,0 +1,47 @@
+<app-mobile-navbar></app-mobile-navbar>
+
+<div class="form-wrapper p-5">
+  <i class="fa-solid fa-xmark" (click)="close()"></i>
+
+  <div class="image justify-content-center px-3">
+    <img
+      class="mx-auto"
+      src="./assets/imgs/icons/openMail.png"
+      alt="Check your email "
+    />
+  </div>
+
+  <div class="title text-center">
+    <h2 class="mb-3 mt-3 text-center">التحقق من البريد الإلكتروني</h2>
+    <p class="mb-4 h5 fw-normal userEmail">
+      تم إرسال الرمز إلى example&#64;gmail.com
+    </p>
+    <p>أدخل الرمز للتحقق من حسابك</p>
+  </div>
+
+  <form
+    [formGroup]="otpCodeForm"
+    (ngSubmit)="onSubmit()"
+    class="form-container w-100 d-flex flex-column align-items-center justify-content-center"
+  >
+    <div class="inputs-container mb-3" dir="ltr">
+      <p-inputOtp formControlName="otp" [integerOnly]="true" />
+    </div>
+
+    <div class="options text-center">
+      <p class="otpFail mb-1">
+        لم تتلق الرمز؟
+        <button>أعد إرسال الرمز</button>
+      </p>
+
+      <p class="countDown">Resend code in 00:59</p>
+    </div>
+
+    <button
+      class="btn secondary-btn px-4 py-2 d-flex align-items-center gap-2 justify-content-center"
+    >
+      <i class="fa-solid fa-arrow-right"></i>
+      تحقق من الحساب
+    </button>
+  </form>
+</div>

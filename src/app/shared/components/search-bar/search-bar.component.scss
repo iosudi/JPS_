@@ -1,0 +1,29 @@
+.search-bar {
+  background: white;
+  border-radius: 100px;
+  cursor: pointer;
+
+  p {
+    color: #818181;
+  }
+
+  img {
+    width: 30px;
+    height: auto;
+  }
+}
+
+@media (max-width: 450px) {
+  .search-bar {
+    h3 {
+      font-size: 16px;
+    }
+    p {
+      font-size: 10px;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

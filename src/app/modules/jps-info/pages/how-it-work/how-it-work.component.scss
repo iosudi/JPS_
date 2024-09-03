@@ -1,0 +1,361 @@
+.container-fluid {
+  padding: 30px 200px;
+}
+
+.how-it-works-steps {
+  padding-top: 180px;
+  .container-fluid {
+    color: #222;
+    .col-12 {
+      .step {
+        .heading {
+          p {
+            font-size: 20px;
+          }
+        }
+        .video {
+          background: #3f514a;
+          border-radius: 15px;
+          width: 480px !important;
+          height: 370px;
+          .icon {
+            width: 90px;
+            height: 90px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+          }
+        }
+      }
+      &:nth-child(2) .step {
+        flex-direction: row-reverse;
+        .video {
+          background: #ecd09f;
+        }
+      }
+      &:nth-child(3) .step {
+        .video {
+          background: #e16162;
+        }
+      }
+    }
+  }
+}
+
+.help-service {
+  background: #3f514a;
+  color: white;
+  .row {
+    margin-top: 30px !important;
+    .service {
+      img {
+        width: 50px;
+        height: 50px;
+      }
+      h3 {
+        width: 45%;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.banner {
+  padding: 100px 0;
+  .container {
+    background: #ecd09f;
+    max-height: 360px;
+    overflow: hidden;
+    border-radius: 12px;
+    .column {
+      .image {
+        width: 250px;
+        height: 160px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-bottom: 20px;
+      }
+
+      &:nth-child(1) {
+        transform: translateY(-50px);
+      }
+      &:nth-child(2) {
+        transform: translateY(-100px);
+      }
+    }
+
+    .heading {
+      margin-top: 120px;
+      h3 {
+        font-size: 40px;
+        color: #000;
+      }
+      button {
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+.faqs {
+  .heading {
+    p {
+      color: #8b8b8b;
+    }
+
+    .buttons {
+      .btn {
+        border: 1px solid #3f514a;
+        color: #3f514a;
+        border-radius: 30px;
+        padding: 4px 35px;
+        &.active {
+          background: #3f514a;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .faq {
+    border: 1px solid #444;
+    border-radius: 10px;
+    max-height: 75px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+    h4 {
+      color: #000;
+      font-size: 25px;
+      transition: 0.5s;
+    }
+    i {
+      cursor: pointer;
+    }
+    p {
+      color: #919191;
+      font-size: 20px;
+    }
+
+    &.expand {
+      cursor: auto;
+      max-height: 300px;
+      h4 {
+        font-size: 32px;
+        color: #3f514a;
+      }
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .banner {
+    .container {
+      .column {
+        .image {
+          width: 230px;
+          height: 150px;
+        }
+
+        &:nth-child(1) {
+          transform: translateY(-100px);
+        }
+        &:nth-child(2) {
+          transform: translateY(-60px);
+        }
+      }
+
+      .heading {
+        margin-top: 100px;
+        h3 {
+          font-size: 30px;
+          text-align: center;
+        }
+        button {
+          font-size: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  .container-fluid {
+    padding: 30px 30px;
+  }
+}
+
+@media (max-width: 991px) {
+  .banner {
+    padding: 100px 0 50px;
+    .container {
+      background: #ecd09f;
+      max-height: 600px;
+      overflow: hidden;
+      border-radius: 12px;
+      .row {
+        flex-direction: column-reverse;
+      }
+      .images {
+        transform: translateX(100px);
+      }
+      .column {
+        .image {
+          width: 280px;
+          height: 160px;
+        }
+
+        &:nth-child(1) {
+          transform: translateY(0px);
+        }
+        &:nth-child(2) {
+          transform: translateY(-50px);
+        }
+      }
+
+      .heading {
+        margin-top: 0px;
+        h3 {
+          font-size: 30px;
+          text-align: center;
+        }
+        button {
+          font-size: 25px;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .faqs {
+    .col-12 {
+      width: 100% !important;
+    }
+    .faq {
+      max-height: 65px;
+      h4 {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+
+      &.expand {
+        h4 {
+          font-size: 23px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .how-it-works-steps {
+    padding-bottom: 180px !important;
+    padding-top: 20px !important;
+  }
+}
+
+@media (max-width: 740px) {
+  .how-it-works-steps {
+    .container-fluid {
+      .col-12 {
+        .heading {
+          width: 100% !important;
+        }
+        .step {
+          align-items: center;
+          flex-direction: column-reverse;
+        }
+        &:nth-child(2) .step {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 545px) {
+  .banner {
+    .container {
+      max-height: 600px;
+      .row {
+        flex-direction: column-reverse;
+      }
+      .images {
+        transform: translateX(180px);
+      }
+      .column {
+        .image {
+          width: 230px;
+          height: 150px;
+        }
+
+        &:nth-child(1) {
+          transform: translateY(0px);
+        }
+        &:nth-child(2) {
+          transform: translateY(-50px);
+        }
+      }
+
+      .heading {
+        margin-top: 0px;
+        h3 {
+          font-size: 30px;
+          text-align: center;
+        }
+        button {
+          font-size: 25px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .how-it-works-steps {
+    .container-fluid {
+      .col-12 {
+        margin: 20px 0 !important;
+        .heading {
+          width: 100% !important;
+          p {
+            font-size: 13px;
+          }
+        }
+        .step {
+          .video {
+            width: 100% !important;
+            height: 300px;
+            .icon {
+              width: 70px;
+              height: 70px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .help-service {
+    .row {
+      margin-top: 30px !important;
+      .service {
+        h3 {
+          width: 90%;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
+  }
+}

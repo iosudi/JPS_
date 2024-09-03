@@ -1,0 +1,836 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+<app-nav-bar></app-nav-bar>
+
+<!-- hero section -->
+<section appAnimateOnScroll class="hero d-flex align-items-end overflow-hidden">
+  <div class="background">
+    <img src="./assets/imgs/unsplash_dBOZ7XL4b_E.png" alt="background" />
+    <div class="gradient"></div>
+  </div>
+  <div class="container d-flex justify-content-around">
+    <div class="row">
+      <div class="col-xl-6 d-flex justify-content-center mt-5">
+        <div class="heading">
+          <div class="mb-5 title">
+            <h1>شقة بدون مشقة</h1>
+            <h2 class="fw-normal">البحث وحجز تجربة رائعة.</h2>
+          </div>
+          <div class="search-field px-3 py-2">
+            <app-search-bar></app-search-bar>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6 d-flex justify-content-center image-slider">
+        <div
+          class="slider-container d-flex gap-4 overflow-hidden position-relative"
+        >
+          <div class="column" id="column-1">
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/4.png" alt="image" />
+            </div>
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/3.png" alt="image" />
+            </div>
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/2.png" alt="image" />
+            </div>
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/1.jpg" alt="image" />
+            </div>
+          </div>
+          <div class="column" id="column-2">
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/8.png" alt="image" />
+            </div>
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/7.png" alt="image" />
+            </div>
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/6.png" alt="image" />
+            </div>
+            <div class="slide overflow-hidden my-3">
+              <img src="./assets/imgs/5.jpg" alt="image" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- popular Apartments section -->
+<section
+  appAnimateOnScroll
+  class="popular-apartments overflow-hidden p-5 position-relative"
+>
+  <div class="container-fluid mx-auto my-5 position-relative">
+    <div class="container-background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
+      <div class="gradient"></div>
+    </div>
+    <h2 class="title">المميزة</h2>
+  </div>
+
+  <div class="top-layer overflow-hidden">
+    <div class="blur-overlay"></div>
+    <div
+      class="container h-100 d-flex justify-content-center flex-column py-5 mx-0"
+    >
+      <div
+        class="header d-flex justify-content-between align-items-center px-5"
+      >
+        <div class="title">
+          <h2>الشقق المميزة</h2>
+          <p class="mb-0 fw-light d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-arrow-right"></i>
+            تصفح الكل (20)
+          </p>
+        </div>
+        <div class="slider-arrows d-flex align-items-center gap-4">
+          <button (click)="triggerPrev('apartment')" class="prev-btn btn">
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+          <button (click)="triggerNext('apartment')" class="next-btn btn">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Apartments auto generated from JS -->
+      <div class="carousel-container">
+        <swiper-container
+          #apartmentSwiper
+          [speed]="500"
+          [spaceBetween]="5"
+          [breakpoints]="apartmentsBreakpoints"
+        >
+          <swiper-slide *ngFor="let apartment of apartments">
+            <div class="card mx-2 d-flex flex-column justify-content-between">
+              <div class="background">
+                <img [src]="apartment.image" alt="image" />
+                <div class="gradient"></div>
+              </div>
+
+              <div
+                class="arrow d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+
+              <div
+                class="like d-flex justify-content-between align-items-center my-4"
+              >
+                <div class="heart-icon">
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="popular-badge mx-3">
+                  <i class="fa-solid fa-star"></i> مميزة
+                </div>
+              </div>
+
+              <div class="card_body px-3 pb-3">
+                <div class="apartment-title d-flex justify-content-between">
+                  <div>
+                    <h3 class="mb-0 h4">{{ apartment.title }}</h3>
+                    <p class="mb-0 d-flex align-items-center gap-1 fw-light">
+                      <img
+                        src="./assets/imgs/icons/location-light.png"
+                        alt="location icon"
+                      />
+                      {{ apartment.location }}
+                    </p>
+                  </div>
+                  <div class="paginator d-flex gap-1 mt-3">
+                    <div class="dot active"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+                <hr class="my-2" />
+                <div class="chips-badges d-flex gap-1">
+                  <div class="chip d-flex align-items-center gap-1">
+                    <img
+                      src="./assets/imgs/icons/bath-white.png"
+                      alt="bath icon"
+                    />
+                    {{ apartment.bath }}
+                  </div>
+                  <div class="chip d-flex align-items-center gap-1">
+                    <img
+                      src="./assets/imgs/icons/bed-white.png"
+                      alt="bed icon"
+                    />
+                    {{ apartment.bed }}
+                  </div>
+                  <div class="chip d-flex align-items-center gap-1">
+                    <img
+                      src="./assets/imgs/icons/door-white.png"
+                      alt="door icon"
+                    />
+                    {{ apartment.rooms }}
+                  </div>
+                  <div class="chip d-flex align-items-center gap-1">
+                    <img
+                      src="./assets/imgs/icons/doc-white.png"
+                      alt="docs icon"
+                    />
+                    {{ apartment.months }}
+                  </div>
+                </div>
+                <div
+                  class="apartment-details d-flex justify-content-between align-items-center mt-2"
+                >
+                  <div>
+                    <h4 class="price mb-0 h5">
+                      {{ apartment.price
+                      }}<span class="fw-light">{{ apartment.duration }}</span>
+                    </h4>
+                    <p class="mb-0 fw-light">المضيف : {{ apartment.host }}</p>
+                  </div>
+                  <img
+                    src="./assets/imgs/icons/share-light.png"
+                    alt="share icon"
+                  />
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper-container>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- popular districts section -->
+<section appAnimateOnScroll class="popular-districts overflow-hidden">
+  <div class="container-fluid my-5 position-relative">
+    <div
+      class="header overflow-hidden d-flex justify-content-between align-items-center mx-5"
+    >
+      <div class="title">
+        <h2>الاحياء الأكثر بحثا</h2>
+        <a
+          routerLink="/best-districts"
+          class="mb-0 fw-light d-flex gap-2 align-items-center"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+          تصفح الكل (20)
+        </a>
+      </div>
+
+      <div class="slider-arrows d-flex align-items-center gap-4">
+        <button (click)="triggerPrev('district')" class="prev-btn btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button (click)="triggerNext('district')" class="next-btn btn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Districts auto generated from JS -->
+    <div class="carousel-container mt-5">
+      <swiper-container
+        #districtSwiper
+        [slidesPerView]="4"
+        [speed]="500"
+        [spaceBetween]="5"
+        [breakpoints]="districtBreakpoints"
+      >
+        <swiper-slide *ngFor="let district of districts">
+          <div class="card mx-3 d-flex flex-column justify-content-between">
+            <div class="background">
+              <img [src]="district.imgSrc" alt="popular-district" />
+              <div class="gradient"></div>
+            </div>
+            <div class="hover-overlay"></div>
+            <div class="district-name">
+              <div class="title d-flex align-items-center gap-2">
+                <img
+                  *ngIf="district.apartments.length <= 0"
+                  src="./assets/imgs/icons/lock-light.png"
+                  alt="white lock icon"
+                />
+                <h2>{{ district.name }}</h2>
+              </div>
+              <p class="mb-0 text-start">{{ district.description }}</p>
+            </div>
+            <div class="apartment-list">
+              <div class="more d-flex justify-content-between mb-3">
+                <i
+                  routerLink="/best-apartments"
+                  class="fa-solid fa-arrow-right"
+                ></i>
+                Show all ({{ district.apartments.length }})
+              </div>
+              <ng-container *ngIf="district.apartments.length > 0">
+                <div class="apartments-wrapper">
+                  <div
+                    class="apartment d-flex gap-3 align-items-center my-4"
+                    *ngFor="let apartment of district.apartments"
+                  >
+                    <div class="apartment-image overflow-hidden">
+                      <img [src]="apartment.imageSrc" alt="apartment" />
+                      <div class="heart-icon">
+                        <i class="fa-solid fa-heart"></i>
+                      </div>
+
+                      <div
+                        class="arrow d-flex align-items-center justify-content-center"
+                      >
+                        <i class="fa-solid fa-chevron-right"></i>
+                      </div>
+
+                      <div class="paginator d-flex gap-1 mt-3">
+                        <div class="dot active"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                      </div>
+                    </div>
+
+                    <div class="apartment-details d-flex flex-column gap-2">
+                      <div
+                        class="apartment-name d-flex justify-content-between gap-2"
+                      >
+                        <div class="title">
+                          <p class="mb-0">المضيف : {{ apartment.hostName }}</p>
+                          <h3 class="h6 my-1">
+                            {{ apartment.description }}
+                          </h3>
+                          <p class="mb-0 d-flex gap-1 align-items-center">
+                            <img
+                              src="./assets/imgs/icons/location-dark.png"
+                              alt="share icon"
+                            />
+                            {{ apartment.location }}
+                          </p>
+                        </div>
+                        <img
+                          src="./assets/imgs/icons/share-dark.png"
+                          alt="share icon"
+                        />
+                      </div>
+
+                      <div class="chips-badges d-flex gap-1">
+                        <div class="chip d-flex align-items-center gap-1">
+                          <img
+                            src="./assets/imgs/icons/bath-colored.png"
+                            alt="bath icon"
+                          />
+                          {{ apartment.bathrooms }}
+                        </div>
+                        <div class="chip d-flex align-items-center gap-1">
+                          <img
+                            src="./assets/imgs/icons/bed-colored.png"
+                            alt="bed icon"
+                          />
+                          {{ apartment.bedrooms }}
+                        </div>
+                        <div class="chip d-flex align-items-center gap-1">
+                          <img
+                            src="./assets/imgs/icons/door-colored.png"
+                            alt="door icon"
+                          />
+                          {{ apartment.doors }}
+                        </div>
+                        <div class="chip d-flex align-items-center gap-1">
+                          <img
+                            src="./assets/imgs/icons/doc-colored.png"
+                            alt="docs icon"
+                          />
+                          {{ apartment.duration }}
+                        </div>
+                      </div>
+
+                      <div
+                        class="price-rating mt-1 d-flex justify-content-between align-items-center"
+                      >
+                        <div class="rating">
+                          <i class="fa-solid fa-star"></i> 4.8
+                          <span>({{ apartment.reviewsCount }} تقييم)</span>
+                        </div>
+                        <div class="price">
+                          <h3 class="h6 mb-0">{{ apartment.pricePerDay }}</h3>
+                          <p class="mb-0">لليوم الواحد</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <ng-container *ngIf="district.apartments.length <= 0">
+                <div
+                  class="d-flex flex-column align-items-center justify-content-center notAvailable"
+                >
+                  <img
+                    class="my-5"
+                    src="./assets/imgs/icons/sand hour.png"
+                    alt="sand clock icon"
+                  />
+                  <h3 class="h1 text-center mb-4">سيكون متاح قريبا</h3>
+                  <p class="text-center w-75 mb-0">
+                    هذا المكان غير متوفر حاليا ولكن سيكون متاح ف المستقبل
+                  </p>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery section -->
+<section class="gallery overflow-hidden py-4">
+  <div class="container-fluid">
+    <div class="row g-3">
+      <div class="col-12">
+        <div
+          id="row-1"
+          class="image-row justify-content-center top-row d-flex align-items-end gap-2"
+        >
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 23.png" alt="" />
+          </div>
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 20.png" alt="" />
+          </div>
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 21.png" alt="" />
+          </div>
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 22.png" alt="" />
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div
+          id="row-2"
+          class="image-row justify-content-center bottom-row d-flex align-items-start gap-2"
+        >
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 24.png" alt="" />
+          </div>
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 25.png" alt="" />
+          </div>
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 26.png" alt="" />
+          </div>
+          <div class="image">
+            <img src="./assets/imgs/homeSlider/image 27.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About section -->
+<section appAnimateOnScroll class="about overflow-hidden p-5">
+  <div class="container my-5">
+    <div class="container-background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
+      <div class="blur"></div>
+      <div class="gradient"></div>
+    </div>
+
+    <div class="header mx-3">
+      <h2 class="h1">عن JPS</h2>
+      <p class="d-flex align-items-center gap-2 fw-light">
+        <i class="fa-solid fa-arrow-right"></i>
+        مشاهدة المزيد
+      </p>
+    </div>
+
+    <div class="row justify-content-between mx-3">
+      <div class="col-lg-4 position-relative">
+        <div class="image-side">
+          <div class="image overflow-hidden">
+            <img src="./assets/imgs/about-section-image.png" alt="about-us" />
+          </div>
+          <div class="users-cards">
+            <div
+              class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
+            >
+              <img
+                src="./assets/imgs/2.png"
+                alt="user profile image"
+                class="user-image"
+              />
+              <div class="card-info">
+                <h6 class="mb-0">Antone Heller</h6>
+                <p class="mb-0 text-start">
+                  4.8 <i class="fa-solid fa-star rating-color"></i>
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
+            >
+              <img
+                src="./assets/imgs/2.png"
+                alt="user profile image"
+                class="user-image"
+              />
+              <div class="card-info">
+                <h6 class="mb-0">Antone Heller</h6>
+                <p class="mb-0 text-start">
+                  4.8 <i class="fa-solid fa-star rating-color"></i>
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
+            >
+              <img
+                src="./assets/imgs/2.png"
+                alt="user profile image"
+                class="user-image"
+              />
+              <div class="card-info">
+                <h6 class="mb-0">Antone Heller</h6>
+                <p class="mb-0 text-start">
+                  4.8 <i class="fa-solid fa-star rating-color"></i>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="content-side h-100 px-5">
+          <div class="navigation">
+            <div class="navigation-item d-flex gap-3">
+              <button
+                class="btn"
+                [class.active]="contentIndex === 0"
+                (click)="setActive(0)"
+              >
+                من نحن
+              </button>
+              <button
+                class="btn"
+                [class.active]="contentIndex === 1"
+                (click)="setActive(1)"
+              >
+                ما نقدمه
+              </button>
+              <button
+                class="btn"
+                [class.active]="contentIndex === 2"
+                (click)="setActive(2)"
+              >
+                السجل الضريبي
+              </button>
+            </div>
+            <div class="navigation-dots d-flex gap-3 my-4">
+              <div #dot1 class="dot active-dot"></div>
+              <div #dot2 class="dot"></div>
+              <div #dot3 class="dot"></div>
+            </div>
+          </div>
+
+          <div
+            class="content d-flex flex-column gap-4 position-relative z-0"
+            *ngFor="let content of contents; let index = index"
+          >
+            <div
+              #contentContainer
+              class="position-absolute d-flex flex-column gap-3"
+            >
+              <h2
+                [ngClass]="{
+                  'fade-in': contentIndex === index,
+                  'fade-out': contentIndex !== index
+                }"
+                class="title"
+              >
+                {{ content.title }}
+              </h2>
+              <p
+                [ngClass]="{
+                  'fade-in': contentIndex === index,
+                  'fade-out': contentIndex !== index
+                }"
+                class="fw-lighter mb-0"
+              >
+                {{ content.text1 }}
+              </p>
+              <p
+                [ngClass]="{
+                  'fade-in': contentIndex === index,
+                  'fade-out': contentIndex !== index
+                }"
+                class="fw-lighter mb-0"
+              >
+                {{ content.text2 }}
+              </p>
+            </div>
+          </div>
+
+          <button
+            #knowMoreBtn
+            routerLink="/about"
+            class="btn primary-btn know-more mb-auto d-flex align-items-center fw-bold py-2 px-3 gap-2 position-relative"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+            اعرف المزيد
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials section -->
+<section class="testimonials overflow-hidden py-5">
+  <div class="container-fluid my-5">
+    <div class="row justify-content-center g-5">
+      <div class="col-xl-6">
+        <div class="heading d-flex flex-column gap-4">
+          <h2 class="h1 title mb-0">انظر ماذا <br />يقول عملاؤنا!</h2>
+          <p class="fw-light mb-0">
+            اراء عملائنا في خدمتنا يسمح لنا ذلك بزيادة الثقة بين العملاء و تقديم
+            خدمة مبنية علي تجارب سابقة وايضا تقييماتهم لنا من حيث ما نقدمه
+          </p>
+          <button
+            class="btn ms-auto primary-btn d-flex align-items-center gap-3 fw-bold"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+            قم بتقييمنا اللآن
+          </button>
+          <div class="carousel-arrows d-flex align-items-center gap-4">
+            <button
+              #testimonialsPrevBtn
+              (click)="triggerPrev('testimonials')"
+              class="prev-btn btn arr-btn"
+              disabled
+            >
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button
+              #testimonialsNextBtn
+              (click)="triggerNext('testimonials')"
+              class="next-btn btn arr-btn"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-6">
+        <div class="carousel-container h-100">
+          <div class="navigation-dots d-flex flex-column gap-2 my-4">
+            <div #testimonialsDot1 class="dot active-dot"></div>
+            <div #testimonialsDot2 class="dot"></div>
+            <div #testimonialsDot3 class="dot"></div>
+            <div #testimonialsDot4 class="dot"></div>
+          </div>
+
+          <div class="carousel overflow-hidden">
+            <owl-carousel-o
+              #testimonialsCarousel
+              [options]="testimonialsOptions"
+            >
+              <ng-container
+                *ngFor="let testimonial of testimonials; let i = index"
+              >
+                <ng-template carouselSlide>
+                  <div
+                    #testimonialsCard
+                    [ngClass]="{ scaled: i === testimonialsIndex }"
+                    class="slide m-5 p-5 pb-4"
+                  >
+                    <img
+                      src="./assets/imgs/quote.png"
+                      alt="quote symbol"
+                      class="quote-symbol"
+                    />
+                    <p class="my-4">{{ testimonial.content }}</p>
+                    <div
+                      class="review-author d-flex justify-content-between align-items-center border-top pt-4"
+                    >
+                      <div class="author d-flex gap-2 align-items-center">
+                        <img
+                          [src]="testimonial.profile_icon"
+                          alt="profile-icon"
+                        />
+                        <h5 class="author-name fw-normal">
+                          {{ testimonial.author }}
+                        </h5>
+                      </div>
+                      <div class="rating">
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact section -->
+<section class="contact p-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-5">
+        <div class="heading ps-5">
+          <h2 class="h1 fw-bolder">ابدأ رحلتك إلى JPS</h2>
+          <p class="fw-light w-75">
+            تواصل معنا لاكتشاف تجربة معيشية تناسب نمط حياتك بشكل فريد مع
+            الإيجارات المتميزة في مالي
+          </p>
+          <button
+            class="btn secondary-btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+            اتصل بنا
+          </button>
+          <div class="email-box d-flex gap-4 align-items-center px-4 py-3 my-5">
+            <div
+              class="email-icon d-flex align-items-center justify-content-center"
+            >
+              <img src="./assets/imgs/icons/email-icon.png" alt="email icon" />
+            </div>
+            <div class="title">
+              <h3 class="h4 fw-bold">بريد الكتروني</h3>
+              <p>أرسل لنا بريدا إلكترونيا</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="form-container p-5 w-100">
+          <form>
+            <div class="inputs-container mb-5">
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img src="./assets/imgs/icons/user.png" alt="user icon" />
+                  <input class="py-3" type="text" placeholder="الاسم" />
+                </div>
+              </div>
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img src="./assets/imgs/icons/mail.png" alt="mail icon" />
+                  <input
+                    class="py-3"
+                    type="email"
+                    placeholder="البريد الالكتروني"
+                  />
+                </div>
+              </div>
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img
+                    src="./assets/imgs/icons/speaker.png"
+                    alt="speaker icon"
+                  />
+
+                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                </div>
+              </div>
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
+                  <input
+                    class="py-3"
+                    [type]="passwordVisibility ? 'text' : 'password'"
+                    placeholder="كلمة المرور"
+                  />
+                  <img
+                    (click)="togglePasswordVisibility('password')"
+                    class="eye"
+                    [src]="
+                      passwordVisibility
+                        ? 'assets/imgs/icons/closed-eye.png'
+                        : 'assets/imgs/icons/opened-eye.png'
+                    "
+                    alt="opened eye icon"
+                  />
+                </div>
+              </div>
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
+                  <input
+                    class="py-3"
+                    [type]="confirmPasswordVisibility ? 'text' : 'password'"
+                    placeholder="تاكيد كلمة المرور"
+                  />
+                  <img
+                    (click)="togglePasswordVisibility('rePassword')"
+                    class="eye"
+                    [src]="
+                      confirmPasswordVisibility
+                        ? 'assets/imgs/icons/closed-eye.png'
+                        : 'assets/imgs/icons/opened-eye.png'
+                    "
+                    alt="eye icon"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-controls d-flex align-items-center justify-content-between mb-3"
+            >
+              <button class="btn secondary-btn">تسجيل حساب</button>
+              <label
+                for="terms"
+                class="d-flex gap-2 align-items-center fw-ligher"
+              >
+                اوفق علي الشروط ولاحكام
+                <input type="checkbox" name="terms" id="terms"
+              /></label>
+            </div>
+          </form>
+
+          <div class="separator d-flex align-items-center gap-3">
+            <div class="line"></div>
+            <p class="mb-0">أو</p>
+            <div class="line"></div>
+          </div>
+
+          <div class="social-methods mt-4">
+            <div class="method p-4 my-4 d-flex gap-2 align-items-center">
+              <img src="./assets/imgs/icons/google.png" alt="google icon" />
+              <p class="mb-0 fw-lighter">التسجيل باستخدام جوجل</p>
+            </div>
+            <div class="method p-4 d-flex gap-2 align-items-center">
+              <img src="./assets/imgs/icons/facebook.png" alt="facebook icon" />
+              <p class="mb-0 fw-lighter">التسجيل باستخدام فيسبوك</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer section -->
+<app-footer></app-footer>

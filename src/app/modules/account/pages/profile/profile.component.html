@@ -1,0 +1,93 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="profile-info">
+  <div class="container">
+    <div class="heading d-flex align-items-center my-4">
+      <h4 class="title h5 mb-0">الملف الشخصي</h4>
+      <button
+        class="btn p-0 ms-4 text-decoration-underline me-auto"
+        routerLink="/account/personal-details"
+      >
+        تعديل
+      </button>
+      <i class="fa-solid fa-angle-left" routerLink="/account"></i>
+    </div>
+    <div class="row gy-3 justify-content-around">
+      <div class="col-lg-4">
+        <div class="host">
+          <div class="host-analysis mb-5">
+            <div
+              class="host-image w-75 d-flex flex-column align-items-center justify-content-center p-3"
+            >
+              <div class="avatar mb-4">
+                <img
+                  src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
+                  alt="host avatar"
+                />
+              </div>
+              <h3 class="name fw-bold mb-0">كيرلس عادل</h3>
+              <p class="role mb-0">ضيف</p>
+
+              <div class="analysis-overlay py-4 d-flex justify-content-end">
+                <ul class="p-0 m-0 d-flex align-items-center">
+                  <li class="pt-2 px-2">
+                    <p class="mb-0 fw-bold number">4</p>
+                    <p class="mb-0 fw-medium">سنين علي JPS</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="host-details">
+          <h1 class="fw-bold mb-4 h2">عن كيرلس عادل</h1>
+          <button
+            class="editProfileBtn btn fw-medium py-1 px-4 mb-4 text-decoration-underline"
+            routerLink="/account/personal-details"
+          >
+            تعديل الملف الشخصي
+          </button>
+          <div class="details row gy-3 mb-4">
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/hat.png" alt="hat icon" />
+
+                درست في: جامعة عين شمس
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/bag2.png" alt="bag icon" />
+
+                عملي: مصمم جرافيك
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/serve.png" alt="dish icon" />
+
+                شيء أفعله دائمًا لأجل الضيوف: أشارك نصائح من ريو وبريا
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img
+                  src="./assets/imgs/icons/people-chat.png"
+                  alt="chat icon"
+                />
+
+                أحب قضاء بعض الوقت مع ضيوفي
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

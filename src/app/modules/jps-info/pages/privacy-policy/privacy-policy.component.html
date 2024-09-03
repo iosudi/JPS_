@@ -1,0 +1,115 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="hero overflow-hidden">
+  <div
+    class="container-fluid position-relative h-100 d-flex align-items-center px-5"
+  >
+    <div class="background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background image" />
+      <div class="gradient"></div>
+      <div class="blur"></div>
+    </div>
+    <div class="heading text-center w-100">
+      <h1 class="fw-bold">السياسه <span>والخصوصيه</span></h1>
+      <p class="mb-0 fw-lighter">
+        هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="policies my-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="policies-list">
+          <div class="title mb-4">
+            <h3>سياسة الخصوصية لموقع JPS</h3>
+            <p class="h4 mb-1">
+              تعد خصوصيتك أمرًا بالغ الأهمية بالنسبة لنا. تهدف سياسة الخصوصية
+              هذه إلى إعلامك بكيفية
+            </p>
+            <p class="h4 mb-0">
+              جمع واستخدام وحماية معلوماتك الشخصية عند زيارتك لموقعنا
+              الإلكترونيJPS
+            </p>
+          </div>
+          <div
+            class="policy mb-4"
+            *ngFor="let policy of policies.slice(0, policies.length / 2)"
+          >
+            <h3 class="title d-flex gap-1 align-items-center">
+              <span class="term-id d-flex justify-content-end align-items-end"
+                >{{ policy.id }}.</span
+              >
+              {{ policy.title }}
+            </h3>
+            <ul class="px-0">
+              <h4 class="fw-normal">{{ policy.content }}</h4>
+              <li class="fw-normal px-2" *ngFor="let item of policy.list">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="image my-3">
+            <img src="./assets/imgs/Privacy.png" alt="image" />
+          </div>
+
+          <div
+            class="policy mb-4"
+            *ngFor="let policy of policies.slice(policies.length / 2)"
+          >
+            <h3 class="title d-flex gap-1 align-items-center">
+              <span class="term-id d-flex justify-content-end align-items-end"
+                >{{ policy.id }}.</span
+              >
+              {{ policy.title }}
+            </h3>
+            <ul class="px-0">
+              <h4 class="fw-normal">{{ policy.content }}</h4>
+              <li class="fw-normal px-2" *ngFor="let item of policy.list">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="contact-us">
+          <h4 class="h3">التواصل معنا:</h4>
+          <p class="mb-1 fw-normal">
+            إذا كان لديك أي استفسارات أو مخاوف بشأن سياسة الخصوصية، يُرجى
+            التواصل معنا عبر [بيانات الاتصال].
+          </p>
+          <p class="mb-0 fw-normal">تاريخ آخر تحديث: [التاريخ]</p>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="start-trip">
+          <h3 class="h1">ابدأ رحلتك إلى JPS</h3>
+          <p>
+            تواصل معنا لاكتشاف تجربة معيشية تناسب نمط حياتك بشكل فريد مع
+            الإيجارات المتميزة في مالي
+          </p>
+          <button
+            class="btn secondary-btn px-4 d-flex align-items-center gap-2"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+            اتصل بنا
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer section -->
+<app-footer></app-footer>

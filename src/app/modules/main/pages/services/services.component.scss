@@ -1,0 +1,573 @@
+.hero {
+  height: 80vh;
+  padding: 20px 100px;
+  .container-fluid {
+    overflow: hidden;
+    border-radius: 20px;
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      animation: slide-right 2s;
+      overflow: hidden;
+
+      .gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background: linear-gradient(
+          269.41deg,
+          rgba(74, 89, 79, 0.75) 43.36%,
+          rgba(74, 89, 79, 0.75) 110.68%
+        );
+      }
+
+      .blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    .heading {
+      color: white;
+      h1 {
+        font-size: 50px;
+        span {
+          color: #e5bf7d;
+        }
+      }
+      p {
+        font-size: 24px;
+      }
+    }
+
+    .man {
+      width: 700px;
+      bottom: 0;
+      right: 80px;
+      z-index: -1;
+    }
+    .shape {
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+}
+
+.services {
+  padding: 100px 100px 80px;
+  p {
+    color: #5f5e5e;
+    font-weight: 300;
+  }
+  .card {
+    background: transparent;
+    border: 0;
+    .service-preview {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      width: 300px;
+      height: 400px;
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #0000004b;
+      }
+    }
+    .card-body {
+      h3 {
+        color: #3f514a;
+        img {
+          width: 35px;
+          height: 35px;
+        }
+      }
+      p {
+        color: #606060;
+        font-size: 14px;
+      }
+    }
+  }
+  swiper-container::part(pagination) {
+    position: relative;
+  }
+  swiper-container::part(bullet) {
+    background: #9eaca6;
+    width: 11px;
+    height: 11px;
+  }
+  swiper-container::part(bullet-active) {
+    background: #3f514a;
+    width: 11px;
+    height: 11px;
+  }
+  swiper-container::part(button-prev) {
+    background: #3f514a;
+    top: 98%;
+    right: 44%;
+    color: white;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    z-index: 20;
+  }
+  swiper-container::part(button-next) {
+    background: #3f514a;
+    top: 98%;
+    left: 44%;
+    color: white;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    z-index: 20;
+  }
+}
+
+.request-service {
+  background: #3f514a;
+  padding: 80px 100px;
+  .heading {
+    h2 {
+      color: #ecd09f;
+    }
+    p {
+      color: #fff;
+    }
+  }
+
+  .form-container {
+    background: white;
+    border-radius: 10px;
+    form {
+      .user-information {
+        .input-field {
+          background: #f3f3f3;
+          border-radius: 8px;
+          border: 1px solid #f3f3f3;
+          transition: 0.3s;
+          input,
+          select,
+          textarea {
+            background: transparent;
+            outline: none;
+            border: 0;
+            width: 100%;
+            font-size: 18px;
+            font-weight: light;
+          }
+          img {
+            width: 25px;
+            height: 25px;
+            &.eye {
+              cursor: pointer;
+            }
+          }
+          &:focus-within {
+            background-color: #d7e9e2;
+            border: 1px solid #3f514a;
+          }
+        }
+      }
+
+      .type-of-contact {
+        .contact-method {
+          border-radius: 10px;
+          border: 1px solid #0a0b0a;
+          transition: 0.3s;
+          cursor: pointer;
+          i {
+            font-size: 25px;
+          }
+          h5 {
+            color: #3f514a;
+          }
+
+          input {
+            display: none;
+          }
+
+          &.selected {
+            border: 1px solid #3f514a;
+            background: #b1d2c5;
+
+            .service-icon {
+              .checked-icon {
+                opacity: 1;
+                transform: scale(1);
+              }
+            }
+          }
+        }
+      }
+
+      .type-of-service-selection {
+        .form-element {
+          border-radius: 10px;
+          border: 2px solid #cacaca;
+          transition: 0.3s;
+          cursor: pointer;
+          .service-icon {
+            position: relative;
+
+            .checked-icon {
+              border-radius: 100%;
+              opacity: 0;
+              transform: scale(0);
+              background: #3f514a;
+              width: 20px;
+              height: 20px;
+              color: white;
+              font-size: 8px;
+              transition: 0.3s;
+            }
+            img {
+              width: 30px;
+              height: 30px;
+            }
+          }
+
+          h5 {
+            color: #3f514a;
+          }
+
+          input {
+            display: none;
+          }
+
+          &.selected {
+            border: 2px solid #484848;
+            background: #f8f8f8;
+
+            .service-icon {
+              .checked-icon {
+                opacity: 1;
+                transform: scale(1);
+              }
+            }
+          }
+        }
+      }
+
+      .form-controls {
+        .secondary-btn {
+          padding: 10px 35px;
+          font-size: 20px;
+          transition: 0.5s;
+          &:hover {
+            background: #ecd09f;
+            color: #3f514a;
+          }
+        }
+      }
+    }
+  }
+}
+
+.banner {
+  padding: 80px 0;
+  h5 {
+    font-size: 50px;
+    color: #3f514a;
+  }
+}
+
+@media (max-width: 1733px) {
+  swiper-container::part(button-prev) {
+    right: 40% !important;
+  }
+  swiper-container::part(button-next) {
+    left: 40% !important;
+  }
+}
+
+@media (max-width: 1666px) {
+  .hero {
+    padding: 20px 50px;
+    .container-fluid {
+      .heading {
+        h1 {
+          font-size: 40px;
+        }
+      }
+
+      .man {
+        width: 650px;
+      }
+    }
+  }
+
+  .request-service {
+    padding: 80px 10px;
+    .form-container {
+      padding: 20px !important ;
+      .service {
+        padding: 0 5px !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 1263px) {
+  swiper-container::part(button-prev) {
+    right: 35% !important;
+  }
+  swiper-container::part(button-next) {
+    left: 35% !important;
+  }
+}
+
+@media (max-width: 1199px) {
+  .hero {
+    padding: 20px 50px;
+    .container-fluid {
+      padding-top: 100px;
+      align-items: start !important;
+      .heading {
+        h1 {
+          font-size: 40px;
+        }
+      }
+
+      .man {
+        width: 500px;
+        right: 0px;
+      }
+      .shape {
+        left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    .container-fluid {
+      padding-top: 100px;
+      align-items: start !important;
+      .heading {
+        h1 {
+          font-size: 40px;
+        }
+        p {
+          font-size: 18px;
+        }
+      }
+
+      .man {
+        width: 500px;
+      }
+    }
+  }
+
+  .services {
+    padding: 80px 50px 80px;
+  }
+
+  .banner {
+    .row {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+@media (max-width: 873px) {
+  swiper-container::part(button-prev) {
+    right: 25% !important;
+  }
+  swiper-container::part(button-next) {
+    left: 25% !important;
+  }
+}
+
+@media (max-width: 635px) {
+  .hero {
+    padding: 60px 10px 20px;
+    .container-fluid {
+      padding: 50px 20px 0 !important;
+      .heading {
+        h1 {
+          font-size: 35px;
+        }
+      }
+
+      .man {
+        width: 520px;
+      }
+      .shape {
+        width: 250%;
+        left: -500px;
+      }
+    }
+  }
+
+  .services {
+    padding: 60px 10px 20px;
+    .card {
+      .service-preview {
+        width: 300px;
+        height: 350px;
+      }
+    }
+  }
+
+  .request-service {
+    .form-container {
+      background: transparent;
+      padding: 0 !important;
+      form {
+        .user-information {
+          .input-field {
+            input {
+              font-size: 15px;
+            }
+            img {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+
+        .type-of-contact {
+          color: white;
+          h4 {
+            font-size: 20px;
+          }
+          p {
+            color: #b2b2b2;
+            font-weight: 300;
+          }
+          .contact-method {
+            justify-content: center;
+            border: 1px solid #fff;
+            i {
+              font-size: 20px;
+            }
+            h5 {
+              color: #fff;
+              font-size: 14px;
+              transition: 0.3s;
+            }
+
+            &.selected {
+              color: #0a0b0a;
+              h5 {
+                color: #0a0b0a;
+              }
+            }
+          }
+        }
+
+        .type-of-service-selection {
+          color: #fff;
+          h4 {
+            font-size: 20px;
+          }
+          p {
+            color: #b2b2b2;
+            font-weight: 300;
+          }
+          .form-element {
+            h5 {
+              color: #fff;
+              font-size: 20px;
+            }
+
+            &.selected {
+              border: 2px solid #cacaca;
+              background: #f8f8f83b;
+
+              .service-icon {
+                .checked-icon {
+                  color: #0a0b0a;
+                  background: #fff;
+                }
+              }
+            }
+          }
+        }
+
+        .form-controls {
+          .secondary-btn {
+            padding: 10px 35px;
+            font-size: 20px;
+            transition: 0.5s;
+            width: 100%;
+            background: #ecd09f;
+            color: #3f514a;
+            &:hover {
+              background: #3f514a;
+              color: #ecd09f;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .banner {
+    h5 {
+      font-size: 40px;
+    }
+  }
+}
+
+@media (max-width: 527px) {
+  swiper-container::part(button-prev) {
+    right: 35px !important;
+  }
+  swiper-container::part(button-next) {
+    left: 35px !important;
+  }
+
+  .banner {
+    h5 {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .hero {
+    padding: 60px 10px 20px;
+    height: 550px;
+
+    .container-fluid {
+      padding: 50px 20px 0 !important;
+      .heading {
+        h1 {
+          font-size: 25px;
+        }
+      }
+
+      .man {
+        width: 400px;
+        right: -20px;
+      }
+      .shape {
+        width: 250%;
+        left: -400px;
+      }
+    }
+  }
+}

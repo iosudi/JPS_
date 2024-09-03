@@ -1,0 +1,169 @@
+<app-mobile-navbar></app-mobile-navbar>
+
+<div class="container profile-menu py-3 px-4">
+  <div class="header mb-4 d-flex align-items-center justify-content-between">
+    <h1 class="fw-bold m-0 h3">الحساب</h1>
+    <i class="fa-regular fa-bell"></i>
+  </div>
+
+  <div
+    class="profile pb-2 d-flex align-items-center justify-content-between border-bottom"
+    routerLink="/account/profile"
+  >
+    <div class="details d-flex gap-2 align-items-center">
+      <div class="image">
+        <img
+          src="../../../../../assets/imgs/WhatsApp Image 2024-06-03 at 21.05.40_d562eefe.jpg"
+          alt="Profile Image"
+        />
+      </div>
+      <div class="account-name">
+        <h2 class="h5">عادل سعودي</h2>
+        <p class="mb-0">الملف الشخصي</p>
+      </div>
+    </div>
+    <i class="fa-solid fa-angle-left"></i>
+  </div>
+
+  <div
+    class="banner my-3 p-3 d-flex gap-3 align-items-center"
+    routerLink="/home"
+  >
+    <div class="image">
+      <img src="../../../../../assets/imgs/3d home.png" alt="home page" />
+    </div>
+    <div class="text">
+      <h3 class="fw-bold h4">اجر شقتك الان</h3>
+      <p class="mb-0">اكتشف شقق الحلم من jps</p>
+    </div>
+  </div>
+
+  <div
+    class="personal-details pt-1 pb-3 d-flex align-items-center justify-content-between border-bottom"
+    routerLink="/account/personal-details"
+  >
+    <div class="title d-flex align-items-center gap-2">
+      <div class="icon d-flex justify-content-center align-items-center">
+        <img src="../../../../../assets/imgs/icons/user.png" alt="user icon" />
+      </div>
+      <p class="mb-0">معلوماتك الشخصية</p>
+    </div>
+    <i class="fa-solid fa-angle-left"></i>
+  </div>
+
+  <div class="support border-bottom pt-4 pb-3">
+    <h2 class="h4 fw-bold title mb-4">الدعم</h2>
+    <ul class="p-0 m-0">
+      <li
+        class="d-flex align-items-center justify-content-between mb-4"
+        routerLink="/how-it-works"
+      >
+        <a class="d-flex align-items-center gap-2">
+          <img src="../../../../../assets/imgs/dark logo.png" alt="icon" />
+          كيف يعمل JPS
+        </a>
+        <i class="fa-solid fa-angle-left"></i>
+      </li>
+      <li
+        class="d-flex align-items-center justify-content-between mb-4"
+        routerLink="/about"
+      >
+        <a class="d-flex align-items-center gap-2">
+          <img src="../../../../../assets/imgs/icons/question.png" alt="icon" />
+          عن الشركة
+        </a>
+        <i class="fa-solid fa-angle-left"></i>
+      </li>
+      <li
+        class="d-flex align-items-center justify-content-between mb-4"
+        routerLink="/contact"
+      >
+        <a class="d-flex align-items-center gap-2">
+          <img src="../../../../../assets/imgs/icons/headset.png" alt="icon" />
+          الشكاوي و الاقتراحات
+        </a>
+        <i class="fa-solid fa-angle-left"></i>
+      </li>
+      <li
+        class="d-flex align-items-center justify-content-between"
+        routerLink="/rates"
+      >
+        <a class="d-flex align-items-center gap-2">
+          <img src="../../../../../assets/imgs/icons/star.png" alt="icon" />
+          تقييمات واراء العملاء بنا
+        </a>
+        <i class="fa-solid fa-angle-left"></i>
+      </li>
+    </ul>
+  </div>
+
+  <div class="buttons py-3 d-flex gap-3 align-items-center">
+    <button class="language-btn control-btn">
+      <i class="fa-solid fa-globe"></i>
+      اللغة
+    </button>
+    <button (click)="showDialog()" class="currency-btn control-btn">
+      <i class="fa-solid fa-dollar-sign"></i>
+      العملة
+    </button>
+  </div>
+
+  <button
+    class="btn w-100 outlined-btn d-flex align-items-center justify-content-center gap-3"
+  >
+    <i class="fa-solid fa-sign-out-alt"></i>
+    تسجيل الخروج
+  </button>
+
+  <p
+    class="privacy-link text-decoration-underline text-center mt-4 w-100"
+    routerLink="/privacyPolicy"
+  >
+    السياسه والخصوصية
+  </p>
+</div>
+
+<p-dialog [(visible)]="visible" [modal]="true">
+  <ng-template pTemplate="headless">
+    <div class="currency-popup p-4">
+      <i class="fa-solid fa-xmark mb-3" (click)="closeDialog()"></i>
+      <h3 class="title my-4 h4 fw-bolder">اختر عملتك المفضلة</h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center active">
+              الجنيه المصري EG
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,136 @@
+<nav class="py-4">
+  <div class="navbar w-75 mx-auto">
+    <div class="logo d-flex JPS gap-3 align-items-center ps-4">
+      <div class="title">
+        <h2 class="h6 mb-0 text-start">JPS GROUPS</h2>
+        <p class="mb-0 text-start fw-lighter">Real Estate</p>
+      </div>
+
+      <div
+        routerLink="/home"
+        class="logo-image d-flex align-items-center justify-content-center"
+      >
+        <img src="./assets/imgs/logo.png" alt="JPS LOGO" />
+      </div>
+    </div>
+
+    <ul class="nav-items d-flex gap-4 m-0 p-0">
+      <li>
+        <a routerLink="/home" routerLinkActive="active-link" class="fw-lighter"
+          >الرئيسية</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/our-services"
+          routerLinkActive="active-link"
+          class="fw-lighter"
+          >الخدمات</a
+        >
+      </li>
+      <li>
+        <a routerLink="/about" routerLinkActive="active-link" class="fw-lighter"
+          >عن الشركة</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/contact"
+          routerLinkActive="active-link"
+          class="fw-lighter"
+          >الشكاوي و الاقتراحات</a
+        >
+      </li>
+    </ul>
+
+    <div class="nav-controls d-flex gap-3">
+      <button (click)="showDialog()" class="currency-btn control-btn">
+        <i class="fa-solid fa-dollar-sign"></i>
+        العملة
+      </button>
+      <button class="language-btn control-btn">
+        <i class="fa-solid fa-globe"></i>
+        اللغة
+      </button>
+      <div
+        (click)="toggleDropdown()"
+        class="profile-dropdown-btn d-flex align-items-center justify-content-between gap-3 rounded-5"
+      >
+        <i class="fa-solid fa-bars"></i>
+        <img
+          src="./assets/imgs/icons/dark-online-user.png"
+          alt="Profile Picture"
+        />
+
+        <div class="dropdown-menu" [class.showDropdown]="dropdown_active">
+          <ul class="p-0 text-end user-auth-options mb-0 py-2 px-3">
+            <li (click)="openLoginDialog()" class="py-1">تسجيل دخول</li>
+            <li (click)="openSignUpDialog()" class="py-1">تسجيل حساب</li>
+          </ul>
+          <ul class="p-0 text-end JPS-INFO py-2 px-3">
+            <li>
+              <a routerLink="/about" routerLinkActive="active-link" class="py-1"
+                >عن الشركة</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/contact"
+                routerLinkActive="active-link"
+                class="py-1"
+                >الشكاوي و الاقتراحات</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<app-mobile-navbar></app-mobile-navbar>
+
+<p-dialog [(visible)]="visible" [modal]="true">
+  <ng-template pTemplate="headless">
+    <div class="currency-popup p-4">
+      <i class="fa-solid fa-xmark mb-3" (click)="closeDialog()"></i>
+      <h3 class="title my-4 h4 fw-bolder">اختر عملتك المفضلة</h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center active">
+              الجنيه المصري EG
+            </div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+          <div class="col-6 col-md-4">
+            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>

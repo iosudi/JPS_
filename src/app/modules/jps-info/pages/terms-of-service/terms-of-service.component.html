@@ -1,0 +1,71 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="hero overflow-hidden">
+  <div
+    class="container-fluid position-relative h-100 d-flex align-items-center px-5"
+  >
+    <div class="background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background image" />
+      <div class="gradient"></div>
+      <div class="blur"></div>
+    </div>
+    <div class="heading text-center w-100">
+      <h1 class="fw-bold">شروط خدمة <span>JPS</span></h1>
+      <p class="mb-0 fw-lighter">
+        هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="terms my-4">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="terms-list">
+          <h2>شروط خدمة jps</h2>
+          <div class="term mb-4" *ngFor="let term of terms; let i = index">
+            <h3 class="title d-flex gap-1 align-items-center">
+              <span class="term-id d-flex justify-content-end align-items-end"
+                >{{ i + 1 }}.</span
+              >
+              {{ term.title }}
+            </h3>
+            <ul class="px-0">
+              <h4 class="fw-normal">{{ term.content }}</h4>
+              <li class="fw-normal px-2" *ngFor="let item of term.list">
+                {{ item }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="start-trip">
+          <h3 class="h1">ابدأ رحلتك إلى JPS</h3>
+          <p>
+            تواصل معنا لاكتشاف تجربة معيشية تناسب نمط حياتك بشكل فريد مع
+            الإيجارات المتميزة في مالي
+          </p>
+          <button
+            class="btn secondary-btn px-4 d-flex align-items-center gap-2"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+            اتصل بنا
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer section -->
+<app-footer></app-footer>

@@ -1,0 +1,307 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="hero overflow-hidden">
+  <div
+    class="container-fluid position-relative h-100 d-flex align-items-center px-5"
+  >
+    <div class="background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background image" />
+      <div class="gradient"></div>
+      <div class="blur"></div>
+    </div>
+    <div class="row w-100">
+      <div class="col-xl-4">
+        <div class="heading">
+          <h1>عن <span>JPS</span></h1>
+          <p>
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+            النص من مولد النص العربى،
+          </p>
+          <button class="btn primary-btn">
+            <img src="./assets/imgs/About Imgs/down-right-arrow.png" />
+          </button>
+        </div>
+      </div>
+      <div class="col-xl-8">
+        <div class="image position-absolute">
+          <img src="./assets/imgs/About Imgs/hero image.png" alt="about us" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mission p-5">
+  <div class="container my-5">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>نحن في مهمة لتغيير وجهة النظر في <span>مجال العقارات</span></h2>
+      </div>
+      <div class="col-md-6">
+        <p>
+          لا يهم مدى تنظيمك - ففائض الألعاب سيضمن دائمًا أن يكون منزلك في حالة
+          من الفوضى التي تنتظر الحدوث. لحسن الحظ، فإن إقناع الأطفال بفكرة التخلص
+          من الأشياء الخاصة بهم هو أسهل بكثير مما يبدو.
+        </p>
+        <p class="mb-0">
+          الذي يخاف من الرسوم الكاريكاتورية، ويصبح كاذبًا. فالواجب من الواجب ومن
+          الواجب، أما الواجب فهو فراش الحداد. صلصة سلطة الوادي الكاملة. يحتاج
+          العنصر المنزلي إلى الكثير من الوقت. إنه سرير رعاية مثل وسادة الجعبة.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="vision p-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="image h-100">
+          <img src="./assets/imgs/About Imgs/vision image.png" alt="image" />
+        </div>
+      </div>
+      <div class="col-lg-6 d-flex align-items-end pb-5">
+        <div class="heading p-5">
+          <div class="title d-flex align-items-center gap-4 mb-4">
+            <div class="icon d-flex justify-content-center align-items-center">
+              <img src="./assets/imgs/icons/lamp.png" alt="lamp icon" />
+            </div>
+            <h3 class="h1 mb-0 fw-bolder">الرؤية</h3>
+          </div>
+          <p class="mb-0">
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+            النص من مولد النص العربى، إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح
+            لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما
+            ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه
+            الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية
+            لتصميم الموقع.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features p-5">
+  <div class="container py-5">
+    <div class="heading text-center mb-5">
+      <h3 class="fw-bolder">القيم التي تحرك كل ما نقوم به</h3>
+      <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس</p>
+    </div>
+
+    <div class="row g-5">
+      <div class="col-md-6 col-lg-4" *ngFor="let feature of features">
+        <div class="card p-5">
+          <img [src]="feature.icon" class="mb-3" alt="bulding icon" />
+          <h4 class="mb-3">{{ feature.title }}</h4>
+          <p>
+            {{ feature.description }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="staff-member">
+  <div class="container-fluid overflow-hidden py-5">
+    <div class="heading text-center mb-5">
+      <h3 class="fw-bolder">خلف كل منزل فريق متخصص</h3>
+      <p>هذا النص هو مثال لنص يمكن أن يستبدل في نفس</p>
+    </div>
+
+    <owl-carousel-o #staffCarousel [options]="customOptions">
+      <ng-container *ngFor="let member of staffMembers">
+        <ng-template carouselSlide>
+          <div
+            class="card position-relative mx-4 px-5 py-4 d-flex flex-column align-items-center"
+          >
+            <div
+              class="social-overlay d-flex flex-column justify-content-between align-items-end py-4 px-3"
+            >
+              <a>
+                <i class="fa-solid fa-phone"></i>
+              </a>
+              <a>
+                <i class="fa-solid fa-envelope"></i>
+              </a>
+              <a>
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a>
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a>
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a>
+                <i class="fab fa-x-twitter"></i>
+              </a>
+            </div>
+            <div class="rating px-3 py-1 mb-3">
+              {{ member.rating }}
+              <i class="fa-solid fa-star rating-color me-2"></i>
+            </div>
+            <img [src]="member.image" class="mb-3" alt="staff member image" />
+            <h4 class="mb-0">{{ member.name }}</h4>
+            <p class="mb-0">{{ member.position }}</p>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+
+    <div class="carousel-arrows mt-4 px-3 d-flex align-items-center gap-3">
+      <button
+        #staffPrevBtn
+        (click)="triggerPrev('staff')"
+        class="prev-btn btn arr-btn d-flex align-items-center justify-content-center"
+      >
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+      <button
+        #staffNextBtn
+        (click)="triggerNext('staff')"
+        class="next-btn btn arr-btn d-flex align-items-center justify-content-center"
+      >
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials section -->
+<section class="testimonials overflow-hidden py-5">
+  <div class="container-fluid my-5">
+    <div class="row justify-content-center g-5">
+      <div class="col-lg-6">
+        <div class="heading d-flex flex-column gap-4">
+          <h2 class="h1 title mb-0 fw-bolder">انظر ماذا <br />يقول عملاؤنا!</h2>
+          <p class="fw-light mb-0">
+            اراء عملائنا في خدمتنا يسمح لنا ذلك بزيادة الثقة بين العملاء و تقديم
+            خدمة مبنية علي تجارب سابقة وايضا تقييماتهم لنا من حيث ما نقدمه
+          </p>
+          <button
+            class="btn ms-auto primary-btn d-flex align-items-center gap-3 fw-bold"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+            قم بتقييمنا اللآن
+          </button>
+          <div class="carousel-arrows d-flex align-items-center gap-4">
+            <button
+              #testimonialsPrevBtn
+              (click)="triggerPrev('testimonials')"
+              class="prev-btn btn arr-btn"
+              disabled
+            >
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button
+              #testimonialsNextBtn
+              (click)="triggerNext('testimonials')"
+              class="next-btn btn arr-btn"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="carousel-container h-100">
+          <div class="navigation-dots d-flex flex-column gap-2 my-4">
+            <div #testimonialsDot1 class="dot active-dot"></div>
+            <div #testimonialsDot2 class="dot"></div>
+            <div #testimonialsDot3 class="dot"></div>
+            <div #testimonialsDot4 class="dot"></div>
+          </div>
+
+          <div class="carousel overflow-hidden">
+            <owl-carousel-o
+              #testimonialsCarousel
+              [options]="testimonialsOptions"
+            >
+              <ng-container
+                *ngFor="let testimonial of testimonials; let i = index"
+              >
+                <ng-template carouselSlide>
+                  <div
+                    #testimonialsCard
+                    [ngClass]="{ scaled: i === testimonialsIndex }"
+                    class="slide m-5 p-5 pb-4"
+                  >
+                    <img
+                      src="./assets/imgs/quote.png"
+                      alt="quote symbol"
+                      class="quote-symbol"
+                    />
+                    <p class="my-4">{{ testimonial.content }}</p>
+                    <div
+                      class="review-author d-flex justify-content-between align-items-center border-top pt-4"
+                    >
+                      <div class="author d-flex gap-2 align-items-center">
+                        <img
+                          [src]="testimonial.profile_icon"
+                          alt="profile-icon"
+                        />
+                        <h5 class="author-name fw-normal">
+                          {{ testimonial.author }}
+                        </h5>
+                      </div>
+                      <div class="rating">
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                        <i class="fa-solid fa-star rating-color"></i>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+            </owl-carousel-o>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tax-record">
+  <div class="container">
+    <div class="background">
+      <img src="./assets/imgs/About Imgs/triangle.png" alt="triangle shape" />
+    </div>
+    <div class="title d-flex align-items-center gap-4 mb-5">
+      <div class="icon d-flex justify-content-center align-items-center">
+        <img src="./assets/imgs/icons/verfied.png" alt="verfied icon" />
+      </div>
+      <h3 class="h1 mb-0 fw-bolder">السجل الضريبي</h3>
+    </div>
+    <p class="fw-medium mb-5">
+      هدفنا هو أن يتمكن الضيوف والمضيفون على jps من الثقة ببعضهم البعض. نطلب من
+      المضيفين والضيوف الذين يقومون بالحجز أن يتم التحقق من هويتهم. نحتاج بعض
+      المعلومات لمساعدتنا على تأكيد هويتك.
+    </p>
+    <p class="fw-medium">
+      تتعهد jps بأقصى درجات السرية والحماية لبيانات ومعلومات تأكيد هوية مالك
+      الوحدة، حيث نؤكد على عدم مشاركتها مع أي مستأجر أو طرف ثالث تحت أي طرف من
+      الظروف. نلتزم باستخدام هذه المعلومات فقط لأغراض التحقق من الهوية وتحسين
+      جودة وأمان الحدمة المقدمة.
+    </p>
+    <h4 class="h2 fw-bolder mt-5">رقم السجل الضريبي: ٥٨٥ - ٢٣٢ - ٧٥٩</h4>
+    <div class="verified-badge">
+      <img src="./assets/imgs/About Imgs/badge.png" alt="verified badge" />
+    </div>
+  </div>
+</section>
+
+<!-- Footer section -->
+<app-footer></app-footer>

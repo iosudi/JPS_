@@ -1,0 +1,144 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="how-it-works-steps">
+  <div class="container-fluid d-flex flex-column align-items-center">
+    <h1 class="title fw-bold">
+      أنت على بُعد 3 خطوات فقط <br />
+      من رحلتك القادمة
+    </h1>
+    <div class="row">
+      <div
+        class="col-12 my-5"
+        *ngFor="let step of howItWorkSteps; let i = index"
+      >
+        <div class="step d-flex justify-content-between gap-3">
+          <div class="heading w-50">
+            <h2 class="h3">{{ i + 1 }}.{{ step.title }}</h2>
+            <p class="mb-0">{{ step.description }}</p>
+          </div>
+          <div class="video d-flex justify-content-center align-items-center">
+            <div class="icon">
+              <i class="fa-solid fa-play"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="help-service py-3">
+  <div class="container-fluid">
+    <h2 class="h1">
+      أينما كانت وجهتك،<br />
+      سنقدم لك المساعدة
+    </h2>
+    <div class="row g-5">
+      <div class="col-lg-4" *ngFor="let service of helpService">
+        <div class="service">
+          <div class="icon mb-4">
+            <img [src]="service.icon" alt="service icon" />
+          </div>
+          <h3 class="h4">{{ service.title }}</h3>
+          <p class="mb-0 fw-lighter">{{ service.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="banner px-3">
+  <div class="container pt-4">
+    <div class="row g-5">
+      <div class="col-lg-6">
+        <div class="images d-flex gap-3 align-items-end">
+          <div class="column">
+            <div class="image">
+              <img src="./assets/imgs/banner_HOW_IT_WORKS/4.png" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/banner_HOW_IT_WORKS/1.png" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/banner_HOW_IT_WORKS/2.png" />
+            </div>
+          </div>
+
+          <div class="column">
+            <div class="image">
+              <img src="./assets/imgs/banner_HOW_IT_WORKS/3.png" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/banner_HOW_IT_WORKS/2.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="heading">
+          <h3 class="fw-bold mb-3">هل أنت على استعداد لبدء البحث؟</h3>
+          <button class="btn secondary-btn px-5 py-2 fw-light">
+            ابدا الان
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faqs mb-5 overflow-hidden">
+  <div class="container">
+    <div class="heading text-center">
+      <h3 class="h1 fw-bold mb-3">اسئلة شائعة</h3>
+      <p>اكتشف الإجابات على أسئلتك حول عروض JPS</p>
+      <div
+        class="buttons d-flex gap-3 align-items-center justify-content-center"
+      >
+        <button class="btn active">مؤجر</button>
+        <button class="btn">مستأجر</button>
+      </div>
+    </div>
+
+    <div class="row gy-4 justify-content-center mt-4">
+      <div class="col-12 w-75" *ngFor="let faq of faqs; let i = index">
+        <div
+          class="faq p-4"
+          (click)="toggleExpand(i)"
+          [class.expand]="expandedIndex === i"
+        >
+          <div
+            class="question gap-2 mb-3 d-flex align-items-center justify-content-between"
+          >
+            <h4 class="mb-0">
+              <span>{{ faq.id }}.</span> {{ faq.question }}
+            </h4>
+            <i
+              class="fa-solid"
+              [ngClass]="{
+                'fa-plus': expandedIndex !== i,
+                'fa-minus': expandedIndex == i
+              }"
+            ></i>
+          </div>
+          <p class="answer mb-0">
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
+            النص من مولد النص العربى، إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح
+            لك مولد النص ا
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer section -->
+<app-footer></app-footer>

@@ -1,0 +1,51 @@
+<section>
+  <app-nav-bar class="navBar"></app-nav-bar>
+  <div class="background">
+    <img src="./assets/imgs/popular-apartments/3.png" alt="background image" />
+    <div class="overlay"></div>
+  </div>
+  <div class="container-fluid d-flex flex-column justify-content-between">
+    <div class="search-field px-3 py-2 mx-auto mb-5">
+      <app-search-bar></app-search-bar>
+    </div>
+    <h1 class="title fw-bold px-5 mt-5">
+      الاحياء <br />
+      الأكثر بحثا
+    </h1>
+
+    <div class="slider ps-2 mb-5">
+      <h2 class="h4 mb-3 fw-light">الاحياء الأكثر بحثا في ؟</h2>
+      <swiper-container
+        [slidesPerView]="2.5"
+        [speed]="500"
+        [spaceBetween]="20"
+        [breakpoints]="breakpoints"
+      >
+        <swiper-slide *ngFor="let district of districts">
+          <div class="card d-flex flex-column align-items-center">
+            <div class="district-preview mb-1">
+              <div
+                class="overlay d-flex justify-content-center align-items-center"
+              >
+                <button
+                  class="btn py-2 px-3 rounded-5"
+                  routerLink="/best-apartments"
+                >
+                  اكتشف الان
+                </button>
+                <i class="fa-regular fa-heart"></i>
+              </div>
+              <img [src]="district.imgSrc" />
+            </div>
+            <div class="card-body w-100">
+              <h3 class="h4">{{ district.name }}</h3>
+              <p class="mb-0 fw-lighter">
+                {{ district.apartments }} شقة للايجار
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>

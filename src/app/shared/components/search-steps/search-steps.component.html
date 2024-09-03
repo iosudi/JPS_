@@ -1,0 +1,207 @@
+<div class="search-page py-5" [ngClass]="{ 'active-search': showSteps }">
+  <div class="container px-3">
+    <!-- Step 1: City Selection -->
+    <div class="city-selection" *ngIf="currentStep === 1">
+      <div
+        class="header mb-5 d-flex justify-content-between align-items-center"
+      >
+        <div class="step-title">
+          <h3 class="fw-bold">المدينة</h3>
+          <p class="fw-lighter">اختر المدينة</p>
+        </div>
+
+        <i class="fa-solid fa-arrow-left fs-2"></i>
+      </div>
+
+      <div class="row gy-4">
+        <div class="col-6 col-md-4" *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+          <div class="city" (click)="selectCity('اكتوبر')">
+            <div class="city-image">
+              <img src="./assets/imgs/map.png" alt="City 1" />
+            </div>
+            <h4 class="mt-2 mb-0">اكتوبر</h4>
+          </div>
+        </div>
+      </div>
+
+      <p class="my-5 fs-3 d-flex align-items-center gap-3 fw-light">
+        <i class="fa-solid fa-arrow-right fs-5"></i>
+        تخطي
+      </p>
+    </div>
+
+    <div class="unit-selection" *ngIf="currentStep === 2">
+      <div
+        class="header mb-5 d-flex justify-content-between align-items-center"
+      >
+        <div class="step-title">
+          <h3 class="fw-bold">نوع الوحدة</h3>
+          <p class="fw-lighter">نوع الوحدة شقة او فلة او استوديو</p>
+        </div>
+
+        <i class="fa-solid fa-arrow-left fs-2"></i>
+      </div>
+
+      <div class="row w-50 gy-4">
+        <div class="col-6" *ngFor="let unitType of unitTypes">
+          <div
+            class="unit px-5 d-flex justify-content-center flex-column"
+            (click)="selectUnitType(unitType.title)"
+          >
+            <input type="checkbox" />
+            <div
+              class="icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+            >
+              <div
+                class="checked-icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-check"></i>
+              </div>
+
+              <img [src]="unitType.icon" alt="service icon" />
+            </div>
+            <h5 class="form-label mb-0">
+              {{ unitType.title }}
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <p class="my-5 fs-3 d-flex align-items-center gap-3 fw-light">
+        <i class="fa-solid fa-arrow-right fs-5"></i>
+        تخطي
+      </p>
+    </div>
+
+    <div class="resident-selection" *ngIf="currentStep === 3">
+      <div
+        class="header mb-5 d-flex justify-content-between align-items-center"
+      >
+        <div class="step-title">
+          <h3 class="fw-bold">نوع الساكن</h3>
+          <p class="fw-lighter">نوع الساكن اسرة - طالب - طالبة - موظف</p>
+        </div>
+
+        <i class="fa-solid fa-arrow-left fs-2"></i>
+      </div>
+
+      <div class="row w-50 gy-4">
+        <div class="col-6" *ngFor="let residentType of residentTypes">
+          <div
+            class="resident px-5 d-flex justify-content-center flex-column"
+            (click)="selectResidentType(residentType.title)"
+          >
+            <input type="checkbox" />
+            <div
+              class="icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+            >
+              <div
+                class="checked-icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-check"></i>
+              </div>
+
+              <img [src]="residentType.icon" alt="service icon" />
+            </div>
+            <h5 class="form-label mb-0">
+              {{ residentType.title }}
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <p class="my-5 fs-3 d-flex align-items-center gap-3 fw-light">
+        <i class="fa-solid fa-arrow-right fs-5"></i>
+        تخطي
+      </p>
+    </div>
+
+    <div class="furniture-state-selection" *ngIf="currentStep === 4">
+      <div
+        class="header mb-5 d-flex justify-content-between align-items-center"
+      >
+        <div class="step-title">
+          <h3 class="fw-bold">حاله الفرش</h3>
+          <p class="fw-lighter">حالة الفرش مفروش - غير مفروش</p>
+        </div>
+
+        <i class="fa-solid fa-arrow-left fs-2"></i>
+      </div>
+
+      <div class="row w-50 gy-4">
+        <div class="col-6" *ngFor="let furnitureState of furnitureStates">
+          <div
+            class="state px-5 d-flex justify-content-center flex-column"
+            (click)="selectFurnitureState(furnitureState.title)"
+          >
+            <input type="checkbox" />
+            <div
+              class="icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+            >
+              <div
+                class="checked-icon d-flex align-items-center justify-content-center"
+              >
+                <i class="fa-solid fa-check"></i>
+              </div>
+
+              <img [src]="furnitureState.icon" alt="service icon" />
+            </div>
+            <h5 class="form-label mb-0">
+              {{ furnitureState.title }}
+            </h5>
+          </div>
+        </div>
+      </div>
+
+      <p class="my-5 fs-3 d-flex align-items-center gap-3 fw-light">
+        <i class="fa-solid fa-arrow-right fs-5"></i>
+        تخطي
+      </p>
+    </div>
+
+    <div class="rooms-number-selection" *ngIf="currentStep === 5">
+      <div
+        class="header mb-5 d-flex justify-content-between align-items-center"
+      >
+        <div class="step-title">
+          <h3 class="fw-bold">الغرف</h3>
+          <p class="fw-lighter">عدد الغرف و السراير والحمامات</p>
+        </div>
+
+        <i class="fa-solid fa-arrow-left fs-2"></i>
+      </div>
+
+      <div class="row w-50 gy-4">
+        <div class="col-12" *ngFor="let room of roomOptions">
+          <div class="room d-flex justify-content-center flex-column">
+            <input type="checkbox" />
+            <h5 class="form-label mb-4">
+              {{ room.title }}
+            </h5>
+
+            <div class="rooms-number d-flex gap-3 flex-wrap">
+              <div
+                class="number px-3 rounded-5 fs-5"
+                *ngFor="let number of room.rooms_number_selection"
+                (click)="selectRoom(room.title, number.rooms_number)"
+              >
+                {{ number.rooms_number }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="search-summary d-flex align-items-center gap-5 justify-content-between w-50 mt-5"
+      >
+        <button class="btn secondary-btn" (click)="submitFilterOptions()">
+          ابحث
+        </button>
+        <p class="mb-0 fw-medium">
+          اكتوبر ,شقة(عادية) ,طالب , 2 سرير ,2 اوضة , 2 حمام
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,308 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="search-results">
+  <div class="container-fluid">
+    <div class="search-filter-panel mb-5">
+      <div
+        class="panel d-flex align-items-center justify-content-between gap-2 py-2 px-3"
+      >
+        <div
+          class="search-bar d-flex justify-content-between align-items-center"
+        >
+          <input type="text" placeholder="ابحث عن ما تريد" />
+          <div class="icon d-flex">
+            <i class="fa-solid fa-search m-auto"></i>
+          </div>
+        </div>
+
+        <!-- Apartment Type Selection -->
+        <p-dropdown
+          [options]="apartmentsType"
+          [(ngModel)]="selectedApartmentType"
+          optionLabel="name"
+          placeholder="شقة"
+          class="dropdown"
+        >
+          <ng-template pTemplate="selectedItem">
+            <div
+              class="d-flex align-items-center gap-2"
+              *ngIf="selectedApartmentType"
+            >
+              <img src="./assets/imgs/icons/bulding.png" style="width: 15px" />
+              <div class="fw-normal">{{ selectedApartmentType.name }}</div>
+            </div>
+          </ng-template>
+
+          <ng-template let-type pTemplate="item">
+            <div class="d-flex align-items-center gap-2">
+              <img src="./assets/imgs/icons/bulding.png" style="width: 15px" />
+              <div class="fw-normal">{{ type.name }}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <!-- Rooms Selection -->
+        <p-dropdown
+          class="dropdown"
+          [options]="rooms"
+          [(ngModel)]="selectedRooms"
+          optionLabel="name"
+          placeholder="شقة"
+        >
+          <ng-template pTemplate="selectedItem">
+            <div class="d-flex align-items-center gap-2" *ngIf="selectedRooms">
+              <img
+                src="./assets/imgs/icons/door-green.png"
+                style="width: 15px"
+              />
+              <div class="fw-normal">{{ selectedRooms.name }}</div>
+            </div>
+          </ng-template>
+          <ng-template let-room pTemplate="item">
+            <div class="d-flex align-items-center gap-2">
+              <img
+                src="./assets/imgs/icons/door-green.png"
+                style="width: 15px"
+              />
+              <div class="fw-normal">{{ room.name }}</div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <!-- Number of Rooms Selection -->
+        <p-dropdown
+          class="dropdown"
+          [options]="roomsNumber"
+          [(ngModel)]="selectedRoomsNumber"
+          optionLabel="name"
+          placeholder="شقة"
+        >
+          <ng-template pTemplate="selectedItem">
+            <div
+              class="d-flex align-items-center gap-2"
+              *ngIf="selectedRoomsNumber"
+            >
+              <img src="./assets/imgs/icons/bulding.png" style="width: 15px" />
+              <div class="fw-normal">
+                {{
+                  selectedRoomsNumber.rooms +
+                    " غرف, " +
+                    selectedRoomsNumber.bedrooms +
+                    " سراير, " +
+                    selectedRoomsNumber.bathrooms +
+                    " حمام"
+                }}
+              </div>
+            </div>
+          </ng-template>
+          <ng-template let-number pTemplate="item">
+            <div class="d-flex align-items-center gap-2">
+              <img src="./assets/imgs/icons/bulding.png" style="width: 15px" />
+              <div class="fw-normal">
+                {{
+                  number.rooms +
+                    " غرف, " +
+                    number.bedrooms +
+                    " سراير, " +
+                    number.bathrooms +
+                    " حمام"
+                }}
+              </div>
+            </div>
+          </ng-template>
+        </p-dropdown>
+
+        <!-- advanced search btn -->
+        <div class="advanced-search">
+          <button
+            (click)="openAdvancedSearchFilterModal()"
+            class="btn secondary-btn d-flex align-items-center justify-content-center gap-2"
+          >
+            <span>بحث متقدم</span>
+            <i class="fa-solid fa-sliders"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="products-layout-controller d-flex justify-content-between align-items-start mb-4"
+    >
+      <div class="sorting-preview d-flex align-items-start gap-5">
+        <div class="title">
+          <h1 class="h3 fw-bold mb-1">نتائج البحث</h1>
+          <p class="mb-0">100 من النتائج</p>
+        </div>
+
+        <p-dropdown
+          class="dropdown"
+          [options]="sorting"
+          [(ngModel)]="selectedSorting"
+          optionLabel="name"
+          placeholder="رتب حسب"
+        />
+      </div>
+
+      <div class="preview-buttons d-flex gap-2">
+        <button
+          [ngClass]="{ 'active-preview': isHorizontal }"
+          (click)="setViewMode('horizontal')"
+          class="horizontal-preview-btn btn d-flex align-items-center gap-2 py-2"
+        >
+          <i class="fa-solid fa-grip-horizontal"></i>
+          <span> عرض أفقي </span>
+        </button>
+        <button
+          [ngClass]="{ 'active-preview': !isHorizontal }"
+          (click)="setViewMode('vertical')"
+          class="vertical-preview-btn active-preview btn d-flex align-items-center gap-2 py-2"
+        >
+          <i class="fa-solid fa-grip-vertical"></i>
+          <span> عرض رأسي</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="row gy-sm-5 gy-4 gx-4">
+      <div
+        [ngClass]="{
+          'col-lg-6 col-12': isHorizontal,
+          'col-xl-3 col-lg-4': !isHorizontal
+        }"
+        *ngFor="
+          let apartment of apartments
+            | paginate
+              : {
+                  id: 'productPaginate',
+                  itemsPerPage: 8,
+                  currentPage: currentPage,
+                  totalItems: apartments.length
+                }
+        "
+      >
+        <div
+          class="card p-3"
+          [ngClass]="{
+            'd-flex flex-row gap-4': isHorizontal,
+            'd-flex flex-column': !isHorizontal
+          }"
+        >
+          <div class="apartment-preview mb-2">
+            <img
+              [src]="apartment.image"
+              alt="apartment image"
+              class="apartment-image"
+            />
+            <div class="reserved-duration">
+              <p class="mb-0 fw-light">محجوزة حتي 10/8/2024</p>
+            </div>
+
+            <div class="arrow d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="paginator d-flex gap-1 mt-3">
+              <div class="dot active"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+
+            <div
+              class="host-preview d-flex align-items-center justify-content-center p-3"
+            >
+              <img
+                src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
+                alt="host avatar"
+              />
+            </div>
+          </div>
+
+          <div class="apartment-information">
+            <div
+              class="apartment-name d-flex justify-content-between gap-2 mb-2"
+            >
+              <div class="title text-end">
+                <h3 class="h6 my-1">شقة مفروشة فاخرة للإيجار</h3>
+                <p class="location mb-0 d-flex gap-1 align-items-center">
+                  <i class="fa-solid fa-location-dot"></i>
+                  {{ apartment.location }}
+                </p>
+              </div>
+
+              <div class="rating d-flex align-items-center gap-1">
+                <i class="fa-solid fa-star"></i> 4.8
+              </div>
+            </div>
+
+            <div class="chips-badges d-flex gap-2 my-3">
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/bath-green.png" alt="bath icon" />
+                {{ apartment.bath }}
+              </div>
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/bed-green.png" alt="bed icon" />
+                {{ apartment.bed }}
+              </div>
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/door-green.png" alt="door icon" />
+                {{ apartment.rooms }}
+              </div>
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/doc-green.png" alt="docs icon" />
+                {{ apartment.duration }}
+              </div>
+            </div>
+
+            <h3 class="h6 fw-bold price mb-0 text-end mb-3">
+              ٤٩٬٩٩٩ جنيه/ شهرياً
+            </h3>
+
+            <div
+              class="controls d-flex justify-content-between align-items-center px-3 py-2"
+            >
+              <div class="icons d-flex align-items-center gap-2">
+                <img
+                  src="./assets/imgs/icons/share-green.png"
+                  alt="share icon"
+                />
+                <img
+                  src="./assets/imgs/icons/heart-green.png"
+                  alt="heart icon"
+                />
+              </div>
+
+              <button
+                class="btn d-flex gap-2 align-items-center secondary-btn fw-medium px-4 py-2"
+              >
+                <i class="fa-solid fa-phone"></i>
+                اتصل الان
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <pagination-controls
+        id="productPaginate"
+        class="products-pagination"
+        (pageChange)="pageChanged($event)"
+        (pageBoundsCorrection)="pageChanged($event)"
+        [maxSize]="7"
+        [directionLinks]="true"
+        [autoHide]="true"
+        previousLabel=""
+        nextLabel=""
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page"
+        dir="ltr"
+      >
+      </pagination-controls>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

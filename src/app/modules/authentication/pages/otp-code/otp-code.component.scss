@@ -1,0 +1,75 @@
+:host {
+  width: 100%;
+}
+.form-wrapper {
+  i {
+    cursor: pointer;
+  }
+
+  .image {
+    display: none;
+  }
+  .title {
+    h2,
+    .userEmail {
+      color: #333333;
+    }
+    .userEmail {
+      font-size: 25;
+    }
+
+    p {
+      color: #747474;
+      font-size: 20px;
+    }
+  }
+  form {
+    .options {
+      .otpFail {
+        font-size: 12px;
+        button {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          font-size: 12px;
+          color: #4a594f;
+          text-decoration: underline;
+        }
+      }
+
+      .countDown {
+        font-size: 10px;
+        color: #8da69c;
+      }
+    }
+    button {
+      font-size: 20px;
+      transition: 0.5s;
+      i {
+        font-size: 16px;
+      }
+      &:hover,
+      &:focus {
+        background: #ecd09f;
+        color: #3f514a;
+      }
+    }
+  }
+}
+app-mobile-navbar {
+  display: none;
+}
+@media (max-width: 775px) {
+  .form-wrapper {
+    .image {
+      display: flex;
+
+      img {
+        width: 70%;
+      }
+    }
+  }
+  app-mobile-navbar {
+    display: block;
+  }
+}

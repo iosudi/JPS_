@@ -1,1 +1,201 @@
 /* You can add global styles to this file, and also import other style files */
+@import "bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import "swiper/scss";
+* {
+  list-style: none;
+}
+
+body {
+  font-family: "Rubik", sans-serif !important;
+  background-color: #f7f7f7;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #3f514a;
+  border-radius: 10px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.owl-carousel .owl-stage-outer {
+  overflow: visible !important;
+}
+
+.popular-badge {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: white;
+  background-color: #c18826;
+  font-size: 13px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  i {
+    font-size: 16px;
+  }
+}
+
+.primary-btn {
+  border-radius: 30px;
+  font-size: 18px;
+  background: #ecd09f;
+  color: #3f514a;
+  transition: 1s;
+  &:hover {
+    background: #fff;
+    color: #3f514a;
+  }
+}
+
+.secondary-btn {
+  border-radius: 30px;
+  font-size: 18px;
+  background: #3f514a;
+  color: #fff;
+  transition: 1s;
+}
+
+.rating-color {
+  color: #ffa534;
+}
+
+.modal-dialog {
+  width: fit-content !important;
+  max-width: none !important;
+}
+
+.p-component {
+  font-family: "Rubik", sans-serif !important;
+}
+
+.owl-dots {
+  position: relative;
+}
+
+.owl-nav {
+  position: absolute;
+}
+
+.p-breadcrumb {
+  background: transparent;
+  border: 0;
+
+  .p-breadcrumb-list {
+    homeicon {
+      display: none !important;
+    }
+
+    .p-menuitem-link {
+      text-decoration: none;
+      .p-menuitem-text {
+        font-size: 20px !important;
+        font-weight: 300;
+      }
+    }
+  }
+}
+
+.p-element {
+  font-family: "Rubik", sans-serif !important;
+  .p-dropdown {
+    border-radius: 30px !important;
+    font-weight: bold;
+    border: 1px solid #fff;
+    &:hover {
+      border: 1px solid #3f514a;
+    }
+    &.p-focus {
+      box-shadow: none !important;
+    }
+
+    .p-dropdown-label {
+      color: #3f514a;
+      padding: 8px 15px 8px 0px !important;
+      min-width: 100px;
+    }
+
+    .p-dropdown-item.p-highlight {
+      color: #3f514a;
+      background: #d1dbd7;
+    }
+
+    .p-dropdown-items-wrapper {
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      ul {
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 775px) {
+  .modal-dialog {
+    margin: 0 auto !important;
+  }
+
+  .modal-content {
+    margin: 0 10px;
+  }
+
+  .form-wrapper {
+    margin-bottom: 30px;
+    .fa-xmark {
+      display: none;
+    }
+    height: 100%;
+    padding: 30px 10px 80px !important;
+    .input-field {
+      background: #e5e5e5 !important;
+      border-color: #e5e5e5 !important;
+      &.error {
+        background: transparent !important;
+        border-color: #dc3545 !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .p-element {
+    .p-dropdown {
+      .p-dropdown-label {
+        font-size: 12px;
+        min-width: 60px;
+      }
+
+      .p-dropdown-items-wrapper {
+        .p-dropdown-item {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .p-dialog-mask {
+    align-items: end !important;
+    .p-dialog {
+      width: 100%;
+      height: 80%;
+      .currency-popup {
+        height: 100%;
+        padding-bottom: 100px;
+      }
+    }
+  }
+}

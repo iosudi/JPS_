@@ -1,0 +1,159 @@
+.hero {
+  height: 70vh;
+  padding: 20px 100px;
+  .container-fluid {
+    overflow: hidden;
+    border-radius: 20px;
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      animation: slide-right 2s;
+      overflow: hidden;
+
+      .gradient {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 20px;
+        background: linear-gradient(
+          269.41deg,
+          rgba(74, 89, 79, 0.75) 43.36%,
+          rgba(74, 89, 79, 0.75) 110.68%
+        );
+      }
+
+      .blur {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+      }
+    }
+
+    .heading {
+      color: white;
+      h1 {
+        font-size: 80px;
+        span {
+          color: #e5bf7d;
+        }
+      }
+      p {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+.terms {
+  .container-fluid {
+    padding: 20px 100px;
+    .terms-list {
+      .term {
+        .title {
+          font-size: 25px;
+          span {
+            background: #ecd09f;
+            border-radius: 100%;
+            width: 35px;
+            height: 35px;
+          }
+        }
+
+        ul {
+          h4 {
+            font-size: 20px;
+          }
+          li {
+            list-style: disc;
+            list-style-position: inside;
+            font-size: 18px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+
+    .start-trip {
+      h3 {
+        font-size: 40px;
+        color: #3f514a;
+      }
+      p {
+        color: #6f6f6f;
+      }
+      .btn {
+        font-size: 25px;
+        i {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .hero {
+    padding: 20px 20px;
+  }
+  .terms {
+    .container-fluid {
+      padding: 20px 20px;
+      .terms-list {
+        .term {
+          .title {
+            font-size: 25px;
+            span {
+              background: #ecd09f;
+              border-radius: 100%;
+              width: 35px;
+              height: 35px;
+            }
+          }
+
+          ul {
+            li {
+              list-style: disc;
+              list-style-position: inside;
+              font-size: 18px;
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+
+      .start-trip {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    height: 50vh;
+    .container-fluid {
+      padding: 20px !important;
+      .heading {
+        text-align: right !important;
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

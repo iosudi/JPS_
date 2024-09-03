@@ -1,0 +1,360 @@
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="host-info">
+  <div class="container">
+    <div class="row gy-5 justify-content-around">
+      <div class="col-lg-4">
+        <div class="host" #hostElement>
+          <div class="host-analysis mb-5">
+            <div
+              class="host-image w-75 d-flex flex-column align-items-center justify-content-center p-3"
+            >
+              <div class="avatar mb-4">
+                <img
+                  src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
+                  alt="host avatar"
+                />
+                <div
+                  class="badge d-flex align-items-center justify-content-center"
+                >
+                  <img
+                    src="./assets/imgs/icons/verified shield.png"
+                    alt="verified icon"
+                  />
+                </div>
+              </div>
+              <h3 class="name fw-bold mb-0">كيرلس عادل</h3>
+              <p class="role mb-0">مضيف متميز</p>
+
+              <div class="analysis-overlay py-4 d-flex justify-content-end">
+                <ul class="p-0 m-0">
+                  <li class="py-2 px-2 border-bottom">
+                    <p class="mb-0 fw-bold number">238</p>
+                    <p class="mb-0 fw-medium">التقييمات</p>
+                  </li>
+                  <li class="py-2 px-2 border-bottom">
+                    <p class="mb-0 fw-bold number">4.94</p>
+                    <p class="mb-0 fw-medium">التقييم بالنجوم</p>
+                  </li>
+                  <li class="pt-2 px-2">
+                    <p class="mb-0 fw-bold number">4</p>
+                    <p class="mb-0 fw-medium">سنين الخبرة</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="host-social">
+            <ul
+              class="m-0 p-0 d-flex align-items-center justify-content-between"
+            >
+              <li>
+                <i class="fa-brands fa-x-twitter"></i>
+              </li>
+              <li>
+                <i class="fa-brands fa-instagram"></i>
+              </li>
+              <li>
+                <i class="fa-brands fa-linkedin-in"></i>
+              </li>
+              <li>
+                <i class="fa-brands fa-facebook-f"></i>
+              </li>
+              <li>
+                <img src="./assets/imgs/icons/solid mail.png" alt="mail icon" />
+              </li>
+              <li>
+                <button
+                  class="btn secondary-btn fw-medium d-flex align-items-center justify-content-center px-3 gap-2"
+                >
+                  <img src="./assets/imgs/icons/phone2.png" alt="mail icon" />
+                  اتصل الان
+                </button>
+              </li>
+            </ul>
+          </div>
+
+          <p
+            class="report d-flex align-items-center justify-content-center gap-2 mb-0 mt-5"
+          >
+            <img
+              src="./assets/imgs/icons/black flag.png"
+              alt="black flag icon"
+            />
+            الإبلاغ عن هذا الملف الشخصي
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-7" #parentElement>
+        <div class="host-details border-bottom">
+          <h1 class="fw-bold mb-5 h2">عن كيرلس عادل عزمي</h1>
+          <div class="details row gy-3 mb-4">
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/hat.png" alt="hat icon" />
+
+                درست في: جامعة عين شمس
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/bag2.png" alt="bag icon" />
+
+                عملي: مصمم جرافيك
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/serve.png" alt="dish icon" />
+
+                شيء أفعله دائمًا لأجل الضيوف: أشارك نصائح من ريو وبريا
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-0 d-flex align-items-center gap-1">
+                <img
+                  src="./assets/imgs/icons/people-chat.png"
+                  alt="chat icon"
+                />
+
+                أحب قضاء بعض الوقت مع ضيوفي
+              </p>
+            </div>
+          </div>
+          <p class="about">
+            لقد قمت بإدارة مونتي فريو ألباكاس لمدة 13 عامًا وقد فتحت منزلي الآن
+            لأولئك الذين يرغبون في البقاء معي ومع عائلتي، بما في ذلك ابني، بابا
+            بيت، متطوعونا الرائعون وقطيع الألبكة الجميل لدينا، وكلابنا وقططنا
+            وبطنا وحيواناتنا. الدجاج. تعد مزرعة الألبكة الخاصة بي بمثابة درس في
+            التواضع واحترام الطبيعة وحب المهارات التقليدية ومشروع يمكن للجميع أن
+            يكونوا جزءًا منه.
+          </p>
+        </div>
+
+        <div class="reviews py-5">
+          <div class="heading d-flex justify-content-between">
+            <h4>10 تقييمات</h4>
+            <button class="btn secondary-btn px-4 py-2 fw-light">
+              اكتب تعليقك
+            </button>
+          </div>
+
+          <div class="row">
+            <div
+              class="col-12 pb-3 pt-5 border-bottom review-box"
+              *ngFor="let review of reviews.slice(0, 2)"
+            >
+              <div class="review d-flex gap-3">
+                <div class="image">
+                  <img [src]="review.userProfileIcon" alt="" />
+                </div>
+                <div class="review-details">
+                  <div class="stars">
+                    <i
+                      [class.rating-color]="review.stars >= num"
+                      *ngFor="let num of [1, 2, 3, 4, 5]"
+                      class="fa-solid fa-star"
+                    ></i>
+                    <h5 class="name fw-bolder">
+                      {{ review.name }}
+                    </h5>
+                    <p class="date">
+                      {{ review.date }}
+                    </p>
+                    <p class="content">{{ review.reviewBody }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-outline-dark me-auto">
+            عرض التقييمات الـ 10
+          </button>
+        </div>
+
+        <div class="leave-review pb-5 border-bottom">
+          <div class="title mb-3">
+            <h4 class="fw-bold">اترك تعليقك</h4>
+            <p class="mb-0">
+              هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
+            </p>
+          </div>
+
+          <div class="rating">
+            <p class="mb-0">* تقيميك</p>
+            <ngb-rating
+              [(rate)]="currentRate"
+              [max]="5"
+              [readonly]="readonly"
+              (rateChange)="updateRating($event)"
+            >
+              <ng-template let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <i class="fa-solid fa-star"></i>
+                </span>
+              </ng-template>
+            </ngb-rating>
+          </div>
+
+          <div class="text-area w-100 mt-4 p-4">
+            <label for="reviewText">تعليقك</label>
+            <textarea name="reviewText" class="w-100" rows="8"></textarea>
+          </div>
+          <button class="btn secondary-btn fw-light mt-4">
+            <i class="fa-solid fa-star"></i>
+            اكتب تعليقك
+          </button>
+        </div>
+
+        <div class="host-apartments mt-4 pb-5 border-bottom">
+          <h4 class="fw-bold mt-5 mb-4">قائمة العقارات</h4>
+          <div class="carousel-container">
+            <swiper-container
+              #apartmentSwiper
+              dir="ltr"
+              [speed]="500"
+              [spaceBetween]="5"
+              [breakpoints]="apartmentsBreakpoints"
+            >
+              <swiper-slide *ngFor="let apartment of apartments">
+                <div class="card p-3">
+                  <div class="apartment-preview mb-2">
+                    <img [src]="apartment.image" alt="" />
+                    <div class="reserved-duration">
+                      <p class="mb-0 fw-light">محجوزة حتي 10/8/2024</p>
+                    </div>
+
+                    <div
+                      class="arrow d-flex align-items-center justify-content-center"
+                    >
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </div>
+
+                    <div class="paginator d-flex gap-1 mt-3">
+                      <div class="dot active"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                    </div>
+
+                    <div
+                      class="host-preview d-flex align-items-center justify-content-center p-3"
+                    >
+                      <img
+                        src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
+                        alt="host avatar"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="apartment-information">
+                    <div
+                      class="apartment-name d-flex flex-row-reverse justify-content-between gap-2 mb-2"
+                    >
+                      <div class="title text-end">
+                        <h3 class="h6 my-1">شقة مفروشة فاخرة للإيجار</h3>
+                        <p
+                          class="location mb-0 d-flex flex-row-reverse gap-1 align-items-center"
+                        >
+                          <i class="fa-solid fa-location-dot"></i>
+                          {{ apartment.location }}
+                        </p>
+                      </div>
+
+                      <div
+                        class="rating d-flex flex-row-reverse align-items-center gap-1"
+                      >
+                        <i class="fa-solid fa-star"></i> 4.8
+                      </div>
+                    </div>
+
+                    <div
+                      class="chips-badges d-flex flex-row-reverse gap-2 my-3"
+                    >
+                      <div
+                        class="chip d-flex flex-row-reverse align-items-center gap-1"
+                      >
+                        <img
+                          src="./assets/imgs/icons/bath-green.png"
+                          alt="bath icon"
+                        />
+                        {{ apartment.bath }}
+                      </div>
+                      <div
+                        class="chip d-flex flex-row-reverse align-items-center gap-1"
+                      >
+                        <img
+                          src="./assets/imgs/icons/bed-green.png"
+                          alt="bed icon"
+                        />
+                        {{ apartment.bed }}
+                      </div>
+                      <div
+                        class="chip d-flex flex-row-reverse align-items-center gap-1"
+                      >
+                        <img
+                          src="./assets/imgs/icons/door-green.png"
+                          alt="door icon"
+                        />
+                        {{ apartment.rooms }}
+                      </div>
+                      <div
+                        class="chip d-flex flex-row-reverse align-items-center gap-1"
+                      >
+                        <img
+                          src="./assets/imgs/icons/doc-green.png"
+                          alt="docs icon"
+                        />
+                        {{ apartment.duration }}
+                      </div>
+                    </div>
+
+                    <h3 class="h6 fw-bold price mb-0 text-end mb-3">
+                      ٤٩٬٩٩٩ جنيه/ شهرياً
+                    </h3>
+
+                    <div
+                      class="controls d-flex flex-row-reverse justify-content-between align-items-center px-3 py-2"
+                    >
+                      <div class="icons d-flex align-items-center gap-2">
+                        <img
+                          src="./assets/imgs/icons/share-green.png"
+                          alt="share icon"
+                        />
+                        <img
+                          src="./assets/imgs/icons/heart-green.png"
+                          alt="heart icon"
+                        />
+                      </div>
+
+                      <button
+                        class="btn d-flex flex-row-reverse gap-2 align-items-center secondary-btn fw-medium px-4 py-2"
+                      >
+                        <i class="fa-solid fa-phone"></i>
+                        اتصل الان
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </swiper-slide>
+            </swiper-container>
+          </div>
+        </div>
+
+        <p
+          class="report d-flex align-items-center justify-content-center gap-2 my-4"
+        >
+          <img src="./assets/imgs/icons/black flag.png" alt="black flag icon" />
+          الإبلاغ عن هذا الملف الشخصي
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

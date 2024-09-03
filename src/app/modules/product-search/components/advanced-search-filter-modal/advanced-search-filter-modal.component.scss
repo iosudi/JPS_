@@ -1,0 +1,157 @@
+.modal-wrapper {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+
+  .fa-xmark {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  p {
+    font-size: 0.8rem;
+    color: #b2b2b2;
+  }
+  .price-range-slider {
+    p-slider ::ng-deep .p-slider {
+      .p-slider-range {
+        background: #3f514a;
+      }
+
+      .p-slider-handle {
+        border: 5px solid #3f514a;
+        box-shadow: 0px 4px 4px 0px #00000040;
+
+        &:hover {
+          border-color: #3f514a;
+          background: #3f514a;
+        }
+      }
+    }
+    .price-inputs {
+      hr {
+        width: 5%;
+      }
+      .price-range-input {
+        border: 1px solid #b4b4b4;
+        border-radius: 7px;
+        padding: 5px 20px;
+        input {
+          border: 0;
+          outline: 0;
+          color: #3f514a;
+          font-size: 1rem;
+          font-weight: 700;
+        }
+        label {
+          color: #aeaeae;
+          font-size: 1rem;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+
+  .chips-selections {
+    .chip {
+      border: 2px solid #4a594f;
+      color: #4a594f;
+      transition: 0.3s;
+      cursor: pointer;
+      font-size: 1rem !important;
+      &:hover {
+        background: #4a594f;
+        color: #fff;
+      }
+    }
+  }
+
+  p-dropdown::ng-deep .p-dropdown {
+    border-radius: 10px !important;
+    font-weight: bold;
+    width: 100%;
+    border: 1px solid #000;
+    padding: 10px;
+    &.p-focus {
+      box-shadow: none !important;
+    }
+
+    .p-dropdown-label {
+      color: #757575;
+      padding: 8px 15px 8px 0px !important;
+      font-weight: 300;
+      min-width: 100px;
+    }
+  }
+
+  .controls {
+    .secondary-btn {
+      transition: 0.2s;
+      &:hover {
+        background: #4a594f;
+        color: #fff;
+      }
+    }
+    .clear-btn {
+      color: #878787;
+    }
+  }
+}
+@media (max-width: 860px) {
+  .controls {
+    padding-bottom: 90px !important;
+  }
+}
+@media (max-width: 415px) {
+  .modal-wrapper {
+    .header {
+      padding: 0 0 10px !important;
+    }
+    p {
+      font-size: 0.7rem;
+    }
+
+    .title {
+      font-size: 1rem;
+    }
+    .price-range-slider {
+      .price-inputs {
+        .price-range-input {
+          padding: 5px 15px;
+          input {
+            font-size: 0.8rem;
+          }
+          label {
+            font-size: 0.8rem;
+          }
+        }
+      }
+    }
+
+    .chips-selections {
+      .chip {
+        font-size: 0.7rem !important;
+        padding: 5px 10px !important;
+      }
+    }
+
+    .controls {
+      padding-top: 10px !important;
+      .secondary-btn {
+        font-size: 1rem;
+        padding: 5px 20px !important;
+      }
+      .clear-btn {
+        font-size: 1rem;
+      }
+    }
+  }
+}

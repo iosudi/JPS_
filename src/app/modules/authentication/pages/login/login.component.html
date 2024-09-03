@@ -1,0 +1,79 @@
+<app-mobile-navbar></app-mobile-navbar>
+
+<div class="form-wrapper p-5">
+  <i class="fa-solid fa-xmark" (click)="close()"></i>
+
+  <h2 class="my-4">مرحبًا بعودتك</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="inputs-container mb-3">
+      <div class="input-box my-3">
+        <div class="input-field d-flex gap-2 align-items-center px-4">
+          <img src="./assets/imgs/icons/mail.png" alt="mail icon" />
+          <input
+            formControlName="email"
+            tabindex="-1"
+            class="py-3"
+            type="email"
+            placeholder="البريد الالكتروني"
+          />
+        </div>
+      </div>
+
+      <div class="input-box my-3">
+        <div class="input-field d-flex gap-2 align-items-center px-4">
+          <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
+          <input
+            class="py-3"
+            [type]="passwordVisibility ? 'text' : 'password'"
+            placeholder="كلمة المرور"
+            tabindex="-1"
+          />
+          <img
+            (click)="togglePasswordVisibility('password')"
+            class="eye"
+            [src]="
+              passwordVisibility
+                ? 'assets/imgs/icons/closed-eye.png'
+                : 'assets/imgs/icons/opened-eye.png'
+            "
+            alt="opened eye icon"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="options d-flex justify-content-between mb-3">
+      <p (click)="openForgotPasswordForm()" class="forgot-password">
+        هل نسيت كلمة المرور؟
+      </p>
+      <p class="mb-0">
+        ليس لديك حساب؟
+        <span (click)="openSignupForm()" class="fw-bold">تسجيل حساب</span>
+      </p>
+    </div>
+
+    <button
+      class="btn secondary-btn d-flex align-items-center gap-2 py-2 px-4 mb-5"
+    >
+      <i class="fa-solid fa-arrow-right"></i>
+      تسجيل الدخول
+    </button>
+  </form>
+
+  <div class="separator d-flex align-items-center gap-3">
+    <div class="line"></div>
+    <p class="mb-0">أو</p>
+    <div class="line"></div>
+  </div>
+
+  <div class="social-methods">
+    <div class="method p-4 my-4 d-flex gap-2 align-items-center">
+      <img src="./assets/imgs/icons/google.png" alt="google icon" />
+      <p class="mb-0 fw-lighter">التسجيل باستخدام جوجل</p>
+    </div>
+    <div class="method p-4 d-flex gap-2 align-items-center">
+      <img src="./assets/imgs/icons/facebook.png" alt="facebook icon" />
+      <p class="mb-0 fw-lighter">التسجيل باستخدام فيسبوك</p>
+    </div>
+  </div>
+</div>

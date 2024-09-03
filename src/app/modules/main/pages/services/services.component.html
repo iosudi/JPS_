@@ -1,0 +1,258 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="hero overflow-hidden">
+  <div
+    class="container-fluid position-relative h-100 d-flex align-items-center px-5"
+  >
+    <div class="background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background image" />
+      <div class="gradient"></div>
+      <div class="blur"></div>
+    </div>
+
+    <div class="row w-100">
+      <div class="col-xl-7">
+        <div class="shape position-absolute">
+          <img
+            src="./assets/imgs/contact imgs/Vector 130 (1).png"
+            alt="about us"
+          />
+        </div>
+        <div class="man position-absolute">
+          <img src="./assets/imgs/working man.png" alt="about us" />
+        </div>
+      </div>
+
+      <div class="col-xl-5">
+        <div class="heading">
+          <h1>
+            هل تحتاج إلى تحسين أو <br />إصلاح منزلك؟ <br /><span
+              >نستطيع المساعدة!</span
+            >
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container-fluid text-center">
+    <h2 class="h1 fw-bold">تعرف علي خدماتنا</h2>
+    <p class="mb-5">هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة</p>
+    <div class="slider">
+      <swiper-container
+        [slidesPerView]="5"
+        [speed]="500"
+        [navigation]="true"
+        [pagination]="true"
+        [spaceBetween]="20"
+        [breakpoints]="breakpoints"
+      >
+        <swiper-slide *ngFor="let service of serviceTypes">
+          <div class="card d-flex flex-column align-items-center">
+            <div class="service-preview mb-2">
+              <div class="overlay"></div>
+              <img
+                src="./assets/imgs/services_photos/71a3a6c3e5d6ca7e246078534899784e.png"
+              />
+            </div>
+            <div class="card-body">
+              <h3
+                class="h4 d-flex align-items-center gap-2 justify-content-center"
+              >
+                <img [src]="service.icon" />
+                {{ service.title }}
+              </h3>
+              <p class="mb-0 text-center">
+                هذا النص هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحةهو
+                مثال لنص
+              </p>
+            </div>
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
+</section>
+
+<section class="request-service overflow-hidden">
+  <div class="container-fluid">
+    <div class="row align-items-start g-5">
+      <div class="col-12">
+        <div class="heading ps-5">
+          <h2 class="h1 fw-bolder">طلب خدمة</h2>
+          <p class="fw-light w-75">
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
+          </p>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-container p-5 w-100">
+          <form [formGroup]="serviceSelection">
+            <div class="user-information mb-5">
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img src="./assets/imgs/icons/user.png" alt="user icon" />
+                  <input class="py-3" type="text" placeholder="الاسم" />
+                </div>
+              </div>
+
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img
+                    src="./assets/imgs/icons/speaker.png"
+                    alt="speaker icon"
+                  />
+
+                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                </div>
+              </div>
+
+              <div class="input-box my-3">
+                <div class="input-field d-flex gap-2 align-items-center px-4">
+                  <img
+                    src="./assets/imgs/icons/speaker.png"
+                    alt="speaker icon"
+                  />
+
+                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                </div>
+              </div>
+            </div>
+
+            <div class="type-of-contact mb-5">
+              <h4 class="fw-bold h3">اختر طريقة التواصل المفضلة</h4>
+              <p class="mb-4">هذا مثال لنص يمكن تغيره</p>
+
+              <div class="row g-4">
+                <div class="col-lg-2 col-6">
+                  <div
+                    class="contact-method p-2 d-flex gap-2 align-items-center"
+                    [class.selected]="whatsappSelected"
+                    (click)="toggleContactMethod('whatsapp')"
+                  >
+                    <input
+                      formControlName="service1"
+                      id="whatsapp"
+                      type="checkbox"
+                    />
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <h5 class="form-label fw-normal mb-0">عن طريق واتس اب</h5>
+                  </div>
+                </div>
+                <div class="col-lg-2 col-6">
+                  <div
+                    [class.selected]="phoneSelected"
+                    (click)="toggleContactMethod('phone')"
+                    class="contact-method p-2 d-flex gap-2 align-items-center"
+                  >
+                    <input
+                      formControlName="service1"
+                      id="whatsapp"
+                      type="checkbox"
+                    />
+                    <i class="fa-solid fa-phone"></i>
+                    <h5 class="form-label fw-normal mb-0">عن طريق الهاتف</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="type-of-service-selection mb-5">
+              <h4 class="fw-bold h3">اختر نوع الخدمة</h4>
+              <p class="mb-4">هذا مثال لنص يمكن تغيره</p>
+
+              <div class="row g-4">
+                <div
+                  class="col-xl-3 col-lg-4 col-6 px-4 service"
+                  *ngFor="let service of serviceTypes"
+                >
+                  <div
+                    [ngClass]="{ selected: isChecked(service.id) }"
+                    (click)="toggleCheckbox(service.id)"
+                    class="form-element p-4"
+                  >
+                    <input
+                      formControlName="service1"
+                      [checked]="isChecked(service.id)"
+                      (change)="toggleCheckbox(service.id)"
+                      id="service{{ service.id }}"
+                      type="checkbox"
+                      id="service1"
+                    />
+                    <div
+                      class="service-icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+                    >
+                      <div
+                        class="checked-icon d-flex align-items-center justify-content-center"
+                      >
+                        <i class="fa-solid fa-check"></i>
+                      </div>
+
+                      <img [src]="service.icon" alt="service icon" />
+                    </div>
+                    <h5 class="form-label h3 fw-bold mb-0">
+                      {{ service.title }}
+                    </h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="form-controls d-flex align-items-center justify-content-between mb-3"
+            >
+              <button
+                (click)="getInputValue()"
+                class="btn secondary-btn d-flex justify-content-center align-items-center gap-2"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+                تأكيد طلب الخدمة
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="banner">
+  <div class="container">
+    <div class="row align-items-center justify-content-center g-4">
+      <div class="col-lg-6">
+        <h5 class="mb-4">
+          بالفعل لتحسين أو إصلاح <br />
+          منزلك؟ دعونا نتحدث!
+        </h5>
+
+        <button
+          class="btn secondary-btn d-flex align-items-center gap-2 py-3 px-4"
+        >
+          <i class="fa-solid fa-arrow-right"></i>
+          تأكيد طلب الخدمة
+        </button>
+      </div>
+
+      <div class="col-lg-6">
+        <img
+          class="image"
+          src="./assets/imgs/serviceMan.png"
+          alt="service man banner"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

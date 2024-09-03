@@ -1,0 +1,192 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-8bits"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<app-main-nav-bar></app-main-nav-bar>
+
+<section class="hero overflow-hidden">
+  <div
+    class="container-fluid position-relative h-100 d-flex align-items-center px-5"
+  >
+    <div class="background">
+      <img src="./assets/imgs/popular-wallpaper.png" alt="background image" />
+      <div class="gradient"></div>
+      <div class="blur"></div>
+    </div>
+    <div class="row w-100">
+      <div class="col-xl-7">
+        <div class="shape position-absolute">
+          <img
+            src="./assets/imgs/contact imgs/Vector 130 (1).png"
+            alt="about us"
+          />
+        </div>
+        <div class="man position-absolute">
+          <img
+            src="./assets/imgs/portrait-young-excited-funny-mexican-guy-khaki-shirt-like-rating-to-your-profile-photo-isolated-yellow-color-background-327562436-Scj1yOjFc-transformed 1.png"
+            alt="about us"
+          />
+        </div>
+      </div>
+
+      <div class="col-xl-5">
+        <div class="heading">
+          <h1>تقييمات <span>JPS</span></h1>
+          <p class="fw-lighter mb-0 w-75">
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rates-reviews">
+  <div class="container-fluid">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div>
+          <h2 class="h5">اترك تعليقك</h2>
+          <p class="fw-normal mb-0">
+            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
+          </p>
+          <form>
+            <div
+              dir="ltr"
+              class="rating d-flex flex-column justify-content-center align-items-center"
+            >
+              <h3 class="fw-normal mb-0 mt-4">4.5 / 5</h3>
+              <ngb-rating
+                [(rate)]="currentRate"
+                [max]="maxRate"
+                [readonly]="readonly"
+                (rateChange)="updateRating($event)"
+              >
+                <ng-template let-fill="fill">
+                  <span class="star" [class.full]="fill === 100">
+                    <i class="fa-solid fa-star"></i>
+                  </span>
+                </ng-template>
+              </ngb-rating>
+            </div>
+
+            <div class="review-inputs d-flex gap-2 mb-3">
+              <div class="review-input px-2">
+                <p class="title mb-2">دقة السايت</p>
+                <div class="input-field d-flex align-items-center gap-1">
+                  <img
+                    src="./assets/imgs/icons/checked.png"
+                    alt="checked icon"
+                  />
+                  <input
+                    dir="ltr"
+                    type="number"
+                    class="form-control py-1"
+                    name="accuracyNumber"
+                    id="accuracyNumber"
+                  />
+                </div>
+              </div>
+
+              <div class="review-input px-2">
+                <p class="title mb-2">سهولة السايت</p>
+                <div class="input-field d-flex align-items-center gap-1">
+                  <img
+                    src="./assets/imgs/icons/global click.png"
+                    alt="checked icon"
+                  />
+                  <input
+                    dir="ltr"
+                    type="number"
+                    class="form-control py-1"
+                    name="easyNumber"
+                    id="easyNumber"
+                  />
+                </div>
+              </div>
+              <div class="review-input px-2">
+                <p class="title mb-2">مدي الاستجابة</p>
+                <div class="input-field d-flex align-items-center gap-1">
+                  <img
+                    src="./assets/imgs/icons/crown vector.png"
+                    alt="checked icon"
+                  />
+                  <input
+                    dir="ltr"
+                    type="number"
+                    class="form-control py-1"
+                    name="performanceNumber"
+                    id="performanceNumber"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="review-body">
+              <textarea
+                class="p-3"
+                name="reviewContent"
+                id="reviewContent"
+                rows="5"
+                placeholder="تعليقك ......"
+              ></textarea>
+              <p>10 /500 كلمة</p>
+            </div>
+
+            <button class="btn secondary-btn fw-light py-2 px-4">
+              <i class="fa-solid fa-star"></i>
+              اكتب تعليقك
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="reviews px-5">
+          <div class="heading d-flex justify-content-between">
+            <h4>10 تقييمات</h4>
+            <button class="btn secondary-btn px-4 py-2 fw-light">
+              اكتب تعليقك
+            </button>
+          </div>
+
+          <div class="row">
+            <div
+              class="col-12 pb-3 pt-5 border-bottom"
+              *ngFor="let review of reviews"
+            >
+              <div class="review d-flex gap-3">
+                <div class="image">
+                  <img [src]="review.userProfileIcon" alt="" />
+                </div>
+                <div class="review-details">
+                  <div class="stars">
+                    <i
+                      [class.rating-color]="review.stars >= num"
+                      *ngFor="let num of [1, 2, 3, 4, 5]"
+                      class="fa-solid fa-star"
+                    ></i>
+                    <h5 class="name fw-bolder">
+                      {{ review.name }}
+                    </h5>
+                    <p class="date">
+                      {{ review.date }}
+                    </p>
+                    <p class="content">{{ review.reviewBody }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer section -->
+<app-footer></app-footer>

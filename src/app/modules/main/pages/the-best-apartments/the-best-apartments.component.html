@@ -1,0 +1,147 @@
+<section>
+  <app-nav-bar class="navBar"></app-nav-bar>
+  <div class="background">
+    <img src="./assets/imgs/popular-districts/4.png" alt="background image" />
+    <div class="overlay"></div>
+  </div>
+  <div class="container d-flex flex-column justify-content-between">
+    <div class="search-field px-3 py-2 mx-auto mb-5">
+      <app-search-bar></app-search-bar>
+    </div>
+
+    <div class="row mt-5">
+      <div class="col-lg-4">
+        <div class="title px-5">
+          <a>
+            <i class="fa-solid fa-angle-right"></i>
+            مشاهدة المزيد
+          </a>
+          <h1 class="mt-4 fw-bold">
+            الأكثر بحثا
+            <br />
+            <span class="fw-light">في اكتوبر</span>
+          </h1>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="apartments ps-2 mb-5 pe-5" dir="ltr">
+          <div
+            class="apartment-ticket d-flex flex-row-reverse"
+            *ngFor="let apartment of apartments"
+          >
+            <div class="apartment-preview p-3 rounded-4 overflow-hidden">
+              <div class="image">
+                <img [src]="apartment.imageSrc" alt="apartment" />
+                <div class="heart-icon">
+                  <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div
+                  class="arrow d-flex align-items-center justify-content-center"
+                >
+                  <i class="fa-solid fa-chevron-right"></i>
+                </div>
+                <div class="paginator d-flex gap-1 mt-3">
+                  <div class="dot active"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                  <div class="dot"></div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="apartment-details p-4 rounded-4 d-flex flex-column gap-2"
+            >
+              <div
+                class="separator d-flex align-items-center justify-content-center p-2"
+              >
+                <img src="./assets/imgs/icons/Separator.png" alt="Separator" />
+              </div>
+
+              <div
+                class="apartment-name d-flex flex-row-reverse justify-content-between gap-2 mb-2"
+              >
+                <div class="title text-end">
+                  <p class="mb-0">المضيف : {{ apartment.hostName }}</p>
+                  <h3 class="h6 my-1">
+                    {{ apartment.description }}
+                  </h3>
+                  <p
+                    class="location mb-0 d-flex flex-row-reverse gap-1 align-items-center"
+                  >
+                    <img
+                      src="./assets/imgs/icons/location-dark.png"
+                      alt="share icon"
+                    />
+                    {{ apartment.location }}
+                  </p>
+                </div>
+
+                <img
+                  src="./assets/imgs/icons/share-dark.png"
+                  alt="share icon"
+                />
+              </div>
+
+              <div class="chips-badges d-flex flex-row-reverse gap-2 mb-2">
+                <div
+                  class="chip d-flex flex-row-reverse align-items-center gap-1"
+                >
+                  <img
+                    src="./assets/imgs/icons/bath-colored.png"
+                    alt="bath icon"
+                  />
+                  {{ apartment.bathrooms }}
+                </div>
+                <div
+                  class="chip d-flex flex-row-reverse align-items-center gap-1"
+                >
+                  <img
+                    src="./assets/imgs/icons/bed-colored.png"
+                    alt="bed icon"
+                  />
+                  {{ apartment.bedrooms }}
+                </div>
+                <div
+                  class="chip d-flex flex-row-reverse align-items-center gap-1"
+                >
+                  <img
+                    src="./assets/imgs/icons/door-colored.png"
+                    alt="door icon"
+                  />
+                  {{ apartment.doors }}
+                </div>
+                <div
+                  class="chip d-flex flex-row-reverse align-items-center gap-1"
+                >
+                  <img
+                    src="./assets/imgs/icons/doc-colored.png"
+                    alt="docs icon"
+                  />
+                  {{ apartment.duration }}
+                </div>
+              </div>
+
+              <div
+                class="price-rating d-flex flex-row-reverse justify-content-between align-items-center"
+              >
+                <div
+                  class="rating d-flex flex-row-reverse align-items-center gap-1"
+                >
+                  <i class="fa-solid fa-star"></i> 4.8
+                  <span>({{ apartment.reviewsCount }} تقييم)</span>
+                </div>
+                <div class="price">
+                  <h3 class="h6 mb-0">{{ apartment.pricePerDay }}</h3>
+                  <p class="mb-0">لليوم الواحد</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

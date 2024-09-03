@@ -1,0 +1,218 @@
+:host {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+::ng-deep .navBar {
+  nav {
+    .navbar {
+      background: rgba(255, 255, 255, 0.192);
+      padding: 10px 20px;
+      border-radius: 15px;
+    }
+  }
+}
+
+section {
+  color: #fff;
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgb(0, 0, 0, 0.5);
+    }
+  }
+  .container-fluid {
+    padding: 150px 0;
+    .search-field {
+      width: 40%;
+      border-radius: 100px;
+      font-size: 12px;
+      background: #ccc;
+      color: black;
+    }
+
+    .title {
+      font-size: 80px;
+    }
+
+    .slider {
+      padding-right: 50%;
+
+      .card {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        .district-preview {
+          position: relative;
+          height: 250px;
+          border-radius: 10px;
+          overflow: hidden;
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            backdrop-filter: blur(0px);
+            width: 100%;
+            height: 100%;
+            background: rgb(0, 0, 0, 0.5);
+            transition: 0.5s;
+            i {
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              color: #d9d9d9;
+              font-size: 25px;
+              transform: translateX(100px);
+              filter: blur(5px);
+
+              transition: 0.5s;
+            }
+
+            .btn {
+              background: #fff;
+              color: #000;
+              font-size: 14px;
+              transform: translateY(100px);
+              filter: blur(5px);
+              transition: 0.5s;
+            }
+          }
+
+          &:hover .overlay {
+            opacity: 1;
+            backdrop-filter: blur(3px);
+
+            i {
+              transform: translateX(0);
+              filter: blur(0px);
+
+              transition: 0.5s;
+            }
+
+            .btn {
+              transform: translateY(0);
+              filter: blur(0px);
+            }
+          }
+        }
+
+        .card-body {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1250px) {
+  section {
+    .container-fluid {
+      .search-field {
+        width: 50%;
+      }
+
+      .title {
+        font-size: 50px;
+      }
+
+      .slider {
+        padding-right: 40%;
+      }
+    }
+  }
+}
+
+@media (max-width: 940px) {
+  section {
+    .container-fluid {
+      .search-field {
+        width: 80%;
+      }
+
+      .title {
+        font-size: 50px;
+      }
+
+      .slider {
+        padding-right: 30%;
+      }
+    }
+  }
+}
+
+@media (max-width: 775px) {
+  section {
+    .container-fluid {
+      padding: 50px 0 150px;
+      .search-field {
+        width: 100%;
+      }
+
+      .title {
+        font-size: 50px;
+        margin-bottom: 100px;
+      }
+
+      .slider {
+        padding-right: 25%;
+      }
+    }
+  }
+}
+
+@media (max-width: 497px) {
+  section {
+    .container-fluid {
+      padding: 50px 0 100px;
+      .search-field {
+        width: 100%;
+      }
+
+      .title {
+        font-size: 50px;
+        margin-bottom: 100px;
+      }
+
+      .slider {
+        padding-right: 25%;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  section {
+    .container-fluid {
+      .title {
+        padding: 20px !important;
+      }
+      .slider {
+        padding-right: 20px;
+        .card {
+          .district-preview {
+            height: 200px;
+            .overlay {
+              .btn {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
