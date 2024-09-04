@@ -6,12 +6,14 @@ Project Description
 
 ### Todo
 
+- [ ] product details modals  
+- [ ] product details gallery  
 - [ ] remove animations while switching between verti and horz  
-- [ ] product details  
 - [ ] change font  
 
 ### In Progress
 
+- [ ] product details  
 - [ ] ticket hover  
 
 ### Done ✓
