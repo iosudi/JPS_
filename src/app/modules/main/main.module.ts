@@ -6,7 +6,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { register } from 'swiper/element/bundle';
 import { MainRoutingModule } from './main-routing.module';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -14,7 +13,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { TheBestApartmentsComponent } from './pages/the-best-apartments/the-best-apartments.component';
 import { TheBestDistrictsComponent } from './pages/the-best-districts/the-best-districts.component';
+
+import { register } from 'swiper/element/bundle';
 register();
+
 @NgModule({
   declarations: [
     AboutComponent,

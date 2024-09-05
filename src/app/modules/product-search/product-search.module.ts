@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DropdownModule } from 'primeng/dropdown';
@@ -9,16 +9,20 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { SliderModule } from 'primeng/slider';
 import { CoreModule } from 'src/app/core/core.module';
+import { register } from 'swiper/element/bundle';
 import { AdvancedSearchFilterModalComponent } from './components/advanced-search-filter-modal/advanced-search-filter-modal.component';
+import { ApartmentGalleryComponent } from './pages/apartment-gallery/apartment-gallery.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { ProductSearchRoutingModule } from './product-search-routing.module';
+register();
 
 @NgModule({
   declarations: [
     SearchResultComponent,
     AdvancedSearchFilterModalComponent,
     ProductDetailsComponent,
+    ApartmentGalleryComponent,
   ],
   imports: [
     CommonModule,
@@ -33,5 +37,6 @@ import { ProductSearchRoutingModule } from './product-search-routing.module';
     ProgressBarModule,
     InputSwitchModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ProductSearchModule {}

@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkJPS_=self.webpackChunkJPS_||[]).push([[76],{4236:(a,e,t)=>{t.d(e,{A:()=>u});var n=t(8699),r=t(8803);const u=(o,s)=>{const _=(0,n.WQX)(r.Ix);return window.innerWidth<=775||(_.navigate(["/home"]),!1)}}}]);

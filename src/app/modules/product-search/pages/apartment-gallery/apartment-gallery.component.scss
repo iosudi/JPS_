@@ -1,0 +1,89 @@
+.container {
+  padding: 170px 20px 30px;
+  .page-items {
+    .header {
+      .buttons {
+        .btn {
+          text-decoration: underline;
+          img {
+            width: 20px;
+          }
+        }
+      }
+    }
+
+    .items {
+      .card {
+        background: transparent;
+        border: none;
+
+        img {
+          height: 150px;
+          box-shadow: 0px 2px 4px 0px #0000002e;
+        }
+      }
+    }
+  }
+
+  .living-room,
+  .food-court,
+  .kitchen {
+    .images {
+      height: 550px !important;
+      .col-6 {
+        height: calc((100% / 2) - 3px);
+      }
+    }
+  }
+}
+@media (max-width: 860px) {
+  .container {
+    padding: 30px 20px 100px;
+
+    .page-items {
+      .header {
+        color: #747474;
+        .buttons {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    .page-items {
+      .items {
+        padding: 0 !important ;
+      }
+    }
+
+    .living-room,
+    .food-court,
+    .kitchen {
+      .col-md-6,
+      .col-md-7 {
+        height: 250px;
+      }
+      .col-md-3,
+      .col-md-5 {
+        height: 200px;
+      }
+      .images {
+        height: 100% !important;
+        .col-6 {
+          width: calc((100% / 2));
+          height: 100%;
+        }
+      }
+    }
+
+    .kitchen,
+    .food-court {
+      .row {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+}
