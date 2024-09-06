@@ -1,0 +1,90 @@
+<div class="container p-5">
+  <h2 class="fw-bold text-center">تقييم الوحدة</h2>
+
+  <form>
+    <div
+      dir="ltr"
+      class="rating d-flex flex-column justify-content-center align-items-center mb-4"
+    >
+      <h3 class="fw-normal mb-0 mt-4">4.5 / 5</h3>
+      <ngb-rating
+        [(rate)]="currentRate"
+        [max]="maxRate"
+        [readonly]="readonly"
+        (rateChange)="updateRating($event)"
+      >
+        <ng-template let-fill="fill">
+          <span class="star mx-2" [class.full]="fill === 100">
+            <i class="fa-solid fa-star"></i>
+          </span>
+        </ng-template>
+      </ngb-rating>
+    </div>
+
+    <div class="review-inputs d-flex gap-2 mb-3">
+      <div class="review-input px-2">
+        <p class="title mb-2">النظافة</p>
+        <div class="input-field d-flex align-items-center gap-1">
+          <img src="./assets/imgs/icons/checked.png" alt="checked icon" />
+          <input
+            dir="ltr"
+            type="number"
+            class="form-control py-1"
+            name="accuracyNumber"
+            id="accuracyNumber"
+            value="4.9"
+          />
+        </div>
+      </div>
+
+      <div class="review-input px-2">
+        <p class="title mb-2">الدقة</p>
+        <div class="input-field d-flex align-items-center gap-1">
+          <img src="./assets/imgs/icons/global click.png" alt="checked icon" />
+          <input
+            dir="ltr"
+            type="number"
+            class="form-control py-1"
+            name="easyNumber"
+            id="easyNumber"
+            value="4.9"
+          />
+        </div>
+      </div>
+      <div class="review-input px-2">
+        <p class="title mb-2">النظافة</p>
+        <div class="input-field d-flex align-items-center gap-1">
+          <img src="./assets/imgs/icons/crown vector.png" alt="checked icon" />
+          <input
+            dir="ltr"
+            type="number"
+            class="form-control py-1"
+            name="performanceNumber"
+            id="performanceNumber"
+            value="4.9"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="review-body">
+      <textarea
+        class="p-3"
+        name="reviewContent"
+        id="reviewContent"
+        rows="5"
+        placeholder="تعليقك ......"
+      ></textarea>
+      <p>10 /500 كلمة</p>
+    </div>
+
+    <div class="buttons d-flex justify-content-between align-items-center">
+      <button class="btn secondary-btn fw-light py-2 px-4">
+        <i class="fa-solid fa-star"></i>
+        اكتب تعليقك
+      </button>
+
+      <button class="btn" (click)="closeRatingModal()">اغلاق</button>
+    </div>
+  </form>
+</div>

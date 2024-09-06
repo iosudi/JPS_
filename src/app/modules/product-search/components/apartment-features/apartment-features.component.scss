@@ -1,0 +1,30 @@
+.container {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+  .close-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 1.1rem;
+  }
+  ul {
+    h3 {
+      font-size: 1.2rem;
+    }
+    li {
+      img {
+        width: 30px;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

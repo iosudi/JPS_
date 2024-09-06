@@ -6,18 +6,24 @@ Project Description
 
 ### Todo
 
-- [ ] product details modals  
-- [ ] product details gallery  
+- [ ] add-date-range  
 - [ ] remove animations while switching between verti and horz  
 - [ ] change font  
 
 ### In Progress
 
+- [ ] reserve  
 - [ ] product details  
 - [ ] ticket hover  
 
 ### Done ✓
 
+- [x] sucess message  
+- [x] share modal  
+- [x] add to fav  
+- [x] product features  
+- [x] rating modal  
+- [x] product details gallery  
 - [x] unLogged user guard  
 - [x] logged user menu  
 - [x] search-result  

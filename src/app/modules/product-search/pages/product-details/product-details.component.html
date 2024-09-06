@@ -5,6 +5,7 @@
     <i class="fa-solid fa-angle-right" routerLink="/search-results"></i>
     منزل العيناق العربي
   </div>
+
   <div class="row">
     <div class="col-lg-6">
       <div class="apartment-details">
@@ -485,7 +486,10 @@
                 <button class="btn outlined-btn py-2 px-4">
                   عرض التقييمات الـ 48
                 </button>
-                <button class="btn secondary-btn fw-light py-2 px-4">
+                <button
+                  class="btn secondary-btn fw-light py-2 px-4"
+                  (click)="openRatingModal()"
+                >
                   <i class="fa-solid fa-star"></i>
                   اكتب تعليقك
                 </button>
@@ -682,6 +686,24 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div
+    class="product-controls d-flex justify-content-center align-items-center my-4"
+  >
+    <div
+      class="controls mx-2 d-flex flex-row-reverse justify-content-center align-items-center gap-3 p-4 rounded-3"
+    >
+      <button class="btn reserve-btn fw-bold" (click)="openSuccessMessage()">
+        تحديد مدة الاقامة
+      </button>
+      <button class="btn share-btn" (click)="openShareModal()">
+        <img src="./assets/imgs/icons/share-green.png" alt="icon" />
+      </button>
+      <button class="btn fav-btn" (click)="openAddToFav()">
+        <img src="./assets/imgs/icons/heart-green2.png" alt="icon" />
+      </button>
     </div>
   </div>
 </div>

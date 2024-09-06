@@ -449,3 +449,52 @@ export const searchResultApartments = [
     months: 'شهرين',
   },
 ];
+
+export const apartmentFeatures = [
+  {
+    title: 'الحمام',
+    features: [
+      {
+        icon: './assets/imgs/icons/hair dryer.png',
+        name: 'مجفف الشعر',
+      },
+      {
+        icon: './assets/imgs/icons/Cleaning products.png',
+        name: 'مستحضرات تنظيف',
+      },
+      {
+        icon: './assets/imgs/icons/hot bath.png',
+        name: 'ماء ساخن',
+      },
+      {
+        icon: './assets/imgs/icons/shower gel.png',
+        name: 'جل استحمام',
+      },
+    ],
+  },
+  {
+    title: 'غرفة النوم ولوازم الغسيل',
+    features: [
+      {
+        icon: './assets/imgs/icons/Bed sheets -.png',
+        name: 'مناشف - ملاءات سرير - صابون - مناديل حمام ',
+      },
+      {
+        icon: './assets/imgs/icons/Hangers.png',
+        name: 'شماعات',
+      },
+      {
+        icon: './assets/imgs/icons/Bedspreads.png',
+        name: 'مفارش ',
+      },
+      {
+        icon: './assets/imgs/icons/pillow.png',
+        name: 'مخدات و بطاطين',
+      },
+      {
+        icon: './assets/imgs/icons/curtains.png',
+        name: 'ستائر لتعتيم الغرفة',
+      },
+    ],
+  },
+];

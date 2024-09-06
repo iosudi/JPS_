@@ -9,6 +9,7 @@
 
 .container {
   padding-top: 170px;
+  padding-bottom: 150px;
   .header {
     display: none !important;
   }
@@ -757,6 +758,34 @@
       }
     }
   }
+
+  .product-controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    .controls {
+      background: #fff;
+      .reserve-btn {
+        background: #4a594f;
+        color: #fff;
+        padding: 10px 30.17px 10px 31.83px;
+        border-radius: 49.25px;
+        font-size: 1.3rem;
+      }
+
+      .share-btn,
+      .fav-btn {
+        background: #4a594f1a;
+        width: 50px;
+        height: 50px;
+        img {
+          width: 25px;
+          height: auto;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 1192px) {
@@ -977,6 +1006,9 @@
 }
 
 @media (max-width: 860px) {
+  app-main-nav-bar {
+    display: none;
+  }
   .container {
     padding-top: 20px;
     padding-bottom: 80px;
@@ -1071,6 +1103,29 @@
           }
           .btn {
             font-size: 0.8rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    .product-controls {
+      .controls {
+        .reserve-btn {
+          padding: 10px 25px 10px 25px;
+          font-size: 1rem;
+        }
+
+        .share-btn,
+        .fav-btn {
+          width: 40px;
+          height: 40px;
+          img {
+            width: 20px;
+            height: auto;
           }
         }
       }

@@ -1,0 +1,52 @@
+<div class="container py-5 px-4">
+  <i class="fa-solid fa-xmark close-btn" (click)="closeShareModal()"></i>
+  <h4 class="h5 mb-4">مشاركة هذا المسكن</h4>
+  <div class="apartment-details d-flex align-items-center gap-3 mb-4">
+    <div class="image">
+      <img src="./assets/imgs/Gallery/living1.png" alt="Apartment image" />
+    </div>
+    <div class="content">
+      <h5 class="mb-1">شقة مفروشة مودرن</h5>
+      <div class="rating d-flex align-items-center gap-2">
+        <div class="stars mb-2 gap-1">
+          <i
+            class="fa-solid fa-star rating-color"
+            *ngFor="let item of [1, 2, 3, 4, 5]"
+          ></i>
+        </div>
+        <p class="rating-number mb-0">4.5 (120 تقييم)</p>
+      </div>
+      <p class="mb-0 location d-flex align-items-center gap-1 fw-light">
+        <img src="./assets/imgs/icons/location-dark.png" alt="location icon" />
+        6 اكتوبر , حي اول
+      </p>
+    </div>
+  </div>
+
+  <div class="social-links d-flex gap-2 flex-wrap">
+    <button class="btn d-flex gap-2 align-items-center px-4">
+      <img src="./assets/imgs/icons/copy-to-clipboard.png" alt="icon" />
+      نسخ الرابط
+    </button>
+    <button class="btn d-flex gap-2 align-items-center px-4">
+      <img src="./assets/imgs/icons/facebook-f-green.png" alt="icon" />
+
+      فيسبوك
+    </button>
+    <button class="btn d-flex gap-2 align-items-center px-4">
+      <img src="./assets/imgs/icons/messenger-green.png" alt="icon" />
+
+      ماسنجر
+    </button>
+    <button class="btn d-flex gap-2 align-items-center px-4">
+      <img src="./assets/imgs/icons/whatsapp-green.png" alt="icon" />
+
+      واتس اب
+    </button>
+    <button class="btn d-flex gap-2 align-items-center px-4">
+      <img src="./assets/imgs/icons/x-twitter-green.png" alt="icon" />
+
+      تويتر
+    </button>
+  </div>
+</div>
