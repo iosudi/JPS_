@@ -13,7 +13,7 @@ body {
 
 ::-webkit-scrollbar {
   background-color: transparent;
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -138,10 +138,6 @@ img {
 }
 
 @media (max-width: 775px) {
-  .modal-dialog {
-    margin: 0 auto !important;
-  }
-
   .modal-content {
     margin: 0 10px;
   }

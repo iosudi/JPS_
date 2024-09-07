@@ -1,1 +1,256 @@
-<p>reserve works!</p>
+<div class="container py-5 px-4">
+  <i class="fa-solid fa-xmark close-icon" (click)="closeReserveModal()"></i>
+
+  <h3 class="header d-flex align-items-center gap-2">
+    <i
+      class="fa-solid fa-angle-right back-icon"
+      routerLink="/product-details"
+    ></i>
+    تفاصيل و طلب الحجز
+  </h3>
+
+  <div class="row gy-4">
+    <div class="col-lg-7">
+      <div class="offer-banner item d-flex gap-3 align-items-start">
+        <div class="icon">
+          <img src="./assets/imgs/diamond.png" alt="offer banner" />
+        </div>
+        <div>
+          <h3 class="mb-3">احجز الآن ووفّر 25%</h3>
+          <p class="mb-0">احجز في أقرب وقت لتحصل على هذا <br />العرض الخاص.</p>
+        </div>
+      </div>
+
+      <div class="max-duration item py-3 border-bottom">
+        <div class="heading d-flex align-items-center gap-1 mb-2">
+          <img src="./assets/imgs/icons/docs3.png" alt="icon" />
+          <h4 class="h5 mb-0 fw-bold">اقصي مدة للتاجير</h4>
+          <img
+            src="./assets/imgs/icons/info-circle.png"
+            alt="icon"
+            class="info-circle"
+          />
+        </div>
+        <p class="mb-0">شهررين</p>
+      </div>
+
+      <div class="booking-duration item py-3 border-bottom">
+        <div class="heading d-flex align-items-center justify-content-between">
+          <h4 class="h5 fw-bold">الحجز من</h4>
+          <button class="btn text-decoration-underline">تغيير التاريخ</button>
+        </div>
+        <p class="mb-0">30/7/2024 <span>الي</span> 30/10/2024</p>
+      </div>
+
+      <div class="host item py-3 border-bottom">
+        <div
+          class="heading d-flex align-items-center justify-content-between mb-3"
+        >
+          <div>
+            <h4 class="h5 fw-bold">المضيف</h4>
+            <p class="mb-0">أرسل رسالة إلى المضيف وتاكد من ان التواريخ متاحة</p>
+          </div>
+          <button class="btn p-2">تواصل مع المضيف</button>
+        </div>
+        <p class="mb-0">
+          لدى المضيف 24 ساعة لتأكيد الحجز. سيتم محاسبتك عند قبول الطلب.
+        </p>
+      </div>
+
+      <div class="payment-method py-3 border-bottom">
+        <div class="heading mb-3">
+          <h3 class="h5 fw-bold fw-bold">طريقة الدفع</h3>
+          <p class="mb-0">الطريقة التي تفضل ان تدفع بها جزئي ام كلي</p>
+        </div>
+        <div class="methods">
+          <label
+            for="cash"
+            class="method px-4 d-flex justify-content-between align-items-center checked"
+          >
+            <h5 class="mb-0">ادفع الملغ الكلي 58,500 ج.م</h5>
+            <p-radioButton
+              inputId="cash"
+              value="cash"
+              name="payment"
+              [(ngModel)]="payment"
+            />
+          </label>
+          <label
+            for="Installment"
+            class="method px-4 d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <h5>ادفع جزءا الآن وجزءا لاحقا</h5>
+              <p class="mb-0">
+                المبلغ $144.19 مستحق اليوم، ويستحق $144.19 فى 10 سبتمبر 2024. لا
+                توجد رسوم إضافية.
+                <a class="text-decoration-underline">إلمزيد من المعلومات</a>
+              </p>
+            </div>
+
+            <p-radioButton
+              inputId="Installment"
+              value="Installment"
+              name="payment"
+              [(ngModel)]="payment"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div class="apartment-rules py-3">
+        <h3 class="h5 mb-3 fw-bold">قوانين البيت</h3>
+        <ul class="m-0 p-0 d-flex justify-content-between align-items-center">
+          <li class="d-flex align-items-center gap-2 mb-2">
+            <img src="./assets/imgs/icons/heart-home.png" alt="icon" />
+            التعامل مع بيت المضيف كما هو بيتك
+          </li>
+
+          <li class="d-flex align-items-center gap-2 mb-2">
+            <img src="./assets/imgs/icons/dont disturb.png" alt="icon" />
+            عدم الازعاج
+          </li>
+        </ul>
+      </div>
+
+      <div class="reserve-summary-sm reserve-summary p-3">
+        <div class="price-details py-3 border-bottom">
+          <h4 class="mb-4 h5 fw-bold">تفاصيل السعر</h4>
+          <ul class="p-0 m-0">
+            <li
+              class="d-flex justify-content-between gap-2 align-items-center mb-2"
+            >
+              <p class="mb-0 text-decoration-underline">
+                الإيجار 3 اشهر * 20,000
+              </p>
+              <p class="mb-0">60,000 ج.م</p>
+            </li>
+            <li
+              class="d-flex justify-content-between gap-2 align-items-center mb-2"
+            >
+              <p class="mb-0 text-decoration-underline">التأمين</p>
+              <p class="mb-0">20,000 ج.م</p>
+            </li>
+            <li
+              class="d-flex justify-content-between gap-2 align-items-center mb-2"
+            >
+              <p class="mb-0 text-decoration-underline">خصم 25%</p>
+              <p class="mb-0 discount">-1500 ج.م</p>
+            </li>
+            <li class="d-flex justify-content-between gap-2 align-items-center">
+              <p class="mb-0 text-decoration-underline">رسوم خدمة JPS</p>
+              <p class="mb-0">10,000 ج.م</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="total-price py-3 border-bottom">
+          <h6
+            class="heading d-flex justify-content-between align-items-center gap-2 mb-3"
+          >
+            <span>إجمالي (جنيه مصري)</span>
+            <span>58,500 ج.م</span>
+          </h6>
+
+          <ul class="p-0 m-0 notes">
+            <li class="note">
+              سعر الايجار الشهري يشمل خدمات : كهرباء - غاز - مياه
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="mb-4 accept-terms">
+        بالضغط علي الزر فانك توافق علي
+        <a class="text-decoration-underline">شروط الحجز</a>
+      </p>
+
+      <button
+        class="btn secondary-btn rounded-2 px-4"
+        (click)="openSuccessMessage()"
+      >
+        طلب الحجز
+      </button>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="reserve-summary p-3">
+        <div
+          class="apartment-details d-flex align-items-center gap-3 border-bottom py-3"
+        >
+          <div class="image">
+            <img
+              src="./assets/imgs/Gallery/living1.png"
+              alt="Apartment image"
+            />
+          </div>
+          <div class="content">
+            <h6 class="mb-1">شقة مفروشة مودرن</h6>
+            <div class="rating d-flex align-items-center gap-2 mb-1">
+              <div class="stars gap-1">
+                <i
+                  class="fa-solid fa-star rating-color"
+                  *ngFor="let item of [1, 2, 3, 4, 5]"
+                ></i>
+              </div>
+              <p class="rating-number mb-0">4.5 (120 تقييم)</p>
+            </div>
+
+            <p class="mb-0 location d-flex align-items-center gap-1 fw-light">
+              <img
+                src="./assets/imgs/icons/location-dark.png"
+                alt="location icon"
+              />
+              6 اكتوبر , حي اول
+            </p>
+          </div>
+        </div>
+
+        <div class="price-details py-3 border-bottom">
+          <h4 class="mb-4 h5 fw-bold">تفاصيل السعر</h4>
+          <ul class="p-0 m-0">
+            <li
+              class="d-flex justify-content-between gap-2 align-items-center mb-2"
+            >
+              <p class="mb-0 text-decoration-underline">
+                الإيجار 3 اشهر * 20,000
+              </p>
+              <p class="mb-0">60,000 ج.م</p>
+            </li>
+            <li
+              class="d-flex justify-content-between gap-2 align-items-center mb-2"
+            >
+              <p class="mb-0 text-decoration-underline">التأمين</p>
+              <p class="mb-0">20,000 ج.م</p>
+            </li>
+            <li
+              class="d-flex justify-content-between gap-2 align-items-center mb-2"
+            >
+              <p class="mb-0 text-decoration-underline">خصم 25%</p>
+              <p class="mb-0 discount">-1500 ج.م</p>
+            </li>
+            <li class="d-flex justify-content-between gap-2 align-items-center">
+              <p class="mb-0 text-decoration-underline">رسوم خدمة JPS</p>
+              <p class="mb-0">10,000 ج.م</p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="total-price py-3">
+          <h6
+            class="heading d-flex justify-content-between align-items-center gap-2 mb-3"
+          >
+            <span>إجمالي (جنيه مصري)</span>
+            <span>58,500 ج.م</span>
+          </h6>
+
+          <ul class="p-0 m-0 notes">
+            <li class="note">
+              سعر الايجار الشهري يشمل خدمات : كهرباء - غاز - مياه
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

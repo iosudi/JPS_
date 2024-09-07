@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, HostListener, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { searchResultApartments } from 'src/assets/data/apartments';
 import { AddToFavComponent } from '../../components/add-to-fav/add-to-fav.component';
 import { RatingModalComponent } from '../../components/rating-modal/rating-modal.component';
 import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
-import { SucessComponent } from '../../components/sucess/sucess.component';
 import { ApartmentFeaturesComponent } from './../../components/apartment-features/apartment-features.component';
+import { ReserveComponent } from './../../components/reserve/reserve.component';
 
 @Component({
   selector: 'app-product-details',
@@ -20,7 +22,21 @@ export class ProductDetailsComponent {
   features: any[] = new Array(this.arraySize);
   apartments: Apartments[] = searchResultApartments;
   checked: boolean = true;
+  shouldNavigateModal: boolean = false;
   private modalService = inject(NgbModal);
+
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private router: Router
+  ) {}
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    const windowWidth = (event.target as Window).innerWidth;
+    if (windowWidth <= 775) {
+      this.shouldNavigateModal = true;
+    }
+  }
 
   hideOverlay(): void {
     this.overlayHidden = true;
@@ -67,17 +83,18 @@ export class ProductDetailsComponent {
     });
   }
 
-  openSuccessMessage(): void {
-    this.modalService.open(SucessComponent, {
-      centered: true,
-      size: 'lg',
-      scrollable: true,
-    });
-  }
   openShareModal(): void {
     this.modalService.open(ShareModalComponent, {
       centered: true,
       size: 'md',
+      scrollable: true,
+    });
+  }
+
+  openReserveModal(): void {
+    this.modalService.open(ReserveComponent, {
+      centered: true,
+      size: 'lg',
       scrollable: true,
     });
   }

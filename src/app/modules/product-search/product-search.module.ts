@@ -8,6 +8,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProgressBarModule } from 'primeng/progressbar';
+import { RadioButtonModule } from 'primeng/radiobutton';
 import { SliderModule } from 'primeng/slider';
 import { CoreModule } from 'src/app/core/core.module';
 import { register } from 'swiper/element/bundle';
@@ -52,6 +53,7 @@ register();
     ProgressBarModule,
     NgbRatingModule,
     InputSwitchModule,
+    RadioButtonModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
