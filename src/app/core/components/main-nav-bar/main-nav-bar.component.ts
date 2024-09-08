@@ -21,12 +21,14 @@ export class MainNavBarComponent {
     const modalRef = this.modalService.open(LoginComponent, {
       centered: true,
       backdrop: 'static',
+      scrollable: true,
     });
   }
   openSignUpDialog() {
     const modalRef = this.modalService.open(RegisterComponent, {
       centered: true,
       backdrop: 'static',
+      scrollable: true,
     });
   }
 

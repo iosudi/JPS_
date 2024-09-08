@@ -61,6 +61,7 @@ export class LoginComponent {
       this.modalService.open(RegisterComponent, {
         centered: true,
         backdrop: 'static',
+        scrollable: true,
       });
       this.activeModal.close();
     }
