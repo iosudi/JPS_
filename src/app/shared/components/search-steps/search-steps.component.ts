@@ -88,4 +88,19 @@ export class SearchStepsComponent {
   submitFilterOptions() {
     this.router.navigate(['/search-results']);
   }
+
+  closeSearchResults() {
+    if (this.currentStep === 1) {
+      this.showSteps = false;
+      this._SearchService.showSearchSteps.next(false);
+    } else {
+      this.currentStep--;
+    }
+  }
+
+  skipStep() {
+    if (this.currentStep < 6) {
+      this.currentStep++;
+    }
+  }
 }

@@ -86,6 +86,11 @@
     }
   }
 
+  .skip-btn {
+    cursor: pointer;
+    user-select: none;
+  }
+
   .city-selection {
     .city {
       width: 90%;

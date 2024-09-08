@@ -228,6 +228,7 @@
   }
 
   .carousel-arrows {
+    display: none !important;
     .arr-btn {
       background-color: white;
       color: #3f514a;
@@ -401,6 +402,14 @@
           min-width: 450px !important;
         }
       }
+    }
+  }
+}
+
+@media (max-width: 1523px) {
+  .staff-member {
+    .carousel-arrows {
+      display: flex !important;
     }
   }
 }

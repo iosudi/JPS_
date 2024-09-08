@@ -1,1 +1,77 @@
-<p>add-date-range works!</p>
+<div class="container py-5 px-4">
+  <i class="fa-solid fa-xmark close-icon" (click)="closeModal()"></i>
+
+  <div class="offer-banner mb-4 item d-flex gap-3 align-items-start">
+    <div class="icon">
+      <img src="./assets/imgs/diamond.png" alt="offer banner" />
+    </div>
+    <ul class="m-0 p-0">
+      <li class="mb-1">احجز شهر و احصل علي خصم 10%</li>
+      <li>ملحوظة تانية هنا</li>
+    </ul>
+  </div>
+
+  <div
+    class="start-date mb-3 control d-flex align-items-center justify-content-between gap-2"
+  >
+    <h2 class="h4 mb-0 fw-bold">بداية الإقامة</h2>
+
+    <div class="date-picker">
+      <p-calendar
+        [(ngModel)]="date"
+        [iconDisplay]="'input'"
+        [showIcon]="true"
+        dir="ltr"
+        placeholder="  حدد تاريخ الاقامة"
+        inputId="templatedisplay"
+        tabindex="-1"
+      >
+        <ng-template pTemplate="inputicon" let-clickCallBack="clickCallBack">
+          <img src="./assets/imgs/icons/calender.png" alt="icon" />
+        </ng-template>
+      </p-calendar>
+    </div>
+  </div>
+
+  <div
+    class="duration-of-stay mb-3 control d-flex align-items-center justify-content-between gap-2"
+  >
+    <h2 class="h4 mb-0 fw-bold">المدة التي ستقيمها</h2>
+
+    <p-selectButton
+      [options]="stateOptions"
+      [(ngModel)]="value"
+      optionLabel="label"
+      optionValue="value"
+      dir="ltr"
+    />
+  </div>
+
+  <div class="duration-select">
+    <app-circular-slider></app-circular-slider>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-5">
+    <div class="price">
+      <h4 class="mb-0">60,000 ج.م</h4>
+      <p class="mb-0">قبل الخصومات</p>
+    </div>
+
+    <button
+      class="btn secondary-btn rounded-3 px-5 py-2"
+      (click)="openReserveModal()"
+      *ngIf="!shouldNavigateModal; else routerBtn"
+    >
+      التالي
+    </button>
+
+    <ng-template #routerBtn>
+      <button
+        class="btn secondary-btn rounded-3 px-5 py-2"
+        routerLink="/reserve"
+      >
+        التالي
+      </button>
+    </ng-template>
+  </div>
+</div>

@@ -12,7 +12,7 @@ export class AddToFavComponent {
 
   lists: any[] = lists;
 
-  closeAddToFavModal() {
+  closeAddToFavModal(): void {
     this.activeModal.close();
   }
 }

@@ -154,7 +154,7 @@
                 </div>
               </div>
               <button
-                (click)="showMoreFeatures()"
+                (click)="openApartmentFeatures()"
                 class="outlined-btn mt-4 ms-auto"
               >
                 عرض الميزات الـ 48
@@ -695,23 +695,9 @@
     <div
       class="controls mx-2 d-flex flex-row-reverse justify-content-center align-items-center gap-3 p-4 rounded-3"
     >
-      <button
-        class="btn reserve-btn fw-bold"
-        (click)="openReserveModal()"
-        *ngIf="!shouldNavigateModal; else routerBtn"
-      >
+      <button class="btn reserve-btn fw-bold" (click)="openDateRange()">
         تحديد مدة الاقامة
       </button>
-
-      <ng-template #routerBtn>
-        <button
-          class="btn reserve-btn fw-bold"
-          routerLink="/reserve"
-          *ngIf="shouldNavigateModal; else routerBtn"
-        >
-          تحديد مدة الاقامة
-        </button>
-      </ng-template>
 
       <button class="btn share-btn" (click)="openShareModal()">
         <img src="./assets/imgs/icons/share-green.png" alt="icon" />

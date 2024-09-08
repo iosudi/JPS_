@@ -1,0 +1,142 @@
+.container {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+  }
+  .close-icon {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 8;
+  }
+
+  .offer-banner {
+    border: 1px solid #d89e38;
+    border-radius: 15px;
+    background: rgb(236, 208, 159, 0.2);
+    padding: 15px 24px 15px 24px;
+
+    .icon {
+      width: 50px;
+    }
+    li {
+      list-style: disc;
+      list-style-position: inside;
+      color: #c18826;
+    }
+  }
+
+  .control {
+    background-color: #f4f4f4;
+    padding: 10px 15px;
+    border-radius: 15px;
+    p-calendar ::ng-deep {
+      .p-calendar {
+        align-items: center;
+        gap: 15px;
+        border: 1px solid #000;
+        border-radius: 5px;
+        font-size: 0.8rem;
+        padding: 10px;
+        cursor: pointer;
+        user-select: none;
+        .p-inputtext {
+          flex: unset;
+          width: unset;
+          text-align: right;
+          padding: 0px;
+          background: transparent;
+          max-width: 100px;
+          border: 0;
+          text-decoration: underline;
+          &:focus {
+            box-shadow: unset;
+          }
+        }
+        img {
+          width: 15px;
+        }
+      }
+    }
+
+    p-selectbutton ::ng-deep {
+      .p-selectbutton {
+        padding: 5px;
+        background-color: #d9d9d9;
+        border-radius: 50px;
+        .p-button {
+          padding: 5px 15px;
+          border-radius: 50px;
+          background: transparent;
+          border: 0;
+          color: #000;
+
+          .p-button-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+
+          &:focus {
+            box-shadow: none !important;
+          }
+
+          &.p-highlight {
+            background: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 455px) {
+  .container {
+    padding: 40px 10px 20px !important;
+    .close-icon {
+      font-size: 1rem;
+    }
+
+    .offer-banner {
+      .icon {
+        width: 40px;
+      }
+      li {
+        font-size: 0.8rem;
+      }
+    }
+
+    .control {
+      padding: 10px 10px;
+      h2 {
+        font-size: 1rem;
+      }
+      p-calendar ::ng-deep {
+        .p-calendar {
+          font-size: 0.7rem;
+          padding: 10px 5px;
+          .p-inputtext {
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      p-selectbutton ::ng-deep {
+        .p-selectbutton {
+          .p-button {
+            padding: 5px 10px;
+
+            .p-button-label {
+              font-size: 0.7rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
