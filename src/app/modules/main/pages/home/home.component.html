@@ -211,229 +211,240 @@
 
 <!-- popular districts section -->
 <section appAnimateOnScroll class="popular-districts overflow-hidden">
-  <div class="container-fluid my-5 position-relative">
-    <div
-      class="header overflow-hidden d-flex justify-content-between align-items-center mx-5"
-    >
-      <div class="title">
-        <h2>الاحياء الأكثر بحثا</h2>
-        <a
-          routerLink="/best-districts"
-          class="mb-0 fw-light d-flex gap-2 align-items-center"
+  <div pDefer>
+    <ng-template>
+      <div class="container-fluid my-5 position-relative">
+        <div
+          class="header overflow-hidden d-flex justify-content-between align-items-center mx-5"
         >
-          <i class="fa-solid fa-arrow-right"></i>
-          تصفح الكل (20)
-        </a>
-      </div>
+          <div class="title">
+            <h2>الاحياء الأكثر بحثا</h2>
+            <a
+              routerLink="/best-districts"
+              class="mb-0 fw-light d-flex gap-2 align-items-center"
+            >
+              <i class="fa-solid fa-arrow-right"></i>
+              تصفح الكل (20)
+            </a>
+          </div>
 
-      <div class="slider-arrows d-flex align-items-center gap-4">
-        <button (click)="triggerPrev('district')" class="prev-btn btn">
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
-        <button (click)="triggerNext('district')" class="next-btn btn">
-          <i class="fa-solid fa-arrow-left"></i>
-        </button>
-      </div>
-    </div>
+          <div class="slider-arrows d-flex align-items-center gap-4">
+            <button (click)="triggerPrev('district')" class="prev-btn btn">
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+            <button (click)="triggerNext('district')" class="next-btn btn">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+          </div>
+        </div>
 
-    <!-- Districts auto generated from JS -->
-    <div class="carousel-container mt-5">
-      <swiper-container
-        #districtSwiper
-        [slidesPerView]="4"
-        [speed]="500"
-        [spaceBetween]="5"
-        [breakpoints]="districtBreakpoints"
-      >
-        <swiper-slide *ngFor="let district of districts">
-          <div class="card mx-3 d-flex flex-column justify-content-between">
-            <div class="background">
-              <img [src]="district.imgSrc" alt="popular-district" />
-              <div class="gradient"></div>
-            </div>
-            <div class="hover-overlay"></div>
-            <div class="district-name">
-              <div class="title d-flex align-items-center gap-2">
-                <img
-                  *ngIf="district.apartments.length <= 0"
-                  src="./assets/imgs/icons/lock-light.png"
-                  alt="white lock icon"
-                />
-                <h2>{{ district.name }}</h2>
-              </div>
-              <p class="mb-0 text-start">{{ district.description }}</p>
-            </div>
-            <div class="apartment-list">
-              <div class="more d-flex justify-content-between mb-3">
-                <i
-                  routerLink="/best-apartments"
-                  class="fa-solid fa-arrow-right"
-                ></i>
-                Show all ({{ district.apartments.length }})
-              </div>
-              <ng-container *ngIf="district.apartments.length > 0">
-                <div class="apartments-wrapper">
-                  <div
-                    class="apartment d-flex gap-3 align-items-center my-4"
-                    *ngFor="let apartment of district.apartments"
-                  >
-                    <div class="apartment-image overflow-hidden">
-                      <img [src]="apartment.imageSrc" alt="apartment" />
-                      <div class="heart-icon">
-                        <i class="fa-solid fa-heart"></i>
-                      </div>
-
+        <!-- Districts auto generated from JS -->
+        <div class="carousel-container mt-5">
+          <swiper-container
+            #districtSwiper
+            [slidesPerView]="4"
+            [speed]="500"
+            [spaceBetween]="5"
+            [breakpoints]="districtBreakpoints"
+          >
+            <swiper-slide *ngFor="let district of districts">
+              <div class="card mx-3 d-flex flex-column justify-content-between">
+                <div class="background">
+                  <img [src]="district.imgSrc" alt="popular-district" />
+                  <div class="gradient"></div>
+                </div>
+                <div class="hover-overlay"></div>
+                <div class="district-name">
+                  <div class="title d-flex align-items-center gap-2">
+                    <img
+                      *ngIf="district.apartments.length <= 0"
+                      src="./assets/imgs/icons/lock-light.png"
+                      alt="white lock icon"
+                    />
+                    <h2>{{ district.name }}</h2>
+                  </div>
+                  <p class="mb-0 text-start">{{ district.description }}</p>
+                </div>
+                <div class="apartment-list">
+                  <div class="more d-flex justify-content-between mb-3">
+                    <i
+                      routerLink="/best-apartments"
+                      class="fa-solid fa-arrow-right"
+                    ></i>
+                    Show all ({{ district.apartments.length }})
+                  </div>
+                  <ng-container *ngIf="district.apartments.length > 0">
+                    <div class="apartments-wrapper">
                       <div
-                        class="arrow d-flex align-items-center justify-content-center"
+                        class="apartment d-flex gap-3 align-items-center my-4"
+                        *ngFor="let apartment of district.apartments"
                       >
-                        <i class="fa-solid fa-chevron-right"></i>
-                      </div>
+                        <div class="apartment-image overflow-hidden">
+                          <img [src]="apartment.imageSrc" alt="apartment" />
+                          <div class="heart-icon">
+                            <i class="fa-solid fa-heart"></i>
+                          </div>
 
-                      <div class="paginator d-flex gap-1 mt-3">
-                        <div class="dot active"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                      </div>
-                    </div>
+                          <div
+                            class="arrow d-flex align-items-center justify-content-center"
+                          >
+                            <i class="fa-solid fa-chevron-right"></i>
+                          </div>
 
-                    <div class="apartment-details d-flex flex-column gap-2">
-                      <div
-                        class="apartment-name d-flex justify-content-between gap-2"
-                      >
-                        <div class="title">
-                          <p class="mb-0">المضيف : {{ apartment.hostName }}</p>
-                          <h3 class="h6 my-1">
-                            {{ apartment.description }}
-                          </h3>
-                          <p class="mb-0 d-flex gap-1 align-items-center">
+                          <div class="paginator d-flex gap-1 mt-3">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                          </div>
+                        </div>
+
+                        <div class="apartment-details d-flex flex-column gap-2">
+                          <div
+                            class="apartment-name d-flex justify-content-between gap-2"
+                          >
+                            <div class="title">
+                              <p class="mb-0">
+                                المضيف : {{ apartment.hostName }}
+                              </p>
+                              <h3 class="h6 my-1">
+                                {{ apartment.description }}
+                              </h3>
+                              <p class="mb-0 d-flex gap-1 align-items-center">
+                                <img
+                                  src="./assets/imgs/icons/location-dark.png"
+                                  alt="share icon"
+                                />
+                                {{ apartment.location }}
+                              </p>
+                            </div>
                             <img
-                              src="./assets/imgs/icons/location-dark.png"
+                              src="./assets/imgs/icons/share-dark.png"
                               alt="share icon"
                             />
-                            {{ apartment.location }}
-                          </p>
-                        </div>
-                        <img
-                          src="./assets/imgs/icons/share-dark.png"
-                          alt="share icon"
-                        />
-                      </div>
+                          </div>
 
-                      <div class="chips-badges d-flex gap-1">
-                        <div class="chip d-flex align-items-center gap-1">
-                          <img
-                            src="./assets/imgs/icons/bath-colored.png"
-                            alt="bath icon"
-                          />
-                          {{ apartment.bathrooms }}
-                        </div>
-                        <div class="chip d-flex align-items-center gap-1">
-                          <img
-                            src="./assets/imgs/icons/bed-colored.png"
-                            alt="bed icon"
-                          />
-                          {{ apartment.bedrooms }}
-                        </div>
-                        <div class="chip d-flex align-items-center gap-1">
-                          <img
-                            src="./assets/imgs/icons/door-colored.png"
-                            alt="door icon"
-                          />
-                          {{ apartment.doors }}
-                        </div>
-                        <div class="chip d-flex align-items-center gap-1">
-                          <img
-                            src="./assets/imgs/icons/doc-colored.png"
-                            alt="docs icon"
-                          />
-                          {{ apartment.duration }}
-                        </div>
-                      </div>
+                          <div class="chips-badges d-flex gap-1">
+                            <div class="chip d-flex align-items-center gap-1">
+                              <img
+                                src="./assets/imgs/icons/bath-colored.png"
+                                alt="bath icon"
+                              />
+                              {{ apartment.bathrooms }}
+                            </div>
+                            <div class="chip d-flex align-items-center gap-1">
+                              <img
+                                src="./assets/imgs/icons/bed-colored.png"
+                                alt="bed icon"
+                              />
+                              {{ apartment.bedrooms }}
+                            </div>
+                            <div class="chip d-flex align-items-center gap-1">
+                              <img
+                                src="./assets/imgs/icons/door-colored.png"
+                                alt="door icon"
+                              />
+                              {{ apartment.doors }}
+                            </div>
+                            <div class="chip d-flex align-items-center gap-1">
+                              <img
+                                src="./assets/imgs/icons/doc-colored.png"
+                                alt="docs icon"
+                              />
+                              {{ apartment.duration }}
+                            </div>
+                          </div>
 
-                      <div
-                        class="price-rating mt-1 d-flex justify-content-between align-items-center"
-                      >
-                        <div class="rating">
-                          <i class="fa-solid fa-star"></i> 4.8
-                          <span>({{ apartment.reviewsCount }} تقييم)</span>
-                        </div>
-                        <div class="price">
-                          <h3 class="h6 mb-0">{{ apartment.pricePerDay }}</h3>
-                          <p class="mb-0">لليوم الواحد</p>
+                          <div
+                            class="price-rating mt-1 d-flex justify-content-between align-items-center"
+                          >
+                            <div class="rating">
+                              <i class="fa-solid fa-star"></i> 4.8
+                              <span>({{ apartment.reviewsCount }} تقييم)</span>
+                            </div>
+                            <div class="price">
+                              <h3 class="h6 mb-0">
+                                {{ apartment.pricePerDay }}
+                              </h3>
+                              <p class="mb-0">لليوم الواحد</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </div>
-              </ng-container>
+                  </ng-container>
 
-              <ng-container *ngIf="district.apartments.length <= 0">
-                <div
-                  class="d-flex flex-column align-items-center justify-content-center notAvailable"
-                >
-                  <img
-                    class="my-5"
-                    src="./assets/imgs/icons/sand hour.png"
-                    alt="sand clock icon"
-                  />
-                  <h3 class="h1 text-center mb-4">سيكون متاح قريبا</h3>
-                  <p class="text-center w-75 mb-0">
-                    هذا المكان غير متوفر حاليا ولكن سيكون متاح ف المستقبل
-                  </p>
+                  <ng-container *ngIf="district.apartments.length <= 0">
+                    <div
+                      class="d-flex flex-column align-items-center justify-content-center notAvailable"
+                    >
+                      <img
+                        class="my-5"
+                        src="./assets/imgs/icons/sand hour.png"
+                        alt="sand clock icon"
+                      />
+                      <h3 class="h1 text-center mb-4">سيكون متاح قريبا</h3>
+                      <p class="text-center w-75 mb-0">
+                        هذا المكان غير متوفر حاليا ولكن سيكون متاح ف المستقبل
+                      </p>
+                    </div>
+                  </ng-container>
                 </div>
-              </ng-container>
-            </div>
-          </div>
-        </swiper-slide>
-      </swiper-container>
-    </div>
+              </div>
+            </swiper-slide>
+          </swiper-container>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </section>
 
 <!-- Gallery section -->
 <section class="gallery overflow-hidden py-4">
-  <div class="container-fluid">
-    <div class="row g-3">
-      <div class="col-12">
-        <div
-          id="row-1"
-          class="image-row justify-content-center top-row d-flex align-items-end gap-2"
-        >
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 23.png" alt="" />
+  <div class="container-fluid" pDefer>
+    <ng-template>
+      <div class="row g-3">
+        <div class="col-12">
+          <div
+            id="row-1"
+            class="image-row justify-content-center top-row d-flex align-items-end gap-2"
+          >
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 23.png" alt="" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 20.png" alt="" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 21.png" alt="" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 22.png" alt="" />
+            </div>
           </div>
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 20.png" alt="" />
-          </div>
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 21.png" alt="" />
-          </div>
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 22.png" alt="" />
+        </div>
+
+        <div class="col-12">
+          <div
+            id="row-2"
+            class="image-row justify-content-center bottom-row d-flex align-items-start gap-2"
+          >
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 24.png" alt="" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 25.png" alt="" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 26.png" alt="" />
+            </div>
+            <div class="image">
+              <img src="./assets/imgs/homeSlider/image 27.png" alt="" />
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-12">
-        <div
-          id="row-2"
-          class="image-row justify-content-center bottom-row d-flex align-items-start gap-2"
-        >
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 24.png" alt="" />
-          </div>
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 25.png" alt="" />
-          </div>
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 26.png" alt="" />
-          </div>
-          <div class="image">
-            <img src="./assets/imgs/homeSlider/image 27.png" alt="" />
-          </div>
-        </div>
-      </div>
-    </div>
+    </ng-template>
   </div>
 </section>
 

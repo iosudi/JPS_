@@ -6,18 +6,23 @@ Project Description
 
 ### Todo
 
-- [ ] add-date-range  
+- [ ] client edits  
+- [ ] currency convert  
+- [ ] localization  
+- [ ] integrate api  
 - [ ] remove animations while switching between verti and horz  
 - [ ] change font  
 
 ### In Progress
 
-- [ ] reserve  
-- [ ] product details  
+- [ ] modals not hidding while chagning url  
 - [ ] ticket hover  
 
 ### Done ✓
 
+- [x] product details  
+- [x] reserve  
+- [x] add-date-range  
 - [x] sucess message  
 - [x] share modal  
 - [x] add to fav  

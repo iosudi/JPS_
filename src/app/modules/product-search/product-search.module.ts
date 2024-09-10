@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CalendarModule } from 'primeng/calendar';
+import { DeferModule } from 'primeng/defer';
 import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputSwitchModule } from 'primeng/inputswitch';
@@ -18,6 +19,7 @@ import { AddDateRangeComponent } from './components/add-date-range/add-date-rang
 import { AddToFavComponent } from './components/add-to-fav/add-to-fav.component';
 import { AdvancedSearchFilterModalComponent } from './components/advanced-search-filter-modal/advanced-search-filter-modal.component';
 import { ApartmentFeaturesComponent } from './components/apartment-features/apartment-features.component';
+import { CircularSliderComponent } from './components/circular-slider/circular-slider.component';
 import { RatingModalComponent } from './components/rating-modal/rating-modal.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
 import { ShareModalComponent } from './components/share-modal/share-modal.component';
@@ -26,7 +28,7 @@ import { ApartmentGalleryComponent } from './pages/apartment-gallery/apartment-g
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { ProductSearchRoutingModule } from './product-search-routing.module';
-import { CircularSliderComponent } from './components/circular-slider/circular-slider.component';
+
 register();
 
 @NgModule({
@@ -60,6 +62,7 @@ register();
     RadioButtonModule,
     SelectButtonModule,
     CalendarModule,
+    DeferModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

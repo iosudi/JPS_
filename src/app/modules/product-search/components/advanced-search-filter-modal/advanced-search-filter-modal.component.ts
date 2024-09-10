@@ -1,12 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-advanced-search-filter-modal',
   templateUrl: './advanced-search-filter-modal.component.html',
   styleUrls: ['./advanced-search-filter-modal.component.scss'],
 })
-export class AdvancedSearchFilterModalComponent {
+export class AdvancedSearchFilterModalComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
 
   lowerValue!: number;
@@ -20,6 +22,8 @@ export class AdvancedSearchFilterModalComponent {
 
   selectedCity: any | undefined;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     this.cities = [
       { name: 'New York', code: 'NY' },
@@ -28,6 +32,14 @@ export class AdvancedSearchFilterModalComponent {
       { name: 'Istanbul', code: 'IST' },
       { name: 'Paris', code: 'PRS' },
     ];
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.activeModal) {
+          this.activeModal.close();
+        }
+      });
   }
 
   getRangeValues(): void {

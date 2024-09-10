@@ -5,7 +5,9 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -18,8 +20,10 @@ export class RegisterComponent {
 
   constructor(
     private _FormBuilder: FormBuilder,
-    @Optional() public activeModal: NgbActiveModal
+    @Optional() public activeModal: NgbActiveModal,
+    private router: Router
   ) {}
+
   private modalService = inject(NgbModal);
 
   registerForm: FormGroup = this._FormBuilder.group(
@@ -49,6 +53,16 @@ export class RegisterComponent {
     },
     { validators: [this.checkPasswordMatch] } as FormControlOptions
   );
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.activeModal) {
+          this.activeModal.close();
+        }
+      });
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {

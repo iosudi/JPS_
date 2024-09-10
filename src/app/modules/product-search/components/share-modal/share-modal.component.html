@@ -24,7 +24,10 @@
   </div>
 
   <div class="social-links d-flex gap-2 flex-wrap">
-    <button class="btn d-flex gap-2 align-items-center px-4">
+    <button
+      class="btn d-flex gap-2 align-items-center px-4"
+      (click)="copyUrl()"
+    >
       <img src="./assets/imgs/icons/copy-to-clipboard.png" alt="icon" />
       نسخ الرابط
     </button>

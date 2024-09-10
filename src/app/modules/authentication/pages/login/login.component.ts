@@ -1,8 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, HostListener, inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -27,6 +28,16 @@ export class LoginComponent {
     if (this.activeModal && windowWidth <= 775) {
       this.activeModal.close();
     }
+  }
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.activeModal) {
+          this.activeModal.close();
+        }
+      });
   }
 
   loginForm: FormGroup = this._FormBuilder.group({

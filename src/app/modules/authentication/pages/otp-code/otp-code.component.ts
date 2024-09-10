@@ -1,8 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, HostListener, inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
 import { CheckEmailPopupComponent } from '../check-email-popup/check-email-popup.component';
 
 @Component({
@@ -23,6 +24,16 @@ export class OtpCodeComponent {
   otpCodeForm: FormGroup = this._FormBuilder.group({
     otp: [''],
   });
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.activeModal) {
+          this.activeModal.close();
+        }
+      });
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {

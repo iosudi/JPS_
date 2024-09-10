@@ -4,10 +4,12 @@ import {
   ElementRef,
   HostListener,
   inject,
+  OnInit,
   ViewChild,
 } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
 import { ReserveComponent } from '../reserve/reserve.component';
 
 @Component({
@@ -15,7 +17,7 @@ import { ReserveComponent } from '../reserve/reserve.component';
   templateUrl: './add-date-range.component.html',
   styleUrls: ['./add-date-range.component.scss'],
 })
-export class AddDateRangeComponent {
+export class AddDateRangeComponent implements OnInit {
   @ViewChild('datePicker') datePicker!: ElementRef;
 
   constructor(
@@ -37,6 +39,14 @@ export class AddDateRangeComponent {
 
   ngOnInit(): void {
     this.checkWindowWidth();
+
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.activeModal) {
+          this.activeModal.close();
+        }
+      });
   }
 
   @HostListener('window:resize', ['$event'])

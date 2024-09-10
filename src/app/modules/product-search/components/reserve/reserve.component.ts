@@ -1,7 +1,14 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, HostListener, inject, Optional } from '@angular/core';
-import { Router } from '@angular/router';
+import {
+  Component,
+  HostListener,
+  inject,
+  OnInit,
+  Optional,
+} from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { filter } from 'rxjs';
 import { SucessComponent } from '../sucess/sucess.component';
 
 @Component({
@@ -9,7 +16,7 @@ import { SucessComponent } from '../sucess/sucess.component';
   templateUrl: './reserve.component.html',
   styleUrls: ['./reserve.component.scss'],
 })
-export class ReserveComponent {
+export class ReserveComponent implements OnInit {
   payment: string = 'cash';
   private modalService = inject(NgbModal);
   shouldCloseModal: boolean = false;
@@ -27,6 +34,16 @@ export class ReserveComponent {
       this.shouldCloseModal = true;
       this.activeModal.close();
     }
+  }
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationStart))
+      .subscribe(() => {
+        if (this.activeModal) {
+          this.activeModal.close();
+        }
+      });
   }
 
   openSuccessMessage(): void {
