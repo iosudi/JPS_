@@ -2,83 +2,72 @@
 
 <div class="container">
   <section class="page-items">
-    <div pDefer>
-      <ng-template>
-        <div
-          class="header mb-3 d-flex justify-content-between align-items-center"
-        >
-          <div class="title d-flex align-items-center gap-2">
-            <i class="fa-solid fa-angle-right" routerLink="/product-details">
-            </i>
-            <h1 class="h5 mb-0 fw-medium">جولة داخل الشقة</h1>
-          </div>
-          <div class="buttons d-flex align-items-center gap-3">
-            <button class="btn d-flex align-items-center gap-2">
-              <img src="./assets/imgs/icons/share-dark.png" alt="icon" />
-              المشاركة
-            </button>
-            <button class="btn d-flex align-items-center gap-2">
-              <img src="./assets/imgs/icons/heart.png" alt="icon" />
-              حفظ
-            </button>
-          </div>
-        </div>
+    <div class="header mb-3 d-flex justify-content-between align-items-center">
+      <div class="title d-flex align-items-center gap-2">
+        <i class="fa-solid fa-angle-right" routerLink="/product-details"> </i>
+        <h1 class="h5 mb-0 fw-medium">جولة داخل الشقة</h1>
+      </div>
+      <div class="buttons d-flex align-items-center gap-3">
+        <button class="btn d-flex align-items-center gap-2">
+          <img src="./assets/imgs/icons/share-dark.png" alt="icon" />
+          المشاركة
+        </button>
+        <button class="btn d-flex align-items-center gap-2">
+          <img src="./assets/imgs/icons/heart.png" alt="icon" />
+          حفظ
+        </button>
+      </div>
+    </div>
 
-        <div class="items px-5">
-          <swiper-container
-            #apartmentSwiper
-            [speed]="500"
-            [breakpoints]="Breakpoints"
-          >
-            <swiper-slide *ngFor="let item of pageItems">
-              <div class="card">
-                <img [src]="item.coverImage" alt="room image" class="mb-2" />
-                <h6 class="mb-0">{{ item.name }}</h6>
-              </div>
-            </swiper-slide>
-          </swiper-container>
-        </div>
-      </ng-template>
+    <div class="items px-5">
+      <swiper-container
+        #apartmentSwiper
+        [speed]="500"
+        [breakpoints]="Breakpoints"
+      >
+        <swiper-slide *ngFor="let item of pageItems">
+          <div class="card">
+            <img [src]="item.coverImage" alt="room image" class="mb-2" />
+            <h6 class="mb-0">{{ item.name }}</h6>
+          </div>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </section>
 
   <section class="living-room my-5">
-    <div pDefer>
-      <ng-template>
-        <h2 class="h5 mb-4">{{ rooms.livingRoom.title }}</h2>
-        <div class="row g-2">
-          <div class="col-md-3 overflow-hidden">
-            <div class="images row g-1 h-100">
-              <div class="col-6 col-md-12 overflow-hidden">
-                <img [src]="rooms.livingRoom.roomImages[0]" alt="room image" />
-              </div>
-              <div class="col-6 col-md-12 overflow-hidden">
-                <img [src]="rooms.livingRoom.roomImages[1]" alt="room image" />
-              </div>
-            </div>
+    <h2 class="h5 mb-4">{{ rooms.livingRoom.title }}</h2>
+    <div class="row g-2">
+      <div class="col-md-3 overflow-hidden">
+        <div class="images row g-1 h-100">
+          <div class="col-6 col-md-12 overflow-hidden">
+            <img [src]="rooms.livingRoom.roomImages[0]" alt="room image" />
           </div>
-          <div class="col-md-3 overflow-hidden">
-            <div class="images h-100">
-              <img [src]="rooms.livingRoom.roomImages[2]" alt="room image" />
-            </div>
-          </div>
-          <div class="col-md-3 overflow-hidden">
-            <div class="images row g-1 h-100">
-              <div class="col-6 col-md-12 overflow-hidden">
-                <img [src]="rooms.livingRoom.roomImages[3]" alt="room image" />
-              </div>
-              <div class="col-6 col-md-12 overflow-hidden">
-                <img [src]="rooms.livingRoom.roomImages[4]" alt="room image" />
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 overflow-hidden">
-            <div class="images h-100">
-              <img [src]="rooms.livingRoom.roomImages[5]" alt="room image" />
-            </div>
+          <div class="col-6 col-md-12 overflow-hidden">
+            <img [src]="rooms.livingRoom.roomImages[1]" alt="room image" />
           </div>
         </div>
-      </ng-template>
+      </div>
+      <div class="col-md-3 overflow-hidden">
+        <div class="images h-100">
+          <img [src]="rooms.livingRoom.roomImages[2]" alt="room image" />
+        </div>
+      </div>
+      <div class="col-md-3 overflow-hidden">
+        <div class="images row g-1 h-100">
+          <div class="col-6 col-md-12 overflow-hidden">
+            <img [src]="rooms.livingRoom.roomImages[3]" alt="room image" />
+          </div>
+          <div class="col-6 col-md-12 overflow-hidden">
+            <img [src]="rooms.livingRoom.roomImages[4]" alt="room image" />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 overflow-hidden">
+        <div class="images h-100">
+          <img [src]="rooms.livingRoom.roomImages[5]" alt="room image" />
+        </div>
+      </div>
     </div>
   </section>
 
