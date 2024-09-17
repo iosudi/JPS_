@@ -11,6 +11,8 @@ import { filter } from 'rxjs';
 export class AdvancedSearchFilterModalComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
 
+  barHeights: number[] = [];
+
   lowerValue!: number;
   higherValue!: number;
 
@@ -25,6 +27,11 @@ export class AdvancedSearchFilterModalComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
+    for (let i = 0; i < 30; i++) {
+      const randomHeight = Math.floor(Math.random() * 31) + 20; // random between 20 and 50
+      this.barHeights.push(randomHeight);
+    }
+
     this.cities = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
@@ -42,8 +49,37 @@ export class AdvancedSearchFilterModalComponent implements OnInit {
       });
   }
 
+  getRangePercentage(): number {
+    const rangeDifference = this.rangeValues[1] - this.rangeValues[0];
+    const totalRange = this.maxRangeValue - this.minRangeValue;
+    return (rangeDifference / totalRange) * 100;
+  }
+
+  // Function to dynamically set the color based on the index of the bar
+  getBarColor(index: number): string {
+    const totalBars = this.barHeights.length;
+
+    // Calculate the index corresponding to the lower range value
+    const lowerRangePercentage =
+      (this.rangeValues[0] - this.minRangeValue) /
+      (this.maxRangeValue - this.minRangeValue);
+    const lowerRangeBars = Math.floor(lowerRangePercentage * totalBars);
+
+    // Calculate the index corresponding to the upper range value
+    const upperRangePercentage =
+      (this.rangeValues[1] - this.minRangeValue) /
+      (this.maxRangeValue - this.minRangeValue);
+    const upperRangeBars = Math.floor(upperRangePercentage * totalBars);
+
+    // Color bars that fall between the lower and upper range red
+    return index >= lowerRangeBars && index <= upperRangeBars
+      ? '#3f514a'
+      : '#ccc';
+  }
+
+  // Called when the slider range changes
   getRangeValues(): void {
-    console.log('Range Values:', this.rangeValues);
+    // This will update the chart colors when the slider value changes
   }
 
   closeModal(): void {

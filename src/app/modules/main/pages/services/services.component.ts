@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -9,7 +9,7 @@ import { serviceTypes } from 'src/assets/data/services';
   templateUrl: './services.component.html',
   styleUrls: ['./services.component.scss'],
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
   serviceTypes: any[] = serviceTypes;
   whatsappSelected: boolean = false;
   phoneSelected: boolean = false;

@@ -1,5 +1,5 @@
 .hero {
-  height: 80vh;
+  height: 700px;
   padding: 20px 100px;
   .container-fluid {
     overflow: hidden;
@@ -301,11 +301,8 @@
 
 @media (max-width: 1199px) {
   .hero {
-    padding: 20px 50px;
-    height: 660px;
-
     .container-fluid {
-      padding-top: 90px;
+      padding-top: 100px;
       align-items: start !important;
       .heading {
         h1 {

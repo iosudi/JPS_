@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import Aos from 'aos';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FAQS } from 'src/assets/data/about';
 
@@ -7,7 +8,7 @@ import { FAQS } from 'src/assets/data/about';
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
   expandedIndex: number | null = null;
   faqs: any[] = FAQS;
 
@@ -19,7 +20,13 @@ export class ContactComponent {
 
   ngOnInit() {
     this.spinner.show();
-
+    Aos.init({
+      duration: 1000,
+      once: true,
+    });
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
     setTimeout(() => {
       this.spinner.hide();
     }, 2000);

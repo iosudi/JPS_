@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { DeferModule } from 'primeng/defer';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -35,6 +36,7 @@ register();
     NgxSpinnerModule,
     SharedModule,
     DeferModule,
+    AnimateOnScrollModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

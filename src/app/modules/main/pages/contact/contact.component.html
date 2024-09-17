@@ -52,6 +52,7 @@
       <div class="col-lg-6">
         <div
           class="method p-5 text-center h-100 d-flex flex-column gap-4 align-items-center"
+          data-aos="fade-left"
         >
           <img
             src="./assets/imgs/contact imgs/message.png"
@@ -66,8 +67,9 @@
           <h3 class="pt-4 h4 border-top w-50 fw-semibold">تحدث الان</h3>
         </div>
       </div>
+
       <div class="col-lg-6">
-        <div class="row gy-5">
+        <div class="row gy-5" data-aos="fade-right">
           <div class="col-12">
             <div class="method p-5 d-flex align-items-center gap-4">
               <img
@@ -108,12 +110,14 @@
     <div class="row align-items-start g-5">
       <div class="col-lg-5">
         <div class="heading ps-5">
-          <h2 class="h1 fw-bolder">هل تفضل أن تترك لنا رسالة؟</h2>
-          <p class="fw-light w-75">
+          <h2 class="h1 fw-bolder" data-aos="fade-left">
+            هل تفضل أن تترك لنا رسالة؟
+          </h2>
+          <p class="fw-light w-75" data-aos="fade-left">
             هل لديك سؤال أو طلب؟ لا تتردد في إرسال رسالة إلينا، وسنقوم بالرد
             عليك على الفور.
           </p>
-          <div class="social d-flex gap-3">
+          <div class="social d-flex gap-3" data-aos="fade-left">
             <a href="#" class="social-icon">
               <i class="fab fa-x-twitter"></i>
             </a>
@@ -128,7 +132,7 @@
       </div>
 
       <div class="col-lg-7">
-        <div class="form-container p-5 w-100">
+        <div class="form-container p-5 w-100" data-aos="fade-right">
           <form>
             <div class="inputs-container mb-5">
               <div class="input-box my-3">
@@ -253,13 +257,13 @@
 <section class="faqs my-5 overflow-hidden">
   <div class="container">
     <div class="heading text-center">
-      <h3 class="h1 fw-bold mb-3">اسئلة شائعة</h3>
-      <p>اكتشف الإجابات على أسئلتك حول عروض JPS</p>
+      <h3 class="h1 fw-bold mb-3" data-aos="fade-down">اسئلة شائعة</h3>
+      <p data-aos="fade-down">اكتشف الإجابات على أسئلتك حول عروض JPS</p>
       <div
         class="buttons d-flex gap-3 align-items-center justify-content-center"
       >
-        <button class="btn active">مؤجر</button>
-        <button class="btn">مستأجر</button>
+        <button class="btn active" data-aos="fade-left">مؤجر</button>
+        <button class="btn" data-aos="fade-right">مستأجر</button>
       </div>
     </div>
 
@@ -269,6 +273,7 @@
           class="faq p-4"
           (click)="toggleExpand(i)"
           [class.expand]="expandedIndex === i"
+          data-aos="fade-up"
         >
           <div
             class="question gap-2 mb-3 d-flex align-items-center justify-content-between"

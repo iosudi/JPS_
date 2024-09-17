@@ -1,5 +1,5 @@
 .hero {
-  height: 100vh;
+  height: 900px;
   padding: 20px 200px;
   .container-fluid {
     overflow: hidden;
@@ -431,13 +431,29 @@
 
 @media (max-width: 1200px) {
   .hero {
-    height: 90vh;
+    height: 800px;
     padding: 20px 50px;
     .container-fluid {
-      padding-top: 50px !important;
+      padding-top: 100px !important;
       align-items: start !important;
+      .heading {
+        p {
+          font-size: 20px;
+          width: 50%;
+        }
+        button {
+          border-radius: 100%;
+          width: 80px;
+          height: 80px;
+          background: #d89e38;
+          img {
+            width: 50px;
+            height: 50px;
+          }
+        }
+      }
       .image {
-        width: 120%;
+        width: 100%;
         bottom: 0;
         left: 0;
         z-index: -1;
@@ -538,6 +554,7 @@
   }
 
   .testimonials {
+    padding-bottom: 0 !important;
     .container-fluid {
       padding: 0px 10%;
       .heading {
@@ -572,6 +589,7 @@
     }
   }
   .tax-record {
+    margin-bottom: 50px !important;
     .container {
       padding: 50px;
       background: #ecd09f;
@@ -582,6 +600,38 @@
 
       .verified-badge {
         display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .hero {
+    height: 700px;
+    .container-fluid {
+      .heading {
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          font-size: 16px;
+          width: 75%;
+        }
+
+        button {
+          width: 60px;
+          height: 60px;
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+      .image {
+        width: 120%;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
       }
     }
   }

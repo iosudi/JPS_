@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { searchResultApartments } from 'src/assets/data/apartments';
@@ -9,9 +10,10 @@ import { AdvancedSearchFilterModalComponent } from '../../components/advanced-se
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
 })
-export class SearchResultComponent {
-  currentPage = 1;
+export class SearchResultComponent implements OnInit {
+  constructor(private router: Router) {}
 
+  currentPage = 1;
   apartments: Apartments[] = searchResultApartments;
   private modalService = inject(NgbModal);
 
@@ -64,7 +66,7 @@ export class SearchResultComponent {
     this.selectedSorting = this.sorting[0];
   }
 
-  isHorizontal: boolean = true;
+  isHorizontal: boolean = false;
 
   setViewMode(mode: string) {
     this.isHorizontal = mode === 'horizontal';
@@ -80,5 +82,9 @@ export class SearchResultComponent {
     );
   }
 
+  navigateToHost(event: Event) {
+    event.stopPropagation();
+    this.router.navigate(['/host']);
+  }
   pageChanged(event: any): void {}
 }

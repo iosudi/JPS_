@@ -192,7 +192,7 @@
 
       .chip {
         background: #d1dbd7;
-        padding: 3px 5px;
+        padding: 3px 10px;
         border-radius: 20px;
         font-size: 0.9rem;
         transition: 0.5s;
@@ -492,7 +492,7 @@
       padding: 10px !important;
       gap: 5px !important;
       .apartment-preview {
-        width: 250px;
+        width: 300px;
         height: unset;
 
         .reserved-duration {
@@ -536,6 +536,7 @@
           .chip {
             padding: 3px 4px;
             font-size: 8px;
+            gap: 5px !important;
             img {
               width: 10px;
               height: 10px;

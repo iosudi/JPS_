@@ -167,7 +167,7 @@
       <div
         [ngClass]="{
           'col-lg-6 col-12': isHorizontal,
-          'col-xl-3 col-lg-4': !isHorizontal
+          'col-xl-3 col-lg-4 col-md-6': !isHorizontal
         }"
         *ngFor="
           let apartment of apartments
@@ -211,6 +211,7 @@
 
             <div
               class="host-preview d-flex align-items-center justify-content-center p-3"
+              (click)="navigateToHost($event)"
             >
               <img
                 src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
@@ -237,21 +238,21 @@
             </div>
 
             <div class="chips-badges d-flex gap-2 my-3">
-              <div class="chip d-flex align-items-center gap-1">
+              <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/bath-green.png" alt="bath icon" />
                 {{ apartment.bath }}
               </div>
-              <div class="chip d-flex align-items-center gap-1">
+              <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/bed-green.png" alt="bed icon" />
                 {{ apartment.bed }}
               </div>
-              <div class="chip d-flex align-items-center gap-1">
+              <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/door-green.png" alt="door icon" />
                 {{ apartment.rooms }}
               </div>
-              <div class="chip d-flex align-items-center gap-1">
+              <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/doc-green.png" alt="docs icon" />
-                {{ apartment.duration }}
+                {{ apartment.months }}
               </div>
             </div>
 
@@ -262,14 +263,14 @@
             <div
               class="controls d-flex justify-content-between align-items-center px-3 py-2"
             >
-              <div class="icons d-flex align-items-center gap-2">
-                <img
-                  src="./assets/imgs/icons/share-green.png"
-                  alt="share icon"
-                />
+              <div class="icons d-flex align-items-center gap-3">
                 <img
                   src="./assets/imgs/icons/heart-green.png"
                   alt="heart icon"
+                />
+                <img
+                  src="./assets/imgs/icons/share-green.png"
+                  alt="share icon"
                 />
               </div>
 

@@ -21,6 +21,17 @@
     color: #b2b2b2;
   }
   .price-range-slider {
+    .bar-chart {
+      .chart {
+        width: 90%;
+        .bar {
+          width: 10px;
+          background: #3f514a;
+          border-radius: 2px 2px 0 0;
+        }
+      }
+    }
+
     p-slider ::ng-deep .p-slider {
       .p-slider-range {
         background: #3f514a;
@@ -36,6 +47,7 @@
         }
       }
     }
+
     .price-inputs {
       hr {
         width: 5%;

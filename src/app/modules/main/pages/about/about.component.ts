@@ -1,4 +1,11 @@
-import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import Aos from 'aos';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Features, staffMembers } from 'src/assets/data/about';
@@ -9,7 +16,7 @@ import { Testimonials } from 'src/assets/data/testimonials';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
     private spinner: NgxSpinnerService
@@ -75,7 +82,10 @@ export class AboutComponent {
 
   ngOnInit() {
     this.spinner.show();
-
+    Aos.init({
+      duration: 1000,
+      once: true,
+    });
     setTimeout(() => {
       this.spinner.hide();
     }, 2000);

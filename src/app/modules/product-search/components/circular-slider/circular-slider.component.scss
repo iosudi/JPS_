@@ -10,6 +10,8 @@
     0px 9.17px 18.35px 0px #00000029 inset, 0px -4.59px 4.59px 0px #00000038,
     0px -2.29px 1.72px 0px #ffffff inset;
   border-radius: 100%;
+  background: linear-gradient(180deg, #e8e8e8 11.22%, #f0f0f0 88.33%);
+
   overflow: hidden; /* Add this to ensure the circle fits inside */
 
   .knob {
@@ -29,6 +31,7 @@
       #f7f7f7 50.45%,
       #ffffff 94.55%
     );
+
     box-shadow: 0px 3.44px 3.44px 0px #ffffff inset,
       0px -4.59px 4.59px 0px #00000038 inset, 0px 11.47px 18.35px 0px #0000001a,
       0px 11.47px 11.47px 0px #0000000f, 0px 11.47px 6.88px 0px #0000000a;

@@ -153,7 +153,7 @@ export class HomeComponent {
 
     this.scrollWidth = 300;
     setInterval(() => this.autoScroll('heroSection'), 3000);
-    setInterval(() => this.autoScroll('gallerySection'), 1000);
+    setInterval(() => this.autoScroll('gallerySection'), 2000);
     this.setActive(this.contentIndex);
   }
 
