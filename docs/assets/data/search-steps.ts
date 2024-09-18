@@ -11,6 +11,10 @@ export const unitTypes = [
     icon: './assets/imgs/icons/villa.png',
     title: 'فلة',
   },
+  {
+    icon: './assets/imgs/icons/hotel.png',
+    title: 'فندق',
+  },
 ];
 
 export const residentTypes = [
