@@ -14,12 +14,12 @@ const routes: Routes = [
     canActivate: [widthGuard],
   },
   {
-    path: 'account/profile',
+    path: 'account-menu/profile',
     component: ProfileComponent,
     title: 'Your Profile',
   },
   {
-    path: 'account/personal-details',
+    path: 'account-menu/personal-details',
     component: PersonalDetailsComponent,
     title: 'Personal Details',
   },

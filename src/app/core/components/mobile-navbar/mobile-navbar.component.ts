@@ -23,8 +23,8 @@ export class MobileNavbarComponent implements OnInit {
     } else if (this.activeLink == '/your-favorites/details') {
       this.activeLink = '/your-favorites';
     } else if (
-      this.activeLink == '/account/profile' ||
-      this.activeLink == '/account/personal-details'
+      this.activeLink == '/account-menu/profile' ||
+      this.activeLink == '/account-menu/personal-details'
     ) {
       this.activeLink = '/account-menu';
     }
