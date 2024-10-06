@@ -13,7 +13,7 @@ export class AnimateOnScrollDirective {
   ngOnInit(): void {
     setTimeout(() => {
       this.reveal();
-    }, 1800);
+    }, 3800);
   }
 
   @HostListener('window:scroll', [])

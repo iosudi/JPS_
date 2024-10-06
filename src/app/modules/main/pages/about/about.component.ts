@@ -8,6 +8,7 @@ import {
 import Aos from 'aos';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { InfoService } from 'src/app/shared/services/info.service';
 import { Features, staffMembers } from 'src/assets/data/about';
 import { Testimonials } from 'src/assets/data/testimonials';
 
@@ -19,7 +20,8 @@ import { Testimonials } from 'src/assets/data/testimonials';
 export class AboutComponent implements OnInit {
   constructor(
     private renderer: Renderer2,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private _InfoService: InfoService
   ) {}
 
   features: any[] = Features;
@@ -82,13 +84,21 @@ export class AboutComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
+
+    this._InfoService.getTeamMembers().subscribe({
+      next: (res) => {
+        this.staffMembers = res.members;
+        this.spinner.hide();
+      },
+      error: (error) => {
+        console.error('Error fetching team members:', error);
+        this.spinner.hide();
+      },
+    });
+
     Aos.init({
       duration: 1000,
-      once: true,
     });
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
   }
 
   checkIndex(): void {

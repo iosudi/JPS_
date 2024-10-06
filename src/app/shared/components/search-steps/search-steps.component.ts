@@ -1,9 +1,8 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {
   furnitureStates,
   residentTypes,
-  rooms,
   unitTypes,
 } from 'src/assets/data/search-steps';
 import { SearchService } from '../services/search.service';
@@ -20,14 +19,29 @@ export class SearchStepsComponent {
     private renderer: Renderer2
   ) {}
 
+  @ViewChild('datePicker') datePicker!: ElementRef;
+
   currentStep = 0;
   showSteps = true;
   cities = [];
   unitTypes = unitTypes;
   residentTypes = residentTypes;
   furnitureStates = furnitureStates;
-  roomOptions = rooms;
+  shouldNavigateModal: boolean = false;
+  value: string = 'شهري';
+  date: Date | undefined;
   results: any[] = [];
+
+  bookingDurationExpanded: boolean = false;
+  unitTypeSelectionExpanded: boolean = true;
+  furnitureStatesExpanded: boolean = true;
+  residentSelectionExpanded: boolean = true;
+  roomsNumberStatesExpanded: boolean = true;
+
+  stateOptions: any[] = [
+    { label: 'يومي', value: 'يومي' },
+    { label: 'شهري', value: 'شهري' },
+  ];
 
   selectedRooms: Array<{ type: string; selectedNumber: number | string }> = [];
 
@@ -60,36 +74,24 @@ export class SearchStepsComponent {
     this._SearchService.setUnitType(type);
     this.currentStep = 3;
   }
-
-  selectResidentType(type: string) {
-    this.currentStep = 4;
-    this._SearchService.setResidentType(type);
-  }
-
   selectFurnitureState(state: string) {
-    this.currentStep = 5;
+    this.currentStep = 3;
     this._SearchService.setFurnitureState(state);
   }
 
-  selectRoom(type: string, selectedNumber: number | string) {
-    const existingSelection = this.selectedRooms.find(
-      (room) => room.type === type
-    );
+  selectResidentType(type: string) {
+    this._SearchService.setResidentType(type);
+  }
 
-    if (existingSelection) {
-      existingSelection.selectedNumber = selectedNumber;
-    } else {
-      this.selectedRooms.push({ type, selectedNumber });
-    }
-
-    this._SearchService.setRoomsSelection(this.selectedRooms);
+  triggerDatePicker(): void {
+    this.datePicker.nativeElement.showPicker();
   }
 
   submitFilterOptions() {
     this.router.navigate(['/search-results']);
   }
 
-  closeSearchResults() {
+  closeSearchSteps() {
     if (this.currentStep === 1) {
       this.showSteps = false;
       this._SearchService.showSearchSteps.next(false);
@@ -98,8 +100,22 @@ export class SearchStepsComponent {
     }
   }
 
+  expand(control: string): void {
+    if (control === 'booking-duration') {
+      this.bookingDurationExpanded = !this.bookingDurationExpanded;
+    } else if (control === 'unit-selection') {
+      this.unitTypeSelectionExpanded = !this.unitTypeSelectionExpanded;
+    } else if (control === 'furniture-state-selection') {
+      this.furnitureStatesExpanded = !this.furnitureStatesExpanded;
+    } else if (control === 'resident-selection') {
+      this.residentSelectionExpanded = !this.residentSelectionExpanded;
+    } else if (control === 'rooms-number') {
+      this.roomsNumberStatesExpanded = !this.roomsNumberStatesExpanded;
+    }
+  }
+
   skipStep() {
-    if (this.currentStep < 6) {
+    if (this.currentStep < 3) {
       this.currentStep++;
     }
   }

@@ -1,9 +1,6 @@
 <ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-8bits"
-  [fullScreen]="true"
+  bdColor="rgba(0, 0, 0, 1)"
+  template="<img src='./assets/imgs/new logo animation.gif'/>"
 ></ngx-spinner>
 <app-nav-bar></app-nav-bar>
 
@@ -111,10 +108,10 @@
           [spaceBetween]="5"
           [breakpoints]="apartmentsBreakpoints"
         >
-          <swiper-slide *ngFor="let apartment of apartments">
+          <swiper-slide *ngFor="let apartment of specialApartments">
             <div class="card mx-2 d-flex flex-column justify-content-between">
               <div class="background">
-                <img [src]="apartment.image" alt="image" />
+                <img [src]="apartment.images[0]" alt="image" />
                 <div class="gradient"></div>
               </div>
 
@@ -144,7 +141,7 @@
                         src="./assets/imgs/icons/location-light.png"
                         alt="location icon"
                       />
-                      {{ apartment.location }}
+                      {{ apartment.city_name }}
                     </p>
                   </div>
                   <div class="paginator d-flex gap-1 mt-3">
@@ -161,14 +158,14 @@
                       src="./assets/imgs/icons/bath-white.png"
                       alt="bath icon"
                     />
-                    {{ apartment.bath }}
+                    {{ apartment.bathrooms }}
                   </div>
                   <div class="chip d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/bed-white.png"
                       alt="bed icon"
                     />
-                    {{ apartment.bed }}
+                    {{ apartment.beds }}
                   </div>
                   <div class="chip d-flex align-items-center gap-1">
                     <img
@@ -182,7 +179,7 @@
                       src="./assets/imgs/icons/doc-white.png"
                       alt="docs icon"
                     />
-                    {{ apartment.months }}
+                    {{ apartment.contractperiod }}
                   </div>
                 </div>
                 <div
@@ -190,10 +187,12 @@
                 >
                   <div>
                     <h4 class="price mb-0 h5">
-                      {{ apartment.price
-                      }}<span class="fw-light">{{ apartment.duration }}</span>
+                      {{ apartment.price | currency : "E£" : "symbol" : "1.0-0"
+                      }}<span class="fw-light">/يوم</span>
                     </h4>
-                    <p class="mb-0 fw-light">المضيف : {{ apartment.host }}</p>
+                    <p class="mb-0 fw-light">
+                      المضيف : {{ apartment.broker_name }}
+                    </p>
                   </div>
                   <img
                     src="./assets/imgs/icons/share-light.png"
@@ -247,23 +246,23 @@
             [spaceBetween]="5"
             [breakpoints]="districtBreakpoints"
           >
-            <swiper-slide *ngFor="let district of districts">
+            <swiper-slide *ngFor="let city of cities">
               <div class="card mx-3 d-flex flex-column justify-content-between">
                 <div class="background">
-                  <img [src]="district.imgSrc" alt="popular-district" />
+                  <img [src]="city.image" alt="popular-district" />
                   <div class="gradient"></div>
                 </div>
                 <div class="hover-overlay"></div>
                 <div class="district-name">
                   <div class="title d-flex align-items-center gap-2">
                     <img
-                      *ngIf="district.apartments.length <= 0"
+                      *ngIf="city.properties.message"
                       src="./assets/imgs/icons/lock-light.png"
                       alt="white lock icon"
                     />
-                    <h2>{{ district.name }}</h2>
+                    <h2>{{ city.name }}</h2>
                   </div>
-                  <p class="mb-0 text-start">{{ district.description }}</p>
+                  <p class="mb-0 text-start">{{ city.description }}</p>
                 </div>
                 <div class="apartment-list">
                   <div class="more d-flex justify-content-between mb-3">
@@ -271,16 +270,16 @@
                       routerLink="/best-apartments"
                       class="fa-solid fa-arrow-right"
                     ></i>
-                    Show all ({{ district.apartments.length }})
+                    Show all ({{ city.properties.length }})
                   </div>
-                  <ng-container *ngIf="district.apartments.length > 0">
+                  <ng-container *ngIf="city.properties.length > 0">
                     <div class="apartments-wrapper">
                       <div
                         class="apartment d-flex gap-3 align-items-center my-4"
-                        *ngFor="let apartment of district.apartments"
+                        *ngFor="let property of city.properties"
                       >
                         <div class="apartment-image overflow-hidden">
-                          <img [src]="apartment.imageSrc" alt="apartment" />
+                          <img [src]="property.images[0]" alt="apartment" />
                           <div class="heart-icon">
                             <i class="fa-solid fa-heart"></i>
                           </div>
@@ -305,17 +304,17 @@
                           >
                             <div class="title">
                               <p class="mb-0">
-                                المضيف : {{ apartment.hostName }}
+                                المضيف : {{ property.broker_name }}
                               </p>
                               <h3 class="h6 my-1">
-                                {{ apartment.description }}
+                                {{ property.type }}
                               </h3>
                               <p class="mb-0 d-flex gap-1 align-items-center">
                                 <img
                                   src="./assets/imgs/icons/location-dark.png"
                                   alt="share icon"
                                 />
-                                {{ apartment.location }}
+                                {{ city.name }}
                               </p>
                             </div>
                             <img
@@ -330,28 +329,28 @@
                                 src="./assets/imgs/icons/bath-colored.png"
                                 alt="bath icon"
                               />
-                              {{ apartment.bathrooms }}
+                              {{ property.bathrooms }}
                             </div>
                             <div class="chip d-flex align-items-center gap-1">
                               <img
                                 src="./assets/imgs/icons/bed-colored.png"
                                 alt="bed icon"
                               />
-                              {{ apartment.bedrooms }}
+                              {{ property.bedrooms }}
                             </div>
                             <div class="chip d-flex align-items-center gap-1">
                               <img
                                 src="./assets/imgs/icons/door-colored.png"
                                 alt="door icon"
                               />
-                              {{ apartment.doors }}
+                              {{ property.rooms }}
                             </div>
                             <div class="chip d-flex align-items-center gap-1">
                               <img
                                 src="./assets/imgs/icons/doc-colored.png"
                                 alt="docs icon"
                               />
-                              {{ apartment.duration }}
+                              {{ property.contractperiod }}
                             </div>
                           </div>
 
@@ -360,11 +359,14 @@
                           >
                             <div class="rating">
                               <i class="fa-solid fa-star"></i> 4.8
-                              <span>({{ apartment.reviewsCount }} تقييم)</span>
+                              <span>({{ property.reviewsCount }} تقييم)</span>
                             </div>
                             <div class="price">
                               <h3 class="h6 mb-0">
-                                {{ apartment.pricePerDay }}
+                                {{
+                                  property.price
+                                    | currency : "E£" : "symbol" : "1.0-0"
+                                }}
                               </h3>
                               <p class="mb-0">لليوم الواحد</p>
                             </div>
@@ -374,7 +376,7 @@
                     </div>
                   </ng-container>
 
-                  <ng-container *ngIf="district.apartments.length <= 0">
+                  <ng-container *ngIf="city.properties.message">
                     <div
                       class="d-flex flex-column align-items-center justify-content-center notAvailable"
                     >

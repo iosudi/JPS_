@@ -26,6 +26,7 @@ span {
     height: 100%;
     z-index: -1;
     animation: slide-right 2s;
+    animation-delay: 2s;
     .gradient {
       position: absolute;
       top: 0;
@@ -39,6 +40,8 @@ span {
   .heading {
     .title {
       animation: fade-right 2s forwards;
+      animation-delay: 2s;
+
       opacity: 0;
       h1 {
         font-size: 90px;
@@ -47,8 +50,8 @@ span {
 
     .search-field {
       animation: fade-right 2s forwards;
+      animation-delay: 2.1s;
       opacity: 0;
-      animation-delay: 0.1s;
       width: 100%;
       border-radius: 100px;
       font-size: 12px;
@@ -61,7 +64,7 @@ span {
     height: 600px;
     width: 900px;
     animation: fade-top 1s;
-    animation-delay: 1.3s;
+    animation-delay: 3.3s;
     opacity: 0;
     .column {
       transition: transform 2s ease-in-out !important;
@@ -301,7 +304,7 @@ span {
           }
 
           &:hover {
-            transform: scale(1.1);
+            transform: perspective(500px) translateZ(5px) rotateY(20deg);
             z-index: 4;
           }
 

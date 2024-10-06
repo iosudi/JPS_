@@ -480,6 +480,63 @@
   }
 }
 
+@media (max-width: 767px) {
+  .search-results {
+    .card {
+      .apartment-preview {
+        width: 100%;
+        height: 255.99px;
+      }
+
+      .apartment-information {
+        margin-right: 5px;
+
+        .apartment-name {
+          h3 {
+            font-size: 18px;
+          }
+
+          p {
+            font-size: 12px;
+
+            img {
+              width: 12px;
+              height: auto;
+            }
+          }
+
+          .rating {
+            font-size: 15px;
+          }
+        }
+
+        .chip {
+          padding: 3px 13px;
+          border-radius: 20px;
+          font-size: 13px;
+          img {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        .price {
+          font-size: 20px;
+        }
+
+        .controls {
+          border-radius: 15px;
+          font-size: 20px !important;
+          img {
+            width: 20px;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (max-width: 600px) {
   .search-results {
     padding: 30px 1% 50px;

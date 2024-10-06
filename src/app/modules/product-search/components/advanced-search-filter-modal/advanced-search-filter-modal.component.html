@@ -59,9 +59,10 @@
     <p>روف - دوبليكس او عادي</p>
 
     <div class="chips-selections d-flex gap-3 flex-wrap">
-      <div class="chip px-3 rounded-4 py-1" *ngFor="let number of [1, 2, 3, 4]">
-        الكل
-      </div>
+      <div class="chip px-3 rounded-4 py-1">الكل</div>
+      <div class="chip px-3 rounded-4 py-1">عادية</div>
+      <div class="chip px-3 rounded-4 py-1">روف</div>
+      <div class="chip px-3 rounded-4 py-1">دوبليكس</div>
     </div>
   </div>
 
@@ -70,9 +71,9 @@
     <p>مدة او نظام الايجار هل سنوي ام شهري ام يومي</p>
 
     <div class="chips-selections d-flex gap-3 flex-wrap">
-      <div class="chip px-3 rounded-4 py-1" *ngFor="let number of [1, 2, 3]">
-        يومي
-      </div>
+      <div class="chip px-3 rounded-4 py-1">يومي</div>
+      <div class="chip px-3 rounded-4 py-1">شهري</div>
+      <div class="chip px-3 rounded-4 py-1">سنوي</div>
     </div>
   </div>
 
@@ -81,36 +82,23 @@
     <p>مدة او نظام الايجار هل سنوي ام شهري ام يومي</p>
 
     <div class="chips-selections d-flex gap-3 flex-wrap">
-      <div class="chip px-3 rounded-4 py-1" *ngFor="let number of [1, 2, 3, 4]">
-        باليوم
-      </div>
+      <div class="chip px-3 rounded-4 py-1">باليوم</div>
+      <div class="chip px-3 rounded-4 py-1">بالشهر</div>
+      <div class="chip px-3 rounded-4 py-1">بالترم</div>
+      <div class="chip px-3 rounded-4 py-1">بالسنة</div>
     </div>
   </div>
 
   <div class="ditsrict py-4 border-bottom px-4">
-    <h5 class="fw-bold title">حي كام</h5>
-    <p>رقم الحي</p>
+    <h5 class="fw-bold title">المنطقة</h5>
+    <p>اسم المنطقة</p>
 
     <div class="selection-dropdown">
       <p-dropdown
         [options]="cities"
         [(ngModel)]="selectedCity"
         optionLabel="name"
-        placeholder="الحي الاول"
-      />
-    </div>
-  </div>
-
-  <div class="neighborhood-select p-4">
-    <h5 class="fw-bold title">مجاورة كام</h5>
-    <p>رقم المجاورة</p>
-
-    <div class="selection-dropdown">
-      <p-dropdown
-        [options]="cities"
-        [(ngModel)]="selectedCity"
-        optionLabel="name"
-        placeholder="مجاورة اول"
+        placeholder="المنطقة التاسعة"
       />
     </div>
   </div>

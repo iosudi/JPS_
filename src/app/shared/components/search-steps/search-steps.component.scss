@@ -21,6 +21,10 @@
     width: 90% !important;
   }
 
+  .fa-arrow-left {
+    cursor: pointer;
+  }
+
   .unit,
   .resident,
   .state {
@@ -72,8 +76,8 @@
 
   .city-selection,
   .unit-selection,
-  .resident-selection,
   .furniture-state-selection,
+  .resident-selection,
   .rooms-number-selection {
     .header {
       p {
@@ -86,112 +90,254 @@
     }
   }
 
-  .skip-btn {
-    cursor: pointer;
-    user-select: none;
-  }
-
   .city-selection {
-    .city {
-      width: 90%;
-      .city-image {
-        height: 200px;
-        border-radius: 10px;
-        overflow: hidden;
-        border: 3px solid #484848;
-        cursor: pointer;
-        img {
-          width: 150%;
-          object-position: top left;
+    .search-bar {
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1.2rem;
+      input {
+        border: 0;
+        outline: none;
+      }
+      i {
+        color: #9d9d9d;
+        &.fa-xmark {
+          cursor: pointer;
         }
       }
+    }
 
-      h4 {
-        color: #404040;
+    .cities {
+      background: #fff;
+      box-shadow: 0px 4px 46.7px 0px #00000033;
+      border-radius: 22px;
+      padding: 5rem 7rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+      .city {
+        .city-image {
+          height: 200px;
+          border-radius: 10px;
+          overflow: hidden;
+          border: 3px solid #484848;
+          cursor: pointer;
+          img {
+            width: 150%;
+            object-position: top left;
+          }
+        }
+
+        h4 {
+          color: #404040;
+        }
+      }
+    }
+
+    .duration {
+      background: #fff;
+      box-shadow: 0px 4px 46.7px 0px #00000033;
+      border-radius: 22px;
+      padding: 2rem 3rem;
+      cursor: pointer;
+      .header {
+        i {
+          cursor: pointer;
+        }
+      }
+      .booking-date-selection {
+        display: none;
+        .control {
+          background-color: #f4f4f4;
+          padding: 10px 15px;
+          border-radius: 15px;
+          p-calendar ::ng-deep {
+            .p-calendar {
+              align-items: center;
+              gap: 15px;
+              border: 1px solid #000;
+              border-radius: 5px;
+              font-size: 0.8rem;
+              padding: 10px;
+              cursor: pointer;
+              user-select: none;
+              .p-inputtext {
+                flex: unset;
+                width: unset;
+                text-align: right;
+                padding: 0px;
+                background: transparent;
+                max-width: 100px;
+                border: 0;
+                text-decoration: underline;
+                &:focus {
+                  box-shadow: unset;
+                }
+              }
+              img {
+                width: 15px;
+              }
+            }
+          }
+
+          p-selectbutton ::ng-deep {
+            .p-selectbutton {
+              padding: 5px;
+              background-color: #d9d9d9;
+              border-radius: 50px;
+              .p-button {
+                padding: 5px 15px;
+                border-radius: 50px;
+                background: transparent;
+                border: 0;
+                color: #000;
+
+                .p-button-label {
+                  font-size: 0.8rem;
+                  font-weight: 500;
+                }
+
+                &:focus {
+                  box-shadow: none !important;
+                }
+
+                &.p-highlight {
+                  background: #ffffff;
+                }
+              }
+            }
+          }
+        }
+      }
+      &.expanded {
+        .header {
+          margin-bottom: 3rem;
+        }
+        .booking-date-selection {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .unit-selection,
+  .furniture-state-selection,
+  .resident-selection,
+  .rooms-number {
+    background: #fff;
+    box-shadow: 0px 4px 46.7px 0px #00000033;
+    border-radius: 22px;
+    .header {
+      margin-bottom: 0rem;
+      cursor: pointer;
+    }
+    .row,
+    .rooms {
+      display: none;
+    }
+
+    &.expanded {
+      .header {
+        margin-bottom: 3rem;
+      }
+      .row {
+        display: flex;
+      }
+      .rooms {
+        display: block;
       }
     }
   }
 
   .unit-selection {
     .unit {
-      .unit-icon {
+      .icon {
         img {
-          width: 40px;
+          width: 35px;
           height: auto;
         }
       }
     }
   }
 
-  .rooms-number-selection {
+  .rooms-number {
     .room {
-      h5 {
-        font-weight: 300;
+      p {
+        color: #b2b2b2;
       }
-      .rooms-number {
-        .number {
-          border: 2px solid #4a594f;
-          color: #4a594f;
-          transition: 0.3s;
-          cursor: pointer;
-          &:hover {
-            background: #4a594f;
-            color: #fff;
-          }
-        }
+      span {
+        width: 35px;
+        height: 35px;
+        display: block;
+        border: 1px solid #4a594f;
+        border-radius: 100%;
+        color: #4a594f;
+        font-weight: bold;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
       }
-
       input {
-        display: none;
-      }
-    }
+        width: 20px;
+        background: transparent;
+        border: 0;
+        outline: 0;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: light;
+        color: #4a594f;
 
-    .secondary-btn {
-      border-radius: 10px;
-      padding: 10px 40px;
-      transition: 0.3s;
-      &:hover {
-        background-color: #ecd09f;
+        &[type="number"]::-webkit-outer-spin-button,
+        &[type="number"]::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
       }
     }
   }
-}
 
-@media (max-width: 1399px) {
-  .search-page {
-    .city-selection {
-      .city {
-        width: 100%;
-      }
-    }
+  .skip-btn {
+    cursor: pointer;
+    user-select: none;
   }
 }
 
 @media (max-width: 991px) {
-  .w-50 {
-    width: 100% !important;
+  .search-page {
+    .city-selection {
+      .cities {
+        padding: 1rem;
+        display: flex;
+        overflow-x: auto !important;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+        .city {
+          min-width: 200px;
+          .city-image {
+            height: 120px;
+          }
+          h4 {
+            font-size: 16px;
+          }
+        }
+      }
+    }
   }
 }
 
 @media (max-width: 767px) {
-  .search-page {
-    .city-selection {
-      .city {
-        width: 100%;
-        .city-image {
-          height: 150px;
-        }
-        h4 {
-          font-size: 16px;
-        }
-      }
+  .rooms-number {
+    .room {
+      width: 100% !important;
     }
   }
 }
 
 @media (max-width: 575px) {
   .search-page {
-    background-color: #f3f3f3;
     .city-selection {
       .city {
         width: 100%;
@@ -227,5 +373,64 @@
   .state {
     padding: 20px 10px !important;
     height: 140px !important;
+
+    img {
+      width: 25px !important;
+    }
+
+    h5 {
+      font-size: 0.9rem;
+    }
+  }
+
+  .city-selection {
+    .duration {
+      padding: 1rem !important;
+      .booking-date-selection {
+        .control {
+          padding: 10px 10px;
+          h2 {
+            font-size: 1rem;
+          }
+          p-calendar ::ng-deep {
+            .p-calendar {
+              font-size: 0.7rem;
+              padding: 10px 5px;
+              .p-inputtext {
+                font-size: 0.8rem;
+              }
+            }
+          }
+
+          p-selectbutton ::ng-deep {
+            .p-selectbutton {
+              .p-button {
+                padding: 5px 8px;
+
+                .p-button-label {
+                  font-size: 0.6rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .unit-selection,
+  .resident-selection,
+  .furniture-state-selection,
+  .rooms-number {
+    padding: 1rem !important;
+  }
+
+  button.secondary-btn {
+    font-size: 0.9rem;
+    padding: 5px 15px !important;
+  }
+
+  p {
+    font-size: 0.7rem;
   }
 }

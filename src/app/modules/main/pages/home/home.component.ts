@@ -9,9 +9,9 @@ import {
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Apartments } from 'src/app/core/interfaces/apartments';
-import { District } from 'src/app/core/interfaces/districts';
+import { PropertiesCitiesService } from 'src/app/shared/services/properties-cities.service';
 import { aboutUs } from 'src/assets/data/about-section';
-import { apartments, districts } from 'src/assets/data/apartments';
+import { apartments } from 'src/assets/data/apartments';
 import { Testimonials } from 'src/assets/data/testimonials';
 
 @Component({
@@ -22,11 +22,13 @@ import { Testimonials } from 'src/assets/data/testimonials';
 export class HomeComponent {
   constructor(
     private renderer: Renderer2,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private _PropertiesCitiesService: PropertiesCitiesService
   ) {}
 
   apartments: Apartments[] = apartments;
-  districts: District[] = districts;
+  specialApartments: any[] = [];
+  cities: any[] = [];
 
   topRowPositionHero: number = 0;
   bottomRowPositionHero: number = 0;
@@ -146,9 +148,29 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.spinner.show();
+    document.body.style.overflow = 'hidden'; // Prevent body scrolling
+
+    this._PropertiesCitiesService.getSpecialProperties().subscribe({
+      next: (res) => {
+        this.specialApartments = res.properties;
+      },
+      error: (err) => {
+        console.error('Error getting special apartments:', err);
+      },
+    });
+
+    this._PropertiesCitiesService.getSearchedCities().subscribe({
+      next: (res) => {
+        this.cities = res.data;
+      },
+      error: (err) => {
+        console.error('Error getting special apartments:', err);
+      },
+    });
 
     setTimeout(() => {
       this.spinner.hide();
+      document.body.style.overflow = 'auto'; // Re-enable body scrolling
     }, 2000);
 
     this.scrollWidth = 300;

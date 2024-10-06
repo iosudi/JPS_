@@ -14,12 +14,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SliderModule } from 'primeng/slider';
 import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { register } from 'swiper/element/bundle';
 import { AddDateRangeComponent } from './components/add-date-range/add-date-range.component';
 import { AddToFavComponent } from './components/add-to-fav/add-to-fav.component';
 import { AdvancedSearchFilterModalComponent } from './components/advanced-search-filter-modal/advanced-search-filter-modal.component';
 import { ApartmentFeaturesComponent } from './components/apartment-features/apartment-features.component';
-import { CircularSliderComponent } from './components/circular-slider/circular-slider.component';
 import { RatingModalComponent } from './components/rating-modal/rating-modal.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
 import { ShareModalComponent } from './components/share-modal/share-modal.component';
@@ -44,7 +44,6 @@ register();
     AddDateRangeComponent,
     ReserveComponent,
     SucessComponent,
-    CircularSliderComponent,
   ],
   imports: [
     CommonModule,
@@ -63,6 +62,7 @@ register();
     SelectButtonModule,
     CalendarModule,
     DeferModule,
+    SharedModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

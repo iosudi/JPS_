@@ -6,6 +6,21 @@ Project Description
 
 ### Todo
 
+- [ ] contacts api  
+- [ ] feedback show api  
+- [ ] feedbacks send api  
+- [ ] team members api  
+- [ ] faqs providers api  
+- [ ] faqs buyers api  
+- [ ] request service api  
+- [ ] service show by id api  
+- [ ] services api  
+- [ ] properties by id api  
+- [ ] properties api  
+- [ ] searched cities api  
+- [ ] speceial properties api  
+- [ ] login api  
+- [ ] register api  
 - [ ] client edits  
 - [ ] currency convert  
 - [ ] localization  

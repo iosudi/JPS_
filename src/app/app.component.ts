@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { slider } from './Route-Animation';
 
 @Component({
@@ -10,11 +9,4 @@ import { slider } from './Route-Animation';
 })
 export class AppComponent {
   title = 'JPS_';
-  prepareRoute(outlet: RouterOutlet) {
-    return (
-      outlet &&
-      outlet.activatedRouteData &&
-      outlet.activatedRouteData['animation']
-    );
-  }
 }

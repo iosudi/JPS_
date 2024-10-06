@@ -17,7 +17,6 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     title: 'JPS GROUPS',
-    data: { animation: 'home' },
   },
   {
     path: 'about',

@@ -137,6 +137,10 @@ img {
   }
 }
 
+ngx-spinner img {
+  width: 200px !important;
+}
+
 @media (max-width: 775px) {
   .modal-content {
     margin: 0 10px;
