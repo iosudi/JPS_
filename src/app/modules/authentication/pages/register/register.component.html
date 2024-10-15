@@ -12,16 +12,15 @@
         <div class="input-box my-3">
           <div
             [class.error]="
-              registerForm.get('username')?.errors &&
-              registerForm.get('username')?.touched
+              registerForm.get('name')?.errors &&
+              registerForm.get('name')?.touched
             "
             class="input-field d-flex gap-2 align-items-center px-4"
           >
             <img src="./assets/imgs/icons/user.png" alt="user icon" />
             <input
-              tabindex="-1"
               class="py-3"
-              formControlName="username"
+              formControlName="name"
               type="text"
               placeholder="الاسم"
             />
@@ -30,25 +29,25 @@
           <div
             class="alerts"
             *ngIf="
-              registerForm.get('username')?.errors &&
-              registerForm.get('username')?.touched
+              registerForm.get('name')?.errors &&
+              registerForm.get('name')?.touched
             "
           >
             <p
               class="text-danger mb-1"
-              *ngIf="registerForm.get('username')?.getError('required')"
+              *ngIf="registerForm.get('name')?.getError('required')"
             >
               الاسم مطلوب
             </p>
             <p
               class="text-danger mb-1"
-              *ngIf="registerForm.get('username')?.getError('minlength')"
+              *ngIf="registerForm.get('name')?.getError('minlength')"
             >
               يجب أن يكون الاسم اكبر من 3 أحرف
             </p>
             <p
               class="text-danger mb-1"
-              *ngIf="registerForm.get('username')?.getError('pattern')"
+              *ngIf="registerForm.get('name')?.getError('pattern')"
             >
               يجب أن لا يحتوي الاسم علي حروف مميزة
             </p>
@@ -66,7 +65,6 @@
           >
             <img src="./assets/imgs/icons/mail.png" alt="mail icon" />
             <input
-              tabindex="-1"
               class="py-3"
               formControlName="email"
               type="email"
@@ -109,7 +107,6 @@
               <img src="./assets/imgs/icons/speaker.png" alt="speaker icon" />
 
               <input
-                tabindex="-1"
                 class="py-3"
                 formControlName="phone"
                 type="text"
@@ -136,18 +133,17 @@
           <div class="w-100">
             <div
               [class.error]="
-                registerForm.get('idNumber')?.errors &&
-                registerForm.get('idNumber')?.touched
+                registerForm.get('nationalid')?.errors &&
+                registerForm.get('nationalid')?.touched
               "
               class="d-flex gap-2 align-items-center input-field px-4"
             >
               <img src="./assets/imgs/icons/id.png" alt="id icon" />
 
               <input
-                tabindex="-1"
                 class="py-3"
                 type="text"
-                formControlName="idNumber"
+                formControlName="nationalid"
                 placeholder="الرقم القومي/جواز السفر"
               />
             </div>
@@ -155,13 +151,13 @@
             <div
               class="alerts"
               *ngIf="
-                registerForm.get('idNumber')?.errors &&
-                registerForm.get('idNumber')?.touched
+                registerForm.get('nationalid')?.errors &&
+                registerForm.get('nationalid')?.touched
               "
             >
               <p
                 class="text-danger mb-1"
-                *ngIf="registerForm.get('idNumber')?.getError('required')"
+                *ngIf="registerForm.get('nationalid')?.getError('required')"
               >
                 الرقم القومي/جواز السفر مطلوب
               </p>
@@ -180,7 +176,6 @@
           >
             <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
             <input
-              tabindex="-1"
               class="py-3"
               [type]="passwordVisibility ? 'text' : 'password'"
               formControlName="password"
@@ -232,21 +227,20 @@
         <div class="input-box my-3">
           <div
             [class.error]="
-              registerForm.get('rePassword')?.errors &&
-              registerForm.get('rePassword')?.touched
+              registerForm.get('confirm_password')?.errors &&
+              registerForm.get('confirm_password')?.touched
             "
             class="input-field d-flex gap-2 align-items-center px-4"
           >
             <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
             <input
-              tabindex="-1"
               class="py-3"
               [type]="confirmPasswordVisibility ? 'text' : 'password'"
-              formControlName="rePassword"
+              formControlName="confirm_password"
               placeholder="تاكيد كلمة المرور"
             />
             <img
-              (click)="togglePasswordVisibility('rePassword')"
+              (click)="togglePasswordVisibility('confirm_password')"
               class="eye"
               [src]="
                 confirmPasswordVisibility
@@ -260,20 +254,20 @@
           <div
             class="alerts"
             *ngIf="
-              registerForm.get('rePassword')?.errors &&
-              registerForm.get('rePassword')?.touched
+              registerForm.get('confirm_password')?.errors &&
+              registerForm.get('confirm_password')?.touched
             "
           >
             <p
               class="text-danger mb-1"
-              *ngIf="registerForm.get('rePassword')?.getError('required')"
+              *ngIf="registerForm.get('confirm_password')?.getError('required')"
             >
               يجب تأكيد كملة المرور
             </p>
 
             <p
               class="text-danger mb-1"
-              *ngIf="registerForm.get('rePassword')?.getError('notMatch')"
+              *ngIf="registerForm.get('confirm_password')?.getError('notMatch')"
             >
               كلمة المرور غير متطابقة
             </p>

@@ -124,8 +124,15 @@
               <div
                 class="like d-flex justify-content-between align-items-center my-4"
               >
-                <div class="heart-icon">
-                  <i class="fa-solid fa-heart"></i>
+                <div class="heart-icon" (click)="addToFav(apartment.id)">
+                  <i
+                    *ngIf="favProperties.includes(apartment.id)"
+                    class="fa-solid fa-heart"
+                  ></i>
+                  <i
+                    *ngIf="!favProperties.includes(apartment.id)"
+                    class="fa-regular fa-heart"
+                  ></i>
                 </div>
                 <div class="popular-badge mx-3">
                   <i class="fa-solid fa-star"></i> مميزة
@@ -280,8 +287,18 @@
                       >
                         <div class="apartment-image overflow-hidden">
                           <img [src]="property.images[0]" alt="apartment" />
-                          <div class="heart-icon">
-                            <i class="fa-solid fa-heart"></i>
+                          <div
+                            class="heart-icon"
+                            (click)="addToFav(property.id)"
+                          >
+                            <i
+                              *ngIf="favProperties.includes(property.id)"
+                              class="fa-solid fa-heart"
+                            ></i>
+                            <i
+                              *ngIf="!favProperties.includes(property.id)"
+                              class="fa-regular fa-heart"
+                            ></i>
                           </div>
 
                           <div

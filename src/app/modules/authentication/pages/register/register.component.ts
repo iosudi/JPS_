@@ -8,6 +8,7 @@ import {
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -21,14 +22,15 @@ export class RegisterComponent {
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   private modalService = inject(NgbModal);
 
   registerForm: FormGroup = this._FormBuilder.group(
     {
-      username: [
+      name: [
         '',
         [
           Validators.required,
@@ -38,7 +40,7 @@ export class RegisterComponent {
       ],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
-      idNumber: ['', [Validators.required]],
+      nationalid: ['', [Validators.required]],
       password: [
         '',
         [
@@ -49,7 +51,7 @@ export class RegisterComponent {
           ),
         ],
       ],
-      rePassword: [''],
+      confirm_password: [''],
     },
     { validators: [this.checkPasswordMatch] } as FormControlOptions
   );
@@ -74,13 +76,20 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.registerForm.status === 'VALID') {
-      this.activeModal.close();
+      this.auth.register(this.registerForm.value).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
     }
   }
 
   checkPasswordMatch(group: FormGroup): void {
     let password = group.get('password');
-    let confirmPassword = group.get('rePassword');
+    let confirmPassword = group.get('confirm_password');
 
     if (confirmPassword?.value == '') {
       confirmPassword?.setErrors({ required: true });
@@ -92,7 +101,7 @@ export class RegisterComponent {
   togglePasswordVisibility(passwordInput: string): void {
     if (passwordInput === 'password') {
       this.passwordVisibility = !this.passwordVisibility;
-    } else if (passwordInput == 'rePassword') {
+    } else if (passwordInput == 'confirm_password') {
       this.confirmPasswordVisibility = !this.confirmPasswordVisibility;
     }
   }

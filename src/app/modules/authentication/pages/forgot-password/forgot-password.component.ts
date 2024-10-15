@@ -1,9 +1,16 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
-import { Component, HostListener, inject, Optional } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  inject,
+  OnInit,
+  Optional,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { OtpCodeComponent } from '../otp-code/otp-code.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -12,14 +19,15 @@ import { RegisterComponent } from '../register/register.component';
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements OnInit {
   private modalService = inject(NgbModal);
 
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   forgotPasswordForm: FormGroup = this._FormBuilder.group({
@@ -68,6 +76,26 @@ export class ForgotPasswordComponent {
         backdrop: 'static',
       });
       this.activeModal.close();
+    }
+  }
+
+  onSubmit(): void {
+    if (this.forgotPasswordForm.status === 'VALID') {
+      console.log(
+        "🚀 ~ ForgotPasswordComponent ~ onSubmit ~ this.forgotPasswordForm.status === 'VALID':",
+        this.forgotPasswordForm
+      );
+      this.auth.forgotPassword(this.forgotPasswordForm.value).subscribe({
+        next: (res) => {
+          console.log(
+            '🚀 ~ ForgotPasswordComponent ~ this.auth.forgotPassword ~ res:',
+            res
+          );
+        },
+        error: (error) => {
+          console.error('Error forgotting password:', error);
+        },
+      });
     }
   }
 

@@ -10,6 +10,7 @@ import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { PropertiesCitiesService } from 'src/app/shared/services/properties-cities.service';
+import { UserService } from 'src/app/shared/services/user.service';
 import { aboutUs } from 'src/assets/data/about-section';
 import { apartments } from 'src/assets/data/apartments';
 import { Testimonials } from 'src/assets/data/testimonials';
@@ -23,8 +24,12 @@ export class HomeComponent {
   constructor(
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
-    private _PropertiesCitiesService: PropertiesCitiesService
+    private _PropertiesCitiesService: PropertiesCitiesService,
+    private _UserService: UserService
   ) {}
+
+  userId: string | null = localStorage.getItem('userId');
+  favProperties: any[] = [];
 
   apartments: Apartments[] = apartments;
   specialApartments: any[] = [];
@@ -165,6 +170,17 @@ export class HomeComponent {
       },
       error: (err) => {
         console.error('Error getting special apartments:', err);
+      },
+    });
+
+    this._UserService.getFavorites(this.userId).subscribe({
+      next: (res) => {
+        res.properties.forEach((property: any) => {
+          this.favProperties.push(property.id);
+        });
+      },
+      error: (err) => {
+        console.error('Error getting favorite apartments:', err);
       },
     });
 
@@ -528,5 +544,19 @@ export class HomeComponent {
     } else if (passwordInput == 'rePassword') {
       this.confirmPasswordVisibility = !this.confirmPasswordVisibility;
     }
+  }
+
+  addToFav(apartmentId: string): void {
+    this._UserService
+      .addToFavorites(this.userId, apartmentId.toString())
+      .subscribe({
+        next: (res) => {
+          this.favProperties.push(apartmentId);
+          console.log(res);
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
   }
 }

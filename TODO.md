@@ -9,23 +9,15 @@ Project Description
 - [ ] contacts api  
 - [ ] feedback show api  
 - [ ] feedbacks send api  
-- [ ] team members api  
-- [ ] faqs providers api  
-- [ ] faqs buyers api  
 - [ ] request service api  
 - [ ] service show by id api  
 - [ ] services api  
 - [ ] properties by id api  
-- [ ] properties api  
-- [ ] searched cities api  
 - [ ] speceial properties api  
-- [ ] login api  
-- [ ] register api  
 - [ ] client edits  
 - [ ] currency convert  
 - [ ] localization  
 - [ ] integrate api  
-- [ ] remove animations while switching between verti and horz  
 - [ ] change font  
 
 ### In Progress
@@ -35,6 +27,14 @@ Project Description
 
 ### Done ✓
 
+- [x] faqs buyers api  
+- [x] faqs providers api  
+- [x] team members api  
+- [x] searched cities api  
+- [x] properties api  
+- [x] remove animations while switching between verti and horz  
+- [x] register api  
+- [x] login api  
 - [x] product details  
 - [x] reserve  
 - [x] add-date-range  

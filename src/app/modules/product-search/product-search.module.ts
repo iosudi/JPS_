@@ -28,6 +28,8 @@ import { ApartmentGalleryComponent } from './pages/apartment-gallery/apartment-g
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { ProductSearchRoutingModule } from './product-search-routing.module';
+import { HotelSearchResultComponent } from './pages/hotel-search-result/hotel-search-result.component';
+import { HotelDetailsComponent } from './pages/hotel-details/hotel-details.component';
 
 register();
 
@@ -44,6 +46,8 @@ register();
     AddDateRangeComponent,
     ReserveComponent,
     SucessComponent,
+    HotelSearchResultComponent,
+    HotelDetailsComponent,
   ],
   imports: [
     CommonModule,

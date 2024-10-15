@@ -1,9 +1,11 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, HostListener, inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { filter } from 'rxjs';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { ForgotPasswordComponent } from '../forgot-password/forgot-password.component';
 import { RegisterComponent } from '../register/register.component';
 
@@ -13,14 +15,17 @@ import { RegisterComponent } from '../register/register.component';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  passwordVisibility: boolean = false;
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
     private breakpointObserver: BreakpointObserver,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
   private modalService = inject(NgbModal);
+
+  passwordVisibility: boolean = false;
+  errorMessage: string = '';
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
@@ -47,7 +52,19 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.status === 'VALID') {
-      this.activeModal.close();
+      this.auth.login(this.loginForm.value).subscribe({
+        next: (res) => {
+          if (res.status === 'error') {
+            this.errorMessage = 'invalid email or password';
+          } else {
+            this.errorMessage = '';
+            localStorage.setItem('userId', `${res.user.id}`);
+          }
+        },
+        error: (error: HttpErrorResponse) => {
+          console.log(error);
+        },
+      });
     }
   }
 

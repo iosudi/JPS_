@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import Aos from 'aos';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { InfoService } from 'src/app/shared/services/info.service';
-import { FAQS } from 'src/assets/data/about';
 
 @Component({
   selector: 'app-contact',
@@ -16,7 +15,6 @@ export class ContactComponent implements OnInit {
   ) {}
 
   expandedIndex: number | null = null;
-  faqs: any[] = FAQS;
   providerFaq: any[] = [];
   buyerFaq: any[] = [];
   activeFaq: string = 'buyer';

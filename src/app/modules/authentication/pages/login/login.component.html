@@ -11,7 +11,6 @@
           <img src="./assets/imgs/icons/mail.png" alt="mail icon" />
           <input
             formControlName="email"
-            tabindex="-1"
             class="py-3"
             type="email"
             placeholder="البريد الالكتروني"
@@ -25,8 +24,8 @@
           <input
             class="py-3"
             [type]="passwordVisibility ? 'text' : 'password'"
+            formControlName="password"
             placeholder="كلمة المرور"
-            tabindex="-1"
           />
           <img
             (click)="togglePasswordVisibility('password')"
@@ -40,6 +39,10 @@
           />
         </div>
       </div>
+
+      <p class="text-danger text-center" *ngIf="errorMessage != ''">
+        {{ errorMessage }}
+      </p>
     </div>
 
     <div class="options d-flex justify-content-between mb-3">
