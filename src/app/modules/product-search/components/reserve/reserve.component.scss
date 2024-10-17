@@ -108,7 +108,6 @@
     }
     .method {
       border: 1px solid #acacac;
-      border-radius: 12px 12px 0 0;
       padding-top: 10px;
       padding-bottom: 10px;
       cursor: pointer;
@@ -139,6 +138,10 @@
         }
       }
 
+      &:first-child {
+        border-radius: 12px 12px 0 0;
+      }
+
       &:last-child {
         border-radius: 0 0 12px 12px;
       }
@@ -153,11 +156,36 @@
   }
 
   .apartment-rules {
+    .forWho {
+      background-color: #ecd09f1a;
+      img {
+        width: 30px;
+        height: auto;
+      }
+
+      h5 {
+        color: #c18826;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+      p {
+        font-size: 0.8rem;
+        color: #1a1a1ab2;
+      }
+    }
+
     ul li {
       img {
         width: 18px;
         height: auto;
       }
+    }
+  }
+
+  .cancellation-policy {
+    p {
+      color: #868686;
+      font-size: 0.7rem;
     }
   }
 
@@ -210,6 +238,20 @@
         color: #a6a6a6;
         list-style: disc;
         list-style-position: inside;
+      }
+    }
+  }
+
+  .payment-methods {
+    p {
+      font-size: 0.7rem;
+      color: #7c7c7c;
+    }
+    .method {
+      border: 1px solid #00000033;
+      img {
+        width: auto;
+        height: 25px;
       }
     }
   }

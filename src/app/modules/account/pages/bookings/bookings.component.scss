@@ -1,0 +1,81 @@
+.container {
+  position: relative;
+  padding: 180px 20px 50px;
+
+  p {
+    color: #22222280;
+    font-size: 1.4rem;
+  }
+
+  .filter-control {
+    .filter-chips {
+      .chip {
+        background: transparent;
+        color: #000;
+        border: 1px solid #000;
+        &.active {
+          background: #000;
+          color: #fff;
+        }
+      }
+    }
+
+    .sort-filter {
+      select {
+        background: #e8e8e8;
+        border: 1px solid #000000;
+        color: #000;
+        font-size: 1.2rem;
+        outline: none;
+      }
+    }
+  }
+
+  .table-container {
+    thead {
+      border-bottom: 1px solid #000;
+      border-top: 1px solid #50505080;
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #00000033;
+      }
+    }
+
+    td {
+      .apartment-details {
+        .image {
+          width: 80px;
+          height: 80px;
+          border-radius: 10px;
+          overflow: hidden;
+        }
+        .content {
+          .rating {
+            i {
+              font-size: 1rem;
+            }
+            .rating-number {
+              font-size: 0.7rem;
+            }
+          }
+          p {
+            font-size: 0.8rem;
+            img {
+              width: 10px;
+            }
+          }
+        }
+      }
+
+      p {
+        color: #7c7c7c;
+        font-size: 1.3rem;
+        &.price {
+          color: #3f514a;
+        }
+      }
+    }
+  }
+}

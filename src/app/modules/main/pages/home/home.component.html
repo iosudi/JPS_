@@ -418,7 +418,105 @@
   </div>
 </section>
 
-<!-- Gallery section -->
+<!-- popular Hotels section -->
+<section
+  appAnimateOnScroll
+  class="popular-hotels overflow-hidden p-5 my-4 position-relative"
+>
+  <div class="container py-5">
+    <div class="blur-overlay"></div>
+    <div
+      class="header d-flex justify-content-between align-items-center px-5 mb-4"
+    >
+      <div class="title">
+        <h2>الفنادق المميزة</h2>
+        <p class="mb-0 fw-light d-flex gap-2 align-items-center">
+          <i class="fa-solid fa-arrow-right"></i>
+          تصفح الكل (20)
+        </p>
+      </div>
+      <div class="slider-arrows d-flex align-items-center gap-4">
+        <button (click)="triggerPrev('hotel')" class="prev-btn btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button (click)="triggerNext('hotel')" class="next-btn btn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+      </div>
+    </div>
+
+    <swiper-container
+      #hotelSwiper
+      [speed]="500"
+      [spaceBetween]="20"
+      [slidesPerView]="2"
+    >
+      <swiper-slide *ngFor="let apartment of [1, 2, 3, 4]">
+        <div class="card overflow-hidden d-flex justify-content-end p-3">
+          <div class="overlay"></div>
+
+          <div class="apartment-preview mb-2">
+            <img
+              src="../../../../../assets/imgs/popular-apartments/1.png"
+              alt="apartment image"
+              class="apartment-image"
+            />
+            <div class="offer-value">
+              <p class="mb-0 fw-bold">خصم 25%</p>
+            </div>
+
+            <!-- <div class="arrow d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="paginator d-flex gap-1 mt-3">
+              <div class="dot active"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+
+            <div
+              class="host-preview d-flex align-items-center justify-content-center p-3"
+              (click)="navigateToHost($event)"
+            >
+              <img
+                src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
+                alt="host avatar"
+              />
+            </div> -->
+          </div>
+
+          <div class="apartment-information">
+            <div class="apartment-name mb-1">
+              <h3 class="h6 my-1">اسم الفندق</h3>
+              <div class="d-flex align-items-center gap-2">
+                <div
+                  class="rating d-flex align-items-center gap-1 p-1 rounded-3"
+                >
+                  <i class="fa-solid fa-star rating-color"></i> 4.8
+                </div>
+                <p class="location mb-0 d-flex gap-1 align-items-center">
+                  <i class="fa-solid fa-location-dot"></i>
+                  6 اكتوبر
+                </p>
+              </div>
+              <p class="host-name mb-0">المضيف : كيرلس عادل</p>
+            </div>
+
+            <h3 class="h6 fw-normal price mb-0 text-end mb-1">
+              <span class="fw-bold">يبدا من</span> 1000.00جنيه / يوم
+            </h3>
+
+            <p>9 - 14 اكتوبر</p>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+
+<!-- Gallery section
 <section class="gallery overflow-hidden py-4">
   <div class="container-fluid" pDefer>
     <ng-template>
@@ -464,6 +562,88 @@
         </div>
       </div>
     </ng-template>
+  </div>
+</section> -->
+
+<!-- Jps advices section -->
+<section appAnimateOnScroll class="advices overflow-hidden my-5">
+  <div class="container-background">
+    <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
+    <div class="blur"></div>
+    <div class="gradient"></div>
+  </div>
+  <div class="container my-5">
+    <h2 class="fw-normal mb-5">
+      <span class="fw-bold">نصائح من JPS</span> للعملاء والمالكين
+    </h2>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="clients-advices rounded-4 p-5 h-100">
+          <h4 class="mb-5">نصائح للعملاء</h4>
+
+          <ul class="advices p-0 m-0">
+            <li
+              class="mb-3 d-flex gap-2 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/location-green.png" alt="icon" />
+              <p class="mb-0">اختيار الموقع المثالي الذي يناسب احتياجاتك.</p>
+            </li>
+            <li
+              class="mb-3 d-flex gap-2 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/money-bag.png" alt="icon" />
+              <p class="mb-0">تقييم ميزانيتك بعناية قبل اتخاذ القرار.</p>
+            </li>
+            <li
+              class="mb-3 d-flex gap-2 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/home-green.png" alt="icon" />
+              <p class="mb-0">التأكد من حالة العقار وفحصه قبل الشراء.</p>
+            </li>
+          </ul>
+
+          <button class="btn px-4 py-2 fs-4 rounded-5 mt-4">
+            <i class="fa-solid fa-arrow-right"></i>
+            ابدا الان
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="owners-advices rounded-4 p-5 h-100">
+          <h4 class="mb-5">نصائح للمالكين</h4>
+
+          <ul class="advices p-0 m-0">
+            <li
+              class="mb-3 d-flex gap-2 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/painting.png" alt="icon" />
+              <p class="mb-0">تحسين مظهر العقار لزيادة فرص البيع.</p>
+            </li>
+            <li
+              class="mb-3 d-flex gap-2 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/money-hand.png" alt="icon" />
+              <p class="mb-0">تحديد السعر المناسب بناءً على السوق الحالي.</p>
+            </li>
+            <li
+              class="mb-3 d-flex gap-2 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/handshake.png" alt="icon" />
+              <p class="mb-0">
+                الاستعداد للتفاوض مع المشترين للحصول على أفضل العروض.
+              </p>
+            </li>
+          </ul>
+
+          <button class="btn px-4 py-2 fs-4 rounded-5 mt-4">
+            <i class="fa-solid fa-arrow-right"></i>
+            ابدا مع JPS
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 

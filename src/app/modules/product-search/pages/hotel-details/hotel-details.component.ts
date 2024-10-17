@@ -5,9 +5,9 @@ import { Features } from 'src/assets/data/about';
 import { searchResultApartments } from 'src/assets/data/apartments';
 import { AddDateRangeComponent } from '../../components/add-date-range/add-date-range.component';
 import { AddToFavComponent } from '../../components/add-to-fav/add-to-fav.component';
+import { HotelFeaturesComponent } from '../../components/hotel-features/hotel-features.component';
 import { RatingModalComponent } from '../../components/rating-modal/rating-modal.component';
 import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
-import { ApartmentFeaturesComponent } from './../../components/apartment-features/apartment-features.component';
 
 @Component({
   selector: 'app-hotel-details',
@@ -71,10 +71,10 @@ export class HotelDetailsComponent {
     });
   }
 
-  openApartmentFeatures(): void {
-    this.modalService.open(ApartmentFeaturesComponent, {
+  openHotelFeatures(): void {
+    this.modalService.open(HotelFeaturesComponent, {
       centered: true,
-      size: 'md',
+      size: 'xl',
       scrollable: true,
     });
   }

@@ -45,6 +45,7 @@ export class HomeComponent {
 
   // apartment & district carousels
   @ViewChild('districtSwiper', { static: false }) districtSwiper?: ElementRef;
+  @ViewChild('hotelSwiper', { static: false }) hotelSwiper?: ElementRef;
   @ViewChild('apartmentSwiper', { static: false })
   apartmentSwiper?: ElementRef;
 
@@ -241,7 +242,9 @@ export class HomeComponent {
     }
   }
 
-  triggerNext(carouselType: 'district' | 'apartment' | 'testimonials'): void {
+  triggerNext(
+    carouselType: 'district' | 'apartment' | 'testimonials' | 'hotel'
+  ): void {
     if (carouselType === 'testimonials') {
       this.testimonialsIndex++;
       this.checkIndex();
@@ -251,10 +254,14 @@ export class HomeComponent {
       this.districtSwiper?.nativeElement.swiper.slideNext();
     } else if (carouselType === 'apartment') {
       this.apartmentSwiper?.nativeElement.swiper.slideNext();
+    } else if (carouselType === 'hotel') {
+      this.hotelSwiper?.nativeElement.swiper.slideNext();
     }
   }
 
-  triggerPrev(carouselType: 'district' | 'apartment' | 'testimonials'): void {
+  triggerPrev(
+    carouselType: 'district' | 'apartment' | 'testimonials' | 'hotel'
+  ): void {
     if (carouselType === 'testimonials') {
       this.testimonialsIndex--;
       this.checkIndex();
@@ -264,6 +271,8 @@ export class HomeComponent {
       this.districtSwiper?.nativeElement.swiper.slidePrev();
     } else if (carouselType === 'apartment') {
       this.apartmentSwiper?.nativeElement.swiper.slidePrev();
+    } else if (carouselType === 'hotel') {
+      this.hotelSwiper?.nativeElement.swiper.slidePrev();
     }
   }
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { widthGuard } from '../authentication/guard/width.guard';
 import { AccountComponent } from './pages/account/account.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
 import { FavoriteDetailsComponent } from './pages/favorite-details/favorite-details.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
@@ -32,6 +33,11 @@ const routes: Routes = [
     path: 'your-favorites/details',
     component: FavoriteDetailsComponent,
     title: 'Your favorite list details',
+  },
+  {
+    path: 'my-bookings',
+    component: BookingsComponent,
+    title: 'Your bookings',
   },
 ];
 

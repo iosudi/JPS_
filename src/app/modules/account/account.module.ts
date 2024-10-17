@@ -18,6 +18,7 @@ import { FavoriteDetailsComponent } from './pages/favorite-details/favorite-deta
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     EditPasswordModalComponent,
     EditPhoneNumberModalComponent,
     AccountComponent,
+    BookingsComponent,
   ],
   imports: [
     CommonModule,

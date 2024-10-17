@@ -462,7 +462,6 @@
     .card {
       .apartment-preview {
         width: 100%;
-        height: 255.99px;
       }
 
       .apartment-information {
@@ -525,10 +524,8 @@
     .card.flex-row {
       padding: 10px !important;
       gap: 5px !important;
+      min-height: 250px !important;
       .apartment-preview {
-        width: 300px;
-        height: unset;
-
         .reserved-duration {
           top: 10px;
           left: 10px;
@@ -550,7 +547,7 @@
       .apartment-information {
         .apartment-name {
           h3 {
-            font-size: 13px;
+            font-size: 18px;
           }
 
           p {

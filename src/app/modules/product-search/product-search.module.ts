@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
 import { DeferModule } from 'primeng/defer';
 import { DropdownModule } from 'primeng/dropdown';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -14,12 +15,13 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SliderModule } from 'primeng/slider';
 import { CoreModule } from 'src/app/core/core.module';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { register } from 'swiper/element/bundle';
 import { AddDateRangeComponent } from './components/add-date-range/add-date-range.component';
 import { AddToFavComponent } from './components/add-to-fav/add-to-fav.component';
 import { AdvancedSearchFilterModalComponent } from './components/advanced-search-filter-modal/advanced-search-filter-modal.component';
 import { ApartmentFeaturesComponent } from './components/apartment-features/apartment-features.component';
+import { CircularSliderComponent } from './components/circular-slider/circular-slider.component';
+import { HotelFeaturesComponent } from './components/hotel-features/hotel-features.component';
 import { RatingModalComponent } from './components/rating-modal/rating-modal.component';
 import { ReserveComponent } from './components/reserve/reserve.component';
 import { ShareModalComponent } from './components/share-modal/share-modal.component';
@@ -47,6 +49,8 @@ register();
     SucessComponent,
     HotelSearchResultComponent,
     HotelDetailsComponent,
+    CircularSliderComponent,
+    HotelFeaturesComponent,
   ],
   imports: [
     CommonModule,
@@ -65,8 +69,8 @@ register();
     SelectButtonModule,
     CalendarModule,
     DeferModule,
-    SharedModule,
     CalendarModule,
+    CheckboxModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

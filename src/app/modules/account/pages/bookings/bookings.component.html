@@ -1,0 +1,220 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  template="<img src='./assets/imgs/new logo animation.gif'/>"
+></ngx-spinner>
+
+<app-main-nav-bar></app-main-nav-bar>
+
+<div class="container">
+  <h2 class="fw-bold">إدراة الحجوزات</h2>
+  <p class="mb-0">
+    هي مساحة يمكنك من خلالها ادارة و تعديل و الغاء الحجوزات الخاصة بك
+  </p>
+
+  <div
+    class="filter-control mt-4 d-flex align-items-center justify-content-between"
+  >
+    <div class="filter-chips d-flex align-items-center gap-2">
+      <span class="chip pointer px-4 py-1 rounded-5 active">الكل</span>
+      <span class="chip pointer px-4 py-1 rounded-5">المكتملة</span>
+      <span class="chip pointer px-4 py-1 rounded-5">في انتظار الموافقة</span>
+      <span class="chip pointer px-4 py-1 rounded-5">الملغية</span>
+    </div>
+
+    <div class="sort-filter d-flex gap-2">
+      <select class="p-1 rounded-1 pointer">
+        <option value="newest" selected>الأحدث</option>
+        <option value="oldest">الأقدم</option>
+      </select>
+      <select class="p-1 rounded-1 pointer">
+        <option value="newest" selected>المضيف</option>
+        <option value="oldest">الأقدم</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="table-container mt-5">
+    <table class="w-100">
+      <thead>
+        <tr>
+          <th class="py-3 px-2 fs-4 fw-normal">الوحدة</th>
+          <th class="py-3 px-2 fs-4 fw-normal">نوع الوحدة</th>
+          <th class="py-3 px-2 fs-4 fw-normal">تاريخ الحجز</th>
+          <th class="py-3 px-2 fs-4 fw-normal">الإجمالي</th>
+          <th class="py-3 px-2 fs-4 fw-normal">الحالة</th>
+          <th class="py-3 px-2 fs-4 fw-normal">عمليات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="py-4 px-2">
+            <div class="apartment-details d-flex align-items-center gap-3">
+              <div class="image">
+                <img
+                  src="./assets/imgs/Gallery/living1.png"
+                  alt="Apartment image"
+                />
+              </div>
+              <div class="content">
+                <h6 class="mb-0 text-decoration-underline">شقة مفروشة مودرن</h6>
+                <div class="rating d-flex align-items-center gap-2 mb-0">
+                  <div class="stars gap-1">
+                    <i
+                      class="fa-solid fa-star rating-color"
+                      *ngFor="let item of [1, 2, 3, 4, 5]"
+                    ></i>
+                  </div>
+                  <p class="rating-number mb-0">4.5 (120 تقييم)</p>
+                </div>
+
+                <p
+                  class="mb-0 location d-flex align-items-center gap-1 fw-light"
+                >
+                  <img
+                    src="./assets/imgs/icons/location-dark.png"
+                    alt="location icon"
+                  />
+                  6 اكتوبر , حي اول
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-2"><p class="mb-0">شقة</p></td>
+          <td class="py-4 px-2">
+            <p class="mb-0 fs-5">
+              <span class="start-date"> 30/7/2024 </span> -
+              <span class="end-date">30/10/2024</span>
+            </p>
+          </td>
+          <td class="py-4 px-2">
+            <p class="price fw-bold mb-0">58,500 ج.م</p>
+          </td>
+          <td class="py-4 px-2"><p class="mb-0 fw-lighter">تم الطلب</p></td>
+
+          <td class="py-4 px-2">
+            <div
+              class="buttons d-flex align-items-center justify-content-center gap-3"
+            >
+              <button class="btn btn-primary">
+                <i class="fa-regular fa-calendar"></i>
+                تعديل
+              </button>
+              <button class="btn btn-danger">
+                <i class="fa-solid fa-xmark"></i>
+                الغاء الحجز
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="py-4 px-2">
+            <div class="apartment-details d-flex align-items-center gap-3">
+              <div class="image">
+                <img
+                  src="./assets/imgs/Gallery/living2.png"
+                  alt="Apartment image"
+                />
+              </div>
+              <div class="content">
+                <h6 class="mb-0 text-decoration-underline">شقة مفروشة مودرن</h6>
+                <div class="rating d-flex align-items-center gap-2 mb-0">
+                  <div class="stars gap-1">
+                    <i
+                      class="fa-solid fa-star rating-color"
+                      *ngFor="let item of [1, 2, 3, 4, 5]"
+                    ></i>
+                  </div>
+                  <p class="rating-number mb-0">4.5 (120 تقييم)</p>
+                </div>
+
+                <p
+                  class="mb-0 location d-flex align-items-center gap-1 fw-light"
+                >
+                  <img
+                    src="./assets/imgs/icons/location-dark.png"
+                    alt="location icon"
+                  />
+                  6 اكتوبر , حي اول
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-2"><p class="mb-0">شقة</p></td>
+          <td class="py-4 px-2">
+            <p class="mb-0 fs-5">
+              <span class="start-date"> 30/7/2024 </span> -
+              <span class="end-date">30/10/2024</span>
+            </p>
+          </td>
+          <td class="py-4 px-2">
+            <p class="price fw-bold mb-0">58,500 ج.م</p>
+          </td>
+          <td class="py-4 px-2">
+            <p class="mb-0 fw-lighter text-success">تم الحجز</p>
+          </td>
+
+          <td class="py-4 px-2">
+            <div
+              class="buttons d-flex align-items-center justify-content-center border gap-3 w-25 mx-auto"
+            ></div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="py-4 px-2">
+            <div class="apartment-details d-flex align-items-center gap-3">
+              <div class="image">
+                <img
+                  src="./assets/imgs/Gallery/living3.png"
+                  alt="Apartment image"
+                />
+              </div>
+              <div class="content">
+                <h6 class="mb-0 text-decoration-underline">شقة مفروشة مودرن</h6>
+                <div class="rating d-flex align-items-center gap-2 mb-0">
+                  <div class="stars gap-1">
+                    <i
+                      class="fa-solid fa-star rating-color"
+                      *ngFor="let item of [1, 2, 3, 4, 5]"
+                    ></i>
+                  </div>
+                  <p class="rating-number mb-0">4.5 (120 تقييم)</p>
+                </div>
+
+                <p
+                  class="mb-0 location d-flex align-items-center gap-1 fw-light"
+                >
+                  <img
+                    src="./assets/imgs/icons/location-dark.png"
+                    alt="location icon"
+                  />
+                  6 اكتوبر , حي اول
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-2"><p class="mb-0">شقة</p></td>
+          <td class="py-4 px-2">
+            <p class="mb-0 fs-5">
+              <span class="start-date"> 30/7/2024 </span> -
+              <span class="end-date">30/10/2024</span>
+            </p>
+          </td>
+          <td class="py-4 px-2">
+            <p class="price fw-bold mb-0">58,500 ج.م</p>
+          </td>
+          <td class="py-4 px-2">
+            <p class="mb-0 fw-lighter text-danger">تم الإلغاء</p>
+          </td>
+
+          <td class="py-4 px-2">
+            <div
+              class="buttons d-flex align-items-center border gap-3 w-25 mx-auto"
+            ></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

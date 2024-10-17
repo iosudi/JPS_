@@ -64,33 +64,51 @@
         </div>
         <div class="methods">
           <label
-            for="cash"
+            for="1MonthInstallment"
             class="method px-4 d-flex justify-content-between align-items-center checked"
           >
-            <h5 class="mb-0">ادفع الملغ الكلي 58,500 ج.م</h5>
+            <h5 class="mb-0">تقسط التامين علي شهر</h5>
             <p-radioButton
-              inputId="cash"
-              value="cash"
+              inputId="1MonthInstallment"
+              value="1MonthInstallment"
               name="payment"
               [(ngModel)]="payment"
             />
           </label>
+
           <label
-            for="Installment"
+            for="2MonthInstallment"
             class="method px-4 d-flex justify-content-between align-items-start"
           >
             <div>
-              <h5>ادفع جزءا الآن وجزءا لاحقا</h5>
+              <h5>تقسيط التامين علي شهرين</h5>
               <p class="mb-0">
-                المبلغ $144.19 مستحق اليوم، ويستحق $144.19 فى 10 سبتمبر 2024. لا
-                توجد رسوم إضافية.
-                <a class="text-decoration-underline">إلمزيد من المعلومات</a>
+                المبلغ $144.19 مستحق اليوم، ويستحق $144.19 فى 10 سبتمبر 2024.
               </p>
             </div>
 
             <p-radioButton
-              inputId="Installment"
-              value="Installment"
+              inputId="2MonthInstallment"
+              value="2MonthInstallment"
+              name="payment"
+              [(ngModel)]="payment"
+            />
+          </label>
+
+          <label
+            for="3MonthInstallment"
+            class="method px-4 d-flex justify-content-between align-items-start"
+          >
+            <div>
+              <h5>تقسيط التامين علي 3 شهور</h5>
+              <p class="mb-0">
+                المبلغ $144.19 مستحق اليوم، ويستحق $144.19 فى 10 سبتمبر 2024.
+              </p>
+            </div>
+
+            <p-radioButton
+              inputId="3MonthInstallment"
+              value="3MonthInstallment"
               name="payment"
               [(ngModel)]="payment"
             />
@@ -100,6 +118,15 @@
 
       <div class="apartment-rules py-3">
         <h3 class="h5 mb-3 fw-bold">قوانين البيت</h3>
+
+        <div class="forWho d-flex align-items-start gap-2 my-3 p-2 rounded-1">
+          <img src="./assets/imgs/icons/yellow user.png" alt="icon" />
+          <div class="content">
+            <h5 class="mb-1">نوع الشخص : أسرة , طالب , طالبة</h5>
+            <p class="mb-0">هذه الشقة متاحة فقط لهذه الاشخاص</p>
+          </div>
+        </div>
+
         <ul class="m-0 p-0 d-flex justify-content-between align-items-center">
           <li class="d-flex align-items-center gap-2 mb-2">
             <img src="./assets/imgs/icons/heart-home.png" alt="icon" />
@@ -111,6 +138,11 @@
             عدم الازعاج
           </li>
         </ul>
+      </div>
+
+      <div class="cancellation-policy">
+        <h3 class="h5 mb-2 fw-bold">سياسه الالغاء</h3>
+        <p>هنا مثال لكلام يمكن استبداله</p>
       </div>
 
       <div class="reserve-summary-sm reserve-summary p-3">
@@ -249,6 +281,42 @@
               سعر الايجار الشهري يشمل خدمات : كهرباء - غاز - مياه
             </li>
           </ul>
+        </div>
+      </div>
+
+      <div class="payment-methods mt-4">
+        <p class="mb-2">متاح الدفع باستخدام :</p>
+        <div class="methods d-flex flex-wrap gap-2">
+          <div class="method rounded-1 px-3 py-1">
+            <img
+              src="./assets/imgs/payment-methods/visa.png"
+              alt="visa payment method"
+            />
+          </div>
+          <div class="method rounded-1 px-3 py-1">
+            <img
+              src="./assets/imgs/payment-methods/mastercard.png"
+              alt="mastercard payment method"
+            />
+          </div>
+          <div class="method rounded-1 px-3 py-1">
+            <img
+              src="./assets/imgs/payment-methods/meza.png"
+              alt="meza payment method"
+            />
+          </div>
+          <div class="method rounded-1 px-3 py-1">
+            <img
+              src="./assets/imgs/payment-methods/fawry.png"
+              alt="fawry payment method"
+            />
+          </div>
+          <div class="method rounded-1 px-3 py-1">
+            <img
+              src="./assets/imgs/payment-methods/eWallet.png"
+              alt="eWallet payment method"
+            />
+          </div>
         </div>
       </div>
     </div>
