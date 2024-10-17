@@ -25,12 +25,11 @@ import { ReserveComponent } from './components/reserve/reserve.component';
 import { ShareModalComponent } from './components/share-modal/share-modal.component';
 import { SucessComponent } from './components/sucess/sucess.component';
 import { ApartmentGalleryComponent } from './pages/apartment-gallery/apartment-gallery.component';
+import { HotelDetailsComponent } from './pages/hotel-details/hotel-details.component';
+import { HotelSearchResultComponent } from './pages/hotel-search-result/hotel-search-result.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { SearchResultComponent } from './pages/search-result/search-result.component';
 import { ProductSearchRoutingModule } from './product-search-routing.module';
-import { HotelSearchResultComponent } from './pages/hotel-search-result/hotel-search-result.component';
-import { HotelDetailsComponent } from './pages/hotel-details/hotel-details.component';
-
 register();
 
 @NgModule({
@@ -67,6 +66,7 @@ register();
     CalendarModule,
     DeferModule,
     SharedModule,
+    CalendarModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

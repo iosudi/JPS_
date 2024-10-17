@@ -15,12 +15,39 @@ import { ApartmentFeaturesComponent } from './../../components/apartment-feature
   styleUrls: ['./hotel-details.component.scss'],
 })
 export class HotelDetailsComponent {
+  private modalService = inject(NgbModal);
+
   overlayHidden: boolean = false;
   expanded = false;
   features: any[] = Features;
   apartments: Apartments[] = searchResultApartments;
   checked: boolean = true;
-  private modalService = inject(NgbModal);
+  date: Date[] | undefined;
+  minDate: Date | undefined;
+  maxDate: Date | undefined;
+
+  reviewsBreakpoints = {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+    1630: {
+      slidesPerView: 1.5,
+      spaceBetween: 20,
+    },
+  };
+
+  ngOnInit(): void {
+    const today = new Date();
+    this.minDate = new Date(today);
+    this.maxDate = new Date(today);
+
+    // Set minDate to 11 days before today
+    this.minDate.setDate(today.getDate());
+
+    // Set maxDate to 11 days after today
+    this.maxDate.setDate(today.getDate() + 11);
+  }
 
   hideOverlay(): void {
     this.overlayHidden = true;

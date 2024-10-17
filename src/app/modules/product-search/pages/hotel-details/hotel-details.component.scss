@@ -288,6 +288,22 @@
         }
       }
 
+      .start-date {
+        h3 {
+          font-size: 1.2rem;
+        }
+        p {
+          color: #9f9f9f;
+        }
+        p-calendar ::ng-deep .p-calendar {
+          width: 100%;
+          border: 0;
+          .p-datepicker-inline {
+            border: 0;
+          }
+        }
+      }
+
       .host-details {
         h3 {
           font-size: 1.2rem;
@@ -498,9 +514,36 @@
       }
 
       .reviews {
+        background: #fbf7eccc;
+
         h3 {
           font-size: 1.2rem;
         }
+
+        .overall-rating {
+          img {
+            width: 40px;
+            height: auto;
+          }
+          h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #414141;
+          }
+
+          h3 {
+            color: #414141;
+          }
+
+          p {
+            color: #838383;
+            width: 35ch;
+            span {
+              color: #414141;
+            }
+          }
+        }
+
         .global-review {
           .reviews-bars {
             .bar {
@@ -527,29 +570,34 @@
         }
 
         .client-reviews {
-          .client-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 100%;
-          }
-          .client-info {
-            h5 {
-              font-size: 1.1rem;
+          .review {
+            background: #fff;
+            .client-img {
+              width: 50px;
+              height: 50px;
+              border-radius: 100%;
             }
-            p {
-              font-size: 0.9rem;
-            }
-          }
 
-          .rating {
-            font-size: 0.8rem;
-            i {
-              font-size: 0.6rem;
+            .client-info {
+              h5 {
+                font-size: 1.1rem;
+              }
+              p {
+                font-size: 0.9rem;
+              }
             }
-          }
 
-          .review-body {
-            font-size: 0.9rem;
+            .rating {
+              font-size: 0.8rem;
+              color: #9c9c9c;
+              i {
+                font-size: 0.6rem;
+              }
+            }
+
+            .review-body {
+              font-size: 1rem;
+            }
           }
         }
 

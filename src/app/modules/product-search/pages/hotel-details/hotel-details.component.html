@@ -294,6 +294,24 @@
               </ng-template>
             </div>
 
+            <!-- start date -->
+            <div class="start-date py-4">
+              <h3 class="mb-1">تحديد تاريخ الوصول</h3>
+              <p class="mb-2">اضف التاريخ المتوقع الوصول فيه</p>
+
+              <p-calendar
+                dir="ltr"
+                class="w-100"
+                [(ngModel)]="date"
+                [inline]="true"
+                [showWeek]="true"
+                [minDate]="minDate"
+                [maxDate]="maxDate"
+              />
+
+              <p class="mb-0 text-decoration-underline pointer">محو التواريخ</p>
+            </div>
+
             <!-- know the apartment host -->
             <div class="host-details py-4 border-bottom">
               <h3 class="mb-3">تعرّف على المضيف</h3>
@@ -495,8 +513,25 @@
             <!-- apartment reviews -->
             <div class="reviews py-4 border-bottom">
               <h3 class="mb-3">تقييم عملائنا</h3>
+
+              <div class="overall-rating">
+                <div
+                  class="rating mb-1 d-flex align-items-center justify-content-center gap-3"
+                >
+                  <img src="./assets/imgs/icons/svg right.png" alt="wing" />
+                  <h1>4.91</h1>
+                  <img src="./assets/imgs/icons/svg left.png" alt="wing" />
+                </div>
+
+                <h3 class="text-center fw-bold">مفضل لدى الضيوف</h3>
+                <p class="text-center mx-auto">
+                  هذا المسكن من <span>أفضل 10%</span> من المساكن المؤهلة،
+                  استنادا إلى التقييمات والمراجعات وبياناتالموثوقية
+                </p>
+              </div>
+
               <div
-                class="global-review d-flex align-items-end pb-4 border-bottom"
+                class="global-review d-flex align-items-end py-4 border-top border-bottom"
               >
                 <div class="reviews-bars ps-4 w-100">
                   <p class="mb-2">التقييم العام</p>
@@ -521,7 +556,8 @@
                     <p-progressBar [value]="20" class="w-100" />
                   </div>
                 </div>
-                <div class="d-flex align-items-center">
+
+                <div class="d-flex h-100 align-items-center">
                   <div
                     class="review-item border-end px-4 text-center"
                     *ngFor="let item of [1, 2, 3]"
@@ -534,22 +570,14 @@
               </div>
 
               <div class="client-reviews pt-5">
-                <div class="row gy-4">
-                  <div class="col-lg-6" *ngFor="let item of [1, 2, 3, 4]">
-                    <div class="review">
-                      <div class="d-flex align-items-center gap-1 mb-2">
-                        <img
-                          src="./assets/imgs/About Imgs/crew/1.png"
-                          alt="client"
-                          class="client-img"
-                        />
-                        <div class="client-info">
-                          <h5 class="mb-0 fw-medium">احمد جمال</h5>
-                          <p class="mb-0">10 شهور علي jps</p>
-                        </div>
-                      </div>
-
-                      <div class="rating d-flex gap-3 mb-2">
+                <swiper-container
+                  [speed]="500"
+                  [breakpoints]="reviewsBreakpoints"
+                  [spaceBetween]="20"
+                >
+                  <swiper-slide *ngFor="let apartment of [1, 2, 3, 4]">
+                    <div class="review p-5">
+                      <div class="rating d-flex gap-3 mb-4">
                         <div class="stars d-flex gap-1 align-items-center">
                           <i
                             class="fa-solid fa-star rating-color"
@@ -560,21 +588,35 @@
                         <p class="mb-0">. إقامة لمدة شهر</p>
                       </div>
 
-                      <p class="review-body">
+                      <p class="review-body mb-5">
                         المكان كما هو موضح في الصور، وهي طاقة جميلة جدًا 💗 أوصي
                         بها بنسبة 100%
                       </p>
+
+                      <div class="d-flex align-items-center gap-3">
+                        <img
+                          src="./assets/imgs/About Imgs/crew/1.png"
+                          alt="client"
+                          class="client-img"
+                        />
+                        <div class="client-info">
+                          <h5 class="mb-0 fw-medium">احمد جمال</h5>
+                          <p class="mb-0">10 شهور علي jps</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </swiper-slide>
+                </swiper-container>
               </div>
 
-              <div class="buttons d-flex align-items-center gap-3 mt-4">
-                <button class="btn outlined-btn py-2 px-4">
+              <div
+                class="buttons d-flex flex-column align-items-center gap-3 mt-4"
+              >
+                <button class="btn outlined-btn w-100 fs-5 py-2 px-4">
                   عرض التقييمات الـ 48
                 </button>
                 <button
-                  class="btn secondary-btn fw-light py-2 px-4"
+                  class="btn secondary-btn w-100 fs-5 fw-light py-2 px-4"
                   (click)="openRatingModal()"
                 >
                   <i class="fa-solid fa-star"></i>
