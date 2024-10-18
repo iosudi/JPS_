@@ -23,14 +23,21 @@
 
       <div class="cities mb-5 overflow-hidden">
         <div
-          class="city"
-          (click)="selectCity('اكتوبر')"
-          *ngFor="let item of [1, 2, 3, 4, 5, 6]"
+          class="city search-element"
+          [class.selected]="city.title === selectedCity"
+          (click)="selectCity(city.title)"
+          *ngFor="let city of cities"
         >
-          <div class="city-image">
-            <img src="./assets/imgs/map.png" alt="City 1" />
+          <div
+            class="checked-icon d-flex align-items-center justify-content-center"
+          >
+            <i class="fa-solid fa-check"></i>
           </div>
-          <h4 class="mt-2 mb-0">اكتوبر</h4>
+
+          <div class="city-image">
+            <img [src]="city.cityImage" alt="City 1" />
+          </div>
+          <h4 class="mt-2 mb-0">{{ city.title }}</h4>
         </div>
       </div>
 
@@ -106,7 +113,7 @@
         (click)="skipStep()"
       >
         <i class="fa-solid fa-arrow-right fs-5"></i>
-        تخطي
+        التالي
       </p>
     </div>
 
@@ -140,21 +147,17 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-6" *ngFor="let unitType of unitTypes">
             <div
-              class="unit px-5 d-flex justify-content-center flex-column"
+              class="unit search-element px-5 d-flex justify-content-center flex-column"
+              [class.selected]="unitType.title === selectedUnit"
               (click)="selectUnitType(unitType.title)"
             >
-              <input type="checkbox" />
               <div
-                class="icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+                class="checked-icon d-flex align-items-center justify-content-center"
               >
-                <div
-                  class="checked-icon d-flex align-items-center justify-content-center"
-                >
-                  <i class="fa-solid fa-check"></i>
-                </div>
-
-                <img [src]="unitType.icon" alt="service icon" />
+                <i class="fa-solid fa-check"></i>
               </div>
+
+              <img [src]="unitType.icon" alt="icon" />
               <h5 class="form-label mb-0">
                 {{ unitType.title }}
               </h5>
@@ -191,21 +194,17 @@
             *ngFor="let furnitureState of furnitureStates"
           >
             <div
-              class="state px-5 d-flex justify-content-center flex-column"
+              class="state search-element px-5 d-flex justify-content-center flex-column"
+              [class.selected]="furnitureState.title === selectedFurnitureState"
               (click)="selectFurnitureState(furnitureState.title)"
             >
-              <input type="checkbox" />
               <div
-                class="icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+                class="checked-icon d-flex align-items-center justify-content-center"
               >
-                <div
-                  class="checked-icon d-flex align-items-center justify-content-center"
-                >
-                  <i class="fa-solid fa-check"></i>
-                </div>
-
-                <img [src]="furnitureState.icon" alt="service icon" />
+                <i class="fa-solid fa-check"></i>
               </div>
+
+              <img [src]="furnitureState.icon" alt="icon" />
               <h5 class="form-label mb-0">
                 {{ furnitureState.title }}
               </h5>
@@ -219,7 +218,7 @@
         (click)="skipStep()"
       >
         <i class="fa-solid fa-arrow-right fs-5"></i>
-        تخطي
+        التالي
       </p>
     </div>
 
@@ -256,21 +255,17 @@
             *ngFor="let residentType of residentTypes"
           >
             <div
-              class="resident px-5 d-flex justify-content-center flex-column"
+              class="resident search-element px-5 d-flex justify-content-center flex-column"
+              [class.selected]="residentType.title === selectedResidentType"
               (click)="selectResidentType(residentType.title)"
             >
-              <input type="checkbox" />
               <div
-                class="icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
+                class="checked-icon d-flex align-items-center justify-content-center"
               >
-                <div
-                  class="checked-icon d-flex align-items-center justify-content-center"
-                >
-                  <i class="fa-solid fa-check"></i>
-                </div>
-
-                <img [src]="residentType.icon" alt="service icon" />
+                <i class="fa-solid fa-check"></i>
               </div>
+
+              <img [src]="residentType.icon" alt="icon" />
               <h5 class="form-label mb-0">
                 {{ residentType.title }}
               </h5>
@@ -312,9 +307,13 @@
             <div
               class="rooms-number-input d-flex align-items-center justify-content-center gap-2"
             >
-              <span>+</span>
-              <input type="number" value="1" />
-              <span>-</span>
+              <span (click)="addRoomNumber('beds')">+</span>
+              <input
+                type="number"
+                [(ngModel)]="bedsNumber"
+                [value]="bedsNumber"
+              />
+              <span (click)="removeRoomNumber('beds')">-</span>
             </div>
           </div>
 
@@ -328,9 +327,13 @@
             <div
               class="rooms-number-input d-flex align-items-center justify-content-center gap-2"
             >
-              <span>+</span>
-              <input type="number" value="1" />
-              <span>-</span>
+              <span (click)="addRoomNumber('count')">+</span>
+              <input
+                type="number"
+                [(ngModel)]="countNumber"
+                [value]="countNumber"
+              />
+              <span (click)="removeRoomNumber('count')">-</span>
             </div>
           </div>
 
@@ -344,9 +347,13 @@
             <div
               class="rooms-number-input d-flex align-items-center justify-content-center gap-2"
             >
-              <span>+</span>
-              <input type="number" value="1" />
-              <span>-</span>
+              <span (click)="addRoomNumber('bathrooms')">+</span>
+              <input
+                type="number"
+                [(ngModel)]="bathroomNumber"
+                [value]="bathroomNumber"
+              />
+              <span (click)="removeRoomNumber('bathrooms')">-</span>
             </div>
           </div>
         </div>
@@ -359,7 +366,13 @@
         >
           ابحث
         </button>
-        <p class="mb-0">اكتوبر ,شقة(عادية) ,طالب , 2 سرير ,2 اوضة , 2 حمام</p>
+        <p class="mb-0">
+          {{ selectedCity }} ,{{ selectedUnit }} ,{{ selectedResidentType }} ,
+          {{ selectedFurnitureState }} {{ bedsNumber }} سرير ,{{
+            countNumber
+          }}
+          اوضة , {{ bathroomNumber }} حمام
+        </p>
       </div>
     </div>
   </div>

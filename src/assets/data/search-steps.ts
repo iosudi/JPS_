@@ -1,3 +1,30 @@
+export const Cities = [
+  {
+    cityImage: './assets/imgs/map.png',
+    title: 'اكتوبر',
+  },
+  {
+    cityImage: './assets/imgs/map.png',
+    title: 'حي الاشجار ٦ اكتوبر',
+  },
+  {
+    cityImage: './assets/imgs/map.png',
+    title: 'حي الفردوس اكتوبر',
+  },
+  {
+    cityImage: './assets/imgs/map.png',
+    title: 'اكتوبر الجديدة غرب المطار',
+  },
+  {
+    cityImage: './assets/imgs/map.png',
+    title: 'اكتوبر فيسفال سيتي ',
+  },
+  {
+    cityImage: './assets/imgs/map.png',
+    title: 'اكتوبر فيسفال سيتي ',
+  },
+];
+
 export const unitTypes = [
   {
     icon: './assets/imgs/icons/studio.png',

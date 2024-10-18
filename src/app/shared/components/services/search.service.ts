@@ -1,48 +1,48 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   showSearchSteps: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   searchCriteria: any = {
     city: '',
-    unitType: '',
-    residentType: '',
-    furnitureState: '',
-    rooms: [
-      {
-        bathroom: 0,
-      },
-      {
-        bedroom: 0,
-      },
-      {
-        beds: 0,
-      },
-    ],
+    unit: '',
+    tenant_type: '',
+    furniture: '',
+    rooms: {},
   };
 
   setCity(city: string) {
     this.searchCriteria.city = city;
   }
+
   setUnitType(type: string) {
-    this.searchCriteria.unitType = type;
+    this.searchCriteria.unit = type;
   }
+
   setResidentType(type: string) {
-    this.searchCriteria.residentType = type;
+    this.searchCriteria.tenant_type = type;
   }
+
   setFurnitureState(state: string) {
-    this.searchCriteria.furnitureState = state;
+    this.searchCriteria.furniture = state;
   }
+
   setRoomsSelection(
     roomsSelection: Array<{ type: string; selectedNumber: number | string }>
   ) {
     this.searchCriteria.rooms = roomsSelection;
     console.log(this.searchCriteria);
+  }
+
+  search(searchData: object): Observable<any> {
+    return this.http.put(environment.baseURL + 'searchresults.php', searchData);
   }
 }

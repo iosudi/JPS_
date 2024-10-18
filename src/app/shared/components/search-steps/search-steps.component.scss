@@ -33,24 +33,11 @@
     transition: 0.3s;
     height: 180px;
     cursor: pointer;
-    .icon {
-      position: relative;
 
-      .checked-icon {
-        border-radius: 100%;
-        opacity: 0;
-        transform: scale(0);
-        background: #3f514a;
-        width: 20px;
-        height: 20px;
-        color: white;
-        font-size: 8px;
-        transition: 0.3s;
-      }
-      img {
-        width: 25px;
-        height: auto;
-      }
+    img {
+      width: 30px;
+      height: auto;
+      margin-bottom: 5px;
     }
 
     h5 {
@@ -70,6 +57,33 @@
           opacity: 1;
           transform: scale(1);
         }
+      }
+    }
+  }
+
+  .search-element {
+    position: relative;
+    .checked-icon {
+      position: absolute;
+      top: 30px;
+      left: 20px;
+      opacity: 0;
+      transform: scale(0);
+      border-radius: 100%;
+      background: #3f514a;
+      width: 20px;
+      height: 20px;
+      color: white;
+      font-size: 8px;
+      transition: 0.3s;
+    }
+
+    &.selected {
+      background: #f8f8f8;
+
+      .checked-icon {
+        opacity: 1;
+        transform: scale(1);
       }
     }
   }
@@ -130,6 +144,7 @@
 
         h4 {
           color: #404040;
+          font-size: 1.3rem;
         }
       }
     }

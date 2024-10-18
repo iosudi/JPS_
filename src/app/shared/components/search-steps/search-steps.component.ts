@@ -1,6 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {
+  Cities,
   furnitureStates,
   residentTypes,
   unitTypes,
@@ -23,11 +24,21 @@ export class SearchStepsComponent {
 
   currentStep = 0;
   showSteps = true;
-  cities = [];
+  cities = Cities;
   unitTypes = unitTypes;
   residentTypes = residentTypes;
   furnitureStates = furnitureStates;
+  bedsNumber: number = 0;
+  countNumber: number = 0;
+  bathroomNumber: number = 0;
+
+  selectedCity: string = '';
+  selectedUnit: string = '';
+  selectedFurnitureState: string = '';
+  selectedResidentType: string = '';
+
   shouldNavigateModal: boolean = false;
+
   value: string = 'شهري';
   date: Date | undefined;
   results: any[] = [];
@@ -43,7 +54,7 @@ export class SearchStepsComponent {
     { label: 'شهري', value: 'شهري' },
   ];
 
-  selectedRooms: Array<{ type: string; selectedNumber: number | string }> = [];
+  selectedRooms: any = {};
 
   ngOnInit() {
     this._SearchService.showSearchSteps.subscribe((show) => {
@@ -66,21 +77,43 @@ export class SearchStepsComponent {
   }
 
   selectCity(city: string) {
-    this.currentStep = 2;
     this._SearchService.setCity(city);
+    this.selectedCity = city;
   }
 
   selectUnitType(type: string) {
     this._SearchService.setUnitType(type);
-    this.currentStep = 3;
+    this.selectedUnit = type;
   }
+
   selectFurnitureState(state: string) {
-    this.currentStep = 3;
     this._SearchService.setFurnitureState(state);
+    this.selectedFurnitureState = state;
   }
 
   selectResidentType(type: string) {
     this._SearchService.setResidentType(type);
+    this.selectedResidentType = type;
+  }
+
+  addRoomNumber(type: string) {
+    if (type == 'count') {
+      this.countNumber++;
+    } else if (type == 'beds') {
+      this.bedsNumber++;
+    } else if (type == 'bathrooms') {
+      this.bathroomNumber++;
+    }
+  }
+
+  removeRoomNumber(type: string) {
+    if (type == 'count' && this.countNumber != 0) {
+      this.countNumber--;
+    } else if (type == 'beds' && this.bedsNumber != 0) {
+      this.bedsNumber--;
+    } else if (type == 'bathrooms' && this.bathroomNumber != 0) {
+      this.bathroomNumber--;
+    }
   }
 
   triggerDatePicker(): void {
@@ -88,7 +121,21 @@ export class SearchStepsComponent {
   }
 
   submitFilterOptions() {
-    this.router.navigate(['/search-results']);
+    this.selectedRooms = {
+      count: this.countNumber,
+      beds: this.bedsNumber,
+      bathrooms: this.bathroomNumber,
+    };
+
+    this._SearchService.setRoomsSelection(this.selectedRooms);
+
+    let searchCriteria = this._SearchService.searchCriteria;
+
+    this._SearchService.search(searchCriteria).subscribe({
+      next: (results) => {
+        console.log(results);
+      },
+    });
   }
 
   closeSearchSteps() {

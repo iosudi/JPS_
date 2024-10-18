@@ -10,6 +10,11 @@ import { serviceTypes } from 'src/assets/data/services';
   styleUrls: ['./services.component.scss'],
 })
 export class ServicesComponent implements OnInit {
+  constructor(
+    private _FormBuilder: FormBuilder,
+    private spinner: NgxSpinnerService
+  ) {}
+
   serviceTypes: any[] = serviceTypes;
   whatsappSelected: boolean = false;
   phoneSelected: boolean = false;
@@ -72,10 +77,7 @@ export class ServicesComponent implements OnInit {
   serviceSelection: FormGroup = this._FormBuilder.group({
     service1: [false],
   });
-  constructor(
-    private _FormBuilder: FormBuilder,
-    private spinner: NgxSpinnerService
-  ) {}
+
   selectedServiceIds: number[] = [];
 
   ngOnInit() {

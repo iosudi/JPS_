@@ -103,6 +103,18 @@ export class HomeComponent {
     },
   };
 
+  HotelsBreakpoints = {
+    520: {
+      slidesPerView: 1,
+      spaceBetween: 20,
+    },
+
+    830: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+  };
+
   currentIndex = 0;
   apartmentCardWidth!: number;
   districtCardWidth!: number;

@@ -448,8 +448,7 @@
     <swiper-container
       #hotelSwiper
       [speed]="500"
-      [spaceBetween]="20"
-      [slidesPerView]="2"
+      [breakpoints]="HotelsBreakpoints"
     >
       <swiper-slide *ngFor="let apartment of [1, 2, 3, 4]">
         <div class="card overflow-hidden d-flex justify-content-end p-3">
