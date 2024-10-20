@@ -8,7 +8,8 @@ import { NavigationEnd, Router } from '@angular/router';
 })
 export class MobileNavbarComponent implements OnInit {
   activeLink: string;
-  loggedUser: boolean = false;
+
+  userLogged: string | null = localStorage.getItem('userId');
 
   constructor(private router: Router) {
     this.activeLink = this.router.url;
@@ -36,5 +37,10 @@ export class MobileNavbarComponent implements OnInit {
         this.activeLink = event.urlAfterRedirects;
       }
     });
+
+    console.log(
+      '🚀 ~ MobileNavbarComponent ~ ngOnInit ~ this.userLogged:',
+      this.userLogged
+    );
   }
 }

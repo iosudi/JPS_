@@ -17,9 +17,15 @@ export class JPSServiceService {
     return this.http.get(environment.baseURL + `servicesshowbyid.php?id=${id}`);
   }
 
-  requestService(userInfo: any): Observable<any> {
+  requestService(userInfo: Object): Observable<any> {
     return this.http.post(environment.baseURL + 'servicesrequest.php', {
       userInfo,
+    });
+  }
+
+  sendContactForm(contactForm: Object): Observable<any> {
+    return this.http.post(environment.baseURL + 'contacts.php', {
+      contactForm,
     });
   }
 }

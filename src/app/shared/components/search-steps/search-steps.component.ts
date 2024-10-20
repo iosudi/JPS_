@@ -77,7 +77,7 @@ export class SearchStepsComponent {
   }
 
   selectCity(city: string) {
-    this._SearchService.setCity(city);
+    this._SearchService.setCity(1);
     this.selectedCity = city;
   }
 
@@ -87,7 +87,7 @@ export class SearchStepsComponent {
   }
 
   selectFurnitureState(state: string) {
-    this._SearchService.setFurnitureState(state);
+    this._SearchService.setFurnitureState(2);
     this.selectedFurnitureState = state;
   }
 

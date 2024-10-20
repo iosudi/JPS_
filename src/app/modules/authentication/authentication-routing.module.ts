@@ -13,7 +13,6 @@ const routes: Routes = [
   {
     path: 'auth',
     component: TokenCheckComponent,
-    canActivate: [widthGuard],
   },
   {
     path: 'auth/login',

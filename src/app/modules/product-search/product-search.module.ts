@@ -73,5 +73,6 @@ register();
     CheckboxModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  exports: [ShareModalComponent],
 })
 export class ProductSearchModule {}

@@ -60,7 +60,7 @@
           class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
           routerLink="/auth"
           routerLinkActive="active-link"
-          *ngIf="!loggedUser; else loggedUser"
+          *ngIf="userLogged == null; else userLoggedDropdown"
         >
           <img
             [src]="
@@ -73,7 +73,7 @@
           <p class="mb-0">الحساب</p>
         </a>
 
-        <ng-template #loggedUser>
+        <ng-template #userLoggedDropdown>
           <a
             class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
             routerLink="/account-menu"

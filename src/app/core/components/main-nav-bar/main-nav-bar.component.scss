@@ -93,7 +93,7 @@ nav {
           &.showDropdown {
             max-width: 200px;
             min-width: 200px;
-            max-height: 300px;
+            max-height: 400px;
             pointer-events: all;
           }
 
@@ -111,7 +111,7 @@ nav {
                 color: #000;
               }
             }
-            &.user-auth-options {
+            &.border-bottom {
               border-bottom: 1px solid #959595;
             }
           }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DialogModule } from 'primeng/dialog';
@@ -14,11 +14,11 @@ import { EditNationalIdModalComponent } from './modals/edit-national-id-modal/ed
 import { EditPasswordModalComponent } from './modals/edit-password-modal/edit-password-modal.component';
 import { EditPhoneNumberModalComponent } from './modals/edit-phone-number-modal/edit-phone-number-modal.component';
 import { AccountComponent } from './pages/account/account.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
 import { FavoriteDetailsComponent } from './pages/favorite-details/favorite-details.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { BookingsComponent } from './pages/bookings/bookings.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { BookingsComponent } from './pages/bookings/bookings.component';
     FormsModule,
     DialogModule,
     NgxSpinnerModule,
+    ReactiveFormsModule,
   ],
 })
 export class AccountModule {}

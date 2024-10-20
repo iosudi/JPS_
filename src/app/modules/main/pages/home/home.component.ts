@@ -1,14 +1,17 @@
 import {
   Component,
   ElementRef,
+  inject,
   QueryList,
   Renderer2,
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Apartments } from 'src/app/core/interfaces/apartments';
+import { ShareModalComponent } from 'src/app/modules/product-search/components/share-modal/share-modal.component';
 import { PropertiesCitiesService } from 'src/app/shared/services/properties-cities.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { aboutUs } from 'src/assets/data/about-section';
@@ -27,6 +30,8 @@ export class HomeComponent {
     private _PropertiesCitiesService: PropertiesCitiesService,
     private _UserService: UserService
   ) {}
+
+  private modalService = inject(NgbModal);
 
   userId: string | null = localStorage.getItem('userId');
   favProperties: any[] = [];
@@ -567,7 +572,17 @@ export class HomeComponent {
     }
   }
 
-  addToFav(apartmentId: string): void {
+  openShareModal(event: MouseEvent): void {
+    event.stopPropagation();
+    this.modalService.open(ShareModalComponent, {
+      centered: true,
+      size: 'md',
+      scrollable: true,
+    });
+  }
+
+  addToFav(apartmentId: string, event: MouseEvent): void {
+    event.stopPropagation();
     this._UserService
       .addToFavorites(this.userId, apartmentId.toString())
       .subscribe({

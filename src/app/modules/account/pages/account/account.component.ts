@@ -8,11 +8,16 @@ import { Component } from '@angular/core';
 export class AccountComponent {
   visible: boolean = false;
 
-  showDialog() {
+  showDialog(): void {
     this.visible = true;
   }
 
-  closeDialog() {
+  closeDialog(): void {
     this.visible = false;
+  }
+
+  logout(): void {
+    localStorage.removeItem('userId');
+    location.href = '/home';
   }
 }

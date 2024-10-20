@@ -130,12 +130,17 @@
 
       <div class="col-lg-7">
         <div class="form-container p-5 w-100" data-aos="fade-right">
-          <form>
+          <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <div class="inputs-container mb-5">
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
                   <img src="./assets/imgs/icons/user.png" alt="user icon" />
-                  <input class="py-3" type="text" placeholder="الاسم" />
+                  <input
+                    formControlName="name"
+                    class="py-3"
+                    type="text"
+                    placeholder="الاسم"
+                  />
                 </div>
               </div>
 
@@ -143,6 +148,7 @@
                 <div class="input-field d-flex gap-2 align-items-center px-4">
                   <img src="./assets/imgs/icons/mail.png" alt="mail icon" />
                   <input
+                    formControlName="email"
                     class="py-3"
                     type="email"
                     placeholder="البريد الالكتروني"
@@ -157,14 +163,26 @@
                     alt="speaker icon"
                   />
 
-                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                  <input
+                    formControlName="phone"
+                    class="py-3"
+                    type="text"
+                    placeholder="رقم الموبايل"
+                  />
                 </div>
               </div>
 
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
-                  <select class="py-3" name="requestType" id="requestType">
-                    <option value="requestType" selected>نوع الطلب</option>
+                  <select
+                    formControlName="type"
+                    class="py-3"
+                    name="requestType"
+                    id="requestType"
+                  >
+                    <option value="" selected disabled>نوع الطلب</option>
+                    <option value="شكوى">شكوى</option>
+                    <option value="مساعدة">مساعدة</option>
                   </select>
                 </div>
               </div>
@@ -172,6 +190,7 @@
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
                   <textarea
+                    formControlName="message"
                     rows="7"
                     class="py-3"
                     name="requestContent"

@@ -27,6 +27,11 @@ export class LoginComponent {
   passwordVisibility: boolean = false;
   errorMessage: string = '';
 
+  loginForm: FormGroup = this._FormBuilder.group({
+    email: [''],
+    password: [''],
+  });
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     const windowWidth = (event.target as Window).innerWidth;
@@ -45,11 +50,6 @@ export class LoginComponent {
       });
   }
 
-  loginForm: FormGroup = this._FormBuilder.group({
-    email: [''],
-    password: [''],
-  });
-
   onSubmit(): void {
     if (this.loginForm.status === 'VALID') {
       this.auth.login(this.loginForm.value).subscribe({
@@ -59,6 +59,7 @@ export class LoginComponent {
           } else {
             this.errorMessage = '';
             localStorage.setItem('userId', `${res.user.id}`);
+            window.location.reload();
           }
         },
         error: (error: HttpErrorResponse) => {

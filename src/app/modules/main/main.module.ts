@@ -9,6 +9,7 @@ import { DeferModule } from 'primeng/defer';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { register } from 'swiper/element/bundle';
+import { ProductSearchModule } from '../product-search/product-search.module';
 import { MainRoutingModule } from './main-routing.module';
 import { AboutComponent } from './pages/about/about.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -37,6 +38,7 @@ register();
     SharedModule,
     DeferModule,
     AnimateOnScrollModule,
+    ProductSearchModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

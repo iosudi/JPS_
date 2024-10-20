@@ -12,14 +12,14 @@ export class SearchService {
   showSearchSteps: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   searchCriteria: any = {
-    city: '',
+    city: 0,
     unit: '',
     tenant_type: '',
-    furniture: '',
+    furniture: 0,
     rooms: {},
   };
 
-  setCity(city: string) {
+  setCity(city: number) {
     this.searchCriteria.city = city;
   }
 
@@ -31,7 +31,7 @@ export class SearchService {
     this.searchCriteria.tenant_type = type;
   }
 
-  setFurnitureState(state: string) {
+  setFurnitureState(state: number) {
     this.searchCriteria.furniture = state;
   }
 
@@ -43,6 +43,9 @@ export class SearchService {
   }
 
   search(searchData: object): Observable<any> {
-    return this.http.put(environment.baseURL + 'searchresults.php', searchData);
+    return this.http.post(
+      environment.baseURL + 'searchresults.php',
+      searchData
+    );
   }
 }
