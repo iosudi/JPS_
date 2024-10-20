@@ -6,22 +6,19 @@
     </p>
   </div>
 
-  <form>
+  <form [formGroup]="editPhoneNumber" (ngSubmit)="onSubmit()">
     <div class="input-box my-3">
       <label for="newName" class="fw-semibold mb-2">رقم الهاتف</label>
       <div class="input-field d-flex gap-2 align-items-center px-4">
-        <input type="text" class="py-1" name="newName" />
+        <input
+          formControlName="phone"
+          type="text"
+          class="py-1"
+          name="newName"
+        />
       </div>
     </div>
 
-    <div class="input-box my-3">
-      <label for="confirmName" class="fw-semibold mb-2"
-        >كلمة المرور الحاليه</label
-      >
-      <div class="input-field d-flex gap-2 align-items-center px-4">
-        <input type="text" class="py-1" name="confirmName" />
-      </div>
-    </div>
     <div class="d-flex justify-content-start">
       <button class="btn secondary-btn me-auto rounded-3">حفظ التغييرات</button>
     </div>

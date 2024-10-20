@@ -13,6 +13,10 @@ export class EditUserInformationService {
     return this.http.put(environment.baseURL + 'usersname.php', userData);
   }
 
+  editPhoneNumber(userPhone: object): Observable<any> {
+    return this.http.put(environment.baseURL + 'usersphone.php', userPhone);
+  }
+
   editPassword(userPassword: object): Observable<any> {
     return this.http.put(
       environment.baseURL + 'userspassword.php',
