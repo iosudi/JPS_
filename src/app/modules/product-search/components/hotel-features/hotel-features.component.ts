@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { apartmentFeatures } from 'docs/assets/data/apartments';
 import { filter } from 'rxjs';
+import { apartmentFeatures } from 'src/assets/data/apartments';
 
 @Component({
   selector: 'app-hotel-features',
