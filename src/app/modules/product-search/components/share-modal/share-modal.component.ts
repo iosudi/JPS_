@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 
 @Component({
@@ -10,8 +11,7 @@ import { filter } from 'rxjs';
 })
 export class ShareModalComponent implements OnInit {
   activeModal = inject(NgbActiveModal);
-  copied = false;
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.router.events
@@ -27,19 +27,28 @@ export class ShareModalComponent implements OnInit {
     const currentUrl = window.location.href;
 
     navigator.clipboard
-      .writeText(currentUrl)
-      .then(() => {
-        this.copied = true;
-
-        //  Hide the copied message after a delay
-        setTimeout(() => {
-          this.copied = false;
-        }, 2000);
+      .readText()
+      .then((clipboardContent) => {
+        if (clipboardContent === currentUrl) {
+          this.toastr.error('URL is already in clipboard');
+        } else {
+          navigator.clipboard
+            .writeText(currentUrl)
+            .then(() => {
+              this.toastr.success('URL copied to clipboard');
+            })
+            .catch((err) => {
+              console.error('Failed to copy the URL: ', err);
+              this.toastr.error('Failed to copy the URL');
+            });
+        }
       })
       .catch((err) => {
-        console.error('Failed to copy the URL: ', err);
+        console.error('Error accessing clipboard: ', err);
+        this.toastr.error('Error reading clipboard');
       });
   }
+
   closeShareModal() {
     this.activeModal.close();
   }

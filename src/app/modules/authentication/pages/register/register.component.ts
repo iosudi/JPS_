@@ -1,4 +1,12 @@
-import { Component, HostListener, inject, Optional } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  Optional,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControlOptions,
@@ -7,6 +15,7 @@ import {
 } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 
@@ -16,17 +25,21 @@ import { AuthService } from 'src/app/shared/services/auth.service';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  passwordVisibility: boolean = false;
-  confirmPasswordVisibility: boolean = false;
-
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private renderer: Renderer2,
+    private toastr: ToastrService
   ) {}
 
   private modalService = inject(NgbModal);
+
+  @ViewChild('submitBtn') submitBtn!: ElementRef;
+
+  passwordVisibility: boolean = false;
+  confirmPasswordVisibility: boolean = false;
 
   registerForm: FormGroup = this._FormBuilder.group(
     {
@@ -75,10 +88,32 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
+    this.renderer.setStyle(
+      this.submitBtn.nativeElement,
+      'pointer-events',
+      'none'
+    );
+    this.renderer.setAttribute(
+      this.submitBtn.nativeElement,
+      'disabled',
+      'true'
+    );
+
     if (this.registerForm.status === 'VALID') {
       this.auth.register(this.registerForm.value).subscribe({
         next: (res) => {
-          console.log(res);
+          if (res.status === 'success') {
+            this.toastr.success(res.message);
+          }
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
         },
         error: (error) => {
           console.error(error);

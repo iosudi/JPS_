@@ -57,6 +57,8 @@
 
     <button
       class="btn secondary-btn d-flex align-items-center gap-2 py-2 px-4 mb-5"
+      [disabled]="loginForm.invalid"
+      #submitBtn
     >
       <i class="fa-solid fa-arrow-right"></i>
       تسجيل الدخول

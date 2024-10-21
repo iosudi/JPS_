@@ -10,6 +10,7 @@ import {
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { ShareModalComponent } from 'src/app/modules/product-search/components/share-modal/share-modal.component';
 import { PropertiesCitiesService } from 'src/app/shared/services/properties-cities.service';
@@ -28,7 +29,8 @@ export class HomeComponent {
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
     private _PropertiesCitiesService: PropertiesCitiesService,
-    private _UserService: UserService
+    private _UserService: UserService,
+    private toastr: ToastrService
   ) {}
 
   private modalService = inject(NgbModal);
@@ -588,10 +590,12 @@ export class HomeComponent {
       .subscribe({
         next: (res) => {
           this.favProperties.push(apartmentId);
+          this.toastr.success(res.message);
+
           console.log(res);
         },
         error: (error) => {
-          console.error(error);
+          this.toastr.error(error.error.error);
         },
       });
   }

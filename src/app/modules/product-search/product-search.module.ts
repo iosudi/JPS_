@@ -3,6 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DeferModule } from 'primeng/defer';
@@ -71,6 +72,9 @@ register();
     DeferModule,
     CalendarModule,
     CheckboxModule,
+    ShareButtonsModule.withConfig({
+      debug: true,
+    }),
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   exports: [ShareModalComponent],
