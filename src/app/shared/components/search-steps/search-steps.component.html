@@ -24,8 +24,8 @@
       <div class="cities mb-5 overflow-hidden">
         <div
           class="city search-element"
-          [class.selected]="city.title === selectedCity"
-          (click)="selectCity(city.title)"
+          [class.selected]="city.id === selectedCity"
+          (click)="selectCity(city.id)"
           *ngFor="let city of cities"
         >
           <div
@@ -195,8 +195,8 @@
           >
             <div
               class="state search-element px-5 d-flex justify-content-center flex-column"
-              [class.selected]="furnitureState.title === selectedFurnitureState"
-              (click)="selectFurnitureState(furnitureState.title)"
+              [class.selected]="furnitureState.flag === selectedFurnitureState"
+              (click)="selectFurnitureState(furnitureState.flag)"
             >
               <div
                 class="checked-icon d-flex align-items-center justify-content-center"

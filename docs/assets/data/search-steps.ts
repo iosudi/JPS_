@@ -1,25 +1,31 @@
 export const Cities = [
   {
+    id: 1,
     cityImage: './assets/imgs/map.png',
     title: 'اكتوبر',
   },
   {
+    id: 2,
     cityImage: './assets/imgs/map.png',
     title: 'حي الاشجار ٦ اكتوبر',
   },
   {
+    id: 3,
     cityImage: './assets/imgs/map.png',
     title: 'حي الفردوس اكتوبر',
   },
   {
+    id: 4,
     cityImage: './assets/imgs/map.png',
     title: 'اكتوبر الجديدة غرب المطار',
   },
   {
+    id: 5,
     cityImage: './assets/imgs/map.png',
     title: 'اكتوبر فيسفال سيتي ',
   },
   {
+    id: 6,
     cityImage: './assets/imgs/map.png',
     title: 'اكتوبر فيسفال سيتي ',
   },
@@ -69,10 +75,12 @@ export const residentTypes = [
 
 export const furnitureStates = [
   {
+    flag: 1,
     icon: './assets/imgs/icons/Furnished.png',
     title: 'مفروش',
   },
   {
+    flag: 0,
     icon: './assets/imgs/icons/Unfurnished.png',
     title: 'غير مفروش',
   },

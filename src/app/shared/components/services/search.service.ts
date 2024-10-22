@@ -11,12 +11,19 @@ export class SearchService {
 
   showSearchSteps: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
+  searchResultApartments: BehaviorSubject<any[]> = new BehaviorSubject<any[]>(
+    []
+  );
+
   searchCriteria: any = {
     city: 0,
     unit: '',
     tenant_type: '',
     furniture: 0,
-    rooms: {},
+    room_type: 'ras',
+    rooms: 0,
+    beds: 3,
+    bathrooms: 0,
   };
 
   setCity(city: number) {
@@ -35,10 +42,10 @@ export class SearchService {
     this.searchCriteria.furniture = state;
   }
 
-  setRoomsSelection(
-    roomsSelection: Array<{ type: string; selectedNumber: number | string }>
-  ) {
-    this.searchCriteria.rooms = roomsSelection;
+  setRoomsSelection(rooms: number, beds: number, bathrooms: number) {
+    this.searchCriteria.rooms = rooms;
+    this.searchCriteria.beds = beds;
+    this.searchCriteria.bathrooms = bathrooms;
     console.log(this.searchCriteria);
   }
 

@@ -32,10 +32,10 @@ export class SearchStepsComponent {
   countNumber: number = 0;
   bathroomNumber: number = 0;
 
-  selectedCity: string = '';
+  selectedCity!: number;
   selectedUnit: string = '';
-  selectedFurnitureState: string = '';
   selectedResidentType: string = '';
+  selectedFurnitureState!: number;
 
   shouldNavigateModal: boolean = false;
 
@@ -53,8 +53,6 @@ export class SearchStepsComponent {
     { label: 'يومي', value: 'يومي' },
     { label: 'شهري', value: 'شهري' },
   ];
-
-  selectedRooms: any = {};
 
   ngOnInit() {
     this._SearchService.showSearchSteps.subscribe((show) => {
@@ -76,9 +74,9 @@ export class SearchStepsComponent {
     });
   }
 
-  selectCity(city: string) {
-    this._SearchService.setCity(1);
-    this.selectedCity = city;
+  selectCity(cityId: number) {
+    this._SearchService.setCity(cityId);
+    this.selectedCity = cityId;
   }
 
   selectUnitType(type: string) {
@@ -86,8 +84,8 @@ export class SearchStepsComponent {
     this.selectedUnit = type;
   }
 
-  selectFurnitureState(state: string) {
-    this._SearchService.setFurnitureState(2);
+  selectFurnitureState(state: number) {
+    this._SearchService.setFurnitureState(state);
     this.selectedFurnitureState = state;
   }
 
@@ -121,19 +119,24 @@ export class SearchStepsComponent {
   }
 
   submitFilterOptions() {
-    this.selectedRooms = {
-      count: this.countNumber,
-      beds: this.bedsNumber,
-      bathrooms: this.bathroomNumber,
-    };
-
-    this._SearchService.setRoomsSelection(this.selectedRooms);
+    this._SearchService.setRoomsSelection(
+      this.countNumber,
+      this.bedsNumber,
+      this.bathroomNumber
+    );
 
     let searchCriteria = this._SearchService.searchCriteria;
 
     this._SearchService.search(searchCriteria).subscribe({
-      next: (results) => {
-        console.log(results);
+      next: (res) => {
+        console.log(
+          '🚀 ~ SearchStepsComponent ~ this._SearchService.search ~ res:',
+          res
+        );
+        if (res.data.length > 0) {
+          this._SearchService.searchResultApartments.next(res.data);
+          console.log(this._SearchService.searchResultApartments);
+        }
       },
     });
   }

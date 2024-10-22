@@ -12,13 +12,10 @@
   >
     <div class="details d-flex gap-2 align-items-center">
       <div class="image">
-        <img
-          src="./assets/imgs/WhatsApp Image 2024-06-03 at 21.05.40_d562eefe.jpg"
-          alt="Profile Image"
-        />
+        <img [src]="avatarURL" alt="Profile Image" />
       </div>
       <div class="account-name">
-        <h2 class="h5">عادل سعودي</h2>
+        <h2 class="h5">{{ username }}</h2>
         <p class="mb-0">الملف الشخصي</p>
       </div>
     </div>

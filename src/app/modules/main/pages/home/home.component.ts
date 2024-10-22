@@ -591,8 +591,22 @@ export class HomeComponent {
         next: (res) => {
           this.favProperties.push(apartmentId);
           this.toastr.success(res.message);
+        },
+        error: (error) => {
+          this.toastr.error(error.error.error);
+        },
+      });
+  }
 
-          console.log(res);
+  removeFromFav(apartmentId: string, event: MouseEvent): void {
+    event.stopPropagation();
+    const index = this.favProperties.indexOf(apartmentId);
+    this._UserService
+      .removeFormFavorites(this.userId, apartmentId.toString())
+      .subscribe({
+        next: (res) => {
+          this.favProperties.splice(index, 1);
+          this.toastr.success(res.message);
         },
         error: (error) => {
           this.toastr.error(error.error.error);

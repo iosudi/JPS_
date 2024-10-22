@@ -37,6 +37,7 @@
           (change)="onselectFile($event)"
           name="avatarSelection"
         />
+
         <p *ngIf="avatarURL === ''" class="mb-0">قم بإضافة صورة شخصية</p>
       </div>
     </div>
@@ -50,7 +51,7 @@
         >
           <div class="content">
             <h3 class="h4 fw-bold mb-1">الاسم</h3>
-            <p class="mb-0">عادل سعودي محمدين</p>
+            <p class="mb-0">{{ name }}</p>
           </div>
           <button
             class="btn p-0 text-decoration-underline"
@@ -64,7 +65,7 @@
         >
           <div class="content">
             <h3 class="h4 fw-bold mb-1">الايميل</h3>
-            <p class="mb-0">saudi33gg&#64;gmail.com</p>
+            <p class="mb-0">{{ email }}</p>
           </div>
         </div>
         <div
@@ -72,7 +73,7 @@
         >
           <div class="content">
             <h3 class="h4 fw-bold mb-1">رقم الموبايل</h3>
-            <p class="mb-0">01062559379</p>
+            <p class="mb-0">{{ phone }}</p>
           </div>
           <button
             class="btn p-0 text-decoration-underline"
@@ -86,7 +87,7 @@
         >
           <div class="content">
             <h3 class="h4 fw-bold mb-1">الرقم القومي/جواز السفر</h3>
-            <p class="mb-0">1234567899656</p>
+            <p class="mb-0">{{ nationalId }}</p>
           </div>
           <button
             class="btn p-0 text-decoration-underline"

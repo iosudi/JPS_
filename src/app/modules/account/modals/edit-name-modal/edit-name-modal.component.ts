@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { EditUserInformationService } from 'src/app/shared/services/edit-user-information.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class EditNameModalComponent {
   activeModal = inject(NgbActiveModal);
   constructor(
     private _FormBuilder: FormBuilder,
-    private _EditUserInformationService: EditUserInformationService
+    private _EditUserInformationService: EditUserInformationService,
+    private toastr: ToastrService
   ) {}
 
   userId: string | null = localStorage.getItem('userId');
@@ -25,16 +27,19 @@ export class EditNameModalComponent {
   onSubmit(): void {
     if (this.userId != null && this.editUsername.status != 'INVALID') {
       this.editUsername.patchValue({ id: Number(this.userId) });
-      console.log(
-        '🚀 ~ EditNameModalComponent ~ onSubmit ~ this.editUsername.value:',
-        this.editUsername.value
-      );
 
       this._EditUserInformationService
         .editUsername(this.editUsername.value)
         .subscribe({
           next: (res) => {
-            console.log(res);
+            if (res.success) {
+              this.toastr.success('Name updated successfully');
+              this._EditUserInformationService.name.next(
+                this.editUsername.get('name')?.value
+              );
+              this.editUsername.reset();
+              this.activeModal.close();
+            }
           },
           error: (error) => {
             console.error(error);

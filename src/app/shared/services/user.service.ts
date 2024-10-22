@@ -16,6 +16,19 @@ export class UserService {
     });
   }
 
+  removeFormFavorites(
+    userId: string | null,
+    apartmentId: string
+  ): Observable<any> {
+    return this._HttpClient.post(
+      environment.baseURL + `removefavoriteproperties.php`,
+      {
+        userid: userId,
+        propertyid: apartmentId,
+      }
+    );
+  }
+
   getFavorites(userId: string | null): Observable<any> {
     return this._HttpClient.get(
       environment.baseURL + `favoriteproperties.php?userid=${userId}`

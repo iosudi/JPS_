@@ -37,10 +37,5 @@ export class MobileNavbarComponent implements OnInit {
         this.activeLink = event.urlAfterRedirects;
       }
     });
-
-    console.log(
-      '🚀 ~ MobileNavbarComponent ~ ngOnInit ~ this.userLogged:',
-      this.userLogged
-    );
   }
 }

@@ -130,16 +130,15 @@
               <div
                 class="like d-flex justify-content-between align-items-center my-4"
               >
-                <div
-                  class="heart-icon"
-                  (click)="addToFav(apartment.id, $event)"
-                >
+                <div class="heart-icon">
                   <i
                     *ngIf="favProperties.includes(apartment.id)"
+                    (click)="removeFromFav(apartment.id, $event)"
                     class="fa-solid fa-heart"
                   ></i>
                   <i
                     *ngIf="!favProperties.includes(apartment.id)"
+                    (click)="addToFav(apartment.id, $event)"
                     class="fa-regular fa-heart"
                   ></i>
                 </div>

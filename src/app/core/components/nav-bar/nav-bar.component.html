@@ -57,7 +57,15 @@
         class="profile-dropdown-btn d-flex align-items-center justify-content-between gap-3 rounded-5"
       >
         <i class="fa-solid fa-bars"></i>
-        <img src="./assets/imgs/icons/online-user.png" alt="Profile Picture" />
+        <img
+          src="./assets/imgs/icons/online-user.png"
+          alt="Profile Picture"
+          *ngIf="avatarURL == ''; else userPFP"
+        />
+
+        <ng-template #userPFP>
+          <img [src]="avatarURL" alt="Profile Picture" />
+        </ng-template>
 
         <div
           class="dropdown-menu"

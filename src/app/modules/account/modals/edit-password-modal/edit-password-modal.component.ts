@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { EditUserInformationService } from 'src/app/shared/services/edit-user-information.service';
 
 @Component({
@@ -10,8 +12,11 @@ import { EditUserInformationService } from 'src/app/shared/services/edit-user-in
 export class EditPasswordModalComponent {
   constructor(
     private _FormBuilder: FormBuilder,
-    private _EditUserInformationService: EditUserInformationService
+    private _EditUserInformationService: EditUserInformationService,
+    private toastr: ToastrService
   ) {}
+
+  activeModal = inject(NgbActiveModal);
 
   userId: string | null = localStorage.getItem('userId');
 
@@ -24,16 +29,17 @@ export class EditPasswordModalComponent {
   onSubmit(): void {
     if (this.userId != null && this.editPassword.status != 'INVALID') {
       this.editPassword.patchValue({ id: Number(this.userId) });
-      console.log(
-        '🚀 ~ EditNameModalComponent ~ onSubmit ~ this.editPassword.value:',
-        this.editPassword.value
-      );
 
       this._EditUserInformationService
         .editPassword(this.editPassword.value)
         .subscribe({
           next: (res) => {
             console.log(res);
+            if (res.success) {
+              this.toastr.success('Password changed successfully!');
+              this.editPassword.reset();
+              this.activeModal.close();
+            }
           },
           error: (error) => {
             console.error(error);

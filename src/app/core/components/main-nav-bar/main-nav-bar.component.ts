@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/modules/authentication/pages/login/login.component';
 import { RegisterComponent } from 'src/app/modules/authentication/pages/register/register.component';
+import { EditUserInformationService } from 'src/app/shared/services/edit-user-information.service';
 
 @Component({
   selector: 'app-main-nav-bar',
@@ -9,11 +10,27 @@ import { RegisterComponent } from 'src/app/modules/authentication/pages/register
   styleUrls: ['./main-nav-bar.component.scss'],
 })
 export class MainNavBarComponent {
+  constructor(
+    private _EditUserInformationService: EditUserInformationService
+  ) {}
   private modalService = inject(NgbModal);
   dropdown_active: boolean = false;
   visible: boolean = false;
 
   userLogged: string | null = localStorage.getItem('userId');
+
+  avatarURL: string = '';
+
+  ngOnInit(): void {
+    this._EditUserInformationService.getUserData().subscribe({
+      next: (res) => {
+        this.avatarURL = res.data.image;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    });
+  }
 
   toggleDropdown(): void {
     this.dropdown_active = !this.dropdown_active;

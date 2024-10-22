@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EditUserInformationService } from 'src/app/shared/services/edit-user-information.service';
 
 @Component({
   selector: 'app-account',
@@ -7,6 +8,24 @@ import { Component } from '@angular/core';
 })
 export class AccountComponent {
   visible: boolean = false;
+  username: string = '';
+  avatarURL: string = '';
+
+  constructor(
+    private _EditUserInformationService: EditUserInformationService
+  ) {}
+
+  ngOnInit(): void {
+    this._EditUserInformationService.getUserData().subscribe({
+      next: (res) => {
+        this.avatarURL = res.data.image;
+        this.username = res.data.name;
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
+    });
+  }
 
   showDialog(): void {
     this.visible = true;

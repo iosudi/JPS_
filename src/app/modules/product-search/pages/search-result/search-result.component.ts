@@ -32,6 +32,7 @@ export class SearchResultComponent implements OnInit {
   /* Sorting Selection */
   sorting: any[] | undefined;
   selectedSorting: any | undefined;
+
   ngOnInit() {
     this.apartmentsType = [
       { name: 'شقة' },
