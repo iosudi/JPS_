@@ -51,16 +51,15 @@
           <p class="fw-normal mb-0">
             هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
           </p>
-          <form>
+          <form [formGroup]="sendFeedbackForm" (ngSubmit)="onSubmit()">
             <div
               dir="ltr"
               class="rating d-flex flex-column justify-content-center align-items-center"
             >
-              <h3 class="fw-normal mb-0 mt-4">4.5 / 5</h3>
+              <h3 class="fw-normal mb-0 mt-4">{{ currentRate }} / 5</h3>
               <ngb-rating
-                [(rate)]="currentRate"
+                formControlName="rating"
                 [max]="maxRate"
-                [readonly]="readonly"
                 (rateChange)="updateRating($event)"
               >
                 <ng-template let-fill="fill">
@@ -128,13 +127,14 @@
                 class="p-3"
                 name="reviewContent"
                 id="reviewContent"
+                formControlName="feedback"
                 rows="5"
                 placeholder="تعليقك ......"
               ></textarea>
               <p>10 /500 كلمة</p>
             </div>
 
-            <button class="btn secondary-btn fw-light py-2 px-4">
+            <button class="btn secondary-btn fw-light py-2 px-4" type="submit">
               <i class="fa-solid fa-star"></i>
               اكتب تعليقك
             </button>
@@ -145,7 +145,7 @@
       <div class="col-lg-8">
         <div class="reviews px-5">
           <div class="heading d-flex justify-content-between">
-            <h4>10 تقييمات</h4>
+            <h4>{{ reviews.length }} تقييمات</h4>
             <button class="btn secondary-btn px-4 py-2 fw-light">
               اكتب تعليقك
             </button>
@@ -158,22 +158,23 @@
             >
               <div class="review d-flex gap-3">
                 <div class="image">
-                  <img [src]="review.userProfileIcon" alt="" />
+                  <img
+                    src="./assets/imgs/About Imgs/crew/1.png"
+                    alt="profile image"
+                  />
                 </div>
                 <div class="review-details">
                   <div class="stars">
                     <i
-                      [class.rating-color]="review.stars >= num"
+                      [class.rating-color]="review.rating >= num"
                       *ngFor="let num of [1, 2, 3, 4, 5]"
                       class="fa-solid fa-star"
                     ></i>
                     <h5 class="name fw-bolder">
                       {{ review.name }}
                     </h5>
-                    <p class="date">
-                      {{ review.date }}
-                    </p>
-                    <p class="content">{{ review.reviewBody }}</p>
+                    <p class="date">20/12/2022</p>
+                    <p class="content">{{ review.feedback }}</p>
                   </div>
                 </div>
               </div>

@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Aos from 'aos';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { InfoService } from 'src/app/shared/services/info.service';
 import { JPSServiceService } from 'src/app/shared/services/jps-service.service';
 
@@ -15,8 +22,12 @@ export class ContactComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private _InfoService: InfoService,
     private _FormBuilder: FormBuilder,
-    private _JPSServiceService: JPSServiceService
+    private _JPSServiceService: JPSServiceService,
+    private toastr: ToastrService,
+    private renderer: Renderer2
   ) {}
+
+  @ViewChild('submitBtn') submitBtn!: ElementRef;
 
   expandedIndex: number | null = null;
   providerFaq: any[] = [];
@@ -66,18 +77,19 @@ export class ContactComponent implements OnInit {
 
   onSubmit(): void {
     if (this.contactForm.status === 'VALID') {
-      console.log(
-        '🚀 ~ ContactComponent ~ onSubmit ~ this.contactForm:',
-        this.contactForm
-      );
+      this.disabledBtn();
       this._JPSServiceService
         .sendContactForm(this.contactForm.value)
         .subscribe({
           next: () => {
+            this.enabledBtn();
+
             this.contactForm.reset();
-            alert('Your message has been sent successfully.');
+            this.toastr.success('Your message has been sent successfully.');
           },
           error: (error) => {
+            this.enabledBtn();
+            this.toastr.error('Something wrong happened, Try again later');
             console.error('Error:', error);
           },
         });
@@ -88,6 +100,28 @@ export class ContactComponent implements OnInit {
 
   toggleExpand(index: number): void {
     this.expandedIndex = this.expandedIndex === index ? null : index;
+  }
+
+  disabledBtn(): void {
+    this.renderer.setStyle(
+      this.submitBtn.nativeElement,
+      'pointer-events',
+      'none'
+    );
+    this.renderer.setAttribute(
+      this.submitBtn.nativeElement,
+      'disabled',
+      'true'
+    );
+  }
+
+  enabledBtn(): void {
+    this.renderer.setStyle(
+      this.submitBtn.nativeElement,
+      'pointer-events',
+      'auto'
+    );
+    this.renderer.removeAttribute(this.submitBtn.nativeElement, 'disabled');
   }
 
   showFaq(faqName: string): void {

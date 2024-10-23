@@ -95,34 +95,43 @@
 
       <div class="col-12">
         <div class="form-container p-5 w-100">
-          <form [formGroup]="serviceSelection">
+          <form [formGroup]="serviceSelection" (ngSubmit)="onSubmit()">
             <div class="user-information mb-5">
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
-                  <img src="./assets/imgs/icons/user.png" alt="user icon" />
-                  <input class="py-3" type="text" placeholder="الاسم" />
+                  <img src="./assets/imgs/icons/user.png" alt=" icon" />
+                  <input
+                    formControlName="name"
+                    class="py-3"
+                    type="text"
+                    placeholder="الاسم"
+                  />
                 </div>
               </div>
 
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
-                  <img
-                    src="./assets/imgs/icons/speaker.png"
-                    alt="speaker icon"
-                  />
+                  <img src="./assets/imgs/icons/speaker.png" alt=" icon" />
 
-                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                  <input
+                    formControlName="phone"
+                    class="py-3"
+                    type="text"
+                    placeholder="رقم الموبايل"
+                  />
                 </div>
               </div>
 
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
-                  <img
-                    src="./assets/imgs/icons/speaker.png"
-                    alt="speaker icon"
-                  />
+                  <img src="./assets/imgs/icons/home-black.png" alt=" icon" />
 
-                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                  <input
+                    formControlName="propertyid"
+                    class="py-3"
+                    type="text"
+                    placeholder="رقم الوحدة"
+                  />
                 </div>
               </div>
             </div>
@@ -135,13 +144,13 @@
                 <div class="col-lg-2 col-6">
                   <div
                     class="contact-method p-2 d-flex gap-2 align-items-center"
-                    [class.selected]="whatsappSelected"
+                    [class.selected]="contactMethod === 'whatsapp'"
                     (click)="toggleContactMethod('whatsapp')"
                   >
                     <input
-                      formControlName="service1"
                       id="whatsapp"
-                      type="checkbox"
+                      [checked]="contactMethod === 'whatsapp'"
+                      type="radio"
                     />
                     <i class="fa-brands fa-whatsapp"></i>
                     <h5 class="form-label fw-normal mb-0">عن طريق واتس اب</h5>
@@ -149,14 +158,14 @@
                 </div>
                 <div class="col-lg-2 col-6">
                   <div
-                    [class.selected]="phoneSelected"
+                    [class.selected]="contactMethod === 'phone'"
                     (click)="toggleContactMethod('phone')"
                     class="contact-method p-2 d-flex gap-2 align-items-center"
                   >
                     <input
-                      formControlName="service1"
-                      id="whatsapp"
-                      type="checkbox"
+                      id="phone"
+                      [checked]="contactMethod === 'phone'"
+                      type="radio"
                     />
                     <i class="fa-solid fa-phone"></i>
                     <h5 class="form-label fw-normal mb-0">عن طريق الهاتف</h5>
@@ -175,17 +184,14 @@
                   *ngFor="let service of serviceTypes"
                 >
                   <div
-                    [ngClass]="{ selected: isChecked(service.id) }"
+                    [ngClass]="{ selected: selectedServiceId === service.id }"
                     (click)="toggleCheckbox(service.id)"
                     class="form-element p-4"
                   >
                     <input
-                      formControlName="service1"
-                      [checked]="isChecked(service.id)"
+                      [checked]="selectedServiceId === service.id"
                       (change)="toggleCheckbox(service.id)"
-                      id="service{{ service.id }}"
-                      type="checkbox"
-                      id="service1"
+                      type="radio"
                     />
                     <div
                       class="service-icon mb-2 d-flex justify-content-between align-items-center flex-row-reverse"
@@ -210,8 +216,9 @@
               class="form-controls d-flex align-items-center justify-content-between mb-3"
             >
               <button
-                (click)="getInputValue()"
                 class="btn secondary-btn d-flex justify-content-center align-items-center gap-2"
+                type="submit"
+                #submitBtn
               >
                 <i class="fa-solid fa-arrow-right"></i>
                 تأكيد طلب الخدمة

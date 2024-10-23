@@ -29,6 +29,7 @@ register();
     NgbRatingModule,
     CoreModule,
     NgxSpinnerModule,
+    ReactiveFormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

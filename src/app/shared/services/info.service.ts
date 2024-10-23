@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
@@ -18,9 +18,13 @@ export class InfoService {
   getTeamMembers(): Observable<any> {
     return this.http.get(environment.baseURL + 'teammembers.php');
   }
-  sendFeedbacks(feedback: any): Observable<any> {
-    return this.http.post(environment.baseURL + 'feedbackspost.php', {
-      feedback,
+  sendFeedbacks(feedback: Object): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json', // Set the appropriate content type
+    });
+
+    return this.http.post(environment.baseURL + 'feedbackspost.php', feedback, {
+      headers: headers,
     });
   }
   getFeedbacks(): Observable<any> {

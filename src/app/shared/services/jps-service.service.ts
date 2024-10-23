@@ -18,14 +18,13 @@ export class JPSServiceService {
   }
 
   requestService(userInfo: Object): Observable<any> {
-    return this.http.post(environment.baseURL + 'servicesrequest.php', {
-      userInfo,
-    });
+    return this.http.post(
+      environment.baseURL + 'servicesrequest.php',
+      userInfo
+    );
   }
 
   sendContactForm(contactForm: Object): Observable<any> {
-    return this.http.post(environment.baseURL + 'contacts.php', {
-      contactForm,
-    });
+    return this.http.post(environment.baseURL + 'contacts.php', contactForm);
   }
 }
