@@ -35,7 +35,6 @@ export class HomeComponent {
 
   private modalService = inject(NgbModal);
 
-  userId: string | null = localStorage.getItem('userId');
   favProperties: any[] = [];
 
   apartments: Apartments[] = apartments;
@@ -193,7 +192,7 @@ export class HomeComponent {
       },
     });
 
-    this._UserService.getFavorites(this.userId).subscribe({
+    this._UserService.getFavorites().subscribe({
       next: (res) => {
         res.properties.forEach((property: any) => {
           this.favProperties.push(property.id);
@@ -585,32 +584,28 @@ export class HomeComponent {
 
   addToFav(apartmentId: string, event: MouseEvent): void {
     event.stopPropagation();
-    this._UserService
-      .addToFavorites(this.userId, apartmentId.toString())
-      .subscribe({
-        next: (res) => {
-          this.favProperties.push(apartmentId);
-          this.toastr.success(res.message);
-        },
-        error: (error) => {
-          this.toastr.error(error.error.error);
-        },
-      });
+    this._UserService.addToFavorites(apartmentId.toString()).subscribe({
+      next: (res) => {
+        this.favProperties.push(apartmentId);
+        this.toastr.success(res.message);
+      },
+      error: (error) => {
+        this.toastr.error(error.error.error);
+      },
+    });
   }
 
   removeFromFav(apartmentId: string, event: MouseEvent): void {
     event.stopPropagation();
     const index = this.favProperties.indexOf(apartmentId);
-    this._UserService
-      .removeFormFavorites(this.userId, apartmentId.toString())
-      .subscribe({
-        next: (res) => {
-          this.favProperties.splice(index, 1);
-          this.toastr.success(res.message);
-        },
-        error: (error) => {
-          this.toastr.error(error.error.error);
-        },
-      });
+    this._UserService.removeFormFavorites(apartmentId.toString()).subscribe({
+      next: (res) => {
+        this.favProperties.splice(index, 1);
+        this.toastr.success(res.message);
+      },
+      error: (error) => {
+        this.toastr.error(error.error.error);
+      },
+    });
   }
 }

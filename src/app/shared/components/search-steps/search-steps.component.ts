@@ -32,10 +32,12 @@ export class SearchStepsComponent {
   countNumber: number = 0;
   bathroomNumber: number = 0;
 
-  selectedCity!: number;
+  selectedCity!: number | null;
+  selectedCityName!: string;
   selectedUnit: string = '';
   selectedResidentType: string = '';
-  selectedFurnitureState!: number;
+  selectedFurnitureState!: number | null;
+  selectedFurnitureStateName!: string;
 
   shouldNavigateModal: boolean = false;
 
@@ -74,9 +76,10 @@ export class SearchStepsComponent {
     });
   }
 
-  selectCity(cityId: number) {
+  selectCity(cityId: number, cityName: string) {
     this._SearchService.setCity(cityId);
     this.selectedCity = cityId;
+    this.selectedCityName = cityName;
   }
 
   selectUnitType(type: string) {
@@ -84,9 +87,10 @@ export class SearchStepsComponent {
     this.selectedUnit = type;
   }
 
-  selectFurnitureState(state: number) {
+  selectFurnitureState(state: number, stateName: string) {
     this._SearchService.setFurnitureState(state);
     this.selectedFurnitureState = state;
+    this.selectedFurnitureStateName = stateName;
   }
 
   selectResidentType(type: string) {
@@ -129,12 +133,18 @@ export class SearchStepsComponent {
 
     this._SearchService.search(searchCriteria).subscribe({
       next: (res) => {
-        console.log(
-          '🚀 ~ SearchStepsComponent ~ this._SearchService.search ~ res:',
-          res
-        );
-        if (res.data.length > 0) {
-          this._SearchService.searchResultApartments.next(res.data);
+        if (res.properties.length > 0) {
+          this._SearchService.updateSearchResults(res.properties);
+          this.router.navigate(['/search-results']);
+
+          this.selectedCity = null;
+          this.selectedUnit = '';
+          this.selectedResidentType = '';
+          this.selectedFurnitureState = null;
+          this.countNumber = 0;
+          this.bedsNumber = 0;
+          this.bathroomNumber = 0;
+
           console.log(this._SearchService.searchResultApartments);
         }
       },

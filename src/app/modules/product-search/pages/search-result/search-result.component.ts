@@ -1,8 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Apartments } from 'src/app/core/interfaces/apartments';
-import { searchResultApartments } from 'src/assets/data/apartments';
+import { SearchService } from 'src/app/shared/components/services/search.service';
 import { AdvancedSearchFilterModalComponent } from '../../components/advanced-search-filter-modal/advanced-search-filter-modal.component';
 
 @Component({
@@ -11,10 +10,10 @@ import { AdvancedSearchFilterModalComponent } from '../../components/advanced-se
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private _SearchService: SearchService) {}
 
   currentPage = 1;
-  apartments: Apartments[] = searchResultApartments;
+  apartments: any[] = [];
   private modalService = inject(NgbModal);
 
   /*Apartment Type Selection*/
@@ -34,6 +33,13 @@ export class SearchResultComponent implements OnInit {
   selectedSorting: any | undefined;
 
   ngOnInit() {
+    this._SearchService.searchResultApartments.subscribe({
+      next: (apartments) => {
+        this.apartments = apartments;
+        console.log(apartments);
+      },
+    });
+
     this.apartmentsType = [
       { name: 'شقة' },
       { name: 'فلة' },

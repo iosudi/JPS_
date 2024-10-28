@@ -130,18 +130,21 @@
               <div
                 class="like d-flex justify-content-between align-items-center my-4"
               >
-                <div class="heart-icon">
-                  <i
-                    *ngIf="favProperties.includes(apartment.id)"
-                    (click)="removeFromFav(apartment.id, $event)"
-                    class="fa-solid fa-heart"
-                  ></i>
-                  <i
-                    *ngIf="!favProperties.includes(apartment.id)"
-                    (click)="addToFav(apartment.id, $event)"
-                    class="fa-regular fa-heart"
-                  ></i>
+                <div
+                  class="heart-icon"
+                  (click)="removeFromFav(apartment.id, $event)"
+                  *ngIf="favProperties.includes(apartment.id)"
+                >
+                  <i class="fa-solid fa-heart"></i>
                 </div>
+                <div
+                  class="heart-icon"
+                  (click)="addToFav(apartment.id, $event)"
+                  *ngIf="!favProperties.includes(apartment.id)"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </div>
+
                 <div class="popular-badge mx-3">
                   <i class="fa-solid fa-star"></i> مميزة
                 </div>
@@ -302,16 +305,17 @@
                           <img [src]="property.images[0]" alt="apartment" />
                           <div
                             class="heart-icon"
-                            (click)="addToFav(property.id, $event)"
+                            (click)="removeFromFav(property.id, $event)"
+                            *ngIf="favProperties.includes(property.id)"
                           >
-                            <i
-                              *ngIf="favProperties.includes(property.id)"
-                              class="fa-solid fa-heart"
-                            ></i>
-                            <i
-                              *ngIf="!favProperties.includes(property.id)"
-                              class="fa-regular fa-heart"
-                            ></i>
+                            <i class="fa-solid fa-heart"></i>
+                          </div>
+                          <div
+                            class="heart-icon"
+                            (click)="addToFav(property.id, $event)"
+                            *ngIf="!favProperties.includes(property.id)"
+                          >
+                            <i class="fa-regular fa-heart"></i>
                           </div>
 
                           <div
@@ -470,7 +474,7 @@
 
           <div class="apartment-preview mb-2">
             <img
-              src="../../../../../assets/imgs/popular-apartments/1.png"
+              src="./assets/imgs/popular-apartments/1.png"
               alt="apartment image"
               class="apartment-image"
             />
@@ -489,15 +493,7 @@
               <div class="dot"></div>
             </div>
 
-            <div
-              class="host-preview d-flex align-items-center justify-content-center p-3"
-              (click)="navigateToHost($event)"
-            >
-              <img
-                src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
-                alt="host avatar"
-              />
-            </div> -->
+             -->
           </div>
 
           <div class="apartment-information">
@@ -590,7 +586,7 @@
       <span class="fw-bold">نصائح من JPS</span> للعملاء والمالكين
     </h2>
 
-    <div class="row">
+    <div class="row g-4">
       <div class="col-lg-6">
         <div class="clients-advices rounded-4 p-5 h-100">
           <h4 class="mb-5">نصائح للعملاء</h4>

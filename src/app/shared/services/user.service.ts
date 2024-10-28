@@ -9,29 +9,42 @@ import { environment } from 'src/environments/environment.development';
 export class UserService {
   constructor(private _HttpClient: HttpClient) {}
 
-  addToFavorites(userId: string | null, apartmentId: string): Observable<any> {
+  userId: string | null = localStorage.getItem('userId');
+
+  addFavList(listName: any): Observable<any> {
+    console.log(listName, this.userId);
+    return this._HttpClient.post(environment.baseURL + `favoritelistsadd.php`, {
+      userid: this.userId,
+      list_name: listName.listName,
+    });
+  }
+
+  getFavList(): Observable<any> {
+    return this._HttpClient.get(
+      environment.baseURL + `favoritelistsshow.php?userid=${this.userId}`
+    );
+  }
+
+  addToFavorites(apartmentId: string): Observable<any> {
     return this._HttpClient.post(environment.baseURL + `addtofavorites.php`, {
-      userid: userId,
+      userid: this.userId,
       propertyid: apartmentId,
     });
   }
 
-  removeFormFavorites(
-    userId: string | null,
-    apartmentId: string
-  ): Observable<any> {
+  removeFormFavorites(apartmentId: string): Observable<any> {
     return this._HttpClient.post(
       environment.baseURL + `removefavoriteproperties.php`,
       {
-        userid: userId,
+        userid: this.userId,
         propertyid: apartmentId,
       }
     );
   }
 
-  getFavorites(userId: string | null): Observable<any> {
+  getFavorites(): Observable<any> {
     return this._HttpClient.get(
-      environment.baseURL + `favoriteproperties.php?userid=${userId}`
+      environment.baseURL + `favoriteproperties.php?userid=${this.userId}`
     );
   }
 }

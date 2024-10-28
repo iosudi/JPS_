@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
@@ -18,6 +18,7 @@ import { SliderModule } from 'primeng/slider';
 import { CoreModule } from 'src/app/core/core.module';
 import { register } from 'swiper/element/bundle';
 import { AddDateRangeComponent } from './components/add-date-range/add-date-range.component';
+import { AddFavListComponent } from './components/add-fav-list/add-fav-list.component';
 import { AddToFavComponent } from './components/add-to-fav/add-to-fav.component';
 import { AdvancedSearchFilterModalComponent } from './components/advanced-search-filter-modal/advanced-search-filter-modal.component';
 import { ApartmentFeaturesComponent } from './components/apartment-features/apartment-features.component';
@@ -52,12 +53,14 @@ register();
     HotelDetailsComponent,
     CircularSliderComponent,
     HotelFeaturesComponent,
+    AddFavListComponent,
   ],
   imports: [
     CommonModule,
     ProductSearchRoutingModule,
     DropdownModule,
     CoreModule,
+    ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
     SliderModule,

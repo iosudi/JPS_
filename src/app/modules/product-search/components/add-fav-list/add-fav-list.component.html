@@ -1,0 +1,9 @@
+<form class="p-5" [formGroup]="listName" (ngSubmit)="addList()">
+  <input
+    type="text"
+    formControlName="listName"
+    class="d-block mb-2 form-control"
+    placeholder="اسم قائمة المفضلة "
+  />
+  <button type="submit" class="btn secondary-btn mt-2">اضافة قائمة</button>
+</form>

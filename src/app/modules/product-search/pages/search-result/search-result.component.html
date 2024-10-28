@@ -190,7 +190,7 @@
         >
           <div class="apartment-preview mb-2">
             <img
-              [src]="apartment.image"
+              [src]="apartment.images[0]"
               alt="apartment image"
               class="apartment-image"
             />
@@ -228,7 +228,7 @@
                 <h3 class="h6 my-1">شقة مفروشة فاخرة للإيجار</h3>
                 <p class="location mb-0 d-flex gap-1 align-items-center">
                   <i class="fa-solid fa-location-dot"></i>
-                  {{ apartment.location }}
+                  {{ apartment.city_name }}
                 </p>
               </div>
 
@@ -240,11 +240,11 @@
             <div class="chips-badges d-flex gap-2 my-3">
               <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/bath-green.png" alt="bath icon" />
-                {{ apartment.bath }}
+                {{ apartment.bathrooms }}
               </div>
               <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/bed-green.png" alt="bed icon" />
-                {{ apartment.bed }}
+                {{ apartment.beds }}
               </div>
               <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/door-green.png" alt="door icon" />
@@ -252,12 +252,12 @@
               </div>
               <div class="chip d-flex align-items-center gap-2">
                 <img src="./assets/imgs/icons/doc-green.png" alt="docs icon" />
-                {{ apartment.months }}
+                {{ apartment.contractperiod }}
               </div>
             </div>
 
             <h3 class="h6 fw-bold price mb-0 text-end mb-3">
-              ٤٩٬٩٩٩ جنيه/ شهرياً
+              {{ apartment.price | currency : " " }} جنيه/ شهرياً
             </h3>
 
             <div

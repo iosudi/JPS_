@@ -25,7 +25,7 @@
         <div
           class="city search-element"
           [class.selected]="city.id === selectedCity"
-          (click)="selectCity(city.id)"
+          (click)="selectCity(city.id, city.title)"
           *ngFor="let city of cities"
         >
           <div
@@ -196,7 +196,9 @@
             <div
               class="state search-element px-5 d-flex justify-content-center flex-column"
               [class.selected]="furnitureState.flag === selectedFurnitureState"
-              (click)="selectFurnitureState(furnitureState.flag)"
+              (click)="
+                selectFurnitureState(furnitureState.flag, furnitureState.title)
+              "
             >
               <div
                 class="checked-icon d-flex align-items-center justify-content-center"
@@ -367,8 +369,10 @@
           ابحث
         </button>
         <p class="mb-0">
-          {{ selectedCity }} ,{{ selectedUnit }} ,{{ selectedResidentType }} ,
-          {{ selectedFurnitureState }} {{ bedsNumber }} سرير ,{{
+          {{ selectedCityName }} ,{{ selectedUnit }} ,{{
+            selectedResidentType
+          }}
+          , {{ selectedFurnitureStateName }} {{ bedsNumber }} سرير ,{{
             countNumber
           }}
           اوضة , {{ bathroomNumber }} حمام
