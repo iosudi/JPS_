@@ -7,17 +7,25 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
+import {
+  FormBuilder,
+  FormControlOptions,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { ShareModalComponent } from 'src/app/modules/product-search/components/share-modal/share-modal.component';
+import { JPSRatingModalComponent } from 'src/app/shared/components/jps-rating-modal/jps-rating-modal.component';
+import { AuthService } from 'src/app/shared/services/auth.service';
+import { InfoService } from 'src/app/shared/services/info.service';
 import { PropertiesCitiesService } from 'src/app/shared/services/properties-cities.service';
 import { UserService } from 'src/app/shared/services/user.service';
 import { aboutUs } from 'src/assets/data/about-section';
 import { apartments } from 'src/assets/data/apartments';
-import { Testimonials } from 'src/assets/data/testimonials';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +38,10 @@ export class HomeComponent {
     private spinner: NgxSpinnerService,
     private _PropertiesCitiesService: PropertiesCitiesService,
     private _UserService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private _FormBuilder: FormBuilder,
+    private auth: AuthService,
+    private _InfoService: InfoService
   ) {}
 
   private modalService = inject(NgbModal);
@@ -148,7 +159,7 @@ export class HomeComponent {
   @ViewChild('testimonialsDot4') testimonialsDot4!: ElementRef;
   testimonialsIndex: number = 0;
   dotHeight: number = 0;
-  testimonials: any[] = Testimonials;
+  testimonials: any[] = [];
   testimonialsOptions: OwlOptions = {
     loop: false,
     rtl: true,
@@ -169,9 +180,43 @@ export class HomeComponent {
   //Form Variables
   passwordVisibility: boolean = false;
   confirmPasswordVisibility: boolean = false;
+  roles: any[] | undefined;
+  errMsg!: string;
+
+  @ViewChild('submitBtn') submitBtn!: ElementRef;
+
+  registerForm: FormGroup = this._FormBuilder.group(
+    {
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.pattern('^[a-zA-Z0-9 ]+$'),
+        ],
+      ],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required]],
+      nationalid: ['', [Validators.required]],
+      account_type: ['', [Validators.required]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(
+            '^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d\\s!@#$%^&*()_+\\-=\\[\\]{};:\'",.<>?]+$'
+          ),
+        ],
+      ],
+      confirm_password: [''],
+    },
+    { validators: [this.checkPasswordMatch] } as FormControlOptions
+  );
 
   ngOnInit(): void {
     this.spinner.show();
+    this.roles = [{ name: 'مالك' }, { name: 'ضيف' }];
     document.body.style.overflow = 'hidden'; // Prevent body scrolling
 
     this._PropertiesCitiesService.getSpecialProperties().subscribe({
@@ -180,6 +225,16 @@ export class HomeComponent {
       },
       error: (err) => {
         console.error('Error getting special apartments:', err);
+      },
+    });
+
+    this._InfoService.getFeedbacks().subscribe({
+      next: (res) => {
+        console.log(res);
+        this.testimonials = res.feedbacks.slice(0, 4);
+      },
+      error: (err) => {
+        console.error('Error getting feedbacks:', err);
       },
     });
 
@@ -573,6 +628,17 @@ export class HomeComponent {
     }
   }
 
+  checkPasswordMatch(group: FormGroup): void {
+    let password = group.get('password');
+    let confirmPassword = group.get('confirm_password');
+
+    if (confirmPassword?.value == '') {
+      confirmPassword?.setErrors({ required: true });
+    } else if (confirmPassword?.value != password?.value) {
+      confirmPassword?.setErrors({ notMatch: true });
+    }
+  }
+
   openShareModal(event: MouseEvent): void {
     event.stopPropagation();
     this.modalService.open(ShareModalComponent, {
@@ -580,6 +646,53 @@ export class HomeComponent {
       size: 'md',
       scrollable: true,
     });
+  }
+
+  openFeedbackForm(): void {
+    this.modalService.open(JPSRatingModalComponent, {
+      centered: true,
+      scrollable: true,
+    });
+  }
+
+  onSubmit(): void {
+    this.renderer.setStyle(
+      this.submitBtn.nativeElement,
+      'pointer-events',
+      'none'
+    );
+    this.renderer.setAttribute(
+      this.submitBtn.nativeElement,
+      'disabled',
+      'true'
+    );
+
+    if (this.registerForm.status === 'VALID') {
+      this.auth.register(this.registerForm.value).subscribe({
+        next: (res) => {
+          if (res.status === 'success') {
+            this.toastr.success(res.message);
+            this.registerForm.reset();
+            this.errMsg = '';
+          } else if (res.status === 'error') {
+            this.errMsg = res.message;
+          }
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
+        },
+        error: (error) => {
+          console.error(error);
+          console.log(this.registerForm);
+        },
+      });
+    }
   }
 
   addToFav(apartmentId: string, event: MouseEvent): void {

@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
 import { InputOtpModule } from 'primeng/inputotp';
 import { CoreModule } from 'src/app/core/core.module';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
@@ -30,6 +31,7 @@ import { TokenCheckComponent } from './pages/token-check/token-check.component';
     FormsModule,
     CoreModule,
     InputOtpModule,
+    DropdownModule,
   ],
 })
 export class AuthenticationModule {}

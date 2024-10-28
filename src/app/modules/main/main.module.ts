@@ -6,6 +6,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AnimateOnScrollModule } from 'primeng/animateonscroll';
 import { DeferModule } from 'primeng/defer';
+import { DropdownModule } from 'primeng/dropdown';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { register } from 'swiper/element/bundle';
@@ -39,6 +40,7 @@ register();
     DeferModule,
     AnimateOnScrollModule,
     ProductSearchModule,
+    DropdownModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

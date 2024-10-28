@@ -84,6 +84,7 @@
                     class="form-control py-1"
                     name="accuracyNumber"
                     id="accuracyNumber"
+                    formControlName="accuracy"
                   />
                 </div>
               </div>
@@ -101,6 +102,7 @@
                     class="form-control py-1"
                     name="easyNumber"
                     id="easyNumber"
+                    formControlName="ease"
                   />
                 </div>
               </div>
@@ -117,6 +119,7 @@
                     class="form-control py-1"
                     name="performanceNumber"
                     id="performanceNumber"
+                    formControlName="response_level"
                   />
                 </div>
               </div>
@@ -158,10 +161,7 @@
             >
               <div class="review d-flex gap-3">
                 <div class="image">
-                  <img
-                    src="./assets/imgs/About Imgs/crew/1.png"
-                    alt="profile image"
-                  />
+                  <img [src]="review.user_image" alt="profile image" />
                 </div>
                 <div class="review-details">
                   <div class="stars">
@@ -171,9 +171,9 @@
                       class="fa-solid fa-star"
                     ></i>
                     <h5 class="name fw-bolder">
-                      {{ review.name }}
+                      {{ review.user_name }}
                     </h5>
-                    <p class="date">20/12/2022</p>
+                    <p class="date">{{ review.created_at }}</p>
                     <p class="content">{{ review.feedback }}</p>
                   </div>
                 </div>

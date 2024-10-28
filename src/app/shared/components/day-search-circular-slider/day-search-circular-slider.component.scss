@@ -1,0 +1,117 @@
+.slider {
+  width: 230px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  box-shadow: 0px -2.29px 13.76px 0px #0000000a inset,
+    0px 9.17px 18.35px 0px #00000029 inset, 0px -4.59px 4.59px 0px #00000038,
+    0px -2.29px 1.72px 0px #ffffff inset;
+  border-radius: 100%;
+  background: linear-gradient(180deg, #e8e8e8 11.22%, #f0f0f0 88.33%);
+
+  overflow: hidden; /* Add this to ensure the circle fits inside */
+
+  .knob {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      180deg,
+      #f2f2f2 6.36%,
+      #f7f7f7 50.45%,
+      #ffffff 94.55%
+    );
+
+    box-shadow: 0px 3.44px 3.44px 0px #ffffff inset,
+      0px -4.59px 4.59px 0px #00000038 inset, 0px 11.47px 18.35px 0px #0000001a,
+      0px 11.47px 11.47px 0px #0000000f, 0px 11.47px 6.88px 0px #0000000a;
+
+    .text {
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .number {
+        font-size: 60px;
+        line-height: 50px;
+      }
+      .word {
+        font-size: 1.1rem;
+      }
+    }
+  }
+  .pointer {
+    position: absolute;
+    width: 50%;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    transform-origin: right center;
+    .thumb {
+      position: absolute;
+      top: calc(50% + 5px);
+      transform: translateY(-50%);
+      left: 10px;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background: linear-gradient(0deg, #ffffff, #ffffff),
+        linear-gradient(
+          180deg,
+          #ffffff 4.55%,
+          #fdfdfd 25.92%,
+          #f1f1f1 49.55%,
+          #e0e0e0 71.39%,
+          #dedede 94.55%
+        );
+      box-shadow: 0px 1.31px 0.65px 0px #ffffff inset,
+        0.65px 1.31px 0.65px 0px #ffffff inset,
+        -0.65px 1.31px 0.65px 0px #ffffff inset,
+        0px -1.31px 0.65px 0px #00000014 inset,
+        -0.65px -1.31px 0.65px 0px #0000000f inset,
+        0.65px -1.31px 0.65px 0px #00000029 inset,
+        0px 1.31px 2.62px 0px #0000002e;
+      cursor: grab;
+    }
+  }
+  circle {
+    fill: none;
+    &:nth-child(1) {
+      stroke: transparent;
+      stroke-dasharray: 660;
+      stroke-width: 50px;
+      transform-origin: center;
+      transform: rotate(-90deg);
+      stroke-linecap: round;
+    }
+
+    &:nth-child(2) {
+      stroke-width: 45px;
+      transform-origin: center;
+      transform: rotate(-90deg);
+      stroke-linecap: round;
+    }
+  }
+}
+
+@media (max-width: 455px) {
+  .duration-text {
+    span {
+      font-size: 1rem !important;
+    }
+  }
+}

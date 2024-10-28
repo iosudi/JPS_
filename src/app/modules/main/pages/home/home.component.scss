@@ -1331,6 +1331,9 @@ span {
           p {
             font-size: 23px;
           }
+          .feedback-content {
+            min-height: 100px;
+          }
 
           .review-author {
             .author {
@@ -1417,6 +1420,25 @@ span {
             &.eye {
               cursor: pointer;
             }
+          }
+
+          p-dropdown ::ng-deep {
+            width: 100%;
+            .p-dropdown {
+              width: 100%;
+              border-radius: 0px !important;
+              background-color: transparent;
+              border: 0;
+              padding-top: 0.5rem;
+              padding-bottom: 0.5rem;
+              &:hover {
+                border: 0;
+              }
+            }
+          }
+
+          &.error {
+            border: 1px solid #dc3545;
           }
           &:focus-within {
             background-color: #d7e9e2;

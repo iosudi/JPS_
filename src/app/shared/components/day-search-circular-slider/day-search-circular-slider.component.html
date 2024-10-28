@@ -1,0 +1,52 @@
+<div class="slider mx-auto" #slider>
+  <div class="knob">
+    <div
+      class="text d-flex align-items-center justify-content-center flex-column"
+    >
+      <span class="number">{{ selectedDay }}</span>
+      <span class="word">ايام</span>
+    </div>
+  </div>
+  <div class="pointer" [ngStyle]="pointerStyle">
+    <div
+      class="thumb"
+      (mousedown)="startDragging($event)"
+      (touchstart)="startDragging($event)"
+    ></div>
+  </div>
+
+  <svg class="progress-bar" width="230" height="230">
+    <circle class="progress-circle" cx="115" cy="115" r="90"></circle>
+    <circle
+      id="circle2"
+      class="progress-circle"
+      cx="115"
+      cy="115"
+      r="90"
+      style="stroke: url(#gradient); stroke-linecap: round"
+      [attr.stroke-dasharray]="dashArray"
+      [attr.stroke-dashoffset]="dashOffset"
+    ></circle>
+    <defs>
+      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="60%" style="stop-color: #aed6c6" />
+        <stop offset="70%" style="stop-color: #a5c3b7" />
+        <stop offset="75%" style="stop-color: #9eb8ae" />
+        <stop offset="80%" style="stop-color: #8aaea0" />
+        <stop offset="85%" style="stop-color: #738d83" />
+        <stop offset="95%" style="stop-color: #728b81" />
+        <stop offset="100%" style="stop-color: #5f736b" />
+      </linearGradient>
+    </defs>
+  </svg>
+</div>
+
+<div class="duration-text text-center mt-4">
+  <span class="fs-5 from fw-light text-decoration-underline"
+    >الاحد، 5 أغسطس</span
+  >
+  <span class="fs-5 fw-medium"> الي </span>
+  <span class="fs-5 to fw-light text-decoration-underline"
+    >الأحد، 1 ديسمبر</span
+  >
+</div>

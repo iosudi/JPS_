@@ -436,8 +436,9 @@
   </div>
 </section>
 
-<!-- popular Hotels section -->
-<section
+<!-- popular hotels section -->
+
+<!-- <section
   appAnimateOnScroll
   class="popular-hotels overflow-hidden p-5 my-4 position-relative"
 >
@@ -481,19 +482,6 @@
             <div class="offer-value">
               <p class="mb-0 fw-bold">خصم 25%</p>
             </div>
-
-            <!-- <div class="arrow d-flex align-items-center justify-content-center">
-              <i class="fa-solid fa-chevron-right"></i>
-            </div>
-
-            <div class="paginator d-flex gap-1 mt-3">
-              <div class="dot active"></div>
-              <div class="dot"></div>
-              <div class="dot"></div>
-              <div class="dot"></div>
-            </div>
-
-             -->
           </div>
 
           <div class="apartment-information">
@@ -523,7 +511,7 @@
       </swiper-slide>
     </swiper-container>
   </div>
-</section>
+</section> -->
 
 <!-- Gallery section
 <section class="gallery overflow-hidden py-4">
@@ -829,6 +817,7 @@
           </p>
           <button
             class="btn ms-auto primary-btn d-flex align-items-center gap-3 fw-bold"
+            (click)="openFeedbackForm()"
           >
             <i class="fa-solid fa-arrow-right"></i>
             قم بتقييمنا اللآن
@@ -881,25 +870,27 @@
                       alt="quote symbol"
                       class="quote-symbol"
                     />
-                    <p class="my-4">{{ testimonial.content }}</p>
+                    <div class="feedback-content">
+                      <p class="my-4">{{ testimonial.feedback }}</p>
+                    </div>
                     <div
                       class="review-author d-flex justify-content-between align-items-center border-top pt-4"
                     >
                       <div class="author d-flex gap-2 align-items-center">
                         <img
-                          [src]="testimonial.profile_icon"
+                          [src]="testimonial.user_image"
                           alt="profile-icon"
                         />
-                        <h5 class="author-name fw-normal">
-                          {{ testimonial.author }}
+                        <h5 class="author-name fw-normal mb-0">
+                          {{ testimonial.user_name }}
                         </h5>
                       </div>
-                      <div class="rating">
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
+                      <div class="rating" dir="ltr">
+                        <i
+                          [class.rating-color]="testimonial.rating >= num"
+                          *ngFor="let num of [1, 2, 3, 4, 5]"
+                          class="fa-solid fa-star"
+                        ></i>
                       </div>
                     </div>
                   </div>
@@ -945,41 +936,222 @@
       </div>
 
       <div class="col-lg-7">
-        <div class="form-container p-5 w-100">
-          <form>
-            <div class="inputs-container mb-5">
+        <div class="form-container p-5">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="inputs-container mb-3">
+              <!-- user role field -->
               <div class="input-box my-3">
-                <div class="input-field d-flex gap-2 align-items-center px-4">
-                  <img src="./assets/imgs/icons/user.png" alt="user icon" />
-                  <input class="py-3" type="text" placeholder="الاسم" />
+                <div
+                  [class.error]="
+                    registerForm.get('account_type')?.errors &&
+                    registerForm.get('account_type')?.touched
+                  "
+                  class="input-field d-flex gap-2 align-items-center px-4"
+                >
+                  <img src="./assets/imgs/icons/userRole.png" alt="user icon" />
+                  <p-dropdown
+                    formControlName="account_type"
+                    [options]="roles"
+                    optionLabel="name"
+                    optionValue="name"
+                    placeholder="نوع المستخدم"
+                  />
+                </div>
+
+                <div
+                  class="alerts"
+                  *ngIf="
+                    registerForm.get('account_type')?.errors &&
+                    registerForm.get('account_type')?.touched
+                  "
+                >
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="
+                      registerForm.get('account_type')?.getError('required')
+                    "
+                  >
+                    نوع المستخدم مطلوب
+                  </p>
                 </div>
               </div>
+
+              <!-- username field -->
               <div class="input-box my-3">
-                <div class="input-field d-flex gap-2 align-items-center px-4">
+                <div
+                  [class.error]="
+                    registerForm.get('name')?.errors &&
+                    registerForm.get('name')?.touched
+                  "
+                  class="input-field d-flex gap-2 align-items-center px-4"
+                >
+                  <img src="./assets/imgs/icons/user.png" alt="user icon" />
+                  <input
+                    class="py-3"
+                    formControlName="name"
+                    type="text"
+                    placeholder="الاسم"
+                  />
+                </div>
+
+                <div
+                  class="alerts"
+                  *ngIf="
+                    registerForm.get('name')?.errors &&
+                    registerForm.get('name')?.touched
+                  "
+                >
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('name')?.getError('required')"
+                  >
+                    الاسم مطلوب
+                  </p>
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('name')?.getError('minlength')"
+                  >
+                    يجب أن يكون الاسم اكبر من 3 أحرف
+                  </p>
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('name')?.getError('pattern')"
+                  >
+                    يجب أن لا يحتوي الاسم علي حروف مميزة
+                  </p>
+                </div>
+              </div>
+
+              <!-- email field -->
+              <div class="input-box my-3">
+                <div
+                  [class.error]="
+                    registerForm.get('email')?.errors &&
+                    registerForm.get('email')?.touched
+                  "
+                  class="input-field d-flex gap-2 align-items-center px-4"
+                >
                   <img src="./assets/imgs/icons/mail.png" alt="mail icon" />
                   <input
                     class="py-3"
+                    formControlName="email"
                     type="email"
                     placeholder="البريد الالكتروني"
                   />
                 </div>
-              </div>
-              <div class="input-box my-3">
-                <div class="input-field d-flex gap-2 align-items-center px-4">
-                  <img
-                    src="./assets/imgs/icons/speaker.png"
-                    alt="speaker icon"
-                  />
 
-                  <input class="py-3" type="text" placeholder="رقم الموبايل" />
+                <div
+                  class="alerts"
+                  *ngIf="
+                    registerForm.get('email')?.errors &&
+                    registerForm.get('email')?.touched
+                  "
+                >
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('email')?.getError('required')"
+                  >
+                    البريد الالكتروني مطلوب
+                  </p>
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('email')?.getError('email')"
+                  >
+                    البريد الإلكتروني ليس في شكل بريد إلكتروني
+                  </p>
                 </div>
               </div>
+
+              <!-- phone - national number fields -->
+              <div class="input-box d-flex gap-2 my-3">
+                <div class="w-100">
+                  <div
+                    [class.error]="
+                      registerForm.get('phone')?.errors &&
+                      registerForm.get('phone')?.touched
+                    "
+                    class="input-field px-4 d-flex gap-2 align-items-center"
+                  >
+                    <img
+                      src="./assets/imgs/icons/speaker.png"
+                      alt="speaker icon"
+                    />
+
+                    <input
+                      class="py-3"
+                      formControlName="phone"
+                      type="text"
+                      placeholder="رقم الموبايل"
+                    />
+                  </div>
+
+                  <div
+                    class="alerts"
+                    *ngIf="
+                      registerForm.get('phone')?.errors &&
+                      registerForm.get('phone')?.touched
+                    "
+                  >
+                    <p
+                      class="text-danger mb-1"
+                      *ngIf="registerForm.get('phone')?.getError('required')"
+                    >
+                      رقم الهاتف مطلوب
+                    </p>
+                  </div>
+                </div>
+
+                <div class="w-100">
+                  <div
+                    [class.error]="
+                      registerForm.get('nationalid')?.errors &&
+                      registerForm.get('nationalid')?.touched
+                    "
+                    class="d-flex gap-2 align-items-center input-field px-4"
+                  >
+                    <img src="./assets/imgs/icons/id.png" alt="id icon" />
+
+                    <input
+                      class="py-3"
+                      type="text"
+                      formControlName="nationalid"
+                      placeholder="الرقم القومي/جواز السفر"
+                    />
+                  </div>
+
+                  <div
+                    class="alerts"
+                    *ngIf="
+                      registerForm.get('nationalid')?.errors &&
+                      registerForm.get('nationalid')?.touched
+                    "
+                  >
+                    <p
+                      class="text-danger mb-1"
+                      *ngIf="
+                        registerForm.get('nationalid')?.getError('required')
+                      "
+                    >
+                      الرقم القومي/جواز السفر مطلوب
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- password field -->
               <div class="input-box my-3">
-                <div class="input-field d-flex gap-2 align-items-center px-4">
+                <div
+                  [class.error]="
+                    registerForm.get('password')?.errors &&
+                    registerForm.get('password')?.touched
+                  "
+                  class="input-field d-flex gap-2 align-items-center px-4"
+                >
                   <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
                   <input
                     class="py-3"
                     [type]="passwordVisibility ? 'text' : 'password'"
+                    formControlName="password"
                     placeholder="كلمة المرور"
                   />
                   <img
@@ -993,17 +1165,55 @@
                     alt="opened eye icon"
                   />
                 </div>
+
+                <div
+                  class="alerts"
+                  *ngIf="
+                    registerForm.get('password')?.errors &&
+                    registerForm.get('password')?.touched
+                  "
+                >
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('password')?.getError('required')"
+                  >
+                    كملة السر مطلوبة
+                  </p>
+
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('password')?.getError('minlength')"
+                  >
+                    يجب أن تكون كلمة المرور اكبر من 8 حروف
+                  </p>
+
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="registerForm.get('password')?.getError('pattern')"
+                  >
+                    يجب ان يحتوي كلمة المرور علي ارقام واحرف
+                  </p>
+                </div>
               </div>
+
+              <!-- confirm password field -->
               <div class="input-box my-3">
-                <div class="input-field d-flex gap-2 align-items-center px-4">
+                <div
+                  [class.error]="
+                    registerForm.get('confirm_password')?.errors &&
+                    registerForm.get('confirm_password')?.touched
+                  "
+                  class="input-field d-flex gap-2 align-items-center px-4"
+                >
                   <img src="./assets/imgs/icons/lock.png" alt="lock icon" />
                   <input
                     class="py-3"
                     [type]="confirmPasswordVisibility ? 'text' : 'password'"
+                    formControlName="confirm_password"
                     placeholder="تاكيد كلمة المرور"
                   />
                   <img
-                    (click)="togglePasswordVisibility('rePassword')"
+                    (click)="togglePasswordVisibility('confirm_password')"
                     class="eye"
                     [src]="
                       confirmPasswordVisibility
@@ -1013,18 +1223,62 @@
                     alt="eye icon"
                   />
                 </div>
+
+                <div
+                  class="alerts"
+                  *ngIf="
+                    registerForm.get('confirm_password')?.errors &&
+                    registerForm.get('confirm_password')?.touched
+                  "
+                >
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="
+                      registerForm.get('confirm_password')?.getError('required')
+                    "
+                  >
+                    يجب تأكيد كملة المرور
+                  </p>
+
+                  <p
+                    class="text-danger mb-1"
+                    *ngIf="
+                      registerForm.get('confirm_password')?.getError('notMatch')
+                    "
+                  >
+                    كلمة المرور غير متطابقة
+                  </p>
+                </div>
               </div>
+
+              <p
+                class="mb-0 text-danger mx-auto text-center"
+                dir="ltr"
+                *ngIf="errMsg"
+              >
+                {{ errMsg }}
+              </p>
             </div>
+
             <div
               class="form-controls d-flex align-items-center justify-content-between mb-3"
             >
-              <button class="btn secondary-btn">تسجيل حساب</button>
+              <button
+                class="btn secondary-btn"
+                [disabled]="registerForm.invalid"
+                #submitBtn
+              >
+                تسجيل حساب
+              </button>
               <label
-                for="terms"
+                for="termsAndConditions"
                 class="d-flex gap-2 align-items-center fw-ligher"
               >
                 اوفق علي الشروط ولاحكام
-                <input type="checkbox" name="terms" id="terms"
+                <input
+                  type="checkbox"
+                  name="termsAndConditions1"
+                  id="termsAndConditions1"
               /></label>
             </div>
           </form>
@@ -1035,12 +1289,12 @@
             <div class="line"></div>
           </div>
 
-          <div class="social-methods mt-4">
-            <div class="method p-4 my-4 d-flex gap-2 align-items-center">
+          <div class="social-methods">
+            <div class="method w-100 p-3 my-2 d-flex gap-2 align-items-center">
               <img src="./assets/imgs/icons/google.png" alt="google icon" />
               <p class="mb-0 fw-lighter">التسجيل باستخدام جوجل</p>
             </div>
-            <div class="method p-4 d-flex gap-2 align-items-center">
+            <div class="method w-100 p-3 d-flex gap-2 align-items-center">
               <img src="./assets/imgs/icons/facebook.png" alt="facebook icon" />
               <p class="mb-0 fw-lighter">التسجيل باستخدام فيسبوك</p>
             </div>

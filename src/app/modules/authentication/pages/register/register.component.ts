@@ -18,6 +18,7 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-register',
@@ -35,11 +36,15 @@ export class RegisterComponent {
   ) {}
 
   private modalService = inject(NgbModal);
+  roles: any[] | undefined;
+  selectedUserRole: string | undefined;
 
   @ViewChild('submitBtn') submitBtn!: ElementRef;
 
   passwordVisibility: boolean = false;
   confirmPasswordVisibility: boolean = false;
+
+  errMsg!: string;
 
   registerForm: FormGroup = this._FormBuilder.group(
     {
@@ -48,12 +53,13 @@ export class RegisterComponent {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.pattern('^[a-zA-Z0-9]+$'),
+          Validators.pattern('^[a-zA-Z0-9 ]+$'),
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
       nationalid: ['', [Validators.required]],
+      account_type: ['', [Validators.required]],
       password: [
         '',
         [
@@ -77,6 +83,8 @@ export class RegisterComponent {
           this.activeModal.close();
         }
       });
+
+    this.roles = [{ name: 'مالك' }, { name: 'ضيف' }];
   }
 
   @HostListener('window:resize', ['$event'])
@@ -104,6 +112,11 @@ export class RegisterComponent {
         next: (res) => {
           if (res.status === 'success') {
             this.toastr.success(res.message);
+            this.registerForm.reset();
+            this.openLoginForm();
+            this.errMsg = '';
+          } else if (res.status === 'error') {
+            this.errMsg = res.message;
           }
           this.renderer.setStyle(
             this.submitBtn.nativeElement,
@@ -117,6 +130,7 @@ export class RegisterComponent {
         },
         error: (error) => {
           console.error(error);
+          console.log(this.registerForm);
         },
       });
     }
@@ -138,6 +152,20 @@ export class RegisterComponent {
       this.passwordVisibility = !this.passwordVisibility;
     } else if (passwordInput == 'confirm_password') {
       this.confirmPasswordVisibility = !this.confirmPasswordVisibility;
+    }
+  }
+
+  openLoginForm(): void {
+    if (window.innerWidth <= 750) {
+      this.router.navigate(['/auth/login']);
+      this.activeModal.close();
+    } else {
+      this.modalService.open(LoginComponent, {
+        centered: true,
+        backdrop: 'static',
+        scrollable: true,
+      });
+      this.activeModal.close();
     }
   }
 

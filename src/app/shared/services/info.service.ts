@@ -9,6 +9,8 @@ import { environment } from 'src/environments/environment.development';
 export class InfoService {
   constructor(private http: HttpClient) {}
 
+  userId: string | null = localStorage.getItem('userId');
+
   getBuyersFaqs(): Observable<any> {
     return this.http.get(environment.baseURL + 'faqsbuyers.php');
   }
@@ -18,14 +20,25 @@ export class InfoService {
   getTeamMembers(): Observable<any> {
     return this.http.get(environment.baseURL + 'teammembers.php');
   }
-  sendFeedbacks(feedback: Object): Observable<any> {
+  sendFeedbacks(feedback: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json', // Set the appropriate content type
     });
 
-    return this.http.post(environment.baseURL + 'feedbackspost.php', feedback, {
-      headers: headers,
-    });
+    return this.http.post(
+      environment.baseURL + 'feedbackspost.php',
+      {
+        user_id: this.userId,
+        accuracy: feedback.accuracy,
+        ease: feedback.ease,
+        response_level: feedback.response_level,
+        feedback: feedback.feedback,
+        rating: feedback.rating,
+      },
+      {
+        headers: headers,
+      }
+    );
   }
   getFeedbacks(): Observable<any> {
     return this.http.get(environment.baseURL + 'feedbacks.php');

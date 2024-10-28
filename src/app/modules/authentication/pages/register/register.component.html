@@ -8,6 +8,41 @@
   <div class="form-container w-100">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="inputs-container mb-3">
+        <!-- user role field -->
+        <div class="input-box my-3">
+          <div
+            [class.error]="
+              registerForm.get('account_type')?.errors &&
+              registerForm.get('account_type')?.touched
+            "
+            class="input-field d-flex gap-2 align-items-center px-4"
+          >
+            <img src="./assets/imgs/icons/userRole.png" alt="user icon" />
+            <p-dropdown
+              formControlName="account_type"
+              [options]="roles"
+              optionLabel="name"
+              optionValue="name"
+              placeholder="نوع المستخدم"
+            />
+          </div>
+
+          <div
+            class="alerts"
+            *ngIf="
+              registerForm.get('account_type')?.errors &&
+              registerForm.get('account_type')?.touched
+            "
+          >
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('account_type')?.getError('required')"
+            >
+              نوع المستخدم مطلوب
+            </p>
+          </div>
+        </div>
+
         <!-- username field -->
         <div class="input-box my-3">
           <div
@@ -273,6 +308,14 @@
             </p>
           </div>
         </div>
+
+        <p
+          class="mb-0 text-danger mx-auto text-center"
+          dir="ltr"
+          *ngIf="errMsg"
+        >
+          {{ errMsg }}
+        </p>
       </div>
 
       <div

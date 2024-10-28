@@ -27,7 +27,9 @@ export class RatesComponent implements OnInit {
   ) {}
 
   sendFeedbackForm: FormGroup = this._FormBuilder.group({
-    name: ['', Validators.required],
+    accuracy: ['', Validators.required],
+    ease: ['', Validators.required],
+    response_level: ['', Validators.required],
     feedback: ['', Validators.required],
     rating: ['', Validators.required],
   });
