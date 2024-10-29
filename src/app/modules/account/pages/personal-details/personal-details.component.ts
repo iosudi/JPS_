@@ -112,10 +112,12 @@ export class PersonalDetailsComponent {
     if (this.userId != null && this.avatarImage.status != 'INVALID') {
       this._EditUserInformationService.updatePFP(file, this.userId).subscribe({
         next: (response) => {
+          console.log(response);
           this.avatarURL = response.user.image;
         },
         error: (error) => {
           console.error('File upload failed', error);
+          alert('File is to large');
         },
       });
     }

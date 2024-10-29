@@ -19,7 +19,7 @@ export class NavBarComponent {
   visible: boolean = false;
 
   userLogged: string | null = localStorage.getItem('userId');
-  avatarURL: string = '';
+  avatarURL: string | null = null;
 
   ngOnInit(): void {
     this._EditUserInformationService.getUserData().subscribe({

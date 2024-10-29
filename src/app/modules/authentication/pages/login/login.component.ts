@@ -88,13 +88,13 @@ export class LoginComponent {
           );
 
           if (res.status === 'error') {
-            this.errorMessage = 'invalid email or password';
+            this.errorMessage = 'خطأ في الايميل او كلمة السر';
           } else {
             this.errorMessage = '';
             localStorage.setItem('userId', `${res.user.id}`);
             window.location.reload();
 
-            this.toastr.success(res.message);
+            this.toastr.success('تم تسجيل الدخول للحساب بنجاح!');
           }
         },
         error: (error: HttpErrorResponse) => {

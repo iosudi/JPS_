@@ -79,9 +79,12 @@
         id="reviewContent"
         rows="5"
         formControlName="feedback"
+        (input)="onInput($event)"
         placeholder="تعليقك ......"
       ></textarea>
-      <p>10 /500 كلمة</p>
+      <p>
+        {{ feedback.get("feedback")?.value?.length || 0 }} / {{ maxChars }} كلمة
+      </p>
     </div>
 
     <div class="buttons d-flex justify-content-between align-items-center">

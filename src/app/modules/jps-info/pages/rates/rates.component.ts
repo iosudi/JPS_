@@ -13,10 +13,8 @@ import { InfoService } from 'src/app/shared/services/info.service';
 export class RatesComponent implements OnInit {
   currentRate: number = 0;
   maxRate: number = 5;
-
-  userName: string = '';
-
   reviews: any[] = [];
+  maxChars = 500;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -30,25 +28,20 @@ export class RatesComponent implements OnInit {
     accuracy: ['', Validators.required],
     ease: ['', Validators.required],
     response_level: ['', Validators.required],
-    feedback: ['', Validators.required],
+    feedback: ['', [Validators.required, Validators.maxLength(this.maxChars)]],
     rating: ['', Validators.required],
   });
 
   ngOnInit() {
     this.getFeedbacks();
+  }
 
-    this._EditUserInformationService.getUserData().subscribe({
-      next: (res) => {
-        this.userName = res.data.name;
-
-        this.sendFeedbackForm.patchValue({
-          name: this.userName,
-        });
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
+  onInput(event: Event) {
+    const input: any = event.target as HTMLTextAreaElement;
+    if (input.value.length > this.maxChars) {
+      input.value = input.value.slice(0, this.maxChars);
+      this.sendFeedbackForm?.setValue(input.value);
+    }
   }
 
   updateRating(newRate: number): void {

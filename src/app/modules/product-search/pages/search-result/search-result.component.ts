@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SearchService } from 'src/app/shared/components/services/search.service';
 import { AdvancedSearchFilterModalComponent } from '../../components/advanced-search-filter-modal/advanced-search-filter-modal.component';
@@ -10,7 +10,11 @@ import { AdvancedSearchFilterModalComponent } from '../../components/advanced-se
   styleUrls: ['./search-result.component.scss'],
 })
 export class SearchResultComponent implements OnInit {
-  constructor(private router: Router, private _SearchService: SearchService) {}
+  constructor(
+    private router: Router,
+    private _SearchService: SearchService,
+    private route: ActivatedRoute
+  ) {}
 
   currentPage = 1;
   apartments: any[] = [];
@@ -31,13 +35,19 @@ export class SearchResultComponent implements OnInit {
   /* Sorting Selection */
   sorting: any[] | undefined;
   selectedSorting: any | undefined;
+  searchCriteria: any = {};
 
   ngOnInit() {
-    this._SearchService.searchResultApartments.subscribe({
-      next: (apartments) => {
-        this.apartments = apartments;
-        console.log(apartments);
-      },
+    this.route.queryParams.subscribe((params) => {
+      this.searchCriteria = { ...params };
+      this._SearchService.search(this.searchCriteria).subscribe({
+        next: (res) => {
+          if (res.properties.length > 0) {
+            this.apartments = res.properties;
+          }
+        },
+      });
+      console.log('Search Criteria:', this.searchCriteria);
     });
 
     this.apartmentsType = [

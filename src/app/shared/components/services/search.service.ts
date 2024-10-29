@@ -9,15 +9,9 @@ import { environment } from 'src/environments/environment.development';
 export class SearchService {
   private searchResultKey = 'searchResults';
 
-  constructor(private http: HttpClient) {
-    const savedData = localStorage.getItem(this.searchResultKey);
-    const initialData = savedData ? JSON.parse(savedData) : [];
-    this.searchResultApartments = new BehaviorSubject<any[]>(initialData);
-  }
+  constructor(private http: HttpClient) {}
 
   showSearchSteps: BehaviorSubject<boolean> = new BehaviorSubject(false);
-
-  searchResultApartments: BehaviorSubject<any[]>;
 
   searchCriteria: any = {
     city: 0,
@@ -29,12 +23,6 @@ export class SearchService {
     beds: 3,
     bathrooms: 0,
   };
-
-  updateSearchResults(properties: any[]) {
-    this.searchResultApartments.next(properties);
-
-    localStorage.setItem(this.searchResultKey, JSON.stringify(properties));
-  }
 
   setCity(city: number) {
     this.searchCriteria.city = city;

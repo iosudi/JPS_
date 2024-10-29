@@ -60,7 +60,7 @@
         <img
           src="./assets/imgs/icons/online-user.png"
           alt="Profile Picture"
-          *ngIf="avatarURL == ''; else userPFP"
+          *ngIf="avatarURL == null; else userPFP"
         />
 
         <ng-template #userPFP>

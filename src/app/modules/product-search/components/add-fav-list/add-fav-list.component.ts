@@ -17,6 +17,8 @@ export class AddFavListComponent {
   ) {}
   private modalService = inject(NgbModal);
 
+  listsWithProperties: any[] = [];
+
   listName: FormGroup = this._FormBuilder.group({
     listName: ['', Validators.required],
   });
@@ -27,12 +29,50 @@ export class AddFavListComponent {
         next: (res: any) => {
           if (res.success) {
             this.listName.reset();
-            this.toastr.success('Favorite list added successfully!');
+            this.toastr.success('تم اضافة ضائمة مفضلات !');
+
+            this.getFavLists();
           }
-          console.log(res);
         },
         error: (error) => console.error('Error adding favorite list:', error),
       });
     }
+  }
+
+  getFavLists(): void {
+    this._UserService.getFavList().subscribe({
+      next: (res: any) => {
+        this.listsWithProperties = res.playlists.map((list: any) => ({
+          ...list,
+          properties: [],
+        }));
+
+        this.listsWithProperties.forEach((list) => {
+          this.getListsProperties(list.id);
+        });
+        this._UserService.favLists.next(this.listsWithProperties);
+      },
+    });
+  }
+
+  getListsProperties(listId: number): void {
+    this._UserService.getFavListProperties(listId).subscribe({
+      next: (res: any) => {
+        const list = this.listsWithProperties.find((l) => l.id === listId);
+
+        if (list) {
+          list.properties = res.properties.map((property: any) => ({
+            ...property,
+            image:
+              property.images && property.images.length > 0
+                ? property.images[0]
+                : null,
+          }));
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching properties:', err);
+      },
+    });
   }
 }

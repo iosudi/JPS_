@@ -53,7 +53,7 @@ export class RegisterComponent {
         [
           Validators.required,
           Validators.minLength(3),
-          Validators.pattern('^[a-zA-Z0-9 ]+$'),
+          Validators.pattern('^[a-zA-Z0-9\u0600-\u06FF ]+$'),
         ],
       ],
       email: ['', [Validators.required, Validators.email]],
@@ -71,6 +71,7 @@ export class RegisterComponent {
         ],
       ],
       confirm_password: [''],
+      termsAndConditions: [false, Validators.requiredTrue],
     },
     { validators: [this.checkPasswordMatch] } as FormControlOptions
   );
@@ -111,12 +112,15 @@ export class RegisterComponent {
       this.auth.register(this.registerForm.value).subscribe({
         next: (res) => {
           if (res.status === 'success') {
-            this.toastr.success(res.message);
+            this.toastr.success('تم تسجيل حساب في JPS بنجاح !');
             this.registerForm.reset();
             this.openLoginForm();
             this.errMsg = '';
           } else if (res.status === 'error') {
-            this.errMsg = res.message;
+            if (res.message == 'Phone number already exists.')
+              this.errMsg = 'رقم الهاتف موجود بالفعل';
+            else if (res.message == 'E-mail already exists.')
+              this.errMsg = 'الايميل موجود بالفعل';
           }
           this.renderer.setStyle(
             this.submitBtn.nativeElement,

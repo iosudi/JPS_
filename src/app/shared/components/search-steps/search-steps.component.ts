@@ -134,8 +134,9 @@ export class SearchStepsComponent {
     this._SearchService.search(searchCriteria).subscribe({
       next: (res) => {
         if (res.properties.length > 0) {
-          this._SearchService.updateSearchResults(res.properties);
-          this.router.navigate(['/search-results']);
+          this.router.navigate(['/search-results'], {
+            queryParams: searchCriteria,
+          });
 
           this.selectedCity = null;
           this.selectedUnit = '';
@@ -144,8 +145,6 @@ export class SearchStepsComponent {
           this.countNumber = 0;
           this.bedsNumber = 0;
           this.bathroomNumber = 0;
-
-          console.log(this._SearchService.searchResultApartments);
         }
       },
     });

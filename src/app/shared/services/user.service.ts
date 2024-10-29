@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -11,8 +11,9 @@ export class UserService {
 
   userId: string | null = localStorage.getItem('userId');
 
+  favLists: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+
   addFavList(listName: any): Observable<any> {
-    console.log(listName, this.userId);
     return this._HttpClient.post(environment.baseURL + `favoritelistsadd.php`, {
       userid: this.userId,
       list_name: listName.listName,
@@ -22,6 +23,23 @@ export class UserService {
   getFavList(): Observable<any> {
     return this._HttpClient.get(
       environment.baseURL + `favoritelistsshow.php?userid=${this.userId}`
+    );
+  }
+
+  getFavListProperties(listId: number): Observable<any> {
+    return this._HttpClient.get(
+      environment.baseURL + `favoritelistproperties.php?id=${listId}`
+    );
+  }
+
+  addToFavList(listId: number, apartmentId: number): Observable<any> {
+    return this._HttpClient.post(
+      environment.baseURL + `addtofavoritelist.php`,
+      {
+        userid: this.userId,
+        list_id: listId,
+        property_id: apartmentId,
+      }
     );
   }
 

@@ -16,6 +16,7 @@ export class JPSRatingModalComponent {
   currentRate: number = 0;
   maxRate: number = 5;
   readonly: boolean = false;
+  maxChars = 500;
 
   constructor(
     private router: Router,
@@ -28,7 +29,7 @@ export class JPSRatingModalComponent {
     accuracy: ['', Validators.required],
     ease: ['', Validators.required],
     response_level: ['', Validators.required],
-    feedback: ['', Validators.required],
+    feedback: ['', [Validators.required, Validators.maxLength(this.maxChars)]],
     rating: ['', Validators.required],
   });
 
@@ -46,21 +47,21 @@ export class JPSRatingModalComponent {
     this.currentRate = newRate;
   }
 
+  onInput(event: Event) {
+    const input: any = event.target as HTMLTextAreaElement;
+    if (input.value.length > this.maxChars) {
+      input.value = input.value.slice(0, this.maxChars);
+      this.feedback?.setValue(input.value);
+    }
+  }
+
   onSubmit(): void {
-    console.log(
-      '🚀 ~ JPSRatingModalComponent ~ onSubmit ~ this.feedback:',
-      this.feedback
-    );
     if (this.feedback.status === 'VALID') {
       this._InfoService.sendFeedbacks(this.feedback.value).subscribe({
         next: (res) => {
-          console.log(
-            '🚀 ~ JPSRatingModalComponent ~ this._InfoService.sendFeedbacks ~ res:',
-            res
-          );
           if (res.success) {
             this.feedback.reset();
-            this.toastr.success(res.success);
+            this.toastr.success('تمت اضافة تعليقك بنجاح');
           }
         },
         error: (err) => {

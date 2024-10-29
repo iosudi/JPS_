@@ -34,7 +34,7 @@ const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'your-favorites/details',
+    path: 'your-favorites/details/:id',
     component: FavoriteDetailsComponent,
     title: 'Your favorite list details',
     canActivate: [authGuard],
