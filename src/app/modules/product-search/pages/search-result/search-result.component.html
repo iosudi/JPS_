@@ -131,7 +131,7 @@
       <div class="sorting-preview d-flex align-items-start gap-5">
         <div class="title">
           <h1 class="h3 fw-bold mb-1">نتائج البحث</h1>
-          <p class="mb-0">100 من النتائج</p>
+          <p class="mb-0">{{ apartments.length }} من النتائج</p>
         </div>
 
         <p-dropdown
@@ -163,7 +163,10 @@
       </div>
     </div>
 
-    <div class="row gy-sm-5 gy-4 gx-4">
+    <div
+      class="row gy-sm-5 gy-4 gx-4"
+      *ngIf="apartments.length > 0; else emptyApartments"
+    >
       <div
         [ngClass]="{
           'col-lg-6 col-12': isHorizontal,
@@ -179,7 +182,7 @@
                   totalItems: apartments.length
                 }
         "
-        routerLink="/product-details"
+        (click)="productDetails(apartment.id)"
       >
         <div
           class="card p-3"
@@ -285,6 +288,16 @@
         </div>
       </div>
     </div>
+
+    <ng-template #emptyApartments>
+      <h2 class="fs-1 mt-5 mb-4 text-center fw-bold">
+        لم يتم العثور علي وحدات تطابق متطلبات البحث :(
+      </h2>
+
+      <div class="search-field px-3 py-2 mx-auto mb-5">
+        <app-search-bar></app-search-bar>
+      </div>
+    </ng-template>
 
     <div class="d-flex justify-content-center mt-5">
       <pagination-controls

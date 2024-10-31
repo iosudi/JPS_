@@ -1,4 +1,3 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import {
   Component,
   HostListener,
@@ -9,6 +8,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { filter } from 'rxjs';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { OtpCodeComponent } from '../otp-code/otp-code.component';
@@ -25,9 +25,9 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(
     private _FormBuilder: FormBuilder,
     @Optional() public activeModal: NgbActiveModal,
-    private breakpointObserver: BreakpointObserver,
     private router: Router,
-    private auth: AuthService
+    private auth: AuthService,
+    private toastr: ToastrService
   ) {}
 
   forgotPasswordForm: FormGroup = this._FormBuilder.group({
@@ -81,16 +81,12 @@ export class ForgotPasswordComponent implements OnInit {
 
   onSubmit(): void {
     if (this.forgotPasswordForm.status === 'VALID') {
-      console.log(
-        "🚀 ~ ForgotPasswordComponent ~ onSubmit ~ this.forgotPasswordForm.status === 'VALID':",
-        this.forgotPasswordForm
-      );
       this.auth.forgotPassword(this.forgotPasswordForm.value).subscribe({
         next: (res) => {
-          console.log(
-            '🚀 ~ ForgotPasswordComponent ~ this.auth.forgotPassword ~ res:',
-            res
-          );
+          console.log(res);
+          if (res.message) {
+            this.toastr.success('تم ارسال كود للايميل الخاص بك');
+          }
         },
         error: (error) => {
           console.error('Error forgotting password:', error);

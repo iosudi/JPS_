@@ -20,7 +20,7 @@ const routes: Routes = [
     title: 'Hotel Search Results',
   },
   {
-    path: 'product-details',
+    path: 'product-details/:id',
     component: ProductDetailsComponent,
     title: 'Product Details',
   },

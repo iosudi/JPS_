@@ -16,6 +16,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { SliderModule } from 'primeng/slider';
 import { CoreModule } from 'src/app/core/core.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 import { register } from 'swiper/element/bundle';
 import { AddDateRangeComponent } from './components/add-date-range/add-date-range.component';
 import { AddFavListComponent } from './components/add-fav-list/add-fav-list.component';
@@ -75,6 +76,7 @@ register();
     DeferModule,
     CalendarModule,
     CheckboxModule,
+    SharedModule,
     ShareButtonsModule.withConfig({
       debug: true,
     }),

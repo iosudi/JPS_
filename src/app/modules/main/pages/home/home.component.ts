@@ -231,7 +231,6 @@ export class HomeComponent {
 
     this._InfoService.getFeedbacks().subscribe({
       next: (res) => {
-        console.log(res);
         this.testimonials = res.feedbacks.slice(0, 4);
       },
       error: (err) => {
@@ -706,7 +705,7 @@ export class HomeComponent {
     this._UserService.addToFavorites(apartmentId.toString()).subscribe({
       next: (res) => {
         this.favProperties.push(apartmentId);
-        this.toastr.success(res.message);
+        this.toastr.success('تم اضافة الوحدة للتفضيلات');
       },
       error: (error) => {
         this.toastr.error(error.error.error);
@@ -720,7 +719,7 @@ export class HomeComponent {
     this._UserService.removeFormFavorites(apartmentId.toString()).subscribe({
       next: (res) => {
         this.favProperties.splice(index, 1);
-        this.toastr.success(res.message);
+        this.toastr.warning('تم حذف الوحدة من التفضيلات');
       },
       error: (error) => {
         this.toastr.error(error.error.error);

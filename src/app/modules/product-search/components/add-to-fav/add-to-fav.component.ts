@@ -92,6 +92,8 @@ export class AddToFavComponent implements OnInit {
         if (res.success) {
           this.getFavLists();
           this.toastr.success('تم اضافة الوحدة للقائمة بنجاح !');
+        } else if (res.error) {
+          this.toastr.warning('تم اضافة الوحدة للقائمة سابقا');
         }
       },
       error: (err) => {

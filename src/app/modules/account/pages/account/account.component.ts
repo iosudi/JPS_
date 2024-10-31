@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { EditUserInformationService } from 'src/app/shared/services/edit-user-information.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class AccountComponent {
   avatarURL: string = '';
 
   constructor(
-    private _EditUserInformationService: EditUserInformationService
+    private _EditUserInformationService: EditUserInformationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +39,6 @@ export class AccountComponent {
 
   logout(): void {
     localStorage.removeItem('userId');
-    location.href = '/home';
+    this.router.navigate(['/home']);
   }
 }

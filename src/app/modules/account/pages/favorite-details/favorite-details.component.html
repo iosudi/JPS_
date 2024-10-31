@@ -30,7 +30,7 @@
     </button>
   </div>
 
-  <div class="row" *ngIf="apartments.length > 0; else emptyList">
+  <div class="row g-4" *ngIf="apartments.length > 0; else emptyList">
     <div class="col-xl-4 col-md-6" *ngFor="let apartment of apartments">
       <div class="card p-3">
         <div class="apartment-preview mb-2">

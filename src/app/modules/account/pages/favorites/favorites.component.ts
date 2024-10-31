@@ -14,6 +14,7 @@ export class FavoritesComponent {
   home: MenuItem | undefined;
 
   listsWithProperties: any[] = [];
+  defaultApartmentsCount: number = 0;
 
   constructor(
     private spinner: NgxSpinnerService,
@@ -28,6 +29,7 @@ export class FavoritesComponent {
 
     this.spinner.show();
     this.getFavLists();
+    this.getDefaultFavApartments();
 
     setTimeout(() => {
       this.spinner.hide();
@@ -46,6 +48,14 @@ export class FavoritesComponent {
           this.getListsProperties(list.id);
         });
         this._UserService.favLists.next(this.listsWithProperties);
+      },
+    });
+  }
+
+  getDefaultFavApartments(): void {
+    this._UserService.getFavorites().subscribe({
+      next: (res: any) => {
+        this.defaultApartmentsCount = res.properties.length;
       },
     });
   }

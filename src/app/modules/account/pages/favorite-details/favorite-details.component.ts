@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
-import { UserService } from 'src/app/shared/services/user.service';
+import { UserService } from './../../../../shared/services/user.service';
 
 @Component({
   selector: 'app-favorite-details',
@@ -27,12 +27,17 @@ export class FavoriteDetailsComponent {
     this.route.paramMap.subscribe({
       next: (params) => {
         const id: number = Number(params.get('id')) ?? null;
-        this._UserService.getFavListProperties(id).subscribe({
-          next: (res: any) => {
-            console.log(res);
-            this.apartments = res.properties;
-          },
-        });
+        if (id) {
+          this._UserService.getFavListProperties(id).subscribe({
+            next: (res: any) => {
+              if (res.message === 'success') {
+                this.apartments = res.properties;
+              }
+            },
+          });
+        } else {
+          this.getDefaultFavApartments();
+        }
       },
     });
 
@@ -54,5 +59,15 @@ export class FavoriteDetailsComponent {
     setTimeout(() => {
       this.spinner.hide();
     }, 2000);
+  }
+
+  getDefaultFavApartments(): void {
+    this._UserService.getFavorites().subscribe({
+      next: (res: any) => {
+        if (res.message === 'success') {
+          this.apartments = res.properties;
+        }
+      },
+    });
   }
 }

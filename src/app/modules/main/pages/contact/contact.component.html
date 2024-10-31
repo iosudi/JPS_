@@ -206,6 +206,7 @@
               <button
                 class="btn secondary-btn d-flex align-items-center gap-2"
                 #submitBtn
+                [disabled]="contactForm.invalid"
               >
                 <i class="fa-solid fa-arrow-right"></i>
                 ارسل لنا

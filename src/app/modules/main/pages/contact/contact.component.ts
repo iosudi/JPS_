@@ -85,16 +85,16 @@ export class ContactComponent implements OnInit {
             this.enabledBtn();
 
             this.contactForm.reset();
-            this.toastr.success('Your message has been sent successfully.');
+            this.toastr.success('تم ارسال رسالتك بنجاح !');
           },
           error: (error) => {
             this.enabledBtn();
-            this.toastr.error('Something wrong happened, Try again later');
+            this.toastr.error('حدث خطأ ما , قم بالمحاولة لاحقا');
             console.error('Error:', error);
           },
         });
     } else {
-      alert('Please fill in all required fields.');
+      this.toastr.warning('رجاءا املاء الحقول المطلوبة');
     }
   }
 

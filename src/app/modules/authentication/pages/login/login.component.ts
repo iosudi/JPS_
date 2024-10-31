@@ -99,6 +99,15 @@ export class LoginComponent {
         },
         error: (error: HttpErrorResponse) => {
           console.log(error);
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
         },
       });
     }

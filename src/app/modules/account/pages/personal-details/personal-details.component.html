@@ -1,3 +1,8 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  template="<img src='./assets/imgs/new logo animation.gif'/>"
+></ngx-spinner>
+
 <app-main-nav-bar></app-main-nav-bar>
 
 <div class="container">
@@ -16,19 +21,22 @@
         [class.py-5]="avatarURL === ''"
         (click)="fileInput.click()"
       >
-        <div class="image" *ngIf="!avatarURL; else avatarShown">
+        <div class="image" *ngIf="!avatarURL && !isLoading">
           <img
             src="./assets/imgs/icons/upload.png"
             alt="upload icon"
             class="mb-2"
           />
         </div>
-
-        <ng-template #avatarShown>
-          <div class="image avatar">
-            <img [src]="avatarURL" alt="avatar" class="mb-2" />
-          </div>
-        </ng-template>
+        <div
+          class="image d-flex align-items-center justify-content-center"
+          *ngIf="isLoading"
+        >
+          <p class="mb-0 fw-bold">جارٍ رفع الصورة ...</p>
+        </div>
+        <div class="image avatar" *ngIf="avatarURL && !isLoading">
+          <img [src]="avatarURL" alt="avatar" class="mb-2" />
+        </div>
 
         <input
           type="file"
@@ -38,7 +46,9 @@
           name="avatarSelection"
         />
 
-        <p *ngIf="avatarURL === ''" class="mb-0">قم بإضافة صورة شخصية</p>
+        <p *ngIf="!avatarURL && !isLoading" class="mb-0">
+          قم بإضافة صورة شخصية
+        </p>
       </div>
     </div>
 

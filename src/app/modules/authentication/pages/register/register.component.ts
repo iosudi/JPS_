@@ -135,6 +135,15 @@ export class RegisterComponent {
         error: (error) => {
           console.error(error);
           console.log(this.registerForm);
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
         },
       });
     }

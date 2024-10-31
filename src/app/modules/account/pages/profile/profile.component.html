@@ -1,3 +1,8 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  template="<img src='./assets/imgs/new logo animation.gif'/>"
+></ngx-spinner>
+
 <app-main-nav-bar></app-main-nav-bar>
 
 <section class="profile-info">
@@ -21,12 +26,18 @@
             >
               <div class="avatar mb-4">
                 <img
-                  src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
+                  [src]="userData.image"
                   alt="host avatar"
+                  *ngIf="userData.image"
+                />
+                <img
+                  src="./assets/imgs/pfp placeholder.png"
+                  alt="host avatar"
+                  *ngIf="!userData.image"
                 />
               </div>
-              <h3 class="name fw-bold mb-0">كيرلس عادل</h3>
-              <p class="role mb-0">ضيف</p>
+              <h3 class="name fw-bold mb-0">{{ userData.name }}</h3>
+              <p class="role mb-0">{{ userData.accounttype }}</p>
 
               <div class="analysis-overlay py-4 d-flex justify-content-end">
                 <ul class="p-0 m-0 d-flex align-items-center">
@@ -43,7 +54,7 @@
 
       <div class="col-lg-7">
         <div class="host-details">
-          <h1 class="fw-bold mb-4 h2">عن كيرلس عادل</h1>
+          <h1 class="fw-bold mb-4 h2">عن {{ userData.name }}</h1>
           <button
             class="editProfileBtn btn fw-medium py-1 px-4 mb-4 text-decoration-underline"
             routerLink="/account-menu/personal-details"

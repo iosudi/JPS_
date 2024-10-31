@@ -54,24 +54,21 @@
         [spaceBetween]="20"
         [breakpoints]="breakpoints"
       >
-        <swiper-slide *ngFor="let service of serviceTypes">
+        <swiper-slide *ngFor="let service of services">
           <div class="card d-flex flex-column align-items-center">
             <div class="service-preview mb-2">
               <div class="overlay"></div>
-              <img
-                src="./assets/imgs/services_photos/71a3a6c3e5d6ca7e246078534899784e.png"
-              />
+              <img [src]="service.image" alt="service image" />
             </div>
             <div class="card-body">
               <h3
                 class="h4 d-flex align-items-center gap-2 justify-content-center"
               >
-                <img [src]="service.icon" />
-                {{ service.title }}
+                <img [src]="service.icon" alt="icon" />
+                {{ service.name }}
               </h3>
               <p class="mb-0 text-center">
-                هذا النص هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحةهو
-                مثال لنص
+                {{ service.description }}
               </p>
             </div>
           </div>

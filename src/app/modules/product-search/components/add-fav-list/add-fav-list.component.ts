@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/shared/services/user.service';
 
@@ -16,6 +16,7 @@ export class AddFavListComponent {
     private toastr: ToastrService
   ) {}
   private modalService = inject(NgbModal);
+  activeModal = inject(NgbActiveModal);
 
   listsWithProperties: any[] = [];
 
@@ -30,8 +31,8 @@ export class AddFavListComponent {
           if (res.success) {
             this.listName.reset();
             this.toastr.success('تم اضافة ضائمة مفضلات !');
-
             this.getFavLists();
+            this.activeModal.close();
           }
         },
         error: (error) => console.error('Error adding favorite list:', error),

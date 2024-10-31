@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { Features } from 'src/assets/data/about';
@@ -21,6 +22,16 @@ export class ProductDetailsComponent {
   apartments: Apartments[] = searchResultApartments;
   checked: boolean = true;
   private modalService = inject(NgbModal);
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe({
+      next: (paramMap) => {
+        const id = paramMap.get('id');
+        console.log(id);
+      },
+    });
+  }
 
   hideOverlay(): void {
     this.overlayHidden = true;

@@ -1,9 +1,6 @@
 <ngx-spinner
   bdColor="rgba(0, 0, 0, 0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-8bits"
-  [fullScreen]="true"
+  template="<img src='./assets/imgs/new logo animation.gif'/>"
 ></ngx-spinner>
 
 <app-main-nav-bar></app-main-nav-bar>
@@ -95,7 +92,7 @@
   </div>
 </section>
 
-<section class="faqs mb-5 overflow-hidden">
+<section class="faqs my-5 overflow-hidden">
   <div class="container">
     <div class="heading text-center">
       <h3 class="h1 fw-bold mb-3">اسئلة شائعة</h3>
@@ -103,13 +100,28 @@
       <div
         class="buttons d-flex gap-3 align-items-center justify-content-center"
       >
-        <button class="btn active">مؤجر</button>
-        <button class="btn">مستأجر</button>
+        <button
+          class="btn"
+          [ngClass]="{ active: activeFaq == 'buyer' }"
+          (click)="showFaq('buyer')"
+        >
+          مؤجر
+        </button>
+        <button
+          class="btn"
+          [ngClass]="{ active: activeFaq == 'provider' }"
+          (click)="showFaq('provider')"
+        >
+          مستأجر
+        </button>
       </div>
     </div>
 
-    <div class="row gy-4 justify-content-center mt-4">
-      <div class="col-12 w-75" *ngFor="let faq of faqs; let i = index">
+    <div
+      class="row gy-4 justify-content-center mt-4"
+      *ngIf="activeFaq == 'buyer'; else provider"
+    >
+      <div class="col-12 w-75" *ngFor="let faq of buyerFaq; let i = index">
         <div
           class="faq p-4"
           (click)="toggleExpand(i)"
@@ -119,7 +131,7 @@
             class="question gap-2 mb-3 d-flex align-items-center justify-content-between"
           >
             <h4 class="mb-0">
-              <span>{{ faq.id }}.</span> {{ faq.question }}
+              <span>{{ i + 1 }}.</span> {{ faq.question }}
             </h4>
             <i
               class="fa-solid"
@@ -130,13 +142,41 @@
             ></i>
           </div>
           <p class="answer mb-0">
-            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-            النص من مولد النص العربى، إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح
-            لك مولد النص ا
+            {{ faq.answer }}
           </p>
         </div>
       </div>
     </div>
+
+    <ng-template #provider>
+      <div class="row gy-4 justify-content-center mt-4">
+        <div class="col-12 w-75" *ngFor="let faq of providerFaq; let i = index">
+          <div
+            class="faq p-4"
+            (click)="toggleExpand(i)"
+            [class.expand]="expandedIndex === i"
+          >
+            <div
+              class="question gap-2 mb-3 d-flex align-items-center justify-content-between"
+            >
+              <h4 class="mb-0">
+                <span>{{ i + 1 }}.</span> {{ faq.question }}
+              </h4>
+              <i
+                class="fa-solid"
+                [ngClass]="{
+                  'fa-plus': expandedIndex !== i,
+                  'fa-minus': expandedIndex == i
+                }"
+              ></i>
+            </div>
+            <p class="answer mb-0">
+              {{ faq.answer }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </section>
 

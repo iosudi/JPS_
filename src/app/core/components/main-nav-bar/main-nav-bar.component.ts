@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/modules/authentication/pages/login/login.component';
 import { RegisterComponent } from 'src/app/modules/authentication/pages/register/register.component';
@@ -11,7 +12,8 @@ import { EditUserInformationService } from 'src/app/shared/services/edit-user-in
 })
 export class MainNavBarComponent {
   constructor(
-    private _EditUserInformationService: EditUserInformationService
+    private _EditUserInformationService: EditUserInformationService,
+    private router: Router
   ) {}
   private modalService = inject(NgbModal);
   dropdown_active: boolean = false;
@@ -22,14 +24,16 @@ export class MainNavBarComponent {
   avatarURL: string | null = null;
 
   ngOnInit(): void {
-    this._EditUserInformationService.getUserData().subscribe({
-      next: (res) => {
-        this.avatarURL = res.data.image;
-      },
-      error: (error) => {
-        console.error('Error:', error);
-      },
-    });
+    if (this.userLogged) {
+      this._EditUserInformationService.getUserData().subscribe({
+        next: (res) => {
+          this.avatarURL = res.data.image;
+        },
+        error: (error) => {
+          console.error('Error:', error);
+        },
+      });
+    }
   }
 
   toggleDropdown(): void {
@@ -61,6 +65,6 @@ export class MainNavBarComponent {
 
   logout(): void {
     localStorage.removeItem('userId');
-    location.href = '/home';
+    this.router.navigate(['/home']);
   }
 }

@@ -44,6 +44,7 @@ export class SearchStepsComponent {
   value: string = 'شهري';
   date: Date | undefined;
   results: any[] = [];
+  isLoading: boolean = false;
 
   bookingDurationExpanded: boolean = false;
   unitTypeSelectionExpanded: boolean = true;
@@ -123,6 +124,7 @@ export class SearchStepsComponent {
   }
 
   submitFilterOptions() {
+    this.isLoading = true;
     this._SearchService.setRoomsSelection(
       this.countNumber,
       this.bedsNumber,
@@ -132,20 +134,19 @@ export class SearchStepsComponent {
     let searchCriteria = this._SearchService.searchCriteria;
 
     this._SearchService.search(searchCriteria).subscribe({
-      next: (res) => {
-        if (res.properties.length > 0) {
-          this.router.navigate(['/search-results'], {
-            queryParams: searchCriteria,
-          });
+      next: () => {
+        this.isLoading = true;
+        this.router.navigate(['/search-results'], {
+          queryParams: searchCriteria,
+        });
 
-          this.selectedCity = null;
-          this.selectedUnit = '';
-          this.selectedResidentType = '';
-          this.selectedFurnitureState = null;
-          this.countNumber = 0;
-          this.bedsNumber = 0;
-          this.bathroomNumber = 0;
-        }
+        this.selectedCity = null;
+        this.selectedUnit = '';
+        this.selectedResidentType = '';
+        this.selectedFurnitureState = null;
+        this.countNumber = 0;
+        this.bedsNumber = 0;
+        this.bathroomNumber = 0;
       },
     });
   }

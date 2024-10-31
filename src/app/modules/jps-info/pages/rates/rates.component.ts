@@ -68,13 +68,17 @@ export class RatesComponent implements OnInit {
         next: (res) => {
           if (res.success) {
             this.sendFeedbackForm.reset();
-            this.toastr.success(res.success);
+            this.toastr.success('تمت اضافة تعليقك بنجاح');
 
             this.getFeedbacks();
           }
         },
         error: (err) => {
-          this.toastr.error('حدث خطأ في التقييم');
+          if (err.error.error == "Field 'user_id' is required") {
+            this.toastr.error('يجب تسجيل الدخول اولا');
+          } else {
+            this.toastr.error('حدث خطأ ما, برجاء المحاولة لاحقا');
+          }
         },
       });
     }

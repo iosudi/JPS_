@@ -372,7 +372,10 @@
           class="btn secondary-btn px-5 rounded-2"
           (click)="submitFilterOptions()"
         >
-          ابحث
+          <span *ngIf="!isLoading">ابحث</span>
+          <span *ngIf="isLoading"
+            ><i class="fa-solid fa-spinner fa-spin"></i
+          ></span>
         </button>
         <p class="mb-0">
           {{ selectedCityName }} ,{{ selectedUnit }} ,{{

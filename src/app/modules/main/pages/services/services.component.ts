@@ -28,6 +28,7 @@ export class ServicesComponent implements OnInit {
 
   @ViewChild('submitBtn') submitBtn!: ElementRef;
 
+  services: any[] = [];
   serviceTypes: any[] = serviceTypes;
   contactMethod: string = '';
 
@@ -102,14 +103,21 @@ export class ServicesComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
 
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 2000);
+    this._JPSServiceService.getServices().subscribe({
+      next: (res) => {
+        this.spinner.hide();
+        this.services = res.services;
+      },
+      error: (err) => {
+        console.error(err);
+        this.spinner.hide();
+        this.toastr.success('حدث خطأ ما, رجا�� المحاوله لا��قا');
+      },
+    });
   }
 
   onSubmit(): void {
     this.serviceSelection.patchValue({ userid: this.userId });
-
     if (this.serviceSelection.status === 'VALID') {
       this.disabledBtn();
       this._JPSServiceService
@@ -120,13 +128,16 @@ export class ServicesComponent implements OnInit {
               this.serviceSelection.reset();
               this.selectedServiceId = null;
               this.contactMethod = '';
-              this.toastr.success(res.success);
+              this.toastr.success(
+                'تم طلب خدمة بنجاح, سيتم التواصل معك في أقرب وقت'
+              );
               this.enabledBtn();
             }
           },
           error: (err) => {
             this.enabledBtn();
             console.error(err);
+            this.toastr.success('حدث خطأ ما, رجاء المحاوله لاحقا');
           },
         });
     }

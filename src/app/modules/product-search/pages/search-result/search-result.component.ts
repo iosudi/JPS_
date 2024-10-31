@@ -103,5 +103,10 @@ export class SearchResultComponent implements OnInit {
     event.stopPropagation();
     this.router.navigate(['/host']);
   }
+
+  productDetails(id: number): void {
+    this.router.navigate(['/product-details', id]);
+  }
+
   pageChanged(event: any): void {}
 }
