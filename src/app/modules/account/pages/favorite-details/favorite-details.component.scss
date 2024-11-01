@@ -8,12 +8,27 @@
     left: 20px;
   }
   .header {
-    .shareBtn {
+    .shareBtn,
+    .delBtn {
       border: 2px solid #222;
       border-radius: 30px;
+      transition: 0.3s;
       img {
         width: 20px;
         height: auto !important;
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+    .delBtn {
+      border-color: var(--bs-danger);
+      color: var(--bs-danger);
+
+      &:hover {
+        background-color: var(--bs-danger);
+        color: #fff;
       }
     }
   }

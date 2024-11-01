@@ -253,25 +253,27 @@
                       alt="quote symbol"
                       class="quote-symbol"
                     />
-                    <p class="my-4">{{ testimonial.content }}</p>
+                    <div class="feedback-content">
+                      <p class="my-4">{{ testimonial.feedback }}</p>
+                    </div>
                     <div
                       class="review-author d-flex justify-content-between align-items-center border-top pt-4"
                     >
                       <div class="author d-flex gap-2 align-items-center">
                         <img
-                          [src]="testimonial.profile_icon"
+                          [src]="testimonial.user_image"
                           alt="profile-icon"
                         />
                         <h5 class="author-name fw-normal">
-                          {{ testimonial.author }}
+                          {{ testimonial.user_name }}
                         </h5>
                       </div>
-                      <div class="rating">
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
-                        <i class="fa-solid fa-star rating-color"></i>
+                      <div class="rating" dir="ltr">
+                        <i
+                          [class.rating-color]="testimonial.rating >= num"
+                          *ngFor="let num of [1, 2, 3, 4, 5]"
+                          class="fa-solid fa-star"
+                        ></i>
                       </div>
                     </div>
                   </div>

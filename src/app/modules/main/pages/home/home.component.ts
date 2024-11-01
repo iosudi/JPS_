@@ -13,6 +13,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -41,7 +42,8 @@ export class HomeComponent {
     private toastr: ToastrService,
     private _FormBuilder: FormBuilder,
     private auth: AuthService,
-    private _InfoService: InfoService
+    private _InfoService: InfoService,
+    private router: Router
   ) {}
 
   private modalService = inject(NgbModal);
@@ -716,7 +718,7 @@ export class HomeComponent {
   removeFromFav(apartmentId: string, event: MouseEvent): void {
     event.stopPropagation();
     const index = this.favProperties.indexOf(apartmentId);
-    this._UserService.removeFormFavorites(apartmentId.toString()).subscribe({
+    this._UserService.removeFromFavorites(apartmentId.toString()).subscribe({
       next: (res) => {
         this.favProperties.splice(index, 1);
         this.toastr.warning('تم حذف الوحدة من التفضيلات');
@@ -725,5 +727,9 @@ export class HomeComponent {
         this.toastr.error(error.error.error);
       },
     });
+  }
+
+  productDetails(id: number): void {
+    this.router.navigate(['/product-details', id]);
   }
 }

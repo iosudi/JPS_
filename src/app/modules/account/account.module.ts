@@ -1,13 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 import { CoreModule } from 'src/app/core/core.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { register } from 'swiper/element/bundle';
 import { AccountRoutingModule } from './account-routing.module';
 import { EditNameModalComponent } from './modals/edit-name-modal/edit-name-modal.component';
 import { EditNationalIdModalComponent } from './modals/edit-national-id-modal/edit-national-id-modal.component';
@@ -19,6 +21,8 @@ import { FavoriteDetailsComponent } from './pages/favorite-details/favorite-deta
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { PersonalDetailsComponent } from './pages/personal-details/personal-details.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+
+register();
 
 @NgModule({
   declarations: [
@@ -44,6 +48,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
     DialogModule,
     NgxSpinnerModule,
     ReactiveFormsModule,
+    TooltipModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AccountModule {}

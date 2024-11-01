@@ -228,7 +228,7 @@
               class="apartment-name d-flex justify-content-between gap-2 mb-2"
             >
               <div class="title text-end">
-                <h3 class="h6 my-1">شقة مفروشة فاخرة للإيجار</h3>
+                <h3 class="h6 my-1">{{ apartment.type }}</h3>
                 <p class="location mb-0 d-flex gap-1 align-items-center">
                   <i class="fa-solid fa-location-dot"></i>
                   {{ apartment.city_name }}
@@ -268,10 +268,12 @@
             >
               <div class="icons d-flex align-items-center gap-3">
                 <img
+                  (click)="openAddToFav($event)"
                   src="./assets/imgs/icons/heart-green.png"
                   alt="heart icon"
                 />
                 <img
+                  (click)="openShareModal($event)"
                   src="./assets/imgs/icons/share-green.png"
                   alt="share icon"
                 />

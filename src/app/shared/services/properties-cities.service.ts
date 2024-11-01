@@ -26,4 +26,10 @@ export class PropertiesCitiesService {
       environment.baseURL + `propertiesshowbyid.php?id=${id}`
     );
   }
+
+  getOwnerProperties(id: number): Observable<any> {
+    return this.http.get(
+      environment.baseURL + `ownerproperties.php?userid=${id}`
+    );
+  }
 }

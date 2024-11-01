@@ -26,7 +26,7 @@ export class UserService {
     );
   }
 
-  getFavListProperties(listId: number): Observable<any> {
+  getFavListProperties(listId: number | null): Observable<any> {
     return this._HttpClient.get(
       environment.baseURL + `favoritelistproperties.php?id=${listId}`
     );
@@ -50,12 +50,37 @@ export class UserService {
     });
   }
 
-  removeFormFavorites(apartmentId: string): Observable<any> {
+  removeFromFavorites(apartmentId: string): Observable<any> {
     return this._HttpClient.post(
       environment.baseURL + `removefavoriteproperties.php`,
       {
         userid: this.userId,
         propertyid: apartmentId,
+      }
+    );
+  }
+
+  removeFromFavoriteList(
+    apartmentId: string,
+    listId: number | null
+  ): Observable<any> {
+    console.log(apartmentId, listId);
+    return this._HttpClient.post(
+      environment.baseURL + `favoritelistremoveproperties.php`,
+      {
+        userid: this.userId,
+        property_id: apartmentId,
+        playlist_id: listId,
+      }
+    );
+  }
+
+  removeFavoriteList(listId: number | null): Observable<any> {
+    return this._HttpClient.post(
+      environment.baseURL + `favoritelistremove.php`,
+      {
+        userid: this.userId,
+        playlist_id: listId,
       }
     );
   }

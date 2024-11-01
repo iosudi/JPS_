@@ -10,7 +10,6 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { JPSServiceService } from 'src/app/shared/services/jps-service.service';
-import { serviceTypes } from 'src/assets/data/services';
 
 @Component({
   selector: 'app-services',
@@ -29,7 +28,6 @@ export class ServicesComponent implements OnInit {
   @ViewChild('submitBtn') submitBtn!: ElementRef;
 
   services: any[] = [];
-  serviceTypes: any[] = serviceTypes;
   contactMethod: string = '';
 
   userId: string | null = localStorage.getItem('userId');

@@ -7,13 +7,13 @@
 
 <div class="container">
   <i class="fa-solid fa-arrow-left backBtn" routerLink="/your-favorites"></i>
-  <p-breadcrumb class="max-w-full" [model]="items" [home]="home">
+  <p-breadcrumb [model]="items" [home]="home">
     <ng-template pTemplate="separator"> > </ng-template>
   </p-breadcrumb>
 
   <div class="header d-flex align-items-center my-5">
     <div class="title ms-5">
-      <h1 class="h2 mb-1 fw-bold">شقق</h1>
+      <h1 class="h2 mb-1 fw-bold">{{ listName }}</h1>
       <p class="mb-0">{{ apartments.length }} وحدات مضافة</p>
     </div>
 
@@ -24,15 +24,26 @@
       placeholder="رتب حسب"
     />
 
-    <button class="shareBtn btn d-flex gap-4 fw-medium py-2 px-3 me-auto">
-      <img src="./assets/imgs/icons/share-dark.png" alt="share icon " />
-      مشاركة المجموعة
-    </button>
+    <div class="me-auto d-flex align-items-center gap-3">
+      <button class="shareBtn btn d-flex gap-4 fw-medium py-2 px-3">
+        <img src="./assets/imgs/icons/share-dark.png" alt="share icon " />
+        مشاركة المجموعة
+      </button>
+
+      <button
+        class="delBtn btn d-flex align-items-center gap-4 fw-medium py-2 px-3"
+        (click)="removeFavList()"
+        *ngIf="listId"
+      >
+        <i class="fa-regular fa-trash-can"></i>
+        حذف المجموعة
+      </button>
+    </div>
   </div>
 
   <div class="row g-4" *ngIf="apartments.length > 0; else emptyList">
     <div class="col-xl-4 col-md-6" *ngFor="let apartment of apartments">
-      <div class="card p-3">
+      <div class="card p-3" (click)="productDetails(apartment.id)">
         <div class="apartment-preview mb-2">
           <img [src]="apartment.images[0]" alt="apartment image" />
           <div class="reserved-duration">
@@ -53,10 +64,7 @@
           <div
             class="host-preview d-flex align-items-center justify-content-center p-3"
           >
-            <img
-              src="./assets/imgs/0a0e068ab05cde99107e48eae437d57c.jpg"
-              alt="host avatar"
-            />
+            <img [src]="apartment.broker_image" alt="host avatar" />
           </div>
         </div>
 
@@ -102,8 +110,25 @@
             class="controls d-flex justify-content-between align-items-center px-3 py-2"
           >
             <div class="icons d-flex align-items-center gap-3">
-              <img src="./assets/imgs/icons/heart-green.png" alt="heart icon" />
-              <img src="./assets/imgs/icons/share-green.png" alt="share icon" />
+              <i
+                class="fa-solid fa-xmark text-danger fs-5"
+                title="remove from list"
+                (click)="removeFromFavList(apartment.id, $event)"
+                *ngIf="listId; else defaultList"
+              ></i>
+              <ng-template #defaultList>
+                <i
+                  (click)="removeFromDefaultList(apartment.id, $event)"
+                  class="fa-solid fa-xmark text-danger fs-5"
+                  title="remove from list"
+                ></i>
+              </ng-template>
+
+              <img
+                (click)="openShareModal($event)"
+                src="./assets/imgs/icons/share-green.png"
+                alt="share icon"
+              />
             </div>
 
             <button

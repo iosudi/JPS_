@@ -88,10 +88,19 @@ export class AboutComponent implements OnInit {
     this._InfoService.getTeamMembers().subscribe({
       next: (res) => {
         this.staffMembers = res.members;
-        this.spinner.hide();
       },
       error: (error) => {
         console.error('Error fetching team members:', error);
+      },
+    });
+
+    this._InfoService.getFeedbacks().subscribe({
+      next: (res) => {
+        this.testimonials = res.feedbacks.slice(0, 4);
+        this.spinner.hide();
+      },
+      error: (err) => {
+        console.error('Error getting feedbacks:', err);
         this.spinner.hide();
       },
     });

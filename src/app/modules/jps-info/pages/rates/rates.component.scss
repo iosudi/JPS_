@@ -99,7 +99,7 @@
           width: 25px;
         }
         .form-control {
-          border: 1ox solid #969696 !important;
+          border: 1px solid #969696 !important;
           background: transparent;
           &:focus {
             box-shadow: none !important;
@@ -297,6 +297,7 @@
     }
     form {
       .rating {
+        margin-bottom: 1.3em !important;
         h3 {
           font-size: 30px;
         }
@@ -306,8 +307,20 @@
           line-height: 60px;
         }
       }
-      .review-inputs {
-        display: none !important;
+
+      .review-input {
+        p {
+          font-size: 0.7rem;
+          margin-bottom: 2px !important;
+        }
+        .input-field {
+          img {
+            width: 20px;
+          }
+          .form-control {
+            font-size: 0.8rem;
+          }
+        }
       }
 
       .review-body {

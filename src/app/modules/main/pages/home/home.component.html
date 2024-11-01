@@ -114,7 +114,7 @@
           <swiper-slide *ngFor="let apartment of specialApartments">
             <div
               class="card mx-2 d-flex flex-column justify-content-between"
-              routerLink="/product-details"
+              (click)="productDetails(apartment.id)"
             >
               <div class="background">
                 <img [src]="apartment.images[0]" alt="image" />
@@ -205,7 +205,9 @@
                 >
                   <div>
                     <h4 class="price mb-0 h5">
-                      {{ apartment.price | currency : "E£" : "symbol" : "1.0-0"
+                      {{
+                        apartment.price
+                          | currency : "EGP " : "symbol" : "1.0-0"
                       }}<span class="fw-light">/يوم</span>
                     </h4>
                     <p class="mb-0 fw-light">
@@ -298,8 +300,8 @@
                     <div class="apartments-wrapper">
                       <div
                         class="apartment d-flex gap-3 align-items-center my-4"
-                        routerLink="/product-details"
                         *ngFor="let property of city.properties"
+                        (click)="productDetails(property.id)"
                       >
                         <div class="apartment-image overflow-hidden">
                           <img [src]="property.images[0]" alt="apartment" />
@@ -400,7 +402,7 @@
                               <h3 class="h6 mb-0">
                                 {{
                                   property.price
-                                    | currency : "E£" : "symbol" : "1.0-0"
+                                    | currency : "EGP" : "symbol" : "1.0-0"
                                 }}
                               </h3>
                               <p class="mb-0">لليوم الواحد</p>
@@ -917,6 +919,7 @@
           </p>
           <button
             class="btn secondary-btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
+            routerLink="/contact"
           >
             <i class="fa-solid fa-arrow-right"></i>
             اتصل بنا

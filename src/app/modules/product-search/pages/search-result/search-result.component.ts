@@ -2,7 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SearchService } from 'src/app/shared/components/services/search.service';
+import { AddToFavComponent } from '../../components/add-to-fav/add-to-fav.component';
 import { AdvancedSearchFilterModalComponent } from '../../components/advanced-search-filter-modal/advanced-search-filter-modal.component';
+import { ShareModalComponent } from '../../components/share-modal/share-modal.component';
 
 @Component({
   selector: 'app-search-result',
@@ -97,6 +99,24 @@ export class SearchResultComponent implements OnInit {
         scrollable: true,
       }
     );
+  }
+
+  openShareModal(event: MouseEvent): void {
+    event.stopPropagation();
+    this.modalService.open(ShareModalComponent, {
+      centered: true,
+      size: 'md',
+      scrollable: true,
+    });
+  }
+
+  openAddToFav(event: MouseEvent): void {
+    event.stopPropagation();
+    this.modalService.open(AddToFavComponent, {
+      centered: true,
+      size: 'lg',
+      scrollable: true,
+    });
   }
 
   navigateToHost(event: Event) {

@@ -102,3 +102,115 @@
     </div>
   </div>
 </section>
+
+<section
+  class="owner-properties"
+  *ngIf="ownerProperties.length > 0; else noProperties"
+>
+  <div class="container">
+    <swiper-container
+      #apartmentSwiper
+      [speed]="500"
+      [spaceBetween]="5"
+      [breakpoints]="apartmentsBreakpoints"
+    >
+      <swiper-slide *ngFor="let apartment of ownerProperties">
+        <div class="card p-3">
+          <div class="apartment-preview mb-2">
+            <img [src]="apartment.images[0]" alt="apartment image " />
+            <div class="reserved-duration">
+              <p class="mb-0 fw-light">محجوزة حتي 10/8/2024</p>
+            </div>
+
+            <div class="arrow d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="paginator d-flex gap-1 mt-3">
+              <div class="dot active"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+
+            <div
+              class="host-preview d-flex align-items-center justify-content-center p-3"
+            >
+              <img [src]="apartment.broker_image" alt="host avatar" />
+            </div>
+          </div>
+
+          <div class="apartment-information">
+            <div
+              class="apartment-name d-flex justify-content-between gap-2 mb-2"
+            >
+              <div class="title text-end">
+                <h3 class="h6 my-1">{{ apartment.type }}</h3>
+                <p class="location mb-0 d-flex gap-1 align-items-center">
+                  <i class="fa-solid fa-location-dot"></i>
+                  {{ apartment.city_name }}
+                </p>
+              </div>
+
+              <div class="rating d-flex align-items-center gap-1">
+                <i class="fa-solid fa-star"></i> 4.8
+              </div>
+            </div>
+
+            <div class="chips-badges d-flex gap-2 my-3">
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/bath-green.png" alt="bath icon" />
+                {{ apartment.bathrooms }}
+              </div>
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/bed-green.png" alt="bed icon" />
+                {{ apartment.beds }}
+              </div>
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/door-green.png" alt="door icon" />
+                {{ apartment.rooms }}
+              </div>
+              <div class="chip d-flex align-items-center gap-1">
+                <img src="./assets/imgs/icons/doc-green.png" alt="docs icon" />
+                {{ apartment.contractperiod }}
+              </div>
+            </div>
+
+            <h3 class="h6 fw-bold price mb-0 text-end mb-3">
+              {{ apartment.price | currency : " " : "symbol" : "1.0-0" }} جنيه/
+              شهرياً
+            </h3>
+
+            <div
+              class="controls d-flex justify-content-between align-items-center px-3 py-2"
+            >
+              <div class="icons d-flex align-items-center gap-2">
+                <img
+                  src="./assets/imgs/icons/share-green.png"
+                  alt="share icon"
+                />
+                <img
+                  src="./assets/imgs/icons/heart-green.png"
+                  alt="heart icon"
+                />
+              </div>
+
+              <button
+                class="btn d-flex gap-2 align-items-center secondary-btn fw-medium px-4 py-2"
+              >
+                <i class="fa-solid fa-phone"></i>
+                اتصل الان
+              </button>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+  </div>
+</section>
+
+<ng-template #noProperties>
+  <div class="container">
+    <h2 class="h1 mt-5 text-center fw-bold mb-0">ليس لديك أي عقارات بعد !</h2>
+  </div>
+</ng-template>

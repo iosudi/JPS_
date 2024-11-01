@@ -135,7 +135,7 @@ export class SearchStepsComponent {
 
     this._SearchService.search(searchCriteria).subscribe({
       next: () => {
-        this.isLoading = true;
+        this.isLoading = false;
         this.router.navigate(['/search-results'], {
           queryParams: searchCriteria,
         });
