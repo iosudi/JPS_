@@ -625,7 +625,7 @@ export class HomeComponent {
   togglePasswordVisibility(passwordInput: string): void {
     if (passwordInput === 'password') {
       this.passwordVisibility = !this.passwordVisibility;
-    } else if (passwordInput == 'rePassword') {
+    } else if (passwordInput == 'confirm_password') {
       this.confirmPasswordVisibility = !this.confirmPasswordVisibility;
     }
   }

@@ -1,5 +1,5 @@
-<div class="slider mx-auto" #slider>
-  <div class="knob">
+<div class="search-slider mx-auto" #searchSlider>
+  <div class="search-slider-knob">
     <div
       class="text d-flex align-items-center justify-content-center flex-column"
     >
@@ -15,20 +15,25 @@
     ></div>
   </div>
 
-  <svg class="progress-bar" width="230" height="230">
-    <circle class="progress-circle" cx="115" cy="115" r="90"></circle>
+  <svg class="search-slider-progress-bar" width="230" height="230">
     <circle
-      id="circle2"
-      class="progress-circle"
+      class="search-slider-progress-circle circle"
       cx="115"
       cy="115"
       r="90"
-      style="stroke: url(#gradient); stroke-linecap: round"
+    ></circle>
+    <circle
+      id="search-slider-circle2"
+      class="search-slider-progress-circle circle"
+      cx="115"
+      cy="115"
+      r="90"
+      style="stroke: url(#search-gradient); stroke-linecap: round"
       [attr.stroke-dasharray]="dashArray"
       [attr.stroke-dashoffset]="dashOffset"
     ></circle>
     <defs>
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <linearGradient id="search-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
         <stop offset="60%" style="stop-color: #aed6c6" />
         <stop offset="70%" style="stop-color: #a5c3b7" />
         <stop offset="75%" style="stop-color: #9eb8ae" />

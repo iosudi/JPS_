@@ -6,7 +6,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
   styleUrls: ['./search-circular-slider.component.scss'],
 })
 export class SearchCircularSliderComponent {
-  @ViewChild('slider', { static: true }) slider: ElementRef | undefined;
+  @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
 
   selectedMonth = 1; // Default month
   radius = 90; // Circle radius

@@ -103,11 +103,8 @@
   </div>
 </section>
 
-<section
-  class="owner-properties"
-  *ngIf="ownerProperties.length > 0; else noProperties"
->
-  <div class="container">
+<section class="owner-properties">
+  <div class="container" *ngIf="ownerProperties.length > 0; else noProperties">
     <swiper-container
       #apartmentSwiper
       [speed]="500"
@@ -207,10 +204,10 @@
       </swiper-slide>
     </swiper-container>
   </div>
-</section>
 
-<ng-template #noProperties>
-  <div class="container">
-    <h2 class="h1 mt-5 text-center fw-bold mb-0">ليس لديك أي عقارات بعد !</h2>
-  </div>
-</ng-template>
+  <ng-template #noProperties>
+    <div class="container">
+      <h2 class="h1 mt-5 text-center fw-bold mb-0">ليس لديك أي عقارات بعد !</h2>
+    </div>
+  </ng-template>
+</section>

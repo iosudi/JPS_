@@ -155,6 +155,9 @@ img {
 
 ngx-spinner img {
   width: 200px !important;
+  &.spinner-img {
+    width: 400px !important;
+  }
 }
 
 @media (max-width: 775px) {

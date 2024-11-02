@@ -14,7 +14,7 @@ nav {
         a {
           img {
             width: 35px;
-            height: 35px;
+            height: auto;
           }
           font-size: 30px;
           color: #3f514a;
@@ -44,10 +44,10 @@ nav {
         li {
           a {
             img {
-              width: 25px;
-              height: 25px;
+              width: 20px;
+              height: auto;
             }
-            font-size: 25px;
+            font-size: 20px;
             &.active-link {
               p {
                 font-size: 14px;

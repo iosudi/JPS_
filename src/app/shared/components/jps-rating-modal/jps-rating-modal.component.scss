@@ -26,7 +26,6 @@
           width: 25px;
         }
         .form-control {
-          border: 1ox solid #969696 !important;
           background: transparent;
           width: 60px;
           font-size: 0.85rem;
@@ -72,7 +71,7 @@
 
 @media (max-width: 490px) {
   .container {
-    padding: 30px !important;
+    padding: 20px !important;
     form {
       .rating {
         margin-bottom: 0 !important;
@@ -80,13 +79,24 @@
           font-size: 25px;
         }
         .star {
-          font-size: 30px;
-          line-height: 50px;
+          font-size: 40px;
+          line-height: 60px;
         }
       }
 
       .review-input {
-        display: none;
+        p {
+          font-size: 0.7rem;
+        }
+        .input-field {
+          img {
+            width: 20px;
+          }
+          .form-control {
+            width: 100%;
+            font-size: 0.85rem;
+          }
+        }
       }
 
       .review-body {

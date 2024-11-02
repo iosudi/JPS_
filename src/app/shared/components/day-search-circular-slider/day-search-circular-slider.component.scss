@@ -1,4 +1,4 @@
-.slider {
+.search-slider-slider {
   width: 230px;
   height: 230px;
   display: flex;
@@ -14,7 +14,7 @@
 
   overflow: hidden; /* Add this to ensure the circle fits inside */
 
-  .knob {
+  .search-slider-knob {
     width: 130px;
     height: 130px;
     border-radius: 50%;
@@ -88,7 +88,7 @@
       cursor: grab;
     }
   }
-  circle {
+  .circle {
     fill: none;
     &:nth-child(1) {
       stroke: transparent;

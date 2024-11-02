@@ -2748,6 +2748,18 @@ span {
       }
     }
   }
+
+  .contact {
+    .form-container {
+      form {
+        .inputs-container {
+          .multi-input-box {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 375px) {

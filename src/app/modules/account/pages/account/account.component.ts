@@ -9,8 +9,7 @@ import { EditUserInformationService } from 'src/app/shared/services/edit-user-in
 })
 export class AccountComponent {
   visible: boolean = false;
-  username: string = '';
-  avatarURL: string = '';
+  userData: any = {};
 
   constructor(
     private _EditUserInformationService: EditUserInformationService,
@@ -20,8 +19,9 @@ export class AccountComponent {
   ngOnInit(): void {
     this._EditUserInformationService.getUserData().subscribe({
       next: (res) => {
-        this.avatarURL = res.data.image;
-        this.username = res.data.name;
+        if (res.status === 'success') {
+          this.userData = res.data;
+        }
       },
       error: (error) => {
         console.error('Error:', error);

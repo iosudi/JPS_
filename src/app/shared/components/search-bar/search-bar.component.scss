@@ -13,6 +13,13 @@
   }
 }
 
+@media (max-width: 1199px) {
+  .search-bar {
+    p {
+      display: none;
+    }
+  }
+}
 @media (max-width: 450px) {
   .search-bar {
     h3 {

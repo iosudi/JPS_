@@ -6,7 +6,7 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
   styleUrls: ['./day-search-circular-slider.component.scss'],
 })
 export class DaySearchCircularSliderComponent {
-  @ViewChild('slider', { static: true }) slider: ElementRef | undefined;
+  @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
 
   selectedDay = 1; // Default day
   radius = 90; // Circle radius

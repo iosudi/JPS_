@@ -12,10 +12,15 @@
   >
     <div class="details d-flex gap-2 align-items-center">
       <div class="image">
-        <img [src]="avatarURL" alt="Profile Image" />
+        <img [src]="userData.image" alt="host avatar" *ngIf="userData.image" />
+        <img
+          src="./assets/imgs/pfp placeholder.png"
+          alt="host avatar"
+          *ngIf="!userData.image"
+        />
       </div>
       <div class="account-name">
-        <h2 class="h5">{{ username }}</h2>
+        <h2 class="h5">{{ userData.name }}</h2>
         <p class="mb-0">الملف الشخصي</p>
       </div>
     </div>

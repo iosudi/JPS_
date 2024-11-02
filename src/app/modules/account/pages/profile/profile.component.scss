@@ -67,7 +67,6 @@
   }
 
   .host-details {
-    padding-bottom: 70px;
     .editProfileBtn {
       border: 2px solid #222;
       border-radius: 30px;
@@ -392,7 +391,7 @@
 
 @media (max-width: 860px) {
   .profile-info {
-    padding: 20px 20px 60px;
+    padding: 20px 20px 20px;
     .heading {
       display: flex !important;
       width: 75%;
@@ -409,6 +408,12 @@
       button {
         display: none;
       }
+    }
+  }
+
+  .owner-properties {
+    .container {
+      margin-bottom: 120px;
     }
   }
 }

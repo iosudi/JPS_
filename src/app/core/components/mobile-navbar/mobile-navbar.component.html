@@ -40,6 +40,24 @@
       <li class="p-0">
         <a
           class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
+          routerLink="/my-bookings"
+          routerLinkActive="active-link"
+        >
+          <img
+            [src]="
+              activeLink === '/my-bookings'
+                ? './assets/imgs/icons/booking1.png'
+                : './assets/imgs/icons/booking2.png'
+            "
+            alt="heart icon"
+          />
+          <p class="mb-0">إدراة الحجوزات</p>
+        </a>
+      </li>
+
+      <li class="p-0">
+        <a
+          class="d-flex align-items-center flex-row-reverse justify-content-center gap-2 p-3 rounded-5"
           routerLink="/contact"
           routerLinkActive="active-link"
         >
