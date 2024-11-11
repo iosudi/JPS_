@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-search-circular-slider',
@@ -7,14 +13,17 @@ import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 })
 export class SearchCircularSliderComponent {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
+  @Input() startDate!: Date; // Receive start date from parent component
 
   selectedMonth = 1; // Default month
-  radius = 90; // Circle radius
-  dashArray = 2 * Math.PI * this.radius; // Full circle length
-  minAngle = 15; // Minimum angle (25°)
-  maxAngle = 360; // Maximum angle (360°)
+  endDate: Date | undefined; // Calculated end date
 
-  // Angle range for each month
+  // Other variables as defined in your code
+  radius = 90;
+  dashArray = 2 * Math.PI * this.radius;
+  minAngle = 15;
+  maxAngle = 360;
+
   monthAngles = [
     { month: 1, start: 0, end: 30 },
     { month: 2, start: 30, end: 60 },
@@ -30,10 +39,7 @@ export class SearchCircularSliderComponent {
     { month: 12, start: 330, end: 360 },
   ];
 
-  // Initialize dash offset
   dashOffset = this.dashArray - (this.minAngle / 360) * this.dashArray;
-
-  // Initialize pointer style
   pointerStyle = {
     position: 'absolute',
     width: '50%',
@@ -45,12 +51,20 @@ export class SearchCircularSliderComponent {
     justifyContent: 'flex-start',
     transformOrigin: 'right center',
     transform: `translateY(-50%) rotate(${this.minAngle + 93}deg)`,
-  }; // Pointer position
+  };
 
   private isDragging = false;
   private previousMonth = this.selectedMonth;
-  private previousAngle = this.minAngle; // Initialize angle to 25°
-  private angleThreshold = 30; // Degrees per step
+  private previousAngle = this.minAngle;
+  private angleThreshold = 30;
+
+  ngOnInit(): void {
+    if (this.startDate) {
+      const nextMonth = new Date(this.startDate);
+      nextMonth.setMonth(nextMonth.getMonth() + 1); // Set to the next month
+      this.endDate = nextMonth;
+    }
+  }
 
   @HostListener('document:mousemove', ['$event'])
   @HostListener('document:touchmove', ['$event'])
@@ -65,10 +79,8 @@ export class SearchCircularSliderComponent {
   stopDragging() {
     this.isDragging = false;
     this.snapToClosestMonth();
-    // Adjust to middle of the current month's range
   }
 
-  // Start dragging
   startDragging(event: MouseEvent | TouchEvent) {
     this.isDragging = true;
     this.updateSlider(this.getEventPosition(event));
@@ -84,33 +96,28 @@ export class SearchCircularSliderComponent {
     const x = position.x - centerX;
     const y = position.y - centerY;
 
-    const angle = Math.atan2(y, x) * (180 / Math.PI) + 90; // Convert to degrees
-    const normalizedAngle = (angle + 360) % 360; // Normalize to [0, 360]
+    const angle = Math.atan2(y, x) * (180 / Math.PI) + 90;
+    const normalizedAngle = (angle + 360) % 360;
 
-    // Ensure the angle respects min and max constraints
     const clampedAngle = Math.max(
       this.minAngle,
       Math.min(this.maxAngle, normalizedAngle)
     );
 
-    // Update pointer rotation and apply the additional CSS
     this.pointerStyle = {
       ...this.pointerStyle,
       transform: `translateY(-50%) rotate(${clampedAngle + 93}deg)`,
     };
 
-    // Update circle progress
     const progress = (clampedAngle / 360) * this.dashArray;
     this.dashOffset = this.dashArray - progress;
 
-    // Determine selected month based on angle range
     this.selectedMonth =
       this.monthAngles.find(
         (angleRange) =>
           clampedAngle >= angleRange.start && clampedAngle <= angleRange.end
       )?.month || 1;
 
-    // Update previous angle to the current clamped angle
     this.previousAngle = clampedAngle;
   }
 
@@ -137,26 +144,48 @@ export class SearchCircularSliderComponent {
       const middleAngle = (monthRange.start + monthRange.end) / 2;
       this.selectedMonth = monthRange.month;
 
-      // Update pointer rotation and apply the additional CSS
       this.pointerStyle = {
         ...this.pointerStyle,
         transform: `translateY(-50%) rotate(${middleAngle + 93}deg)`,
       };
 
-      // Update circle progress
       const progress = (middleAngle / 360) * this.dashArray;
       this.dashOffset = this.dashArray - progress;
 
-      // Update previous angle to the current middle angle
       this.previousAngle = middleAngle;
-    } else {
-      // Default to 1 month if no valid range is found
-      this.selectedMonth = 1;
+    }
+
+    this.calculateEndDate();
+  }
+
+  private calculateEndDate(): void {
+    if (this.startDate) {
+      const endDate = new Date(this.startDate);
+      endDate.setMonth(endDate.getMonth() + this.selectedMonth);
+      this.endDate = endDate;
+    }
+  }
+
+  selectMonth(month: number) {
+    this.selectedMonth = month;
+    const monthRange = this.monthAngles.find(
+      (angleRange) => angleRange.month === month
+    );
+
+    if (monthRange) {
+      const middleAngle = (monthRange.start + monthRange.end) / 2;
+
       this.pointerStyle = {
         ...this.pointerStyle,
-        transform: `translateY(-50%) rotate(${this.minAngle + 93}deg)`,
+        transform: `translateY(-50%) rotate(${middleAngle + 93}deg)`,
       };
-      this.dashOffset = this.dashArray - (this.minAngle / 360) * this.dashArray;
+
+      const progress = (middleAngle / 360) * this.dashArray;
+      this.dashOffset = this.dashArray - progress;
+
+      this.previousAngle = middleAngle;
     }
+
+    this.calculateEndDate();
   }
 }

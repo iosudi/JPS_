@@ -1,4 +1,4 @@
-<div class="search-slider-slider mx-auto" #searchSlider>
+<div class="search-slider-slider position-relative mx-auto" #searchSlider>
   <div class="search-slider-knob">
     <div
       class="text d-flex align-items-center justify-content-center flex-column"
@@ -15,6 +15,22 @@
     ></div>
   </div>
 
+  <div
+    class="slider-dots-container d-flex align-items-center justify-content-center"
+  >
+    <div
+      *ngFor="let day of dayAngles"
+      class="slider-dot d-flex align-items-center justify-content-center"
+      [style.transform]="
+        'translate(-50%, -50%) rotate(' +
+        (day.start + day.end) / 2 +
+        'deg) translateX(93px)'
+      "
+      (click)="selectDay(day.day)"
+    >
+      <div class="dot"></div>
+    </div>
+  </div>
   <svg class="search-slider-progress-bar" width="230" height="230">
     <circle
       class="search-slider-progress-circle circle"
@@ -47,11 +63,11 @@
 </div>
 
 <div class="duration-text text-center mt-4">
-  <span class="fs-5 from fw-light text-decoration-underline"
-    >الاحد، 5 أغسطس</span
-  >
-  <span class="fs-5 fw-medium"> الي </span>
-  <span class="fs-5 to fw-light text-decoration-underline"
-    >الأحد، 1 ديسمبر</span
-  >
+  <span class="fs-5 from fw-light text-decoration-underline">
+    {{ startDate | date : "EEEE، d MMMM" : "ar" }}
+  </span>
+  <span class="fs-5 fw-medium"> إلى </span>
+  <span class="fs-5 to fw-light text-decoration-underline">
+    {{ endDate | date : "EEEE، d MMMM" : "ar" }}
+  </span>
 </div>

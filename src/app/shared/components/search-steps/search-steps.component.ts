@@ -21,6 +21,7 @@ export class SearchStepsComponent {
   ) {}
 
   @ViewChild('datePicker') datePicker!: ElementRef;
+  date: Date = new Date();
 
   currentStep = 0;
   showSteps = true;
@@ -42,7 +43,6 @@ export class SearchStepsComponent {
   shouldNavigateModal: boolean = false;
 
   value: string = 'شهري';
-  date: Date | undefined;
   results: any[] = [];
   isLoading: boolean = false;
 
@@ -75,6 +75,10 @@ export class SearchStepsComponent {
         this._SearchService.showSearchSteps.next(false);
       }
     });
+  }
+
+  onDateChange(updatedDate: Date) {
+    this.date = updatedDate;
   }
 
   selectCity(cityId: number, cityName: string) {

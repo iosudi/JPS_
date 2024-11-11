@@ -122,13 +122,16 @@ app-mobile-navbar {
   .form-wrapper {
     form {
       .inputs-container {
-        .input-field {
-          input {
-            font-size: 13px;
-          }
-          img {
-            width: 20px;
-            height: 20px;
+        .input-box {
+          flex-direction: column;
+          .input-field {
+            input {
+              font-size: 13px;
+            }
+            img {
+              width: 20px;
+              height: 20px;
+            }
           }
         }
       }

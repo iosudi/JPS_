@@ -1,5 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeAr from '@angular/common/locales/ar';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule } from 'primeng/calendar';
@@ -9,6 +10,9 @@ import { JPSRatingModalComponent } from './components/jps-rating-modal/jps-ratin
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchCircularSliderComponent } from './components/search-circular-slider/search-circular-slider.component';
 import { SearchStepsComponent } from './components/search-steps/search-steps.component';
+
+registerLocaleData(localeAr);
+
 @NgModule({
   declarations: [
     SearchBarComponent,
@@ -25,6 +29,7 @@ import { SearchStepsComponent } from './components/search-steps/search-steps.com
     NgbRatingModule,
     ReactiveFormsModule,
   ],
+  providers: [{ provide: LOCALE_ID, useValue: 'ar' }],
   exports: [SearchBarComponent, SearchStepsComponent],
 })
 export class SharedModule {}

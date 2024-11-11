@@ -104,11 +104,15 @@
 
           <div class="duration-select">
             <div *ngIf="value === 'شهري'">
-              <app-search-circular-slider></app-search-circular-slider>
+              <app-search-circular-slider
+                [startDate]="date"
+              ></app-search-circular-slider>
             </div>
 
             <div *ngIf="value === 'يومي'">
-              <app-day-search-circular-slider></app-day-search-circular-slider>
+              <app-day-search-circular-slider
+                [startDate]="date"
+              ></app-day-search-circular-slider>
             </div>
           </div>
         </div>

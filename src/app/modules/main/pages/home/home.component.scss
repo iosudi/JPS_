@@ -14,6 +14,26 @@ span {
   }
 }
 
+ngx-spinner ::ng-deep {
+  .ngx-spinner-overlay {
+    img {
+      animation: spinnerFadeIn 3s forwards;
+    }
+  }
+}
+
+@keyframes spinnerFadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .hero {
   position: relative;
   height: 850px;
@@ -205,7 +225,7 @@ span {
           background: transparent;
           border: 0;
           color: white;
-          transition: 0.2s ease-in-out;
+          transition: 0.5s ease-in-out;
           cursor: pointer;
           hr {
             border-top: 3px dotted rgb(255, 255, 255);
@@ -268,6 +288,10 @@ span {
                 height: auto;
               }
             }
+            .rating {
+              font-size: 0.7rem;
+              background: #3f514a;
+            }
             .paginator {
               .dot {
                 width: 5px;
@@ -304,7 +328,12 @@ span {
           }
 
           &:hover {
-            transform: perspective(500px) translateZ(5px) rotateY(20deg);
+            transform: scale(1.05) !important;
+            z-index: 4;
+          }
+
+          &.last-visible {
+            transform: perspective(600px) translateZ(5px) rotateY(20deg);
             z-index: 4;
           }
 
@@ -2061,12 +2090,6 @@ span {
               background: #ffffff3a;
               padding: 3px 10px;
               font-size: 7px;
-            }
-
-            .apartment-details {
-              p {
-                display: none;
-              }
             }
           }
         }

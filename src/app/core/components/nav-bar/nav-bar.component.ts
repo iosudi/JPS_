@@ -66,6 +66,6 @@ export class NavBarComponent {
 
   logout(): void {
     localStorage.removeItem('userId');
-    this.router.navigate(['/home']);
+    window.location.reload();
   }
 }

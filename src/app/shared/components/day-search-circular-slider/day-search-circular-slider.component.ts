@@ -1,17 +1,27 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-day-search-circular-slider',
   templateUrl: './day-search-circular-slider.component.html',
   styleUrls: ['./day-search-circular-slider.component.scss'],
 })
-export class DaySearchCircularSliderComponent {
+export class DaySearchCircularSliderComponent implements OnInit {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
+
+  @Input() startDate!: Date; // Receive start date from parent component
+  endDate: Date | undefined; // Calculated end date
 
   selectedDay = 1; // Default day
   radius = 90; // Circle radius
   dashArray = 2 * Math.PI * this.radius; // Full circle length
-  minAngle = 12; // Minimum angle (12°)
+  minAngle = 10; // Minimum angle (12°)
   maxAngle = 360; // Maximum angle (360°)
 
   // Angle range for each day
@@ -42,6 +52,14 @@ export class DaySearchCircularSliderComponent {
   private previousDay = this.selectedDay;
   private previousAngle = this.minAngle; // Initialize angle to 12°
   private angleThreshold = 12; // Degrees per step
+
+  ngOnInit(): void {
+    if (this.startDate) {
+      const nextDay = new Date(this.startDate);
+      nextDay.setDate(nextDay.getDate() + 1); // Set to the next day
+      this.endDate = nextDay;
+    }
+  }
 
   @HostListener('document:mousemove', ['$event'])
   @HostListener('document:touchmove', ['$event'])
@@ -148,5 +166,37 @@ export class DaySearchCircularSliderComponent {
       };
       this.dashOffset = this.dashArray - (this.minAngle / 360) * this.dashArray;
     }
+    this.calculateEndDate();
+  }
+
+  private calculateEndDate(): void {
+    if (this.startDate) {
+      const endDate = new Date(this.startDate);
+      endDate.setDate(endDate.getDate() + this.selectedDay); // Increment by selected days
+      this.endDate = endDate;
+    }
+  }
+
+  selectDay(day: number) {
+    this.selectedDay = day;
+    const dayRange = this.dayAngles.find(
+      (angleRange) => angleRange.day === day
+    );
+
+    if (dayRange) {
+      const middleAngle = (dayRange.start + dayRange.end) / 2;
+
+      this.pointerStyle = {
+        ...this.pointerStyle,
+        transform: `translateY(-50%) rotate(${middleAngle + 93}deg)`,
+      };
+
+      const progress = (middleAngle / 360) * this.dashArray;
+      this.dashOffset = this.dashArray - progress;
+
+      this.previousAngle = middleAngle;
+    }
+
+    this.calculateEndDate();
   }
 }

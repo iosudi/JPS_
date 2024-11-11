@@ -11,22 +11,23 @@ export class MobileNavbarComponent implements OnInit {
 
   userLogged: string | null = localStorage.getItem('userId');
 
+  authLinks = [
+    '/auth/login',
+    '/auth/register',
+    '/auth/OTP',
+    '/auth/forgot-password',
+    '/auth/check-email',
+  ];
+
+  accountLinks = ['/account-menu/profile', '/account-menu/personal-details'];
+
   constructor(private router: Router) {
     this.activeLink = this.router.url;
-    if (
-      this.activeLink == '/auth/login' ||
-      this.activeLink == '/auth/register' ||
-      this.activeLink == '/auth/OTP' ||
-      this.activeLink == '/auth/forgot-password' ||
-      this.activeLink == '/auth/check-email'
-    ) {
+    if (this.authLinks.includes(this.activeLink)) {
       this.activeLink = '/auth';
-    } else if (this.activeLink == '/your-favorites/details') {
+    } else if (this.activeLink.includes('/your-favorites/details')) {
       this.activeLink = '/your-favorites';
-    } else if (
-      this.activeLink == '/account-menu/profile' ||
-      this.activeLink == '/account-menu/personal-details'
-    ) {
+    } else if (this.accountLinks.includes(this.activeLink)) {
       this.activeLink = '/account-menu';
     }
   }

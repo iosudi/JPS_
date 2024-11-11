@@ -210,6 +210,23 @@
   }
 }
 
+@media (max-width: 991px) {
+  .container {
+    .header {
+      button {
+        font-size: 0.7rem;
+        img {
+          width: 15px !important;
+        }
+      }
+    }
+
+    .row {
+      margin-top: 30px;
+    }
+  }
+}
+
 @media (max-width: 860px) {
   .container {
     p-breadcrumb {
@@ -237,13 +254,18 @@
           display: none;
         }
       }
+
       p-dropdown {
         display: inline !important;
+      }
+      .buttons {
+        margin-top: 10px;
+        gap: 10px !important;
       }
       button {
         display: inline !important;
         font-size: 12px;
-        margin-right: 10px !important;
+        margin-right: 0px !important;
         img {
           width: 15px !important;
         }

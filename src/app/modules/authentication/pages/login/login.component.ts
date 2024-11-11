@@ -90,9 +90,15 @@ export class LoginComponent {
           if (res.status === 'error') {
             this.errorMessage = 'خطأ في الايميل او كلمة السر';
           } else {
-            this.errorMessage = '';
-            localStorage.setItem('userId', `${res.user.id}`);
-            window.location.reload();
+            if (window.innerWidth <= 750) {
+              this.errorMessage = '';
+              localStorage.setItem('userId', `${res.user.id}`);
+              this.router.navigate(['/home']);
+            } else {
+              this.errorMessage = '';
+              window.location.reload();
+              localStorage.setItem('userId', `${res.user.id}`);
+            }
 
             this.toastr.success('تم تسجيل الدخول للحساب بنجاح!');
           }

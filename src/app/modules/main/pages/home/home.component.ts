@@ -68,6 +68,8 @@ export class HomeComponent {
   @ViewChild('apartmentSwiper', { static: false })
   apartmentSwiper?: ElementRef;
 
+  currentVisibleIndex!: number;
+
   apartmentsBreakpoints = {
     320: {
       slidesPerView: 1,
@@ -220,11 +222,13 @@ export class HomeComponent {
   ngOnInit(): void {
     this.spinner.show();
     this.roles = [{ name: 'مالك' }, { name: 'ضيف' }];
-    document.body.style.overflow = 'hidden'; // Prevent body scrolling
+    document.body.style.overflow = 'hidden';
 
     this._PropertiesCitiesService.getSpecialProperties().subscribe({
       next: (res) => {
         this.specialApartments = res.properties;
+        const swiper = this.apartmentSwiper?.nativeElement.swiper;
+        this.updateVisibleSlides(swiper);
       },
       error: (err) => {
         console.error('Error getting special apartments:', err);
@@ -263,12 +267,33 @@ export class HomeComponent {
     setTimeout(() => {
       this.spinner.hide();
       document.body.style.overflow = 'auto'; // Re-enable body scrolling
-    }, 2000);
+    }, 3000);
 
     this.scrollWidth = 300;
     setInterval(() => this.autoScroll('heroSection'), 3000);
     setInterval(() => this.autoScroll('gallerySection'), 2000);
     this.setActive(this.contentIndex);
+  }
+
+  updateVisibleSlides(swiper: any) {
+    const slidesPerView = Math.floor(swiper.params.slidesPerView);
+    const activeIndex = swiper.activeIndex;
+
+    // Calculate the last visible index
+    if (slidesPerView > 1) {
+      const lastVisibleIndex = Math.min(
+        activeIndex + slidesPerView - 1,
+        this.specialApartments.length - 1
+      );
+
+      // Update the last visible index
+      this.currentVisibleIndex = lastVisibleIndex;
+    }
+  }
+
+  // Check if the current slide is the last visible one
+  isLastVisible(index: number): boolean {
+    return index === this.currentVisibleIndex;
   }
 
   navigate(
@@ -329,6 +354,7 @@ export class HomeComponent {
       this.districtSwiper?.nativeElement.swiper.slideNext();
     } else if (carouselType === 'apartment') {
       this.apartmentSwiper?.nativeElement.swiper.slideNext();
+      this.updateVisibleSlides(this.apartmentSwiper?.nativeElement.swiper);
     } else if (carouselType === 'hotel') {
       this.hotelSwiper?.nativeElement.swiper.slideNext();
     }
@@ -346,6 +372,7 @@ export class HomeComponent {
       this.districtSwiper?.nativeElement.swiper.slidePrev();
     } else if (carouselType === 'apartment') {
       this.apartmentSwiper?.nativeElement.swiper.slidePrev();
+      this.updateVisibleSlides(this.apartmentSwiper?.nativeElement.swiper);
     } else if (carouselType === 'hotel') {
       this.hotelSwiper?.nativeElement.swiper.slidePrev();
     }
@@ -466,160 +493,51 @@ export class HomeComponent {
     this.contentContainerHeight = div.nativeElement.offsetHeight + 16;
     this.contentIndex = index;
 
-    if (this.contentIndex === 1) {
+    this.renderer.setStyle(
+      this.knowMoreBtn.nativeElement,
+      'top',
+      `${this.contentContainerHeight}px`
+    );
+
+    // Calculate transform values based on the content index
+    const transforms = [
+      [0, 0, 0],
+      [-this.dotWidth, this.dotWidth, 0],
+      [-this.dotWidth * 2, this.dotWidth, this.dotWidth],
+    ];
+
+    [this.dot1, this.dot2, this.dot3].forEach((dot, i) => {
       this.renderer.setStyle(
-        this.knowMoreBtn.nativeElement,
-        'top',
-        `${this.contentContainerHeight}px`
-      );
-      this.renderer.setStyle(
-        this.dot1.nativeElement,
+        dot.nativeElement,
         'transform',
-        `translateX(-${this.dotWidth}px)`
+        `translateX(${transforms[index][i]}px)`
       );
-      this.renderer.setStyle(
-        this.dot2.nativeElement,
-        'transform',
-        `translateX(${this.dotWidth}px)`
-      );
-      this.renderer.setStyle(
-        this.dot3.nativeElement,
-        'transform',
-        `translateX(0px)`
-      );
-    } else if (this.contentIndex === 2) {
-      this.renderer.setStyle(
-        this.knowMoreBtn.nativeElement,
-        'top',
-        `${this.contentContainerHeight}px`
-      );
-      this.renderer.setStyle(
-        this.dot1.nativeElement,
-        'transform',
-        `translateX(-${this.dotWidth * 2}px)`
-      );
-      this.renderer.setStyle(
-        this.dot2.nativeElement,
-        'transform',
-        `translateX(${this.dotWidth}px)`
-      );
-      this.renderer.setStyle(
-        this.dot3.nativeElement,
-        'transform',
-        `translateX(${this.dotWidth}px)`
-      );
-    } else {
-      this.renderer.setStyle(
-        this.knowMoreBtn.nativeElement,
-        'top',
-        `${this.contentContainerHeight}px`
-      );
-      this.renderer.setStyle(
-        this.dot1.nativeElement,
-        'transform',
-        `translateX(0px)`
-      );
-      this.renderer.setStyle(
-        this.dot2.nativeElement,
-        'transform',
-        `translateX(0px)`
-      );
-      this.renderer.setStyle(
-        this.dot3.nativeElement,
-        'transform',
-        `translateX(0px)`
-      );
-    }
+    });
   }
 
   moveDot(index: number): void {
     this.dotHeight = this.testimonialsDot1.nativeElement.offsetHeight + 8;
 
-    if (index === 1) {
+    // Calculate transform values based on the index
+    const transforms = [
+      [0, 0, 0, 0],
+      [this.dotHeight, -this.dotHeight, 0, 0],
+      [this.dotHeight * 2, -this.dotHeight, -this.dotHeight, 0],
+      [this.dotHeight * 3, -this.dotHeight, -this.dotHeight, -this.dotHeight],
+    ];
+
+    [
+      this.testimonialsDot1,
+      this.testimonialsDot2,
+      this.testimonialsDot3,
+      this.testimonialsDot4,
+    ].forEach((dot, i) => {
       this.renderer.setStyle(
-        this.testimonialsDot1.nativeElement,
+        dot.nativeElement,
         'transform',
-        `translateY(${this.dotHeight}px)`
+        `translateY(${transforms[index][i]}px)`
       );
-      this.renderer.setStyle(
-        this.testimonialsDot2.nativeElement,
-        'transform',
-        `translateY(-${this.dotHeight}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot3.nativeElement,
-        'transform',
-        `translateY(0px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot4.nativeElement,
-        'transform',
-        `translateY(0px)`
-      );
-    } else if (index === 2) {
-      this.renderer.setStyle(
-        this.testimonialsDot1.nativeElement,
-        'transform',
-        `translateY(${this.dotHeight * 2}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot2.nativeElement,
-        'transform',
-        `translateY(-${this.dotHeight}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot3.nativeElement,
-        'transform',
-        `translateY(-${this.dotHeight}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot4.nativeElement,
-        'transform',
-        `translateY(0)`
-      );
-    } else if (index === 3) {
-      this.renderer.setStyle(
-        this.testimonialsDot1.nativeElement,
-        'transform',
-        `translateY(${this.dotHeight * 3}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot2.nativeElement,
-        'transform',
-        `translateY(-${this.dotHeight}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot3.nativeElement,
-        'transform',
-        `translateY(-${this.dotHeight}px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot4.nativeElement,
-        'transform',
-        `translateY(-${this.dotHeight}px)`
-      );
-    } else {
-      this.renderer.setStyle(
-        this.testimonialsDot1.nativeElement,
-        'transform',
-        `translateY(0px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot2.nativeElement,
-        'transform',
-        `translateY(0px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot3.nativeElement,
-        'transform',
-        `translateY(0px)`
-      );
-      this.renderer.setStyle(
-        this.testimonialsDot4.nativeElement,
-        'transform',
-        `translateY(0px)`
-      );
-    }
+    });
   }
 
   togglePasswordVisibility(passwordInput: string): void {
