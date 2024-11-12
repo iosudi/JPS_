@@ -25,11 +25,13 @@ export class RatesComponent implements OnInit {
   ) {}
 
   sendFeedbackForm: FormGroup = this._FormBuilder.group({
-    accuracy: ['', Validators.required],
-    ease: ['', Validators.required],
-    response_level: ['', Validators.required],
-    feedback: ['', [Validators.required, Validators.maxLength(this.maxChars)]],
     rating: ['', Validators.required],
+    ease: ['', Validators.required],
+    accuracy: ['', Validators.required],
+    service: ['', Validators.required],
+    security: ['', Validators.required],
+    speed: ['', Validators.required],
+    feedback: ['', [Validators.required, Validators.maxLength(this.maxChars)]],
   });
 
   ngOnInit() {

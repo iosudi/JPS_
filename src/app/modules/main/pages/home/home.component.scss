@@ -17,7 +17,7 @@ span {
 ngx-spinner ::ng-deep {
   .ngx-spinner-overlay {
     img {
-      animation: spinnerFadeIn 3s forwards;
+      animation: spinnerFadeIn 4s forwards;
     }
   }
 }
@@ -25,9 +25,13 @@ ngx-spinner ::ng-deep {
 @keyframes spinnerFadeIn {
   0% {
     opacity: 0;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
   }
-  50% {
+  80% {
     opacity: 1;
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
   }
   100% {
     opacity: 0;
@@ -291,6 +295,9 @@ ngx-spinner ::ng-deep {
             .rating {
               font-size: 0.7rem;
               background: #3f514a;
+              i {
+                color: #fdc820 !important;
+              }
             }
             .paginator {
               .dot {
@@ -319,7 +326,7 @@ ngx-spinner ::ng-deep {
           .apartment-details {
             opacity: 91%;
             p {
-              font-size: 12px;
+              font-size: 1rem;
             }
             img {
               width: 30px;

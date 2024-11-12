@@ -7,11 +7,11 @@ import { filter } from 'rxjs';
 import { InfoService } from '../../services/info.service';
 
 @Component({
-  selector: 'app-jps-rating-modal',
-  templateUrl: './jps-rating-modal.component.html',
-  styleUrls: ['./jps-rating-modal.component.scss'],
+  selector: 'app-host-feedback-modal',
+  templateUrl: './host-feedback-modal.component.html',
+  styleUrls: ['./host-feedback-modal.component.scss'],
 })
-export class JPSRatingModalComponent {
+export class HostFeedbackModalComponent {
   activeModal = inject(NgbActiveModal);
   currentRate: number = 0;
   maxRate: number = 5;
@@ -26,13 +26,11 @@ export class JPSRatingModalComponent {
   ) {}
 
   feedback: FormGroup = this._FormBuilder.group({
-    rating: ['', Validators.required],
-    ease: ['', Validators.required],
     accuracy: ['', Validators.required],
-    service: ['', Validators.required],
-    security: ['', Validators.required],
-    speed: ['', Validators.required],
+    ease: ['', Validators.required],
+    response_level: ['', Validators.required],
     feedback: ['', [Validators.required, Validators.maxLength(this.maxChars)]],
+    rating: ['', Validators.required],
   });
 
   ngOnInit(): void {

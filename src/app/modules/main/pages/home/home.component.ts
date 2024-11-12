@@ -267,7 +267,7 @@ export class HomeComponent {
     setTimeout(() => {
       this.spinner.hide();
       document.body.style.overflow = 'auto'; // Re-enable body scrolling
-    }, 3000);
+    }, 4000);
 
     this.scrollWidth = 300;
     setInterval(() => this.autoScroll('heroSection'), 3000);

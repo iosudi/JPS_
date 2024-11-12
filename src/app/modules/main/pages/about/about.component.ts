@@ -1,13 +1,16 @@
 import {
   Component,
   ElementRef,
+  inject,
   OnInit,
   Renderer2,
   ViewChild,
 } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import Aos from 'aos';
 import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { JPSRatingModalComponent } from 'src/app/shared/components/jps-rating-modal/jps-rating-modal.component';
 import { InfoService } from 'src/app/shared/services/info.service';
 import { Features, staffMembers } from 'src/assets/data/about';
 import { Testimonials } from 'src/assets/data/testimonials';
@@ -24,6 +27,7 @@ export class AboutComponent implements OnInit {
     private _InfoService: InfoService
   ) {}
 
+  private modalService = inject(NgbModal);
   features: any[] = Features;
   staffMembers: any[] = staffMembers;
   @ViewChild('staffCarousel', { static: false })
@@ -248,5 +252,12 @@ export class AboutComponent implements OnInit {
         `translateY(0px)`
       );
     }
+  }
+
+  openFeedbackForm(): void {
+    this.modalService.open(JPSRatingModalComponent, {
+      centered: true,
+      scrollable: true,
+    });
   }
 }

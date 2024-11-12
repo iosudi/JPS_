@@ -10,6 +10,7 @@ import { JPSRatingModalComponent } from './components/jps-rating-modal/jps-ratin
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchCircularSliderComponent } from './components/search-circular-slider/search-circular-slider.component';
 import { SearchStepsComponent } from './components/search-steps/search-steps.component';
+import { HostFeedbackModalComponent } from './components/host-feedback-modal/host-feedback-modal.component';
 
 registerLocaleData(localeAr);
 
@@ -20,6 +21,7 @@ registerLocaleData(localeAr);
     SearchCircularSliderComponent,
     DaySearchCircularSliderComponent,
     JPSRatingModalComponent,
+    HostFeedbackModalComponent,
   ],
   imports: [
     CommonModule,
