@@ -77,6 +77,7 @@
                 placeholder="  حدد تاريخ الاقامة"
                 inputId="DatePickerInput"
                 tabindex="-1"
+                (ngModelChange)="onDateChange($event)"
               >
                 <ng-template
                   pTemplate="inputicon"
@@ -106,12 +107,14 @@
             <div *ngIf="value === 'شهري'">
               <app-search-circular-slider
                 [startDate]="date"
+                (dateSelected)="onDateSelected($event)"
               ></app-search-circular-slider>
             </div>
 
             <div *ngIf="value === 'يومي'">
               <app-day-search-circular-slider
                 [startDate]="date"
+                (dateSelected)="onDateSelected($event)"
               ></app-day-search-circular-slider>
             </div>
           </div>

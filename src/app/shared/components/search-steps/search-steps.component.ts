@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import {
@@ -17,11 +18,15 @@ export class SearchStepsComponent {
   constructor(
     private _SearchService: SearchService,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private datePipe: DatePipe
   ) {}
 
   @ViewChild('datePicker') datePicker!: ElementRef;
+
   date: Date = new Date();
+  endDate: string | null = '';
+  startDate: string | null = '';
 
   currentStep = 0;
   showSteps = true;
@@ -75,16 +80,28 @@ export class SearchStepsComponent {
         this._SearchService.showSearchSteps.next(false);
       }
     });
+
+    this.startDate = this.datePipe.transform(this.date, 'yyyy-MM-dd');
   }
 
   onDateChange(updatedDate: Date) {
-    this.date = updatedDate;
+    this.startDate = this.datePipe.transform(updatedDate, 'yyyy-MM-dd');
+    this.reserveDate();
+  }
+
+  onDateSelected(formattedDate: string) {
+    this.endDate = formattedDate;
+    this.reserveDate();
   }
 
   selectCity(cityId: number, cityName: string) {
     this._SearchService.setCity(cityId);
     this.selectedCity = cityId;
     this.selectedCityName = cityName;
+  }
+
+  reserveDate() {
+    this._SearchService.setDate(this.startDate, this.endDate);
   }
 
   selectUnitType(type: string) {

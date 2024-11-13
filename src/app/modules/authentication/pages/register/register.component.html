@@ -129,74 +129,38 @@
           </div>
         </div>
 
-        <!-- phone - national number fields -->
-        <div class="input-box d-flex gap-2 my-3">
-          <div class="w-100">
-            <div
-              [class.error]="
-                registerForm.get('phone')?.errors &&
-                registerForm.get('phone')?.touched
-              "
-              class="input-field px-4 d-flex gap-2 align-items-center"
-            >
-              <img src="./assets/imgs/icons/speaker.png" alt="speaker icon" />
+        <!-- phone - fields -->
+        <div class="input-box my-3">
+          <div
+            [class.error]="
+              registerForm.get('phone')?.errors &&
+              registerForm.get('phone')?.touched
+            "
+            class="input-field px-4 d-flex gap-2 align-items-center"
+          >
+            <img src="./assets/imgs/icons/speaker.png" alt="speaker icon" />
 
-              <input
-                class="py-3"
-                formControlName="phone"
-                type="text"
-                placeholder="رقم الموبايل"
-              />
-            </div>
-
-            <div
-              class="alerts"
-              *ngIf="
-                registerForm.get('phone')?.errors &&
-                registerForm.get('phone')?.touched
-              "
-            >
-              <p
-                class="text-danger mb-1"
-                *ngIf="registerForm.get('phone')?.getError('required')"
-              >
-                رقم الهاتف مطلوب
-              </p>
-            </div>
+            <input
+              class="py-3"
+              formControlName="phone"
+              type="text"
+              placeholder="رقم الموبايل"
+            />
           </div>
 
-          <div class="w-100">
-            <div
-              [class.error]="
-                registerForm.get('nationalid')?.errors &&
-                registerForm.get('nationalid')?.touched
-              "
-              class="d-flex gap-2 align-items-center input-field px-4"
+          <div
+            class="alerts"
+            *ngIf="
+              registerForm.get('phone')?.errors &&
+              registerForm.get('phone')?.touched
+            "
+          >
+            <p
+              class="text-danger mb-1"
+              *ngIf="registerForm.get('phone')?.getError('required')"
             >
-              <img src="./assets/imgs/icons/id.png" alt="id icon" />
-
-              <input
-                class="py-3"
-                type="text"
-                formControlName="nationalid"
-                placeholder="الرقم القومي/جواز السفر"
-              />
-            </div>
-
-            <div
-              class="alerts"
-              *ngIf="
-                registerForm.get('nationalid')?.errors &&
-                registerForm.get('nationalid')?.touched
-              "
-            >
-              <p
-                class="text-danger mb-1"
-                *ngIf="registerForm.get('nationalid')?.getError('required')"
-              >
-                الرقم القومي/جواز السفر مطلوب
-              </p>
-            </div>
+              رقم الهاتف مطلوب
+            </p>
           </div>
         </div>
 
@@ -342,7 +306,7 @@
       </div>
     </form>
 
-    <div class="separator d-flex align-items-center gap-3">
+    <!-- <div class="separator d-flex align-items-center gap-3">
       <div class="line"></div>
       <p class="mb-0">أو</p>
       <div class="line"></div>
@@ -357,6 +321,6 @@
         <img src="./assets/imgs/icons/facebook.png" alt="facebook icon" />
         <p class="mb-0 fw-lighter">التسجيل باستخدام فيسبوك</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

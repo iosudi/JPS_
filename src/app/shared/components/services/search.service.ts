@@ -22,10 +22,17 @@ export class SearchService {
     rooms: 0,
     beds: 3,
     bathrooms: 0,
+    start_date: '',
+    end_date: '',
   };
 
   setCity(city: number) {
     this.searchCriteria.city = city;
+  }
+
+  setDate(startDate: string | null, endDate: string | null) {
+    this.searchCriteria.start_date = startDate;
+    this.searchCriteria.end_date = endDate;
   }
 
   setUnitType(type: string) {

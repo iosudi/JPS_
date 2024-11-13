@@ -61,7 +61,6 @@ export class JPSRatingModalComponent {
     if (this.feedback.status === 'VALID') {
       this._InfoService.sendFeedbacks(this.feedback.value).subscribe({
         next: (res) => {
-          console.log(res);
           if (res.success) {
             this.feedback.reset();
             this.toastr.success('تمت اضافة تعليقك بنجاح');
@@ -73,7 +72,6 @@ export class JPSRatingModalComponent {
           } else {
             this.toastr.error('حدث خطأ ما, برجاء المحاولة لاحقا');
           }
-          console.log(err);
         },
       });
     }

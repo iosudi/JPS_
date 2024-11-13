@@ -1,8 +1,12 @@
+import { DatePipe } from '@angular/common';
 import {
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
+  Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 
@@ -14,6 +18,10 @@ import {
 export class SearchCircularSliderComponent {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
   @Input() startDate!: Date; // Receive start date from parent component
+  constructor(private datePipe: DatePipe) {}
+
+  formattedDate!: string | null;
+  @Output() dateSelected = new EventEmitter<string>();
 
   selectedMonth = 1; // Default month
   endDate: Date | undefined; // Calculated end date
@@ -63,6 +71,12 @@ export class SearchCircularSliderComponent {
       const nextMonth = new Date(this.startDate);
       nextMonth.setMonth(nextMonth.getMonth() + 1); // Set to the next month
       this.endDate = nextMonth;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['startDate']) {
+      this.calculateEndDate();
     }
   }
 
@@ -163,6 +177,11 @@ export class SearchCircularSliderComponent {
       const endDate = new Date(this.startDate);
       endDate.setMonth(endDate.getMonth() + this.selectedMonth);
       this.endDate = endDate;
+      this.formattedDate = this.datePipe.transform(endDate, 'yyyy-MM-dd');
+
+      if (this.formattedDate) {
+        this.dateSelected.emit(this.formattedDate);
+      }
     }
   }
 

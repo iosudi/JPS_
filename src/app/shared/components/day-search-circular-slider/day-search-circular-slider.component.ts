@@ -1,9 +1,13 @@
+import { DatePipe } from '@angular/common';
 import {
   Component,
   ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnInit,
+  Output,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 
@@ -14,8 +18,13 @@ import {
 })
 export class DaySearchCircularSliderComponent implements OnInit {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
-
   @Input() startDate!: Date; // Receive start date from parent component
+  @Output() dateSelected = new EventEmitter<string>();
+
+  constructor(private datePipe: DatePipe) {}
+
+  formattedDate!: string | null;
+
   endDate: Date | undefined; // Calculated end date
 
   selectedDay = 1; // Default day
@@ -58,6 +67,12 @@ export class DaySearchCircularSliderComponent implements OnInit {
       const nextDay = new Date(this.startDate);
       nextDay.setDate(nextDay.getDate() + 1); // Set to the next day
       this.endDate = nextDay;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['startDate']) {
+      this.calculateEndDate();
     }
   }
 
@@ -174,6 +189,12 @@ export class DaySearchCircularSliderComponent implements OnInit {
       const endDate = new Date(this.startDate);
       endDate.setDate(endDate.getDate() + this.selectedDay); // Increment by selected days
       this.endDate = endDate;
+
+      this.formattedDate = this.datePipe.transform(endDate, 'yyyy-MM-dd');
+
+      if (this.formattedDate) {
+        this.dateSelected.emit(this.formattedDate);
+      }
     }
   }
 

@@ -58,7 +58,6 @@ export class RegisterComponent {
       ],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]],
-      nationalid: ['', [Validators.required]],
       account_type: ['', [Validators.required]],
       password: [
         '',
