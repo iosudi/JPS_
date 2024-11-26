@@ -1,6 +1,7 @@
 .hero {
   height: 900px;
   padding: 20px 200px;
+  margin: 8%;
   .container-fluid {
     overflow: hidden;
     border-radius: 20px;
@@ -75,7 +76,8 @@
 
 .mission {
   h2 {
-    font-size: 50px;
+    font-size: 85px;
+    text-align: center;
     color: #3f514a;
     span {
       color: #deae5a;
@@ -133,6 +135,7 @@
 
   .col-md-6 {
     .card {
+      height: 100%;
       border: 0;
       border-radius: 15px;
       background-color: #bacac4;
@@ -203,6 +206,11 @@
         }
       }
     }
+    .social-overlay a:hover{
+      i{
+      color: #ecd09f;
+      }
+    }
 
     .rating {
       background: #f5e7cf;
@@ -211,8 +219,8 @@
       font-weight: bold;
     }
     img {
-      width: 140px;
-      height: 140px;
+      width: 165px;
+      height: 165px;
       border-radius: 100%;
     }
     p {
@@ -238,6 +246,9 @@
       font-size: 15px;
       border: 1px solid #3f514a;
     }
+    .arr-btn:hover{
+      background-color: #ecd09f;
+    }
   }
 }
 
@@ -253,6 +264,11 @@
       }
       .primary-btn {
         padding: 15px 25px;
+        transition: 0.2s;
+      }
+      .primary-btn:hover{
+        background-color: #3f514a;
+        color: #ecd09f;
       }
 
       .arr-btn {
@@ -263,6 +279,9 @@
         height: 50px;
         font-size: 20px;
         border: 1px solid #3f514a;
+      }
+      .arr-btn:hover{
+        background-color: #ecd09f;
       }
     }
 
@@ -468,7 +487,7 @@
   .vision {
     .heading {
       right: -70px;
-      height: 90% !important;
+      height: 95% !important;
       bottom: 0;
       border-radius: 30px;
       .title {
@@ -769,7 +788,7 @@
 
   .vision {
     padding: 30px 0px !important;
-    max-height: 650px;
+    max-height: 920px;
     .image {
       width: 80%;
       height: 300px !important;
