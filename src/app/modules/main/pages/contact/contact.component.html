@@ -15,30 +15,29 @@
       <div class="blur"></div>
     </div>
     <div class="row w-100">
+      <div class="col-xl-5">
+        <div class="heading">
+          <h1>تواصل معنا بكل  <span>سهولة</span></h1>
+          <p>
+            نحن هنا لإجابة على جميع استفساراتك ومساعدتك في أي وقت. اختر الطريقة الأنسب للتواصل معنا.
+          </p>
+        </div>
+      </div>
       <div class="col-xl-7">
-        <div class="shape position-absolute">
+        <!-- <div class="shape position-absolute">
           <img
             src="./assets/imgs/contact imgs/Vector 130 (1).png"
             alt="about us"
           />
-        </div>
+        </div> -->
         <div class="house position-absolute">
           <img
-            src="./assets/imgs/contact imgs/d06614e063c6e5348525f0ffc3d5de85.png"
+            src="./assets/imgs/serviceMan.png"
             alt="about us"
           />
         </div>
       </div>
 
-      <div class="col-xl-5">
-        <div class="heading">
-          <h1>دعونا <span>نتواصل</span></h1>
-          <p>
-            هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا
-            النص من مولد النص العربى،
-          </p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -56,9 +55,9 @@
             alt="message icon"
           />
           <div class="title d-flex flex-column align-items-center">
-            <h2 class="fw-bold">تحدث معنا</h2>
+            <h2 class="fw-bold">تحدث معنا عبر واتساب</h2>
             <p class="w-75">
-              الدردشة معنا الدردشة معنا للحصول على المساعدة في الوقت الحقيقي
+              استفسارك جاهز؟ ارسل لنا رسالة الآن وسنكون بخدمتك فوًرا.
             </p>
           </div>
           <h3 class="pt-4 h4 border-top w-50 fw-semibold">تحدث الان</h3>
@@ -74,9 +73,9 @@
                 alt="message icon"
               />
               <div>
-                <h2 class="fw-bold">البريد الإلكتروني</h2>
+                <h2 class="fw-bold">تواصل معنا عبر البريد الإلكتروني</h2>
                 <p class="mb-0 w-75 fw-light">
-                  راسلنا عبر البريد الإلكتروني للحصول على المساعدة الشخصية.
+                  لأي استفسار أو طلب، راسلنا وسيقوم فريقنا بالرد عليك في أسرع وقت
                 </p>
               </div>
             </div>
@@ -88,9 +87,9 @@
                 alt="message icon"
               />
               <div>
-                <h2 class="fw-bold">اتصل بنا</h2>
+                <h2 class="fw-bold">اتصل بنا مباشرة</h2>
                 <p class="mb-0 w-75 fw-light">
-                  اتصل بنا حتى نتمكن من مناقشة احتياجاتك الإيجارية. جدول
+                  بحاجة إلى مساعدة الآن؟ فريقنا متاح للرد على مكالماتك.
                 </p>
               </div>
             </div>
@@ -108,21 +107,24 @@
       <div class="col-lg-5">
         <div class="heading ps-5">
           <h2 class="h1 fw-bolder" data-aos="fade-left">
-            هل تفضل أن تترك لنا رسالة؟
+            هل ترغب في ترك رسالة؟ ملاحظاتك تهمنا وسنسعد بالاستماع إليك.
           </h2>
           <p class="fw-light w-75" data-aos="fade-left">
-            هل لديك سؤال أو طلب؟ لا تتردد في إرسال رسالة إلينا، وسنقوم بالرد
-            عليك على الفور.
+            سواء كانت لديك شكوى، اقتراح، مساعدة أو ترغب في إضافة وحدتك، املأ النموذج
+            وسنتواصل معك في أقرب وقت.
           </p>
           <div class="social d-flex gap-3" data-aos="fade-left">
-            <a href="#" class="social-icon">
-              <i class="fab fa-x-twitter"></i>
-            </a>
             <a href="#" class="social-icon">
               <i class="fab fa-facebook-f"></i>
             </a>
             <a href="#" class="social-icon">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon">
               <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fa-solid fa-phone"></i>
             </a>
           </div>
         </div>
@@ -139,7 +141,7 @@
                     formControlName="name"
                     class="py-3"
                     type="text"
-                    placeholder="الاسم"
+                    placeholder="اكتب اسمك الكامل"
                   />
                 </div>
               </div>
@@ -151,7 +153,7 @@
                     formControlName="email"
                     class="py-3"
                     type="email"
-                    placeholder="البريد الالكتروني"
+                    placeholder="أدخل بريدك الإلكتروني"
                   />
                 </div>
               </div>
@@ -167,7 +169,7 @@
                     formControlName="phone"
                     class="py-3"
                     type="text"
-                    placeholder="رقم الموبايل"
+                    placeholder="أدخل رقم هاتفك"
                   />
                 </div>
               </div>
@@ -180,7 +182,7 @@
                     name="requestType"
                     id="requestType"
                   >
-                    <option value="" selected disabled>نوع الطلب</option>
+                    <option value="" selected disabled>حدد نوع الطلب</option>
                     <option value="شكوى">شكوى</option>
                     <option value="مساعدة">مساعدة</option>
                   </select>
@@ -195,7 +197,7 @@
                     class="py-3"
                     name="requestContent"
                     id="requestContent"
-                    placeholder="اكتب رسالتك هنا ..."
+                    placeholder="يرجى تقديم تفاصيل طلبك أو ملاحظاتك هنا بشكل دقيق ..."
                   ></textarea>
                 </div>
               </div>
@@ -209,7 +211,7 @@
                 [disabled]="contactForm.invalid"
               >
                 <i class="fa-solid fa-arrow-right"></i>
-                ارسل لنا
+                أرسل الأن وسنرد عليك فورا
               </button>
             </div>
           </form>
@@ -225,8 +227,9 @@
       <div class="col-lg-4">
         <div class="our-location py-5 px-4 position-relative overflow-hidden">
           <div class="background position-absolute"></div>
-          <h3>موقعنا</h3>
-          <p>نعمل حاليًا في المواقع أدناه مع خطط للتوسع في مواقع أخرى.</p>
+          <h3> المدن المتاحة للإيجار</h3>
+          <p>اكتشف أفضل خيارات الإيجار في أبرز مدن مصر مع تجربة فاخرة تلبي احتياجاتك. نعمل حاليًا
+            في المواقع التالية مع خطط للتوسع في مواقع أخرى.</p>
           <div class="branches-locations d-flex flex-column gap-5 pt-5">
             <div class="branch d-flex gap-3 align-items-center">
               <div
@@ -243,9 +246,9 @@
                 <img src="./assets/imgs/2.png" alt="branch icon" />
               </div>
 
-              <h4 class="mb-0">التجمع الخامس</h4>
+              <h4 class="mb-0">الشيخ زايد</h4>
             </div>
-            <div class="branch d-flex gap-3 align-items-center">
+            <!-- <div class="branch d-flex gap-3 align-items-center">
               <div
                 class="branch-img d-flex align-items-center justify-content-center"
               >
@@ -253,7 +256,7 @@
               </div>
 
               <h4 class="mb-0">العالمين</h4>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -277,8 +280,8 @@
 <section class="faqs my-5 overflow-hidden">
   <div class="container">
     <div class="heading text-center">
-      <h3 class="h1 fw-bold mb-3" data-aos="fade-down">اسئلة شائعة</h3>
-      <p data-aos="fade-down">اكتشف الإجابات على أسئلتك حول عروض JPS</p>
+      <h3 class="h1 fw-bold mb-3" data-aos="fade-down">الأسئلة الشائعة</h3>
+      <p data-aos="fade-down">إجابات دقيقة وواضحة لأكثر الأسئلة تكراراً لضمان تجربة سلسة ومفهومة</p>
       <div
         class="buttons d-flex gap-3 align-items-center justify-content-center"
       >

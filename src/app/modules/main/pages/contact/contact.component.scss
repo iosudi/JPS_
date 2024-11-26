@@ -57,7 +57,7 @@
     .house {
       width: 900px;
       bottom: 0;
-      right: 0;
+      left: 0;
       z-index: -1;
     }
     .shape {
@@ -70,10 +70,12 @@
 }
 
 .contact-methods {
+  padding: 30px 0;
   .col-lg-6 {
     .method {
       background: #ecd09f;
       border-radius: 30px;
+      transition: 0.5s;
       h2 {
         color: #3f514a;
         font-size: 40px;
@@ -88,6 +90,9 @@
         width: 145px;
         height: 145px;
       }
+    }
+    .method:hover{
+      transform: translateY(-20px);
     }
   }
 
@@ -116,6 +121,7 @@
     }
     .social {
       a {
+        transition: 0.5s;
         width: 50px;
         height: 50px;
         background: #fff;
@@ -126,8 +132,11 @@
         text-decoration: none;
         i {
           color: #3f514a;
-          font-size: 18px;
+          font-size: 25px;
         }
+      }
+      a:hover{
+        transform: translateY(-10px);
       }
     }
   }
@@ -193,7 +202,7 @@
       bottom: 0px;
       left: 0px;
       width: 85%;
-      height: 65%;
+      height: 60%;
       background: #3f514a;
       border-radius: 0 16px 0 16px;
       z-index: -1;
@@ -207,15 +216,15 @@
       .branch {
         color: #f5e7cf;
         .branch-img {
-          width: 45px;
-          height: 45px;
+          width: 65px;
+          height: 65px;
           border-radius: 100%;
           overflow: hidden;
           background-color: #f5e7cf;
           img {
             border-radius: 100%;
-            width: 40px;
-            height: 40px;
+            width: 60px;
+            height: 60px;
           }
         }
       }
@@ -448,8 +457,8 @@
       }
 
       .house {
-        width: 700px;
-        right: -200px;
+        width: 500px;
+        // right: -200px;
       }
       .shape {
         width: 250%;
@@ -502,8 +511,8 @@
       }
 
       .house {
-        width: 500px;
-        right: -200px;
+        width: 400px;
+        // right: -200px;
       }
       .shape {
         width: 250%;
