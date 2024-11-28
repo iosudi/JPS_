@@ -6,7 +6,7 @@ nav {
   transition: 0.5s;
 
   .navbar {
-    background: white;
+    background-color: #ffffffbd;
     padding: 10px 20px;
     border-radius: 40px;
     ul {
@@ -38,13 +38,13 @@ nav {
 
 @media (max-width: 460px) {
   nav {
-    padding: 1rem 10px !important;
+    padding: 6px 3px !important;
     .navbar {
       ul {
         li {
           a {
             img {
-              width: 20px;
+              width: 30px;
               height: auto;
             }
             font-size: 20px;
