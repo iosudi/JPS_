@@ -1,7 +1,7 @@
 .hero {
   height: 900px;
   padding: 20px 200px;
-  margin: 8%;
+  margin-top: 8%;
   .container-fluid {
     overflow: hidden;
     border-radius: 20px;
@@ -268,7 +268,7 @@
       }
       .primary-btn:hover{
         background-color: #3f514a;
-        color: #ecd09f;
+        color: white;
       }
 
       .arr-btn {
@@ -335,6 +335,10 @@
               h5 {
                 font-size: 19px;
               }
+            }
+            .rating-dark{
+              color:#D4D4D4;
+              ;
             }
           }
 

@@ -217,7 +217,7 @@
           </h2>
           <p class="fw-light mb-0" data-aos="fade-left" data-aos-delay="50">
             نحن نفخر بتقديم تجربة مميزة لعملائنا, ونسعى دائماًلتحسين خدماتنا بناًء علي ملاحظاتهم
-            القيمة. تجربتك معنا هي أولويتنا, ونسعد دائماًبما يشاركونه من اراء تساهم في تطوير خدماتنا لتلبية احتياجاتكم
+            القيمة. تجربتك معنا هي أولويتنا, ونسعد دائماً بما يشاركونه من اراء تساهم في تطوير خدماتنا لتلبية احتياجاتكم
             بشكل أفضل.
           </p>
           <button
@@ -299,6 +299,7 @@
                       <div class="rating" dir="ltr">
                         <i
                           [class.rating-color]="testimonial.rating >= num"
+                          [class.rating-dark]="testimonial.rating <= num"
                           *ngFor="let num of [1, 2, 3, 4, 5]"
                           class="fa-solid fa-star"
                         ></i>
