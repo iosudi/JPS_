@@ -9,17 +9,42 @@ footer {
         height: 100px;
         border-radius: 20px;
         cursor: pointer;
+        transition: 0.5s;
 
+        
         img {
           width: 60px;
           height: auto;
         }
+      }
+      .logo-image:hover{
+        background-color: #2f3d38;
       }
 
       .social {
         img {
           width: 35px;
           height: auto;
+        }
+        a {
+          width: 40px;
+          height: 40px;
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 100%;
+          text-decoration: none;
+          i {
+            transition: 0.5s;
+            color: #3f514a;
+            font-size: 25px;
+          }
+        }
+        a:hover{
+          i{
+           color: #ecd09f;
+          }
         }
       }
     }

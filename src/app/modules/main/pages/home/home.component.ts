@@ -220,7 +220,7 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.roles = [{ name: 'مالك' }, { name: 'ضيف' }];
+    this.roles = [{ name: 'مالك' }, { name: 'مستأجر' }];
     document.body.style.overflow = 'hidden';
 
     this._PropertiesCitiesService.getSpecialProperties().subscribe({
