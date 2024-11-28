@@ -1,8 +1,16 @@
-import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
+import {
+  CommonModule,
+  DatePipe,
+  JsonPipe,
+  registerLocaleData,
+} from '@angular/common';
 import localeAr from '@angular/common/locales/ar';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbDatepickerModule,
+  NgbRatingModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { CalendarModule } from 'primeng/calendar';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { DaySearchCircularSliderComponent } from './components/day-search-circular-slider/day-search-circular-slider.component';
@@ -22,6 +30,7 @@ registerLocaleData(localeAr);
     DaySearchCircularSliderComponent,
     JPSRatingModalComponent,
     HostFeedbackModalComponent,
+    // CalendarComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +39,8 @@ registerLocaleData(localeAr);
     FormsModule,
     NgbRatingModule,
     ReactiveFormsModule,
+    NgbDatepickerModule,
+    JsonPipe,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ar' }, DatePipe],
   exports: [SearchBarComponent, SearchStepsComponent],

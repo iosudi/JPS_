@@ -1,0 +1,51 @@
+// .custom-day {
+//   text-align: center;
+//   padding: 0.185rem 0.25rem;
+//   display: inline-block;
+//   height: 2.7rem;
+//   width: 2.7rem;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   &.focused {
+//     background-color: #e6e6e6;
+//   }
+//   &.range,
+//   &:hover {
+//     background-color: #5c796d;
+//     color: white;
+//     border-radius: 50%;
+//   }
+//   &.faded {
+//     background-color: #4a594f33;
+//     border-radius: 0;
+//     color: #5c796d;
+//   }
+
+//   &.disabled {
+//     pointer-events: none;
+//     color: #969696;
+//   }
+//   &.disabled:hover {
+//     pointer-events: none;
+//     border-radius: 50%;
+//   }
+// }
+
+// ngb-datepicker ::ng-deep {
+//   .ngb-dp-months {
+//     justify-content: center;
+//     gap: 5%;
+//     .ngb-dp-week {
+//       padding-top: 0.25rem;
+//       padding-bottom: 0.25rem;
+//     }
+
+//     .ngb-dp-day,
+//     .ngb-dp-weekday,
+//     .ngb-dp-week-number {
+//       width: 2.7rem;
+//       height: 2.7rem;
+//     }
+//   }
+// }

@@ -4,11 +4,13 @@ import {
   ElementRef,
   EventEmitter,
   HostListener,
+  inject,
   Input,
   Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-search-circular-slider',
@@ -19,9 +21,14 @@ export class SearchCircularSliderComponent {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
   @Input() startDate!: Date; // Receive start date from parent component
   constructor(private datePipe: DatePipe) {}
+  private modalService = inject(NgbModal);
 
   formattedDate!: string | null;
   @Output() dateSelected = new EventEmitter<string>();
+
+  fromDate: NgbDate | null = null;
+  toDate: NgbDate | null = null;
+  arabicFormattedDate: string = '';
 
   selectedMonth = 1; // Default month
   endDate: Date | undefined; // Calculated end date
@@ -78,6 +85,55 @@ export class SearchCircularSliderComponent {
     if (changes['startDate']) {
       this.calculateEndDate();
     }
+  }
+
+  // openCalendar() {
+  //   const modalRef = this.modalService.open(CalendarComponent, {
+  //     centered: true,
+  //     backdrop: 'static',
+  //     scrollable: true,
+  //     size: 'lg',
+  //   });
+
+  //   modalRef.componentInstance.dateRangeChange.subscribe(
+  //     (dateRange: { fromDate: NgbDate; toDate: NgbDate | null }) => {
+  //       this.handleDateRangeChange(dateRange);
+  //     }
+  //   );
+  // }
+
+  handleDateRangeChange(dateRange: {
+    fromDate: NgbDate;
+    toDate: NgbDate | null;
+  }) {
+    this.fromDate = dateRange.fromDate;
+    this.toDate = dateRange.toDate;
+
+    // Convert NgbDate to JavaScript Date
+    const fromDefaultDate = new Date(
+      this.fromDate.year,
+      this.fromDate.month - 1,
+      this.fromDate.day
+    );
+
+    let toDefaultDate;
+    if (this.toDate) {
+      toDefaultDate = new Date(
+        this.toDate.year,
+        this.toDate.month - 1,
+        this.toDate.day
+      );
+    }
+
+    // Format the fromDate in default date format
+    this.formattedDate = this.datePipe.transform(
+      fromDefaultDate,
+      'mediumDate'
+    )!;
+
+    // Format the fromDate in Arabic format (e.g., الأحد، 15 ديسمبر)
+    this.startDate = fromDefaultDate;
+    this.endDate = toDefaultDate;
   }
 
   @HostListener('document:mousemove', ['$event'])
