@@ -1,0 +1,20 @@
+<div
+  [class.show]="isVisible"
+  *ngFor="let toastr of toastrMessages"
+  class="toastr"
+  [@toastAnimation]="{
+    value: 'in',
+    params: getDynamicAnimationParams(toastr)
+  }"
+  [ngStyle]="{ '--bottom': toastrMessages.indexOf(toastr) * 70 + 30 + 'px' }"
+>
+  <div class="toastr-content d-flex align-items-center gap-4">
+    <img
+      *ngIf="toastr.imageUrl"
+      [src]="toastr.imageUrl"
+      alt="Icon"
+      class="toastr-image rounded-2"
+    />
+    <span class="toastr-message">{{ toastr.message }}</span>
+  </div>
+</div>

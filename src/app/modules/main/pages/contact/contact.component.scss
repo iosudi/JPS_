@@ -92,7 +92,7 @@
         height: 145px;
       }
     }
-    .method:hover{
+    .method:hover {
       transform: translateY(-20px);
     }
   }
@@ -136,7 +136,7 @@
           font-size: 25px;
         }
       }
-      a:hover{
+      a:hover {
         transform: translateY(-10px);
       }
     }
@@ -261,10 +261,11 @@
   .faq {
     border: 1px solid #444;
     border-radius: 10px;
-    max-height: 75px;
     overflow: hidden;
     transition: 0.5s;
     cursor: pointer;
+    display: grid;
+    grid-template-rows: 1.8em 0fr;
     h4 {
       color: #000;
       font-size: 25px;
@@ -280,7 +281,8 @@
 
     &.expand {
       cursor: auto;
-      max-height: 300px;
+      grid-template-rows: 1.8em 1fr;
+
       h4 {
         font-size: 32px;
         color: #3f514a;

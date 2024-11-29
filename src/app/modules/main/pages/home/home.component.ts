@@ -21,6 +21,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Apartments } from 'src/app/core/interfaces/apartments';
 import { ShareModalComponent } from 'src/app/modules/product-search/components/share-modal/share-modal.component';
 import { JPSRatingModalComponent } from 'src/app/shared/components/jps-rating-modal/jps-rating-modal.component';
+import { ToastrComponent } from 'src/app/shared/components/toastr/toastr.component';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { InfoService } from 'src/app/shared/services/info.service';
 import { PropertiesCitiesService } from 'src/app/shared/services/properties-cities.service';
@@ -49,6 +50,7 @@ export class HomeComponent {
   private modalService = inject(NgbModal);
 
   favProperties: any[] = [];
+  @ViewChild(ToastrComponent) toaster: ToastrComponent | undefined;
 
   apartments: Apartments[] = apartments;
   specialApartments: any[] = [];
@@ -69,6 +71,8 @@ export class HomeComponent {
   apartmentSwiper?: ElementRef;
 
   currentVisibleIndex!: number;
+  currentSpecialApartmentImageIndex: { [key: number]: number } = {};
+  currentCitiesApartmentImageIndex: { [key: number]: number } = {};
 
   apartmentsBreakpoints = {
     320: {
@@ -184,7 +188,7 @@ export class HomeComponent {
   //Form Variables
   passwordVisibility: boolean = false;
   confirmPasswordVisibility: boolean = false;
-  roles: any[] | undefined;
+  roles!: any[];
   errMsg!: string;
 
   @ViewChild('submitBtn') submitBtn!: ElementRef;
@@ -220,12 +224,48 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.roles = [{ name: 'مالك' }, { name: 'مستأجر' }];
+    this.roles = [
+      { icon: './assets/imgs/icons/real-estate-agent.png', name: 'مالك' },
+      { icon: './assets/imgs/icons/manGreen.png', name: 'مستأجر' },
+    ];
     document.body.style.overflow = 'hidden';
 
+    // Initialize APIS Data
+    this.initialize();
+
+    setTimeout(() => {
+      this.spinner.hide();
+      document.body.style.overflow = 'auto';
+    }, 4000);
+
+    this.scrollWidth = 300;
+    setInterval(() => this.autoScroll('heroSection'), 3000);
+    setInterval(() => this.autoScroll('gallerySection'), 2000);
+    this.setActive(this.contentIndex);
+  }
+
+  initialize(): void {
+    // Get Special Properties
     this._PropertiesCitiesService.getSpecialProperties().subscribe({
       next: (res) => {
         this.specialApartments = res.properties;
+
+        this.specialApartments.forEach((apartment) => {
+          if (
+            this.currentSpecialApartmentImageIndex[apartment.id] === undefined
+          ) {
+            this.currentSpecialApartmentImageIndex[apartment.id] = 0; // Set to the first image initially
+          }
+        });
+
+        this.specialApartments.forEach((apartment) => {
+          if (
+            this.currentCitiesApartmentImageIndex[apartment.id] === undefined
+          ) {
+            this.currentCitiesApartmentImageIndex[apartment.id] = 0; // Set to the first image initially
+          }
+        });
+
         const swiper = this.apartmentSwiper?.nativeElement.swiper;
         this.updateVisibleSlides(swiper);
       },
@@ -234,6 +274,7 @@ export class HomeComponent {
       },
     });
 
+    // Get Feedbacks
     this._InfoService.getFeedbacks().subscribe({
       next: (res) => {
         this.testimonials = res.feedbacks.slice(0, 4);
@@ -243,6 +284,7 @@ export class HomeComponent {
       },
     });
 
+    // Get Cities
     this._PropertiesCitiesService.getSearchedCities().subscribe({
       next: (res) => {
         this.cities = res.data;
@@ -252,6 +294,7 @@ export class HomeComponent {
       },
     });
 
+    // Get Favorite Properties
     this._UserService.getFavorites().subscribe({
       next: (res) => {
         res.properties.forEach((property: any) => {
@@ -262,16 +305,10 @@ export class HomeComponent {
         console.error('Error getting favorite apartments:', err);
       },
     });
+  }
 
-    setTimeout(() => {
-      this.spinner.hide();
-      document.body.style.overflow = 'auto'; // Re-enable body scrolling
-    }, 4000);
-
-    this.scrollWidth = 300;
-    setInterval(() => this.autoScroll('heroSection'), 3000);
-    setInterval(() => this.autoScroll('gallerySection'), 2000);
-    this.setActive(this.contentIndex);
+  onSwipe(): void {
+    this.updateVisibleSlides(this.apartmentSwiper?.nativeElement.swiper);
   }
 
   updateVisibleSlides(swiper: any) {
@@ -293,6 +330,102 @@ export class HomeComponent {
   // Check if the current slide is the last visible one
   isLastVisible(index: number): boolean {
     return index === this.currentVisibleIndex;
+  }
+
+  changeImage(
+    apartmentId: number,
+    direction: 'next' | 'prev',
+    event: Event,
+    card: string
+  ): void {
+    event.stopPropagation(); // Prevent triggering the card click event
+
+    if (card == 'specialApartment') {
+      if (!this.currentSpecialApartmentImageIndex[apartmentId]) {
+        this.currentSpecialApartmentImageIndex[apartmentId] = 0; // Initialize if not set
+      }
+
+      const apartment = this.specialApartments.find(
+        (a) => a.id === apartmentId
+      );
+
+      if (apartment) {
+        const maxImages = Math.min(apartment.images.length, 4); // Limit to 4 images
+
+        if (direction === 'next') {
+          // Move to next image (cycling forward)
+          this.currentSpecialApartmentImageIndex[apartmentId] =
+            (this.currentSpecialApartmentImageIndex[apartmentId] + 1) %
+            maxImages; // Cycle through limited images
+        } else if (direction === 'prev') {
+          // Move to previous image (cycling backward)
+          this.currentSpecialApartmentImageIndex[apartmentId] =
+            (this.currentSpecialApartmentImageIndex[apartmentId] -
+              1 +
+              maxImages) %
+            maxImages; // Cycle backward through images
+        }
+      }
+    } else if (card == 'citiesApartment') {
+      if (!this.currentCitiesApartmentImageIndex[apartmentId]) {
+        this.currentCitiesApartmentImageIndex[apartmentId] = 0; // Initialize if not set
+      }
+
+      const apartment = this.specialApartments.find(
+        (a) => a.id === apartmentId
+      );
+
+      if (apartment) {
+        const maxImages = Math.min(apartment.images.length, 4); // Limit to 4 images
+
+        if (direction === 'next') {
+          // Move to next image (cycling forward)
+          this.currentCitiesApartmentImageIndex[apartmentId] =
+            (this.currentCitiesApartmentImageIndex[apartmentId] + 1) %
+            maxImages; // Cycle through limited images
+        } else if (direction === 'prev') {
+          // Move to previous image (cycling backward)
+          this.currentCitiesApartmentImageIndex[apartmentId] =
+            (this.currentCitiesApartmentImageIndex[apartmentId] -
+              1 +
+              maxImages) %
+            maxImages; // Cycle backward through images
+        }
+      }
+    }
+  }
+
+  // Check if the previous image button should be shown
+  canGoPrev(apartmentId: number, card: string): boolean {
+    if (card == 'specialApartment') {
+      return this.currentSpecialApartmentImageIndex[apartmentId] > 0;
+    } else if (card == 'citiesApartment') {
+      return this.currentCitiesApartmentImageIndex[apartmentId] > 0;
+    }
+    return false;
+  }
+
+  // Check if the next image button should be shown
+  canGoNext(apartmentId: number, card: string): boolean {
+    const apartment = this.specialApartments.find((a) => a.id === apartmentId);
+
+    if (card == 'specialApartment') {
+      if (apartment) {
+        const maxImages = Math.min(apartment.images.length, 4); // Limit to 4 images
+        return (
+          this.currentSpecialApartmentImageIndex[apartmentId] < maxImages - 1
+        ); // Show next button if not at the last image
+      }
+    } else if (card == 'citiesApartment') {
+      if (apartment) {
+        const maxImages = Math.min(apartment.images.length, 4); // Limit to 4 images
+        return (
+          this.currentCitiesApartmentImageIndex[apartmentId] < maxImages - 1
+        ); // Show next button if not at the last image
+      }
+    }
+
+    return true; // Always show next button initially
   }
 
   navigate(
@@ -618,13 +751,16 @@ export class HomeComponent {
       });
     }
   }
-
-  addToFav(apartmentId: string, event: MouseEvent): void {
+  addToFav(
+    apartmentId: string,
+    apartmentImage: string,
+    event: MouseEvent
+  ): void {
     event.stopPropagation();
     this._UserService.addToFavorites(apartmentId.toString()).subscribe({
       next: (res) => {
         this.favProperties.push(apartmentId);
-        this.toastr.success('تم اضافة الوحدة للتفضيلات');
+        this.toaster?.showToast('تم الحفظ في الافتراضية', apartmentImage);
       },
       error: (error) => {
         this.toastr.error(error.error.error);
@@ -632,13 +768,17 @@ export class HomeComponent {
     });
   }
 
-  removeFromFav(apartmentId: string, event: MouseEvent): void {
+  removeFromFav(
+    apartmentId: string,
+    apartmentImage: string,
+    event: MouseEvent
+  ): void {
     event.stopPropagation();
     const index = this.favProperties.indexOf(apartmentId);
     this._UserService.removeFromFavorites(apartmentId.toString()).subscribe({
       next: (res) => {
         this.favProperties.splice(index, 1);
-        this.toastr.warning('تم حذف الوحدة من التفضيلات');
+        this.toaster?.showToast('تم الازاله من الافتراضية', apartmentImage);
       },
       error: (error) => {
         this.toastr.error(error.error.error);

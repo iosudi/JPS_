@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,9 @@ export class MobileNavbarComponent implements OnInit {
   activeLink: string;
 
   userLogged: string | null = localStorage.getItem('userId');
+
+  public isScrolled: boolean = false;
+  private lastScrollTop: number = 0;
 
   authLinks = [
     '/auth/login',
@@ -38,5 +41,22 @@ export class MobileNavbarComponent implements OnInit {
         this.activeLink = event.urlAfterRedirects;
       }
     });
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const currentScroll = window.scrollY;
+
+    // Check if scrolling down or up
+    if (currentScroll > this.lastScrollTop && currentScroll > 50) {
+      // Scrolling down: reduce opacity
+      this.isScrolled = true;
+    } else if (currentScroll < this.lastScrollTop || currentScroll <= 50) {
+      // Scrolling up: restore opacity to 100%
+      this.isScrolled = false;
+    }
+
+    // Update last scroll position for next scroll event
+    this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Prevent negative scroll
   }
 }

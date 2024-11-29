@@ -1,10 +1,35 @@
 .heart-icon {
   background-color: #000000a6;
   padding: 15px 27px;
-  font-size: 10px;
+  font-size: 0.8rem;
   cursor: pointer;
   color: white;
   border-radius: 5px 0 0 5px;
+
+  & .fa-heart {
+    transition: 0.3s;
+    &.fa-solid {
+      color: #668378;
+    }
+    &.fa-regular:hover {
+      color: #668378;
+    }
+  }
+}
+
+.popular-badge {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: white;
+  background-color: #c18826;
+  font-size: 0.7rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: 500;
+  i {
+    font-size: 0.7rem;
+  }
 }
 
 span {
@@ -112,18 +137,18 @@ ngx-spinner ::ng-deep {
       }
     }
   }
-  .title-underImgs{
+  .title-underImgs {
     animation: fade-right 2s forwards;
     animation-delay: 2.2s;
     opacity: 0;
     height: 70px;
     width: 100%;
-    .title{
+    .title {
       position: absolute;
       bottom: 0;
       right: 20%;
-      h3{
-        font-size: 30px
+      h3 {
+        font-size: 30px;
       }
     }
   }
@@ -285,36 +310,47 @@ ngx-spinner ::ng-deep {
           .arrow {
             position: absolute;
             top: 55%;
-            right: -30px;
             border-radius: 100%;
             transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
+            width: 25px;
+            height: 25px;
             background: #fff;
             color: black;
             cursor: pointer;
-            font-size: 10px;
+            font-size: 11px;
             transition: 0.5s;
             opacity: 0;
             pointer-events: none;
+
+            &.next-arrow {
+              right: -30px;
+            }
+            &.prev-arrow {
+              left: -30px;
+            }
           }
 
           .apartment-title {
+            h3 {
+              font-size: 1.1rem;
+            }
+
             p {
-              font-size: 13px;
-              color: #c9c9c9;
+              font-size: 0.7rem;
+              color: #fff;
               img {
                 width: 14px;
                 height: auto;
               }
             }
             .rating {
-              font-size: 0.7rem;
+              font-size: 0.55rem;
               background: #3f514a;
               i {
                 color: #fdc820 !important;
               }
             }
+
             .paginator {
               .dot {
                 width: 5px;
@@ -328,11 +364,19 @@ ngx-spinner ::ng-deep {
             }
           }
 
+          .separator {
+            width: 100%;
+            height: 30px;
+            img {
+              height: 3px;
+            }
+          }
+
           .chip {
             background: #ffffff3a;
             padding: 3px 10px;
             border-radius: 10px;
-            font-size: 12px;
+            font-size: 0.75rem;
             img {
               width: 15px;
               height: 15px;
@@ -341,8 +385,11 @@ ngx-spinner ::ng-deep {
 
           .apartment-details {
             opacity: 91%;
+            h4 {
+              font-size: 1.25rem;
+            }
             p {
-              font-size: 1rem;
+              font-size: 0.75rem;
             }
             img {
               width: 30px;
@@ -362,9 +409,16 @@ ngx-spinner ::ng-deep {
 
           &:hover .arrow {
             top: 50%;
-            right: 10px;
+
             opacity: 1;
             pointer-events: all;
+
+            &.next-arrow {
+              right: 10px;
+            }
+            &.prev-arrow {
+              left: 10px;
+            }
           }
         }
       }
@@ -482,18 +536,23 @@ ngx-spinner ::ng-deep {
 
         .district-name {
           position: absolute;
-          top: 30px;
-          right: 140px;
+          bottom: 30px;
+          right: 10px;
           transform: rotate(0deg);
-          transform-origin: top right;
           white-space: nowrap;
           transition: 0.5s;
+          writing-mode: vertical-rl;
           img {
             width: 50px;
-            transform: rotate(90deg);
+            transform: rotate(180deg);
           }
           h2 {
-            font-size: 70px;
+            font-size: 5.8rem;
+            margin: 0 !important;
+          }
+
+          p {
+            margin: 0 !important;
           }
         }
 
@@ -538,15 +597,15 @@ ngx-spinner ::ng-deep {
 
           .apartment-image {
             position: relative;
-            width: 180px;
-            height: 150px;
+            min-width: 173px;
+            width: 173px;
+            height: 152px;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 2px #cacaca;
             .arrow {
               position: absolute;
               top: 55%;
-              right: 10px;
               border-radius: 100%;
               transform: translateY(-50%);
               width: 15px;
@@ -555,6 +614,13 @@ ngx-spinner ::ng-deep {
               color: black;
               cursor: pointer;
               font-size: 8px;
+
+              &.prev-arrow {
+                left: 10px;
+              }
+              &.next-arrow {
+                right: 10px;
+              }
             }
 
             .heart-icon {
@@ -659,9 +725,7 @@ ngx-spinner ::ng-deep {
 
           .district-name {
             position: absolute;
-            top: 195px;
-            right: 20px;
-            transform: rotate(0deg);
+            bottom: 570px;
             transition: 1s;
             img {
               display: none;
@@ -701,12 +765,14 @@ ngx-spinner ::ng-deep {
         .card {
           transform: rotate(0deg);
           .district-name {
-            transform: rotate(-90deg);
-            transition: 1.5s;
+            transform: rotate(-180deg);
+            transition: 1s;
           }
           &:hover {
             .district-name {
-              transform: rotate(0deg);
+              right: unset;
+              transform: rotate(-90deg);
+              transform-origin: bottom right;
               transition: 1s;
             }
           }
@@ -1025,13 +1091,13 @@ ngx-spinner ::ng-deep {
 
   .container {
     padding: 4rem 2rem;
-    .title{
+    .title {
       h2 {
         font-size: 3rem;
         color: #3f514a;
       }
       p {
-        font-size: 20px;
+        font-size: 1.5rem;
         color: #1e1e1e;
       }
     }
@@ -1052,7 +1118,7 @@ ngx-spinner ::ng-deep {
         color: #51685f;
         transition: 0.5s;
       }
-      button:hover{
+      button:hover {
         background-color: #51685f;
         color: white;
       }
@@ -1065,11 +1131,11 @@ ngx-spinner ::ng-deep {
     .advices {
       li {
         img {
-          width: 48px;
+          width: 35px;
           height: auto;
         }
-        h5{
-          font-size: 2rem;
+        h5 {
+          font-size: 1.5rem;
           font-weight: 400;
         }
         p {
@@ -1088,7 +1154,7 @@ ngx-spinner ::ng-deep {
         font-size: 0.8rem;
       }
     }
-    button:hover{
+    button:hover {
       background-color: #ecd09f;
       border-color: #ecd09f;
     }
@@ -1158,8 +1224,9 @@ ngx-spinner ::ng-deep {
         transform: translateX(200px);
         opacity: 0;
         transition: 1s;
-        .image {
+        .image img {
           height: 530px;
+          width: auto;
           border-radius: 20px;
         }
 
@@ -1172,21 +1239,12 @@ ngx-spinner ::ng-deep {
           .user-card {
             position: absolute;
             border-radius: 40px;
-            width: 200px;
-            color: black;
-            background: white;
-            padding: 10px;
+            color: white;
+            background: #36363680;
+            backdrop-filter: blur(20px);
+            padding: 15px 10px;
             opacity: 95%;
-            .user-image {
-              width: 40px;
-              height: 40px;
-              border-radius: 100%;
-            }
-            .card-info {
-              p {
-                font-size: 12px;
-              }
-            }
+            font-size: 0.8rem;
 
             &:nth-child(1) {
               top: 50px;
@@ -1270,11 +1328,10 @@ ngx-spinner ::ng-deep {
               overflow: hidden;
             }
           }
-        }
-        .know-more {
-          transform: translateX(200px);
-          opacity: 0;
-          top: 409px;
+          .know-more {
+            transform: translateX(200px);
+            opacity: 0;
+          }
         }
       }
     }
@@ -1328,10 +1385,10 @@ ngx-spinner ::ng-deep {
                 opacity: 1;
               }
             }
-          }
-          .know-more {
-            transform: translateX(0);
-            opacity: 1;
+            .know-more {
+              transform: translateX(0);
+              opacity: 1;
+            }
           }
         }
       }
@@ -1419,9 +1476,8 @@ ngx-spinner ::ng-deep {
                 font-size: 19px;
               }
             }
-            .rating-dark{
-              color:#D4D4D4;
-              ;
+            .rating-dark {
+              color: #d4d4d4;
             }
           }
 
@@ -1448,27 +1504,6 @@ ngx-spinner ::ng-deep {
       &:hover {
         background: #ecd09f;
         color: #3f514a;
-      }
-    }
-    .email-box {
-      background: white;
-      border-radius: 20px;
-      .email-icon {
-        width: 120px;
-        height: 120px;
-        background: #3f514a;
-        border-radius: 100%;
-        img {
-          width: 75px;
-          height: 60px;
-          border-radius: 5px;
-        }
-      }
-      h3 {
-        color: #3f514a;
-      }
-      p {
-        color: #6f6f6f;
       }
     }
   }
@@ -1508,6 +1543,7 @@ ngx-spinner ::ng-deep {
               border: 0;
               padding-top: 0.5rem;
               padding-bottom: 0.5rem;
+
               &:hover {
                 border: 0;
               }
@@ -1526,17 +1562,19 @@ ngx-spinner ::ng-deep {
 
       .form-controls {
         .secondary-btn {
-          padding: 10px 35px;
-          font-size: 20px;
+          padding: 10px 30px;
+          font-size: 1rem;
           transition: 0.5s;
           &:hover {
             background: #ecd09f;
             color: #3f514a;
           }
         }
-        .label {
+        label {
           cursor: pointer;
           color: #6f6f6f;
+          font-size: 0.8rem;
+          max-width: 30ch;
         }
       }
     }
@@ -1582,7 +1620,7 @@ ngx-spinner ::ng-deep {
 
 @media (max-width: 1880px) {
   .hero {
-    height: 750px;
+    height: 800px;
   }
 }
 
@@ -1608,7 +1646,7 @@ ngx-spinner ::ng-deep {
           font-size: 70px;
         }
       }
-      .search-field{
+      .search-field {
         width: 90%;
       }
     }
@@ -1634,10 +1672,10 @@ ngx-spinner ::ng-deep {
         }
       }
     }
-    .title-underImgs{
+    .title-underImgs {
       height: 65px;
       width: 100%;
-      .title{
+      .title {
         position: absolute;
         bottom: 0;
         right: 20%;
@@ -1743,6 +1781,22 @@ ngx-spinner ::ng-deep {
       h2.title {
         top: calc(50% - 50px);
         right: 8%;
+      }
+    }
+  }
+
+  .popular-districts {
+    .container-fluid {
+      .carousel-container {
+        .card {
+          .apartment-list {
+            .apartment-image {
+              min-width: 153px;
+              width: 153px;
+              height: 132px;
+            }
+          }
+        }
       }
     }
   }
@@ -1906,7 +1960,7 @@ ngx-spinner ::ng-deep {
               }
             }
             .district-name {
-              top: 130px;
+              bottom: 505px;
             }
             .apartment-list {
               min-height: 450px;
@@ -2316,9 +2370,30 @@ ngx-spinner ::ng-deep {
   }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 767px) {
   .hero {
     height: 700px;
+  }
+
+  .popular-apartments {
+    .top-layer {
+      .container {
+        .carousel-container {
+          .card {
+            .arrow {
+              top: 50%;
+              opacity: 1;
+              &.next-arrow {
+                right: 10px !important;
+              }
+              &.prev-arrow {
+                left: 10px !important;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
   .popular-districts {
@@ -2326,19 +2401,13 @@ ngx-spinner ::ng-deep {
       .carousel-container {
         .card {
           .district-name {
-            right: 120px;
+            right: 10px;
 
             img {
               width: 30px;
             }
             h2 {
               font-size: 60px;
-            }
-          }
-
-          &:hover {
-            .district-name {
-              top: 150px;
             }
           }
         }
@@ -2482,7 +2551,9 @@ ngx-spinner ::ng-deep {
 
           .apartment-list {
             .apartment-image {
-              height: 120px;
+              min-width: 150px;
+              width: 150px;
+              height: 130px;
             }
             .apartment-details {
               .apartment-name {
@@ -2497,7 +2568,7 @@ ngx-spinner ::ng-deep {
                 }
               }
               .chip {
-                padding: 3px 8px;
+                padding: 3px 5px;
                 font-size: 8px;
               }
               .price-rating {
@@ -2732,8 +2803,8 @@ ngx-spinner ::ng-deep {
         }
       }
     }
-    .title-underImgs{
-      .title{
+    .title-underImgs {
+      .title {
         right: 0;
       }
     }
@@ -2749,13 +2820,16 @@ ngx-spinner ::ng-deep {
 
   .advices {
     .container {
-      padding: 2rem 2rem;
-      h2 {
-        font-size: 2rem;
-      }
-
-      h4 {
-        font-size: 2rem;
+      padding: 2rem 1rem;
+      .title {
+        h2 {
+          font-size: 2rem !important ;
+          text-align: center;
+        }
+        p {
+          font-size: 1.2rem !important;
+          text-align: center;
+        }
       }
 
       .clients-advices,
@@ -2766,13 +2840,15 @@ ngx-spinner ::ng-deep {
       .advices {
         li {
           img {
-            width: 25px;
+            width: 30px;
             height: auto;
           }
+          h4 {
+            font-size: 2rem;
+          }
           p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 300;
-            width: 25ch;
           }
         }
       }

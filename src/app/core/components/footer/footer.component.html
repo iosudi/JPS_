@@ -1,7 +1,7 @@
 <footer class="px-5">
   <div class="container-fluid p-5">
     <div class="row justify-content-around">
-      <div class="col-lg-6">
+      <div class="col-lg-7">
         <div class="site-links d-flex gap-5">
           <div class="logo d-flex flex-column gap-3">
             <div class="d-flex JPS gap-4 align-items-center">
@@ -35,19 +35,19 @@
                   src="./assets/imgs/icons/facebookicon.png"
                   alt="facebook"
                  /> -->
-                 <i class="fab fa-facebook-f"></i>
-            </a>
+                <i class="fab fa-facebook-f"></i>
+              </a>
 
               <a href="#">
                 <!-- <img src="./assets/imgs/icons/whatsapp.png" alt="whatsapp"
                 /> -->
                 <i class="fab fa-whatsapp"></i>
-            </a>
+              </a>
               <a href="#">
                 <!-- <img src="./assets/imgs/icons/tiktok.png" alt="tiktok"
                 /> -->
                 <i class="fa-brands fa-tiktok"></i>
-            </a>
+              </a>
             </div>
           </div>
 
@@ -56,11 +56,21 @@
               <h3 class="title h4">الرئيسية</h3>
               <ul class="mb-0 px-0">
                 <li class="p-0 py-1">
-                  <a href="#"> الاحياء الأكثر بحثا </a>
+                  <a routerLink="/home" fragment="popular_districts">
+                    الاحياء الأكثر بحثا
+                  </a>
                 </li>
-                <li class="p-0 py-1"><a href="#">الشققق المميزة </a></li>
-                <li class="p-0 py-1"><a href="#">نبذة عن JPS</a></li>
-                <li class="p-0 py-1"><a href="#">اراء العملاء</a></li>
+                <li class="p-0 py-1">
+                  <a routerLink="/home" fragment="popular_apartment"
+                    >الشققق المميزة
+                  </a>
+                </li>
+                <li class="p-0 py-1">
+                  <a routerLink="/home" fragment="about_JPS">نبذة عن JPS</a>
+                </li>
+                <li class="p-0 py-1">
+                  <a routerLink="/home" fragment="testimonials">اراء العملاء</a>
+                </li>
               </ul>
             </div>
 
@@ -75,10 +85,16 @@
             <div class="links">
               <h3 class="title h4">الدعم</h3>
               <ul class="mb-0 px-0">
-                <li class="p-0 py-1"><a href="#"> اتصل بنا  </a></li>
-                <li class="p-0 py-1"><a href="#">عن الشركة </a></li>
-                <li class="p-0 py-1"><a href="#">كيف يعمل Groups JPS</a></li>
-                <li class="p-0 py-1"><a href="#">تقييمات واراء العملاء بنا</a></li>
+                <li class="p-0 py-1">
+                  <a routerLink="/contact"> اتصل بنا </a>
+                </li>
+                <li class="p-0 py-1"><a routerLink="/about">عن الشركة </a></li>
+                <li class="p-0 py-1">
+                  <a routerLink="/how-it-works">كيف يعمل Groups JPS</a>
+                </li>
+                <li class="p-0 py-1">
+                  <a routerLink="/rates">تقييمات واراء العملاء بنا</a>
+                </li>
               </ul>
             </div>
 
@@ -91,7 +107,7 @@
                 </li>
                 <li class="p-0 py-1"><a href="#">وكلائنا الحصريون </a></li>
                 <li class="p-0 py-1">
-                  <a routerLink="/contact">الاسئلة الشائعة </a>
+                  <a routerLink="/contact" fragment="faqs">الاسئلة الشائعة </a>
                 </li>
               </ul>
             </div>
@@ -99,7 +115,7 @@
         </div>
       </div>
 
-      <div class="col-lg-5">
+      <div class="col-lg-4">
         <div class="newsletter me-auto w-75">
           <h4 class="h5">اشترك الان لتصلك أحدث العروض أولا</h4>
           <form>

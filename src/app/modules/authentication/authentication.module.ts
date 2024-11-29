@@ -29,9 +29,9 @@ import { TokenCheckComponent } from './pages/token-check/token-check.component';
     AuthenticationRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    CoreModule,
     InputOtpModule,
     DropdownModule,
+    CoreModule,
   ],
 })
 export class AuthenticationModule {}

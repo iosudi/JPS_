@@ -1,11 +1,16 @@
-<ngx-spinner
+<!-- <ngx-spinner
   bdColor="#f7f7f7"
   template="<img class='spinner-img' src='./assets/imgs/JPSLOGO.png'/>"
-></ngx-spinner>
+></ngx-spinner> -->
+<app-toastr #toaster></app-toastr>
 <app-nav-bar></app-nav-bar>
 
 <!-- hero section -->
-<section appAnimateOnScroll class="hero d-flex align-items-end overflow-hidden">
+<section
+  appAnimateOnScroll
+  class="hero d-flex align-items-end overflow-hidden"
+  id="hero"
+>
   <div class="background">
     <img src="./assets/imgs/unsplash_dBOZ7XL4b_E.png" alt="background" />
     <div class="gradient"></div>
@@ -15,8 +20,8 @@
       <div class="col-xl-6 d-flex justify-content-center mt-5">
         <div class="heading">
           <div class="mb-5 title">
-            <h1> معنا للإيجار معنى</h1>
-            <h2 class="fw-normal"> أبحث و استأجر بسهولة من مكانك في اي وقت</h2>
+            <h1>معنا للإيجار معنى</h1>
+            <h2 class="fw-normal">أبحث و استأجر بسهولة من مكانك في اي وقت</h2>
           </div>
           <div class="search-field px-3 py-2">
             <app-search-bar></app-search-bar>
@@ -60,7 +65,9 @@
       </div>
     </div>
     <div class="row title-underImgs">
-      <div class="d-flex justify-content-center align-items-center p-2 title">
+      <div
+        class="d-flex justify-content-center align-items-center p-2 title mt-4"
+      >
         <h3>وحدتك عندنا.. معك خطوة بخطوة</h3>
       </div>
     </div>
@@ -71,6 +78,7 @@
 <section
   appAnimateOnScroll
   class="popular-apartments overflow-hidden p-5 position-relative"
+  id="popular_apartment"
 >
   <div class="container-fluid mx-auto my-5 position-relative">
     <div class="container-background">
@@ -115,6 +123,7 @@
           [speed]="500"
           [spaceBetween]="5"
           [breakpoints]="apartmentsBreakpoints"
+          (swiperslidechangetransitionend)="onSwipe()"
         >
           <swiper-slide
             *ngFor="let apartment of specialApartments; let i = index"
@@ -125,12 +134,35 @@
               (click)="productDetails(apartment.id)"
             >
               <div class="background">
-                <img [src]="apartment.images[0]" alt="image" />
+                <img
+                  [src]="
+                    apartment.images[
+                      currentSpecialApartmentImageIndex[apartment.id] || 0
+                    ]
+                  "
+                  alt="image"
+                />
                 <div class="gradient"></div>
               </div>
 
+              <!-- Previous Button -->
               <div
-                class="arrow d-flex align-items-center justify-content-center"
+                class="arrow prev-arrow d-flex align-items-center justify-content-center"
+                *ngIf="canGoPrev(apartment.id, 'specialApartment')"
+                (click)="
+                  changeImage(apartment.id, 'prev', $event, 'specialApartment')
+                "
+              >
+                <i class="fa-solid fa-chevron-left"></i>
+              </div>
+
+              <!-- Next Button -->
+              <div
+                class="arrow next-arrow d-flex align-items-center justify-content-center"
+                *ngIf="canGoNext(apartment.id, 'specialApartment')"
+                (click)="
+                  changeImage(apartment.id, 'next', $event, 'specialApartment')
+                "
               >
                 <i class="fa-solid fa-chevron-right"></i>
               </div>
@@ -140,14 +172,16 @@
               >
                 <div
                   class="heart-icon"
-                  (click)="removeFromFav(apartment.id, $event)"
+                  (click)="
+                    removeFromFav(apartment.id, apartment.images[0], $event)
+                  "
                   *ngIf="favProperties.includes(apartment.id)"
                 >
                   <i class="fa-solid fa-heart"></i>
                 </div>
                 <div
                   class="heart-icon"
-                  (click)="addToFav(apartment.id, $event)"
+                  (click)="addToFav(apartment.id, apartment.images[0], $event)"
                   *ngIf="!favProperties.includes(apartment.id)"
                 >
                   <i class="fa-regular fa-heart"></i>
@@ -161,7 +195,7 @@
               <div class="card_body px-3 pb-3">
                 <div class="apartment-title d-flex justify-content-between">
                   <div>
-                    <h3 class="mb-0 h4">{{ apartment.type }}</h3>
+                    <h3 class="mb-1 h4">{{ apartment.type }}</h3>
                     <div class="d-flex align-items-center gap-2">
                       <span class="rating py-1 px-2 rounded-3 fw-bold">
                         <i class="fa-solid fa-star rating-color"></i>
@@ -175,18 +209,28 @@
                         {{ apartment.city_name }}
                       </p>
                     </div>
-                    <p class="mb-0 fw-semibold">
+                    <p class="mb-0 fw-light">
                       {{ apartment.reservedtill }}
                     </p>
                   </div>
                   <div class="paginator d-flex gap-1 mt-3">
-                    <div class="dot active"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
+                    <div
+                      class="dot"
+                      *ngFor="
+                        let img of apartment.images.slice(0, 4);
+                        let idx = index
+                      "
+                      [ngClass]="{
+                        active:
+                          idx ===
+                          (currentSpecialApartmentImageIndex[apartment.id] || 0)
+                      }"
+                    ></div>
                   </div>
                 </div>
-                <hr class="my-2" />
+                <div class="separator">
+                  <img src="./assets/imgs/Separator.svg" alt="separator" />
+                </div>
                 <div class="chips-badges d-flex gap-1">
                   <div class="chip d-flex align-items-center gap-1">
                     <img
@@ -222,10 +266,8 @@
                   class="apartment-details d-flex justify-content-between align-items-center mt-2"
                 >
                   <div>
-                    <h4 class="price mb-0 h5">
-                      {{
-                        apartment.price
-                          | currency : "EGP " : "symbol" : "1.0-0"
+                    <h4 class="price mb-1 h5">
+                      {{ apartment.price | currency : "EGP" : "code" : "1.0-0"
                       }}<span class="fw-light">/يوم</span>
                     </h4>
                     <p class="mb-0 fw-light">
@@ -248,7 +290,11 @@
 </section>
 
 <!-- popular districts section -->
-<section appAnimateOnScroll class="popular-districts overflow-hidden">
+<section
+  appAnimateOnScroll
+  class="popular-districts overflow-hidden"
+  id="popular_districts"
+>
   <div pDefer>
     <ng-template>
       <div class="container-fluid my-5 position-relative">
@@ -322,37 +368,91 @@
                         (click)="productDetails(property.id)"
                       >
                         <div class="apartment-image overflow-hidden">
-                          <img [src]="property.images[0]" alt="apartment" />
+                          <img
+                            [src]="
+                              property.images[
+                                currentCitiesApartmentImageIndex[property.id] ||
+                                  0
+                              ]
+                            "
+                            alt="image"
+                          />
                           <div
                             class="heart-icon"
-                            (click)="removeFromFav(property.id, $event)"
+                            (click)="
+                              removeFromFav(
+                                property.id,
+                                property.images[0],
+                                $event
+                              )
+                            "
                             *ngIf="favProperties.includes(property.id)"
                           >
                             <i class="fa-solid fa-heart"></i>
                           </div>
                           <div
                             class="heart-icon"
-                            (click)="addToFav(property.id, $event)"
+                            (click)="
+                              addToFav(property.id, property.images[0], $event)
+                            "
                             *ngIf="!favProperties.includes(property.id)"
                           >
                             <i class="fa-regular fa-heart"></i>
                           </div>
 
+                          <!-- Previous Button -->
                           <div
-                            class="arrow d-flex align-items-center justify-content-center"
+                            class="arrow prev-arrow d-flex align-items-center justify-content-center"
+                            *ngIf="canGoPrev(property.id, 'citiesApartment')"
+                            (click)="
+                              changeImage(
+                                property.id,
+                                'prev',
+                                $event,
+                                'citiesApartment'
+                              )
+                            "
+                          >
+                            <i class="fa-solid fa-chevron-left"></i>
+                          </div>
+
+                          <!-- Next Button -->
+                          <div
+                            class="arrow next-arrow d-flex align-items-center justify-content-center"
+                            *ngIf="canGoNext(property.id, 'citiesApartment')"
+                            (click)="
+                              changeImage(
+                                property.id,
+                                'next',
+                                $event,
+                                'citiesApartment'
+                              )
+                            "
                           >
                             <i class="fa-solid fa-chevron-right"></i>
                           </div>
 
                           <div class="paginator d-flex gap-1 mt-3">
-                            <div class="dot active"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
-                            <div class="dot"></div>
+                            <div
+                              class="dot"
+                              *ngFor="
+                                let img of property.images.slice(0, 4);
+                                let idx = index
+                              "
+                              [ngClass]="{
+                                active:
+                                  idx ===
+                                  (currentCitiesApartmentImageIndex[
+                                    property.id
+                                  ] || 0)
+                              }"
+                            ></div>
                           </div>
                         </div>
 
-                        <div class="apartment-details d-flex flex-column gap-2">
+                        <div
+                          class="apartment-details d-flex flex-column gap-2 w-100"
+                        >
                           <div
                             class="apartment-name d-flex justify-content-between gap-2"
                           >
@@ -421,7 +521,7 @@
                               <h3 class="h6 mb-0">
                                 {{
                                   property.price
-                                    | currency : "EGP" : "symbol" : "1.0-0"
+                                    | currency : "EGP" : "code" : "1.0-0"
                                 }}
                               </h3>
                               <p class="mb-0">لليوم الواحد</p>
@@ -592,23 +692,21 @@
   </div>
   <div class="container my-5">
     <div class="title mb-5">
-      <h2 class="fw-normal">
+      <h2 class="fw-bold">
         <!-- <span class="fw-bold">نصائح من JPS</span> للعملاء والمالكين -->
         نصائح للمالكين والمستأجرين للحصول على تجربة إيجار مميزة
       </h2>
-      <p>إرشادات لضمان تجربة إيجار احترافية وشفافة تلبي احتياجات المالك والمستأجر على حد
-        سواء </p>
-
+      <p class="fw-light">
+        إرشادات لضمان تجربة إيجار احترافية وشفافة تلبي احتياجات المالك والمستأجر
+        على حد سواء
+      </p>
     </div>
 
     <div class="row g-4">
       <div class="col-lg-6">
-        <div class="
-        clients-advices 
-        d-flex flex-column 
-        justify-content-around 
-        align-items-start 
-        rounded-4 p-5 h-100">
+        <div
+          class="clients-advices d-flex flex-column justify-content-around align-items-start rounded-4 p-5 h-100"
+        >
           <h4 class="mb-5">المستأجر</h4>
 
           <ul class="advices p-0 m-0">
@@ -618,7 +716,10 @@
               <img src="./assets/imgs/icons/searchh.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>التحقق من التفاصيل قبل الحجز</h5>
-                <p class="mb-0">اقرأ الوصف بعناية، وشاهد الصور،واطلع علي التقييمات من مستأجرين سابقين لتتأكد من أن الوحدة تناسب احتياجاتك</p>
+                <p class="mb-0">
+                  اقرأ الوصف بعناية، وشاهد الصور،واطلع علي التقييمات من مستأجرين
+                  سابقين لتتأكد من أن الوحدة تناسب احتياجاتك
+                </p>
               </div>
             </li>
             <li
@@ -627,9 +728,12 @@
               <img src="./assets/imgs/icons/legal.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>الالتزام بالقواعد والقوانين</h5>
-                <p class="mb-0">•التزم بالقواعد المحددة من قِبل المالك مثل عدم التدخين في الوحدة أو الالتزام بعدد المستأجرين
-                  المسموح بهم، وأيضا سياسة الإلغاء. هذا يساعد في ضمان تجربة إيجار مريحة للطرفين كما يساعدك علي
-                  التأكد من ان الوحدة تلبي احتياجاتك قبل الحجز</p>
+                <p class="mb-0">
+                  •التزم بالقواعد المحددة من قِبل المالك مثل عدم التدخين في
+                  الوحدة أو الالتزام بعدد المستأجرين المسموح بهم، وأيضا سياسة
+                  الإلغاء. هذا يساعد في ضمان تجربة إيجار مريحة للطرفين كما
+                  يساعدك علي التأكد من ان الوحدة تلبي احتياجاتك قبل الحجز
+                </p>
               </div>
             </li>
             <li
@@ -638,7 +742,10 @@
               <img src="./assets/imgs/icons/health-care.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>المحافظة على الوحدة</h5>
-                <p class="mb-0">تعامل مع الوحدة باحترام، وابلغ عن أي أضرار أو أعطال فور حدوثها لتجنب مشاكل لاحقة.</p>
+                <p class="mb-0">
+                  تعامل مع الوحدة باحترام، وابلغ عن أي أضرار أو أعطال فور حدوثها
+                  لتجنب مشاكل لاحقة.
+                </p>
               </div>
             </li>
             <li
@@ -646,32 +753,47 @@
             >
               <img src="./assets/imgs/icons/star-rate.png" alt="icon" />
               <div class="d-flex flex-column">
-                <h5> التقييم والملاحظات </h5>
-                <p class="mb-0">اترك تقييما صادًقا بعد الإقامة، فهو يساعد المالك والمستأجرين الآخرين في اتخاذ قرارات صحيحة.</p>
-                <p class="mb-0">إذا واجهت مشكلة، حاول التواصل مع المالك أو الموقع لحلها بدًال من ترك تقييم سلبي مباشرة.</p>
+                <h5>التقييم والملاحظات</h5>
+                <p class="mb-0">
+                  اترك تقييما صادًقا بعد الإقامة، فهو يساعد المالك والمستأجرين
+                  الآخرين في اتخاذ قرارات صحيحة.
+                </p>
+                <p class="mb-0">
+                  إذا واجهت مشكلة، حاول التواصل مع المالك أو الموقع لحلها بدًال
+                  من ترك تقييم سلبي مباشرة.
+                </p>
               </div>
             </li>
             <li
-            class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-          >
-            <img src="./assets/imgs/icons/deal.png" alt="icon" />
-            <div class="d-flex flex-column">
-              <h5>الاحترام المتبادل</h5>
-              <p class="mb-0">•الحفاظ على التفاهم والاحترام بينك وبين المالك يسهم في خلق تجربة إيجابية للطرفين.</p>
-            </div>
-          </li>
-          <li
-          class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-        >
-          <img src="./assets/imgs/icons/contract-dark.png" alt="icon" />
-          <div class="d-flex flex-column">
-            <h5> الاحتفاظ بالمستندات</h5>
-              <p class="mb-0">تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم   .</p>
-          </div>
-        </li>
+              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/deal.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>الاحترام المتبادل</h5>
+                <p class="mb-0">
+                  •الحفاظ على التفاهم والاحترام بينك وبين المالك يسهم في خلق
+                  تجربة إيجابية للطرفين.
+                </p>
+              </div>
+            </li>
+            <li
+              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/contract-dark.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>الاحتفاظ بالمستندات</h5>
+                <p class="mb-0">
+                  تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم .
+                </p>
+              </div>
+            </li>
           </ul>
 
-          <button class="btn px-4 py-2 fs-4 rounded-5 mt-4">
+          <button
+            class="btn px-4 py-2 fs-4 rounded-5 mt-4"
+            routerLink="/home"
+            fragment="hero"
+          >
             <i class="fa-solid fa-arrow-right"></i>
             احجز وحدتك الان
           </button>
@@ -679,12 +801,9 @@
       </div>
 
       <div class="col-lg-6">
-        <div class="
-        owners-advices 
-        d-flex flex-column 
-        justify-content-around 
-        align-items-start 
-        rounded-4 p-5 h-100">
+        <div
+          class="owners-advices d-flex flex-column justify-content-around align-items-start rounded-4 p-5 h-100"
+        >
           <h4 class="mb-5">المالك</h4>
 
           <ul class="advices p-0 m-0">
@@ -695,7 +814,10 @@
               <div class="d-flex flex-column">
                 <h5>توفير وصف دقيق لوحدتك</h5>
                 <p class="mb-0">تأكد من تقديم تفاصيل دقيقة وصادقة عن وحدتك.</p>
-                <p class="mb-0">قم بتحديث الصور بانتظام لتعكس الوضع الحالي للوحدة لضمان مصداقية المعلومات.</p>
+                <p class="mb-0">
+                  قم بتحديث الصور بانتظام لتعكس الوضع الحالي للوحدة لضمان
+                  مصداقية المعلومات.
+                </p>
               </div>
             </li>
             <li
@@ -704,7 +826,10 @@
               <img src="./assets/imgs/icons/house-keeping.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>الحفاظ على نظافة وحدتك</h5>
-                <p class="mb-0">الاهتمام بالنظافة يعكس احترافية عالية، ويزيد من رضا المستأجرين، مما يساهم في تحسين التقييمات بشكل كبير.</p>
+                <p class="mb-0">
+                  الاهتمام بالنظافة يعكس احترافية عالية، ويزيد من رضا
+                  المستأجرين، مما يساهم في تحسين التقييمات بشكل كبير.
+                </p>
               </div>
             </li>
             <li
@@ -713,9 +838,14 @@
               <img src="./assets/imgs/icons/easy.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>المرونة في التعامل</h5>
-                <p class="mb-0">حاول أن تكون مرنًا في وضع قوانين وحدتك وسياسة الإلغاء، مما يسهل تجربة المستأجر ويزيد من
-                  فرصة تأجير الوحدة بسرعة.</p>
-                  <p class="mb-0">في حال حدوث تغييرات أو مشكلات غير متوقعة، يجب أن يكون هناك تفاهم ومرونة من الطرفين لحل الأمور بشكل ايجابي .</p>
+                <p class="mb-0">
+                  حاول أن تكون مرنًا في وضع قوانين وحدتك وسياسة الإلغاء، مما
+                  يسهل تجربة المستأجر ويزيد من فرصة تأجير الوحدة بسرعة.
+                </p>
+                <p class="mb-0">
+                  في حال حدوث تغييرات أو مشكلات غير متوقعة، يجب أن يكون هناك
+                  تفاهم ومرونة من الطرفين لحل الأمور بشكل ايجابي .
+                </p>
               </div>
             </li>
             <li
@@ -724,9 +854,14 @@
               <img src="./assets/imgs/icons/cost.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>الشفافية في التسعير والقواعد</h5>
-                <p class="mb-0">تسعير وحدتك بشكل منطقي ومتوافق مع السوق يعزز سهولة وسرعة تأجير الوحدة ويخلق تجربة
-                  إيجابية للطرفين.</p>
-                  <p class="mb-0">حدد القواعد بشكل صريح&#10088;مثل عدد المستأجرين المسموح بهم، قواعد التدخين، والحيوانات الأليفة &#10089;</p>
+                <p class="mb-0">
+                  تسعير وحدتك بشكل منطقي ومتوافق مع السوق يعزز سهولة وسرعة تأجير
+                  الوحدة ويخلق تجربة إيجابية للطرفين.
+                </p>
+                <p class="mb-0">
+                  حدد القواعد بشكل صريح&#10088;مثل عدد المستأجرين المسموح بهم،
+                  قواعد التدخين، والحيوانات الأليفة &#10089;
+                </p>
               </div>
             </li>
             <li
@@ -735,8 +870,11 @@
               <img src="./assets/imgs/icons/switch.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>احترام الخصوصية</h5>
-                  <p class="mb-0">يجب على المالك احترام خصوصية المستأجرين وعدم الدخول إلى الوحدة دون إذن مسبق أو إشعار
-                    وهذا يزيد من التفاهم واالحترام بينك وبين المستأجر ويخلق تجربة إيجابية بين الطرفين.</p>
+                <p class="mb-0">
+                  يجب على المالك احترام خصوصية المستأجرين وعدم الدخول إلى الوحدة
+                  دون إذن مسبق أو إشعار وهذا يزيد من التفاهم واالحترام بينك وبين
+                  المستأجر ويخلق تجربة إيجابية بين الطرفين.
+                </p>
               </div>
             </li>
             <li
@@ -744,13 +882,20 @@
             >
               <img src="./assets/imgs/icons/contract.png" alt="icon" />
               <div class="d-flex flex-column">
-                <h5> الاحتفاظ بالمستندات</h5>
-                  <p class="mb-0">تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم بينك وبين المستأجر.</p>
+                <h5>الاحتفاظ بالمستندات</h5>
+                <p class="mb-0">
+                  تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم بينك
+                  وبين المستأجر.
+                </p>
               </div>
             </li>
           </ul>
 
-          <button class="btn px-4 py-2 fs-4 rounded-5 mt-4">
+          <button
+            class="btn px-4 py-2 fs-4 rounded-5 mt-4"
+            routerLink="/contact"
+            fragment="contact_form"
+          >
             <i class="fa-solid fa-arrow-right"></i>
             قم بتأجير وحدتك الان
           </button>
@@ -761,7 +906,7 @@
 </section>
 
 <!-- About section -->
-<section appAnimateOnScroll class="about overflow-hidden p-5">
+<section appAnimateOnScroll class="about overflow-hidden p-5" id="about_JPS">
   <div class="container my-5">
     <div class="container-background">
       <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
@@ -787,49 +932,21 @@
             <div
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
-              <img
-                src="./assets/imgs/2.png"
-                alt="user profile image"
-                class="user-image"
-              />
-              <div class="card-info">
-                <h6 class="mb-0">Antone Heller</h6>
-                <p class="mb-0 text-start">
-                  4.8 <i class="fa-solid fa-star rating-color"></i>
-                </p>
-              </div>
+              <p class="text-center mb-0 mx-auto">خد راحتك .. استأجر براحتك</p>
             </div>
 
             <div
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
-              <img
-                src="./assets/imgs/2.png"
-                alt="user profile image"
-                class="user-image"
-              />
-              <div class="card-info">
-                <h6 class="mb-0">Antone Heller</h6>
-                <p class="mb-0 text-start">
-                  4.8 <i class="fa-solid fa-star rating-color"></i>
-                </p>
-              </div>
+              <p class="text-center mb-0 mx-auto">وحدتك جاهزة.. بضغطة زر</p>
             </div>
 
             <div
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
-              <img
-                src="./assets/imgs/2.png"
-                alt="user profile image"
-                class="user-image"
-              />
-              <div class="card-info">
-                <h6 class="mb-0">Antone Heller</h6>
-                <p class="mb-0 text-start">
-                  4.8 <i class="fa-solid fa-star rating-color"></i>
-                </p>
-              </div>
+              <p class="text-center mb-0 mx-auto">
+                مش مجرد وحدة... تجربة متكاملة
+              </p>
             </div>
           </div>
         </div>
@@ -872,14 +989,11 @@
             class="content d-flex flex-column gap-4 position-relative z-0"
             *ngFor="let content of contents; let index = index"
           >
-            <div
-              #contentContainer
-              class="position-absolute d-flex flex-column gap-3"
-            >
+            <div #contentContainer class="d-flex flex-column gap-3">
               <h2
                 [ngClass]="{
-                  'fade-in': contentIndex === index,
-                  'fade-out': contentIndex !== index
+                  'd-block': contentIndex === index,
+                  'd-none': contentIndex !== index
                 }"
                 class="title"
               >
@@ -887,8 +1001,8 @@
               </h2>
               <p
                 [ngClass]="{
-                  'fade-in': contentIndex === index,
-                  'fade-out': contentIndex !== index
+                  'd-block': contentIndex === index,
+                  'd-none': contentIndex !== index
                 }"
                 class="fw-lighter mb-0"
               >
@@ -896,24 +1010,29 @@
               </p>
               <p
                 [ngClass]="{
-                  'fade-in': contentIndex === index,
-                  'fade-out': contentIndex !== index
+                  'd-block': contentIndex === index,
+                  'd-none': contentIndex !== index
                 }"
                 class="fw-lighter mb-0"
               >
                 {{ content.text2 }}
               </p>
+
+              <button
+                #knowMoreBtn
+                [ngClass]="{
+                  'd-block': contentIndex === index,
+                  'd-none': contentIndex !== index
+                }"
+                routerLink="/about"
+                fragment="our_goals"
+                class="ms-auto btn primary-btn know-more mb-auto d-flex align-items-center fw-bold py-2 px-3 gap-2 position-relative"
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+                تعرف علي المزيد الآن
+              </button>
             </div>
           </div>
-
-          <button
-            #knowMoreBtn
-            routerLink="/about"
-            class="btn primary-btn know-more mb-auto d-flex align-items-center fw-bold py-2 px-3 gap-2 position-relative"
-          >
-            <i class="fa-solid fa-arrow-right"></i>
-            تعرف علي المزيد الآن
-          </button>
         </div>
       </div>
     </div>
@@ -921,23 +1040,25 @@
 </section>
 
 <!-- Testimonials section -->
-<section class="testimonials overflow-hidden py-5">
+<section class="testimonials overflow-hidden py-5" id="testimonials">
   <div class="container-fluid my-5">
     <div class="row justify-content-center align-items-center g-5">
       <div class="col-xl-6">
         <div class="heading d-flex flex-column gap-4">
           <h2 class="h1 title mb-0">انظر ماذا <br />يقول عملاؤنا!</h2>
           <p class="fw-light mb-0">
-            نحن نفخر بتقديم تجربة مميزة لعملائنا, ونسعى دائماًلتحسين خدماتنا بناًء علي ملاحظاتهم
-            القيمة. تجربتك معنا هي أولويتنا, ونسعد دائماً بما يشاركونه من اراء تساهم في تطوير خدماتنا لتلبية احتياجاتكم
-            بشكل أفضل.
+            نحن نفخر بتقديم تجربة مميزة لعملائنا, ونسعى دائماًلتحسين خدماتنا
+            بناًء علي ملاحظاتهم القيمة. تجربتك معنا هي أولويتنا, ونسعد دائماً
+            بما يشاركونه من اراء تساهم في تطوير خدماتنا لتلبية احتياجاتكم بشكل
+            أفضل.
           </p>
           <button
             class="btn ms-auto primary-btn d-flex align-items-center gap-3 fw-bold"
             (click)="openFeedbackForm()"
           >
             <i class="fa-solid fa-arrow-right"></i>
-            نحن نقدر رأيك<br/> شارك تجربتك معنا الآن
+            نحن نقدر رأيك<br />
+            شارك تجربتك معنا الآن
           </button>
           <div class="carousel-arrows d-flex align-items-center gap-4">
             <button
@@ -995,7 +1116,11 @@
                     >
                       <div class="author d-flex gap-2 align-items-center">
                         <img
-                          [src]="testimonial.user_image"
+                          [src]="
+                            testimonial.user_image
+                              ? testimonial.user_image
+                              : './assets/imgs/icons/online-user.png'
+                          "
                           alt="profile-icon"
                         />
                         <h5 class="author-name fw-normal mb-0">
@@ -1005,7 +1130,7 @@
                       <div class="rating" dir="ltr">
                         <i
                           [class.rating-color]="testimonial.rating >= num"
-                          [class.rating-dark]="testimonial.rating <= num"
+                          [class.rating-dark]="testimonial.rating < num"
                           *ngFor="let num of [1, 2, 3, 4, 5]"
                           class="fa-solid fa-star"
                         ></i>
@@ -1030,8 +1155,8 @@
         <div class="heading ps-5">
           <h2 class="h1 fw-bolder">تواصل معنا بسهولة</h2>
           <p class="fw-light w-75">
-            هل تواجة مشكلة؟ نحن هنا للمساعدة, اختر الطريقة التي تناسبك للتواصل معنا, نحن هنا
-            لخدمتك في أي وقت
+            هل تواجة مشكلة؟ نحن هنا للمساعدة, اختر الطريقة التي تناسبك للتواصل
+            معنا, نحن هنا لخدمتك في أي وقت
           </p>
           <button
             class="btn secondary-btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
@@ -1068,13 +1193,26 @@
                   class="input-field d-flex gap-2 align-items-center px-4"
                 >
                   <img src="./assets/imgs/icons/userRole.png" alt="user icon" />
+
                   <p-dropdown
-                    formControlName="account_type"
                     [options]="roles"
                     optionLabel="name"
                     optionValue="name"
                     placeholder="هل أنت مالك أم مستأجر"
-                  />
+                    formControlName="account_type"
+                  >
+                    <ng-template pTemplate="selectedItem" let-role>
+                      <div class="flex align-items-center gap-2" *ngIf="role">
+                        <div>{{ role.name }}</div>
+                      </div>
+                    </ng-template>
+                    <ng-template let-role pTemplate="item">
+                      <div class="d-flex align-items-center gap-3">
+                        <img [src]="role.icon" />
+                        <span>{{ role.name }}</span>
+                      </div>
+                    </ng-template>
+                  </p-dropdown>
                 </div>
 
                 <div
@@ -1344,25 +1482,26 @@
             <div
               class="form-controls d-flex align-items-center justify-content-between mb-3"
             >
-              <button
-                class="btn secondary-btn w-50 mx-3"
-                [disabled]="registerForm.invalid"
-                #submitBtn
-              >
-              سجل حسابك الآن
-              </button>
               <label
                 for="termsAndConditions1"
                 class="d-flex gap-2 align-items-center fw-ligher"
               >
-              بالضغط علي سجل حسابك الآن،أنت توافق علي الشروط والأحكام وسياسة
-              الخصوصية
                 <input
                   type="checkbox"
                   name="termsAndConditions1"
                   id="termsAndConditions1"
                   formControlName="termsAndConditions"
-              /></label>
+                />
+                بالضغط علي سجل حسابك الآن،أنت توافق علي الشروط والأحكام وسياسة
+                الخصوصية</label
+              >
+              <button
+                class="btn secondary-btn mx-3"
+                [disabled]="registerForm.invalid"
+                #submitBtn
+              >
+                سجل حسابك الآن
+              </button>
             </div>
           </form>
         </div>

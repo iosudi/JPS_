@@ -19,6 +19,7 @@ import { JPSRatingModalComponent } from './components/jps-rating-modal/jps-ratin
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { SearchCircularSliderComponent } from './components/search-circular-slider/search-circular-slider.component';
 import { SearchStepsComponent } from './components/search-steps/search-steps.component';
+import { ToastrComponent } from './components/toastr/toastr.component';
 
 registerLocaleData(localeAr);
 
@@ -30,6 +31,7 @@ registerLocaleData(localeAr);
     DaySearchCircularSliderComponent,
     JPSRatingModalComponent,
     HostFeedbackModalComponent,
+    ToastrComponent,
     // CalendarComponent,
   ],
   imports: [
@@ -43,6 +45,6 @@ registerLocaleData(localeAr);
     JsonPipe,
   ],
   providers: [{ provide: LOCALE_ID, useValue: 'ar' }, DatePipe],
-  exports: [SearchBarComponent, SearchStepsComponent],
+  exports: [SearchBarComponent, SearchStepsComponent, ToastrComponent],
 })
 export class SharedModule {}

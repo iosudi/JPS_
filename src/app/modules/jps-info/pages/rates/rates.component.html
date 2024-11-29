@@ -184,7 +184,11 @@
               </p>
             </div>
 
-            <button class="btn secondary-btn fw-light py-2 px-4" type="submit">
+            <button
+              class="btn secondary-btn fw-light py-2 px-4"
+              type="submit"
+              #submitBtn
+            >
               <i class="fa-solid fa-star"></i>
               اكتب تعليقك
             </button>
@@ -208,7 +212,14 @@
             >
               <div class="review d-flex gap-3">
                 <div class="image">
-                  <img [src]="review.user_image" alt="profile image" />
+                  <img
+                    [src]="
+                      review.user_image
+                        ? review.user_image
+                        : './assets/imgs/icons/online-user.png'
+                    "
+                    alt="profile image"
+                  />
                 </div>
                 <div class="review-details">
                   <div class="stars">

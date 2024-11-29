@@ -84,7 +84,7 @@
     }
   }
   p {
-    font-size: 24px;
+    font-size: 1rem;
     color: #1e1e1e;
   }
 }
@@ -98,6 +98,7 @@
   .heading {
     position: relative;
     right: -70px;
+    top: 30px;
     background: #ecd09f;
     border-radius: 30px;
     .title {
@@ -115,7 +116,7 @@
       }
     }
     p {
-      font-size: 22px;
+      font-size: 1.1rem;
     }
   }
 }
@@ -206,9 +207,9 @@
         }
       }
     }
-    .social-overlay a:hover{
-      i{
-      color: #ecd09f;
+    .social-overlay a:hover {
+      i {
+        color: #ecd09f;
       }
     }
 
@@ -246,7 +247,7 @@
       font-size: 15px;
       border: 1px solid #3f514a;
     }
-    .arr-btn:hover{
+    .arr-btn:hover {
       background-color: #ecd09f;
     }
   }
@@ -266,7 +267,7 @@
         padding: 15px 25px;
         transition: 0.2s;
       }
-      .primary-btn:hover{
+      .primary-btn:hover {
         background-color: #3f514a;
         color: white;
       }
@@ -280,7 +281,7 @@
         font-size: 20px;
         border: 1px solid #3f514a;
       }
-      .arr-btn:hover{
+      .arr-btn:hover {
         background-color: #ecd09f;
       }
     }
@@ -336,9 +337,8 @@
                 font-size: 19px;
               }
             }
-            .rating-dark{
-              color:#D4D4D4;
-              ;
+            .rating-dark {
+              color: #d4d4d4;
             }
           }
 

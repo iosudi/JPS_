@@ -1,4 +1,10 @@
-import { Component, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,11 +24,13 @@ export class JPSRatingModalComponent {
   readonly: boolean = false;
   maxChars = 500;
 
+  @ViewChild('submitBtn') submitBtn!: ElementRef;
   constructor(
     private router: Router,
     private _InfoService: InfoService,
     private _FormBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private renderer: Renderer2
   ) {}
 
   feedback: FormGroup = this._FormBuilder.group({
@@ -59,14 +67,44 @@ export class JPSRatingModalComponent {
 
   onSubmit(): void {
     if (this.feedback.status === 'VALID') {
+      console.log(this.feedback.value);
+      this.renderer.setStyle(
+        this.submitBtn.nativeElement,
+        'pointer-events',
+        'none'
+      );
+      this.renderer.setAttribute(
+        this.submitBtn.nativeElement,
+        'disabled',
+        'true'
+      );
       this._InfoService.sendFeedbacks(this.feedback.value).subscribe({
         next: (res) => {
           if (res.success) {
             this.feedback.reset();
             this.toastr.success('تمت اضافة تعليقك بنجاح');
           }
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
         },
         error: (err) => {
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
+
           if (err.error.error == "Field 'user_id' is required") {
             this.toastr.error('يجب تسجيل الدخول اولا');
           } else {

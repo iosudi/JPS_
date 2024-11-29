@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CoreModule } from './../../core/core.module';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbRatingModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { CoreModule } from 'src/app/core/core.module';
 import { register } from 'swiper/element/bundle';
 import { JpsInfoRoutingModule } from './jps-info-routing.module';
 import { HostsListComponent } from './pages/hosts-list/hosts-list.component';

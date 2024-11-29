@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -16,12 +22,14 @@ export class RatesComponent implements OnInit {
   reviews: any[] = [];
   maxChars = 500;
 
+  @ViewChild('submitBtn') submitBtn!: ElementRef;
   constructor(
     private spinner: NgxSpinnerService,
     private _FormBuilder: FormBuilder,
     private _InfoService: InfoService,
     private toastr: ToastrService,
-    private _EditUserInformationService: EditUserInformationService
+    private _EditUserInformationService: EditUserInformationService,
+    private renderer: Renderer2
   ) {}
 
   sendFeedbackForm: FormGroup = this._FormBuilder.group({
@@ -66,6 +74,16 @@ export class RatesComponent implements OnInit {
 
   onSubmit(): void {
     if (this.sendFeedbackForm.status === 'VALID') {
+      this.renderer.setStyle(
+        this.submitBtn.nativeElement,
+        'pointer-events',
+        'none'
+      );
+      this.renderer.setAttribute(
+        this.submitBtn.nativeElement,
+        'disabled',
+        'true'
+      );
       this._InfoService.sendFeedbacks(this.sendFeedbackForm.value).subscribe({
         next: (res) => {
           if (res.success) {
@@ -74,6 +92,15 @@ export class RatesComponent implements OnInit {
 
             this.getFeedbacks();
           }
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
         },
         error: (err) => {
           if (err.error.error == "Field 'user_id' is required") {
@@ -81,6 +108,15 @@ export class RatesComponent implements OnInit {
           } else {
             this.toastr.error('حدث خطأ ما, برجاء المحاولة لاحقا');
           }
+          this.renderer.setStyle(
+            this.submitBtn.nativeElement,
+            'pointer-events',
+            'auto'
+          );
+          this.renderer.removeAttribute(
+            this.submitBtn.nativeElement,
+            'disabled'
+          );
         },
       });
     }

@@ -125,7 +125,8 @@
   .faq {
     border: 1px solid #444;
     border-radius: 10px;
-    max-height: 75px;
+    display: grid;
+    grid-template-rows: 1.8em 0fr;
     overflow: hidden;
     transition: 0.5s;
     cursor: pointer;
@@ -144,7 +145,8 @@
 
     &.expand {
       cursor: auto;
-      max-height: 300px;
+      grid-template-rows: 1.8em 1fr;
+
       h4 {
         font-size: 32px;
         color: #3f514a;
