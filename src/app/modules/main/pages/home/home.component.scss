@@ -1224,7 +1224,7 @@ ngx-spinner ::ng-deep {
         transform: translateX(200px);
         opacity: 0;
         transition: 1s;
-        .image img {
+        .image {
           height: 530px;
           width: auto;
           border-radius: 20px;
@@ -1975,7 +1975,6 @@ ngx-spinner ::ng-deep {
   .about {
     .container {
       padding: 5rem 1rem 2rem 5rem;
-      height: 1150px;
       width: 100% !important;
       max-width: none !important;
       .row {
@@ -2281,7 +2280,6 @@ ngx-spinner ::ng-deep {
     padding: 1rem 0.5rem !important;
     .container {
       padding: 1rem;
-      height: 920px;
       .row {
         margin: 0;
         .col-lg-4,
@@ -2656,8 +2654,6 @@ ngx-spinner ::ng-deep {
 
   .about {
     .container {
-      height: 980px;
-
       .row {
         .content-side {
           .know-more {
@@ -2866,7 +2862,6 @@ ngx-spinner ::ng-deep {
   .about {
     .container {
       padding-top: 50px;
-      height: 830px;
 
       .row {
         .image-side {
