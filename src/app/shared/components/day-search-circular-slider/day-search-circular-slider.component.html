@@ -32,33 +32,85 @@
     </div>
   </div>
   <svg class="search-slider-progress-bar" width="230" height="230">
+    <defs>
+      <!-- Radial Gradient Definition -->
+      <radialGradient
+        id="trackForegroundFill"
+        cx="50%"
+        cy="50%"
+        r="70%"
+        fx="50%"
+        fy="50%"
+      >
+        <!-- Lighter colors -->
+        <stop offset="0%" stop-color="#AED6C6" />
+        <stop offset="30%" stop-color="#A5C3B7" />
+        <stop offset="50%" stop-color="#9EB8AE" />
+        <stop offset="70%" stop-color="#8AAEA0" />
+        <stop offset="85%" stop-color="#738D83" />
+        <!-- Darker colors -->
+        <stop offset="90%" stop-color="#728B81" />
+        <stop offset="95%" stop-color="#5F736B" />
+      </radialGradient>
+
+      <!-- Drop shadow filters -->
+      <filter id="trackForegroundDropShadow1" filterUnits="userSpaceOnUse">
+        <feDropShadow
+          dx="0"
+          dy="0"
+          flood-color="#5F736B"
+          flood-opacity="0.7"
+          stdDeviation="20"
+        ></feDropShadow>
+      </filter>
+
+      <filter id="trackForegroundDropShadow2" filterUnits="userSpaceOnUse">
+        <feDropShadow
+          dx="0"
+          dy="0"
+          flood-color="#5F736B"
+          flood-opacity="0.9"
+          stdDeviation="3"
+        ></feDropShadow>
+      </filter>
+    </defs>
+
+    <!-- Circle for background -->
     <circle
       class="search-slider-progress-circle circle"
       cx="115"
       cy="115"
       r="90"
+      fill="none"
+      style="
+        stroke: transparent;
+        stroke-dasharray: 660;
+        stroke-width: 50px;
+        transform-origin: center;
+        transform: rotate(-90deg);
+        stroke-linecap: round;
+      "
     ></circle>
+
+    <!-- Progress circle with radial gradient and shadow -->
     <circle
       id="search-slider-circle2"
       class="search-slider-progress-circle circle"
       cx="115"
       cy="115"
       r="90"
-      style="stroke: url(#search-gradient); stroke-linecap: round"
+      fill="none"
+      style="
+        stroke: url(#trackForegroundFill);
+        stroke-width: 45px;
+        stroke-linecap: round;
+        transform-origin: center;
+        transform: rotate(-90deg);
+      "
       [attr.stroke-dasharray]="dashArray"
       [attr.stroke-dashoffset]="dashOffset"
+      filter="url(#trackForegroundDropShadow1)"
     ></circle>
-    <defs>
-      <linearGradient id="search-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="60%" style="stop-color: #aed6c6" />
-        <stop offset="70%" style="stop-color: #a5c3b7" />
-        <stop offset="75%" style="stop-color: #9eb8ae" />
-        <stop offset="80%" style="stop-color: #8aaea0" />
-        <stop offset="85%" style="stop-color: #738d83" />
-        <stop offset="95%" style="stop-color: #728b81" />
-        <stop offset="100%" style="stop-color: #5f736b" />
-      </linearGradient>
-    </defs>
   </svg>
 </div>
 

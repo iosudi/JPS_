@@ -95,25 +95,6 @@
   .search-slider-progress-bar {
     z-index: 2;
     pointer-events: none;
-    .circle {
-      fill: none;
-      &:nth-child(1) {
-        stroke: transparent;
-        stroke-dasharray: 660;
-        stroke-width: 50px;
-        transform-origin: center;
-        transform: rotate(-90deg);
-        stroke-linecap: round;
-      }
-
-      &:nth-child(2) {
-        stroke-width: 45px;
-        transform-origin: center;
-        transform: rotate(-90deg);
-        stroke-linecap: round;
-        z-index: 8;
-      }
-    }
   }
 
   .slider-dots-container {
