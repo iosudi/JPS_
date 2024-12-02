@@ -7,6 +7,7 @@ import {
   inject,
   Input,
   Output,
+  Renderer2,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -20,11 +21,13 @@ import { NgbDate, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class SearchCircularSliderComponent {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
   @Input() startDate!: Date; // Receive start date from parent component
-  constructor(private datePipe: DatePipe) {}
+  @Input() searchContainer!: HTMLElement;
+  @Output() dateSelected = new EventEmitter<string>();
+  constructor(private datePipe: DatePipe, private renderer: Renderer2) {}
+
   private modalService = inject(NgbModal);
 
   formattedDate!: string | null;
-  @Output() dateSelected = new EventEmitter<string>();
 
   fromDate: NgbDate | null = null;
   toDate: NgbDate | null = null;
@@ -148,11 +151,21 @@ export class SearchCircularSliderComponent {
   @HostListener('document:touchend')
   stopDragging() {
     this.isDragging = false;
+    if (this.slider) {
+      this.renderer.removeClass(this.searchContainer, 'no-scroll');
+    } else {
+      console.error('Slider element is not available!');
+    }
     this.snapToClosestMonth();
   }
 
   startDragging(event: MouseEvent | TouchEvent) {
     this.isDragging = true;
+    if (this.slider) {
+      this.renderer.addClass(this.searchContainer, 'no-scroll');
+    } else {
+      console.error('Slider element is not available!');
+    }
     this.updateSlider(this.getEventPosition(event));
   }
 

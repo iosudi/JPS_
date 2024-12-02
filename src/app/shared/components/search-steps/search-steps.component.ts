@@ -1,3 +1,10 @@
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 import { DatePipe } from '@angular/common';
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
@@ -13,6 +20,24 @@ import { SearchService } from '../services/search.service';
   selector: 'app-search-steps',
   templateUrl: './search-steps.component.html',
   styleUrls: ['./search-steps.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state(
+        'void',
+        style({
+          transform: 'translateY(100%)',
+        })
+      ),
+      state(
+        '*',
+        style({
+          transform: 'translateX(0)',
+        })
+      ),
+      transition('void => *', [animate('0.5s ease-out')]),
+      transition('* => void', [animate('0.5s ease-in')]),
+    ]),
+  ],
 })
 export class SearchStepsComponent {
   constructor(

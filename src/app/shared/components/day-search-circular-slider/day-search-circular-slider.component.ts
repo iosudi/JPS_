@@ -7,6 +7,7 @@ import {
   Input,
   OnInit,
   Output,
+  Renderer2,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -20,8 +21,9 @@ export class DaySearchCircularSliderComponent implements OnInit {
   @ViewChild('searchSlider', { static: true }) slider: ElementRef | undefined;
   @Input() startDate!: Date; // Receive start date from parent component
   @Output() dateSelected = new EventEmitter<string>();
+  @Input() searchContainer!: HTMLElement;
 
-  constructor(private datePipe: DatePipe) {}
+  constructor(private datePipe: DatePipe, private renderer: Renderer2) {}
 
   formattedDate!: string | null;
 
@@ -89,12 +91,22 @@ export class DaySearchCircularSliderComponent implements OnInit {
   stopDragging() {
     this.isDragging = false;
     this.snapToClosestDay();
+    if (this.slider) {
+      this.renderer.removeClass(this.searchContainer, 'no-scroll');
+    } else {
+      console.error('Slider element is not available!');
+    }
   }
 
   // Start dragging
   startDragging(event: MouseEvent | TouchEvent) {
     this.isDragging = true;
     this.updateSlider(this.getEventPosition(event));
+    if (this.slider) {
+      this.renderer.addClass(this.searchContainer, 'no-scroll');
+    } else {
+      console.error('Slider element is not available!');
+    }
   }
 
   updateSlider(position: { x: number; y: number }) {
