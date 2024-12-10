@@ -1,5 +1,6 @@
 footer {
   background: #3f514a;
+  border-radius: 25px 25px 0 0;
   .site-links {
     color: white;
     .logo {
@@ -11,13 +12,12 @@ footer {
         cursor: pointer;
         transition: 0.5s;
 
-        
         img {
           width: 60px;
           height: auto;
         }
       }
-      .logo-image:hover{
+      .logo-image:hover {
         background-color: #2f3d38;
       }
 
@@ -41,9 +41,9 @@ footer {
             font-size: 25px;
           }
         }
-        a:hover{
-          i{
-           color: #ecd09f;
+        a:hover {
+          i {
+            color: #ecd09f;
           }
         }
       }

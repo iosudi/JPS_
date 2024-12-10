@@ -22,13 +22,13 @@ export class ProductDetailsComponent {
   apartments: Apartments[] = searchResultApartments;
   checked: boolean = true;
   private modalService = inject(NgbModal);
+  apartmentsId: string | null = '';
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe({
       next: (paramMap) => {
-        const id = paramMap.get('id');
-        console.log(id);
+        this.apartmentsId = paramMap.get('id');
       },
     });
   }

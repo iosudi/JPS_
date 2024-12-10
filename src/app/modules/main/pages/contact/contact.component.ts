@@ -36,7 +36,7 @@ export class ContactComponent implements OnInit {
 
   contactForm: FormGroup = this._FormBuilder.group({
     name: ['', Validators.required],
-    email: ['', Validators.required],
+    email: [''],
     phone: ['', Validators.required],
     type: ['', Validators.required],
     message: ['', Validators.required],

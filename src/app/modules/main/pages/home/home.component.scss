@@ -23,12 +23,12 @@
   align-items: center;
   color: white;
   background-color: #c18826;
-  font-size: 0.7rem;
-  padding: 8px 15px;
+  font-size: 0.6rem;
+  padding: 5px 10px;
   border-radius: 5px;
   font-weight: 500;
   i {
-    font-size: 0.7rem;
+    font-size: 1rem;
   }
 }
 
@@ -220,6 +220,7 @@ ngx-spinner ::ng-deep {
       width: 100%;
       height: 100%;
       backdrop-filter: blur(15px);
+      background-color: #ffffff69;
       z-index: -1;
     }
 
@@ -332,41 +333,35 @@ ngx-spinner ::ng-deep {
 
           .apartment-title {
             h3 {
-              font-size: 1.1rem;
+              font-size: 1.3rem;
             }
 
             p {
-              font-size: 0.7rem;
+              font-size: 0.9rem;
               color: #fff;
               img {
-                width: 14px;
+                width: 13px;
                 height: auto;
               }
-            }
-            .rating {
-              font-size: 0.55rem;
-              background: #3f514a;
-              i {
-                color: #fdc820 !important;
+
+              &.reservedDuration {
+                color: #fdc820;
               }
             }
 
-            .paginator {
-              .dot {
-                width: 5px;
-                height: 5px;
-                background: rgba(255, 255, 255, 0.596);
-                border-radius: 100%;
-                &.active {
-                  background: #ffffff;
-                }
+            .rating {
+              font-size: 0.7rem;
+              background: #3f514a;
+              img {
+                width: 20px;
+                height: auto;
               }
             }
           }
 
           .separator {
             width: 100%;
-            height: 30px;
+            height: 15px;
             img {
               height: 3px;
             }
@@ -377,6 +372,7 @@ ngx-spinner ::ng-deep {
             padding: 3px 10px;
             border-radius: 10px;
             font-size: 0.75rem;
+            line-height: 5px;
             img {
               width: 15px;
               height: 15px;
@@ -394,6 +390,18 @@ ngx-spinner ::ng-deep {
             img {
               width: 30px;
               height: auto;
+            }
+          }
+
+          .paginator {
+            .dot {
+              width: 5px;
+              height: 5px;
+              background: rgba(255, 255, 255, 0.596);
+              border-radius: 100%;
+              &.active {
+                background: #ffffff;
+              }
             }
           }
 
@@ -2155,9 +2163,18 @@ ngx-spinner ::ng-deep {
 
 @media (max-width: 800px) {
   .popular-apartments {
-    padding: 0px 20px !important;
+    padding: 0px 20px 0px 0px !important;
     .container-fluid {
       height: 800px;
+
+      .container-background {
+        img {
+          border-radius: 0 30px 30px 0px !important;
+        }
+        .gradient {
+          border-radius: 0 30px 30px 0px !important;
+        }
+      }
       h2.title {
         top: calc(50% - 50px);
         right: -5%;
@@ -2193,16 +2210,28 @@ ngx-spinner ::ng-deep {
         }
 
         .carousel-container {
-          padding: 50px 20px 0px 0px;
+          padding: 50px 0px 0px;
 
           .card {
             max-width: 300px;
             min-height: 520px;
 
+            .apartment-title {
+              h3 {
+                font-size: 1.1rem;
+              }
+
+              p {
+                font-size: 0.6rem;
+                img {
+                  width: 12px;
+                }
+              }
+            }
+
             .chip {
-              background: #ffffff3a;
               padding: 3px 10px;
-              font-size: 7px;
+              font-size: 0.7rem;
             }
           }
         }

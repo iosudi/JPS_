@@ -1,7 +1,7 @@
-<ngx-spinner
+<!-- <ngx-spinner
   bdColor="#f7f7f7"
   template="<img class='spinner-img' src='./assets/imgs/JPSLOGO.png'/>"
-></ngx-spinner>
+></ngx-spinner> -->
 <app-toastr #toaster></app-toastr>
 <app-nav-bar></app-nav-bar>
 
@@ -97,7 +97,7 @@
         class="header d-flex justify-content-between align-items-center px-5"
       >
         <div class="title">
-          <h2>الشقق المميزة</h2>
+          <h2>الأفضل لك</h2>
           <p
             class="mb-0 fw-light d-flex gap-2 align-items-center"
             routerLink="/best-apartments"
@@ -192,52 +192,44 @@
                 </div>
               </div>
 
-              <div class="card_body px-3 pb-3">
-                <div class="apartment-title d-flex justify-content-between">
-                  <div>
-                    <h3 class="mb-1 h4">{{ apartment.type }}</h3>
-                    <div class="d-flex align-items-center gap-2">
-                      <span class="rating py-1 px-2 rounded-3 fw-bold">
-                        <i class="fa-solid fa-star rating-color"></i>
-                        {{ apartment.rating }}
-                      </span>
-                      <p class="mb-0 d-flex align-items-center gap-1 fw-light">
-                        <img
-                          src="./assets/imgs/icons/location-light.png"
-                          alt="location icon"
-                        />
-                        {{ apartment.city_name }}
-                      </p>
-                    </div>
-                    <p class="mb-0 fw-light">
-                      {{ apartment.reservedtill }}
-                    </p>
+              <div class="card_body px-2 pb-1 ps-3">
+                <div class="apartment-title">
+                  <div
+                    class="d-flex align-items-center justify-content-between gap-2 w-100"
+                  >
+                    <h3 class="mb-0 h4 fw-bold">شقة دوبلكس مفروشة</h3>
+                    <span class="rating p-1 rounded-2 fw-bold overflow-hidden">
+                      <img
+                        class="ms-1"
+                        src="./assets/imgs/icons/star.svg"
+                        alt="star icon"
+                      />
+                      <span class="ps-1"> 5.0 </span>
+                    </span>
                   </div>
-                  <div class="paginator d-flex gap-1 mt-3">
-                    <div
-                      class="dot"
-                      *ngFor="
-                        let img of apartment.images.slice(0, 4);
-                        let idx = index
-                      "
-                      [ngClass]="{
-                        active:
-                          idx ===
-                          (currentSpecialApartmentImageIndex[apartment.id] || 0)
-                      }"
-                    ></div>
-                  </div>
+                  <p class="my-1 d-flex align-items-center gap-1 fw-bold">
+                    <img
+                      src="./assets/imgs/icons/location-light.png"
+                      alt="location icon"
+                    />
+                    6 اكتوبر , حي اول , مجاوره اولى
+                  </p>
+                  <p class="mb-0 fw-bold reservedDuration">
+                    {{ apartment.reservedtill }}
+                  </p>
                 </div>
-                <div class="separator">
+                <div
+                  class="separator d-flex align-items-center justify-content-center w-100"
+                >
                   <img src="./assets/imgs/Separator.svg" alt="separator" />
                 </div>
-                <div class="chips-badges d-flex gap-1">
+                <div class="chips-badges d-flex flex-wrap gap-1">
                   <div class="chip d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/door-white.png"
                       alt="door icon"
                     />
-                    {{ apartment.rooms }}
+                    غرفه,صاله,بلكونه
                   </div>
                   <div class="chip d-flex align-items-center gap-1">
                     <img
@@ -259,19 +251,19 @@
                       src="./assets/imgs/icons/doc-white.png"
                       alt="docs icon"
                     />
-                    {{ apartment.contractperiod }}
+                    شهرين
                   </div>
                 </div>
                 <div
                   class="apartment-details d-flex justify-content-between align-items-center mt-2"
                 >
                   <div>
-                    <h4 class="price mb-1 h5">
+                    <h4 class="price mb-1 h5 fw-bolder">
                       {{ apartment.price | currency : "EGP" : "code" : "1.0-0"
                       }}<span class="fw-light">/يوم</span>
                     </h4>
-                    <p class="mb-0 fw-light">
-                      المضيف : {{ apartment.broker_name }}
+                    <p class="mb-0 fw-bold" (click)="openHostProfile($event)">
+                      المضيف : Ahmed Gamal
                     </p>
                   </div>
                   <img
@@ -279,6 +271,23 @@
                     src="./assets/imgs/icons/share-light.png"
                     alt="share icon"
                   />
+                </div>
+
+                <div
+                  class="paginator d-flex align-items-center justify-content-center w-100 gap-1 mt-1 mx-auto"
+                >
+                  <div
+                    class="dot"
+                    *ngFor="
+                      let img of apartment.images.slice(0, 4);
+                      let idx = index
+                    "
+                    [ngClass]="{
+                      active:
+                        idx ===
+                        (currentSpecialApartmentImageIndex[apartment.id] || 0)
+                    }"
+                  ></div>
                 </div>
               </div>
             </div>

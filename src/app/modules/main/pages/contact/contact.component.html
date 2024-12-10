@@ -17,10 +17,11 @@
     <div class="row w-100">
       <div class="col-xl-5">
         <div class="heading">
-          <h1>تواصل معنا بكل <span>سهولة</span></h1>
+          <h1>تواصل معنا بكل <br /><span>سهولة</span></h1>
           <p>
-            نحن هنا لإجابة على جميع استفساراتك ومساعدتك في أي وقت. اختر الطريقة
-            الأنسب للتواصل معنا.
+            نحن هنا لإجابة على جميع استفساراتك ومساعدتك في أي وقت.
+            <br />
+            اختر الطريقة الأنسب للتواصل معنا.
           </p>
         </div>
       </div>
@@ -39,9 +40,9 @@
   </div>
 </section>
 
-<section class="contact-methods my-5 overflow-hidden">
-  <div class="container">
-    <div class="row g-5">
+<section class="contact-methods my-md-4 my-0 overflow-hidden">
+  <div class="container-fluid px-2 px-sm-5">
+    <div class="row gx-5 gy-3">
       <div class="col-lg-6">
         <div
           class="method p-5 text-center h-100 d-flex flex-column gap-4 align-items-center"
@@ -52,7 +53,7 @@
             alt="message icon"
           />
           <div class="title d-flex flex-column align-items-center">
-            <h2 class="fw-bold">تحدث معنا عبر واتساب</h2>
+            <h2 class="fw-bold">تحدث معنا</h2>
             <p class="w-75">
               استفسارك جاهز؟ ارسل لنا رسالة الآن وسنكون بخدمتك فوًرا.
             </p>
@@ -62,7 +63,7 @@
       </div>
 
       <div class="col-lg-6">
-        <div class="row gy-5" data-aos="fade-right">
+        <div class="row gy-md-5 gy-3" data-aos="fade-right">
           <div class="col-12">
             <div class="method p-5 d-flex align-items-center gap-4">
               <img
@@ -70,7 +71,7 @@
                 alt="message icon"
               />
               <div>
-                <h2 class="fw-bold">تواصل معنا عبر البريد الإلكتروني</h2>
+                <h2 class="fw-bold h3">البريد الإلكتروني</h2>
                 <p class="mb-0 w-75 fw-light">
                   لأي استفسار أو طلب، راسلنا وسيقوم فريقنا بالرد عليك في أسرع
                   وقت
@@ -85,7 +86,7 @@
                 alt="message icon"
               />
               <div>
-                <h2 class="fw-bold">اتصل بنا مباشرة</h2>
+                <h2 class="fw-bold">اتصل بنا</h2>
                 <p class="mb-0 w-75 fw-light">
                   بحاجة إلى مساعدة الآن؟ فريقنا متاح للرد على مكالماتك.
                 </p>
@@ -103,9 +104,11 @@
   <div class="container">
     <div class="row align-items-start g-5">
       <div class="col-lg-5">
-        <div class="heading ps-5">
-          <h2 class="h1 fw-bolder" data-aos="fade-left">
-            هل ترغب في ترك رسالة؟ ملاحظاتك تهمنا وسنسعد بالاستماع إليك.
+        <div class="heading ps-2">
+          <h2 class="fw-bolder" data-aos="fade-left">
+            هل ترغب في ترك رسالة؟
+            <br />
+            ملاحظاتك تهمنا وسنسعد بالاستماع إليك.
           </h2>
           <p class="fw-light w-75" data-aos="fade-left">
             سواء كانت لديك شكوى، اقتراح، مساعدة أو ترغب في إضافة وحدتك، املأ
@@ -131,7 +134,7 @@
       <div class="col-lg-7">
         <div class="form-container p-5 w-100" data-aos="fade-right">
           <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-            <div class="inputs-container mb-5">
+            <div class="inputs-container mb-3">
               <div class="input-box my-3">
                 <div class="input-field d-flex gap-2 align-items-center px-4">
                   <img src="./assets/imgs/icons/user.png" alt="user icon" />
@@ -195,7 +198,7 @@
                     class="py-3"
                     name="requestContent"
                     id="requestContent"
-                    placeholder="يرجى تقديم تفاصيل طلبك أو ملاحظاتك هنا بشكل دقيق ..."
+                    placeholder="يرجى تقديم تفاصيل طلبك  هنا بشكل دقيق ..."
                   ></textarea>
                 </div>
               </div>
@@ -204,12 +207,12 @@
               class="form-controls d-flex align-items-center justify-content-between mb-3"
             >
               <button
-                class="btn secondary-btn d-flex align-items-center gap-2"
+                class="btn secondary-btn d-flex align-items-center gap-2 fw-bold"
                 #submitBtn
                 [disabled]="contactForm.invalid"
               >
                 <i class="fa-solid fa-arrow-right"></i>
-                أرسل الأن وسنرد عليك فورا
+                أرسل الأن
               </button>
             </div>
           </form>
@@ -223,15 +226,15 @@
   <div class="container py-5">
     <div class="row g-5">
       <div class="col-lg-4">
-        <div class="our-location py-5 px-4 position-relative overflow-hidden">
+        <div class="our-location py-4 px-4 position-relative overflow-hidden">
           <div class="background position-absolute"></div>
           <h3>المدن المتاحة للإيجار</h3>
           <p>
-            اكتشف أفضل خيارات الإيجار في أبرز مدن مصر مع تجربة فاخرة تلبي
-            احتياجاتك. نعمل حاليًا في المواقع التالية مع خطط للتوسع في مواقع
-            أخرى.
+            اكتشف أفضل خيارات الإيجار في أبرز مدن مصر.
+            <br />
+            نعمل حاليًا في المواقع التالية مع خطط للتوسع في مواقع أخرى.
           </p>
-          <div class="branches-locations d-flex flex-column gap-5 pt-5">
+          <div class="branches-locations d-flex flex-column gap-4 pt-5">
             <div class="branch d-flex gap-3 align-items-center">
               <div
                 class="branch-img d-flex align-items-center justify-content-center"
@@ -278,10 +281,10 @@
   </div>
 </section>
 
-<section class="faqs my-5 overflow-hidden" id="faqs">
+<section class="faqs my-4 overflow-hidden" id="faqs">
   <div class="container">
     <div class="heading text-center">
-      <h3 class="h1 fw-bold mb-3" data-aos="fade-down">الأسئلة الشائعة</h3>
+      <h3 class="h1 fw-bold" data-aos="fade-down">الأسئلة الشائعة</h3>
       <p data-aos="fade-down">
         إجابات دقيقة وواضحة لأكثر الأسئلة تكراراً لضمان تجربة سلسة ومفهومة
       </p>
@@ -294,7 +297,7 @@
           [ngClass]="{ active: activeFaq == 'buyer' }"
           (click)="showFaq('buyer')"
         >
-          مؤجر
+          مالك
         </button>
         <button
           class="btn"
@@ -313,13 +316,13 @@
     >
       <div class="col-12 w-75" *ngFor="let faq of buyerFaq; let i = index">
         <div
-          class="faq p-4"
+          class="faq p-sm-4 px-4 py-3"
           (click)="toggleExpand(i)"
           [class.expand]="expandedIndex === i"
           data-aos="fade-up"
         >
           <div
-            class="question gap-2 mb-3 d-flex align-items-center justify-content-between"
+            class="question gap-2 d-flex align-items-center justify-content-between"
           >
             <h4 class="mb-0">
               <span>{{ i + 1 }}.</span> {{ faq.question }}
@@ -349,7 +352,7 @@
             data-aos="fade-up"
           >
             <div
-              class="question gap-2 mb-3 d-flex align-items-center justify-content-between"
+              class="question gap-2 d-flex align-items-center justify-content-between"
             >
               <h4 class="mb-0">
                 <span>{{ i + 1 }}.</span> {{ faq.question }}

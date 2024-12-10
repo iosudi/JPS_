@@ -789,4 +789,9 @@ export class HomeComponent {
   productDetails(id: number): void {
     this.router.navigate(['/product-details', id]);
   }
+
+  openHostProfile(e: Event) {
+    e.stopPropagation();
+    this.router.navigate(['/host']);
+  }
 }
