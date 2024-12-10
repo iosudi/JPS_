@@ -6,11 +6,11 @@ import { RegisterComponent } from 'src/app/modules/authentication/pages/register
 import { EditUserInformationService } from 'src/app/shared/services/edit-user-information.service';
 
 @Component({
-  selector: 'app-main-nav-bar',
-  templateUrl: './main-nav-bar.component.html',
-  styleUrls: ['./main-nav-bar.component.scss'],
+  selector: 'app-secondary-navbar',
+  templateUrl: './secondary-navbar.component.html',
+  styleUrls: ['./secondary-navbar.component.scss'],
 })
-export class MainNavBarComponent {
+export class SecondaryNavbarComponent {
   constructor(
     private _EditUserInformationService: EditUserInformationService,
     private router: Router
@@ -18,7 +18,9 @@ export class MainNavBarComponent {
   private modalService = inject(NgbModal);
   dropdown_active: boolean = false;
   visible: boolean = false;
+
   userLogged: string | null = localStorage.getItem('userId');
+
   avatarURL: string | null = null;
 
   ngOnInit(): void {

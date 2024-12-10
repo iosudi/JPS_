@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from 'src/app/modules/authentication/pages/login/login.component';
@@ -19,7 +19,7 @@ export class NavBarComponent {
 
   dropdown_active: boolean = false;
   visible: boolean = false;
-
+  showSecondaryNavbar = false;
   userLogged: string | null = localStorage.getItem('userId');
   avatarURL: string | null = null;
 
@@ -34,6 +34,17 @@ export class NavBarComponent {
         },
       });
     }
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+    console.log(scrollPosition);
+    console.log(this.showSecondaryNavbar);
+
+    // Show the secondary navbar after scrolling down 50px
+    this.showSecondaryNavbar = scrollPosition > 350;
   }
 
   toggleDropdown(): void {

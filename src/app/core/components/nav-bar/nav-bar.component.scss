@@ -146,6 +146,14 @@ nav {
   }
 }
 
+app-secondary-navbar.visible ::ng-deep nav {
+  top: 0;
+}
+
+app-secondary-navbar.hidden ::ng-deep nav {
+  top: -100%;
+}
+
 app-mobile-navbar {
   display: none;
 }
@@ -215,7 +223,8 @@ app-mobile-navbar {
 }
 
 @media (max-width: 775px) {
-  nav {
+  nav,
+  app-secondary-navbar {
     display: none !important;
   }
 

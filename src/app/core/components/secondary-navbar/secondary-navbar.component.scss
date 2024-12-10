@@ -1,0 +1,266 @@
+nav {
+  position: fixed;
+  width: 100%;
+  color: #3f514a;
+  z-index: 40;
+  top: -100%;
+  left: 0;
+  transition: 0.5s;
+  .navbar {
+    background: white;
+    padding: 10px 20px;
+    .logo {
+      position: relative;
+      .logo-image {
+        background: #3f514a;
+        width: 70px;
+        height: 70px;
+        border-radius: 10px;
+        cursor: pointer;
+        img {
+          width: 40px;
+          height: auto;
+        }
+      }
+      .title {
+        p {
+          font-size: 11px;
+        }
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        width: 2px;
+        height: 80%;
+        background: #d9d9d9;
+        border-radius: 1px;
+      }
+    }
+
+    .search-bar {
+      width: 20%;
+      app-search-bar ::ng-deep .search-bar {
+        border: 1px solid #808080;
+        border-radius: 100px;
+        height: 45px;
+        width: 100%;
+        .icon {
+          border-radius: 0 0 30px 0;
+          height: 100%;
+          width: 60px;
+        }
+
+        h3 {
+          font-size: 1rem;
+        }
+
+        img {
+          width: 25px;
+          height: auto;
+        }
+      }
+    }
+
+    .nav-items {
+      a {
+        color: #3f514a;
+        text-decoration: none;
+        font-size: 18px;
+        &.active-link {
+          font-weight: 600 !important;
+        }
+      }
+    }
+
+    .nav-controls {
+      .control-btn {
+        background: transparent;
+        color: #4a594f;
+        border: 0;
+        outline: none;
+        font-weight: 300;
+        font-size: 18px;
+      }
+
+      .profile-dropdown-btn {
+        position: relative;
+        padding: 8px 20px 8px 8px;
+        border: 1px solid #dddddd;
+        background: transparent;
+        cursor: pointer;
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+        }
+
+        .dropdown-menu {
+          position: absolute;
+          margin-top: 10px;
+          top: 100% !important;
+          left: 20px !important;
+          display: block;
+          max-width: 0px;
+          min-width: 0px;
+          max-height: 0;
+          overflow: hidden;
+          transform-origin: top left;
+          pointer-events: none;
+          transition: 0.5s;
+          border: 0;
+
+          &.showDropdown {
+            max-width: 200px;
+            min-width: 200px;
+            max-height: 400px;
+            pointer-events: all;
+          }
+
+          ul {
+            li,
+            a {
+              font-size: 16px;
+              font-weight: 300;
+              color: #686868;
+              width: fit-content;
+              transition: 0.3s;
+              text-decoration: none;
+              &:hover {
+                font-weight: 400;
+                color: #000;
+              }
+            }
+            &.border-bottom {
+              border-bottom: 1px solid #959595;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.currency-popup {
+  width: 700px;
+  background: white;
+  border-radius: 20px;
+  i {
+    cursor: pointer;
+  }
+  .currency {
+    font-weight: 400;
+    font-size: 20px;
+    cursor: pointer;
+    color: #000;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: 0.3s;
+
+    &.active,
+    &:hover {
+      border: 1px solid #000;
+    }
+  }
+}
+
+app-mobile-navbar {
+  display: none;
+}
+
+@media (max-width: 1310px) {
+  nav {
+    .navbar {
+      .logo {
+        .logo-image {
+          width: 50px;
+          height: 50px;
+          img {
+            width: 30px;
+          }
+        }
+        .title {
+          h2 {
+            font-size: 14px;
+          }
+          p {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .nav-items {
+        a {
+          font-size: 14px;
+        }
+      }
+
+      .nav-controls {
+        .control-btn {
+          font-size: 14px;
+        }
+
+        .profile-dropdown-btn {
+          img {
+            width: 30px;
+            height: 30px;
+          }
+
+          .dropdown-menu {
+            ul {
+              li,
+              a {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  nav {
+    .navbar {
+      .title {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  nav {
+    display: none !important;
+  }
+
+  app-mobile-navbar {
+    display: block;
+  }
+
+  .currency-popup {
+    width: 100%;
+  }
+}
+
+@media (max-width: 620px) {
+  .currency-popup {
+    height: 100%;
+    .currency {
+      color: #808080;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .currency-popup {
+    .currency {
+      font-size: 16px;
+      font-size: 600;
+    }
+  }
+}

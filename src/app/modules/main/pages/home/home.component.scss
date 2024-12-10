@@ -90,23 +90,20 @@ ngx-spinner ::ng-deep {
     .title {
       animation: fade-right 2s forwards;
       animation-delay: 2s;
-
       opacity: 0;
+
       h1 {
         font-size: 80px;
+      }
+      h2 {
+        font-size: 2rem;
       }
     }
 
     .search-field {
       animation: fade-right 2s forwards;
       animation-delay: 2.1s;
-      opacity: 0;
       width: 100%;
-      border-radius: 100px;
-      font-size: 12px;
-      // background: #ccc;
-      background-color: white;
-      color: black;
     }
   }
 
@@ -1724,9 +1721,7 @@ ngx-spinner ::ng-deep {
       margin: 0 0px !important;
       padding: 200px 0 0;
     }
-    .row {
-      width: 100%;
-    }
+
     .heading {
       display: flex;
       flex-direction: column;
@@ -2443,7 +2438,79 @@ ngx-spinner ::ng-deep {
   }
 }
 
-@media (max-width: 645px) {
+@media (max-width: 660px) {
+  .hero {
+    height: 400px;
+    align-items: center !important;
+    .container {
+      padding: 0;
+    }
+    .heading {
+      .title {
+        text-align: center;
+        margin-bottom: 20px !important;
+        h1 {
+          font-size: 35px;
+        }
+        h2 {
+          font-size: 21px;
+        }
+      }
+
+      .search-field {
+        width: 100%;
+        height: 90px;
+        .search-bar {
+          h3 {
+            font-size: 16px;
+          }
+          p {
+            font-size: 10px;
+          }
+          img {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+
+    .image-slider {
+      .slider-container {
+        width: 80%;
+        .column {
+          display: flex;
+          gap: 10px;
+          .slide {
+            min-width: 200px;
+            height: 100px;
+            border-radius: 8px;
+          }
+        }
+
+        #column-1 {
+          & .slide:nth-child(odd) {
+            height: 100px !important;
+            min-width: 100px;
+          }
+        }
+        #column-2 {
+          display: none;
+          transform: translateX(300px);
+          & .slide:nth-child(even) {
+            height: 100px !important;
+            min-width: 100px;
+          }
+        }
+      }
+    }
+    .title-underImgs {
+      .title {
+        right: 0;
+      }
+    }
+  }
+
   .about {
     .container {
       .row {
@@ -2478,27 +2545,6 @@ ngx-spinner ::ng-deep {
     align-items: center !important;
     .container {
       padding: 0;
-    }
-    .heading {
-      .title {
-        text-align: center;
-        margin-bottom: 20px !important;
-        h1 {
-          font-size: 50px;
-        }
-        h2 {
-          font-size: 21px;
-        }
-      }
-
-      .search-field {
-        width: 100%;
-        .search-bar {
-          i {
-            font-size: 25px;
-          }
-        }
-      }
     }
 
     .image-slider {
@@ -2763,78 +2809,6 @@ ngx-spinner ::ng-deep {
 }
 
 @media (max-width: 450px) {
-  .hero {
-    height: 500px;
-    align-items: center !important;
-    .container {
-      padding: 0;
-    }
-    .heading {
-      .title {
-        text-align: center;
-        margin-bottom: 20px !important;
-        h1 {
-          font-size: 35px;
-        }
-        h2 {
-          font-size: 21px;
-        }
-      }
-
-      .search-field {
-        width: 100%;
-        height: 90px;
-        .search-bar {
-          h3 {
-            font-size: 16px;
-          }
-          p {
-            font-size: 10px;
-          }
-          img {
-            width: 20px;
-            height: 20px;
-          }
-        }
-      }
-    }
-
-    .image-slider {
-      .slider-container {
-        width: 80%;
-        .column {
-          display: flex;
-          gap: 10px;
-          .slide {
-            min-width: 200px;
-            height: 100px;
-            border-radius: 8px;
-          }
-        }
-
-        #column-1 {
-          & .slide:nth-child(odd) {
-            height: 100px !important;
-            min-width: 100px;
-          }
-        }
-        #column-2 {
-          display: none;
-          transform: translateX(300px);
-          & .slide:nth-child(even) {
-            height: 100px !important;
-            min-width: 100px;
-          }
-        }
-      }
-    }
-    .title-underImgs {
-      .title {
-        right: 0;
-      }
-    }
-  }
-
   .popular-hotels {
     .container {
       .header {

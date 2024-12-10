@@ -337,6 +337,10 @@
       }
     }
   }
+
+  .contact-methods {
+    padding: 30px 10px !important;
+  }
 }
 
 @media (max-width: 991px) {
@@ -451,6 +455,7 @@
 @media (max-width: 635px) {
   .hero {
     padding: 10px 10px 10px;
+    height: 600px;
     .container-fluid {
       padding: 50px 20px 0 !important;
       .heading {
@@ -474,8 +479,6 @@
   }
 
   .contact-methods {
-    padding: 30px 10px !important;
-
     .method {
       padding: 40px 20px !important;
       flex-direction: row !important;
@@ -506,17 +509,16 @@
 
 @media (max-width: 420px) {
   .hero {
-    padding: 60px 10px 20px;
-    height: 580px;
+    padding: 10px 10px 20px;
 
     .container-fluid {
-      padding: 50px 20px 0 !important;
+      padding: 30px 20px 0 !important;
       .heading {
         h1 {
-          font-size: 50px;
+          font-size: 2.5rem;
         }
         p {
-          font-size: 16px;
+          font-size: 1rem;
         }
       }
 

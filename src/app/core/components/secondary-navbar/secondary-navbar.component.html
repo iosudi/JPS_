@@ -1,5 +1,5 @@
-<nav class="py-4">
-  <div class="navbar w-75 mx-auto">
+<nav>
+  <div class="navbar px-5">
     <div class="logo d-flex JPS gap-3 align-items-center ps-4">
       <div class="title">
         <h2 class="h6 mb-0 text-start">JPS GROUPS</h2>
@@ -13,6 +13,8 @@
         <img src="./assets/imgs/logo.png" alt="JPS LOGO" />
       </div>
     </div>
+
+    <div class="search-bar"><app-search-bar></app-search-bar></div>
 
     <ul class="nav-items d-flex gap-4 m-0 p-0">
       <li>
@@ -66,7 +68,7 @@
       >
         <i class="fa-solid fa-bars"></i>
         <img
-          src="./assets/imgs/icons/online-user.png"
+          src="./assets/imgs/icons/dark-online-user.png"
           alt="Profile Picture"
           *ngIf="avatarURL == null; else userPFP"
         />
@@ -74,15 +76,12 @@
         <ng-template #userPFP>
           <img [src]="avatarURL" alt="Profile Picture" />
         </ng-template>
-
         <div
           class="dropdown-menu"
-          *ngIf="userLogged == null; else userLoggedDropdown"
           [class.showDropdown]="dropdown_active"
+          *ngIf="userLogged == null; else userLoggedDropdown"
         >
-          <ul
-            class="p-0 text-end user-auth-options mb-0 py-2 px-3 border-bottom"
-          >
+          <ul class="border-bottom text-end user-auth-options mb-0 py-2 px-3">
             <li (click)="openLoginDialog()" class="py-1">تسجيل دخول</li>
             <li (click)="openSignUpDialog()" class="py-1">تسجيل حساب</li>
           </ul>
@@ -159,53 +158,4 @@
   </div>
 </nav>
 
-<app-secondary-navbar
-  [ngClass]="{ visible: showSecondaryNavbar, hidden: !showSecondaryNavbar }"
-></app-secondary-navbar>
-
 <app-mobile-navbar></app-mobile-navbar>
-
-<p-dialog [(visible)]="visible" [modal]="true">
-  <ng-template pTemplate="headless">
-    <div class="currency-popup p-4">
-      <i class="fa-solid fa-xmark mb-3" (click)="closeDialog()"></i>
-      <h3 class="title my-4 h4 fw-bolder">اختر عملتك المفضلة</h3>
-      <div class="container">
-        <div class="row">
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center active">
-              الجنيه المصري EG
-            </div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-          <div class="col-6 col-md-4">
-            <div class="currency my-2 p-2 text-center">الجنيه المصري EG</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-</p-dialog>

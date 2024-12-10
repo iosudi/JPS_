@@ -8,6 +8,7 @@ import { MainNavBarComponent } from './components/main-nav-bar/main-nav-bar.comp
 import { MobileNavbarComponent } from './components/mobile-navbar/mobile-navbar.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { SecondaryNavbarComponent } from './components/secondary-navbar/secondary-navbar.component';
 import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directive';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directi
     NotFoundComponent,
     AnimateOnScrollDirective,
     MobileNavbarComponent,
+    SecondaryNavbarComponent,
   ],
   imports: [
     CommonModule,
@@ -32,6 +34,7 @@ import { AnimateOnScrollDirective } from './directives/animate-on-scroll.directi
     FooterComponent,
     MainNavBarComponent,
     MobileNavbarComponent,
+    SecondaryNavbarComponent,
   ],
 })
 export class CoreModule {}

@@ -1,13 +1,15 @@
 .search-bar {
   background: white;
+  color: #818181;
   border-radius: 100px;
   cursor: pointer;
   height: 75px;
-  padding: 0 2rem 0 13px;
-  .icon{
+  width: 90%;
+  .icon {
     background-color: #3f514a;
-    padding: 17px 23px;
-    border-radius: 28px;
+    border-radius: 0 0 50px 0;
+    height: 100%;
+    width: 100px;
   }
 
   p {
@@ -16,7 +18,7 @@
   }
 
   img {
-    width: 30px;
+    width: 45px;
     height: auto;
   }
 }
@@ -30,15 +32,20 @@
 }
 @media (max-width: 450px) {
   .search-bar {
+    height: 55px;
+    width: 100%;
+    .icon {
+      border-radius: 0 0 30px 0;
+      width: 60px;
+    }
+
     h3 {
-      font-size: 24px;
+      font-size: 1rem;
     }
-    p {
-      font-size: 10px;
-    }
+
     img {
-      width: 35px;
-      height: 35px;
+      width: 25px;
+      height: auto;
     }
   }
 }

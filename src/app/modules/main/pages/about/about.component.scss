@@ -76,16 +76,25 @@
 
 .mission {
   h2 {
-    font-size: 85px;
-    text-align: center;
-    color: #3f514a;
-    span {
-      color: #deae5a;
-    }
+    color: #deae5a;
   }
-  p {
-    font-size: 1rem;
-    color: #1e1e1e;
+
+  ul {
+    h5 {
+      position: relative;
+      color: #3f514a;
+      font-weight: bold;
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background: #deae5a7e;
+        height: 50%;
+        width: 80px;
+        z-index: -1;
+      }
+    }
   }
 }
 
@@ -523,7 +532,6 @@
   .vision {
     .heading {
       right: -70px;
-      height: 95% !important;
       bottom: 0;
       border-radius: 30px;
       .title {
@@ -579,7 +587,6 @@
 
 @media (max-width: 991px) {
   .vision {
-    max-height: 900px;
     .col-lg-5 {
       display: flex;
       justify-content: center;
@@ -822,17 +829,17 @@
 
 @media (max-width: 550px) {
   .hero {
-    height: 580px;
+    height: 550px;
     padding: 20px 10px;
     .container-fluid {
-      padding: 40px 10px !important;
+      padding: 20px 10px !important;
       .heading {
         h1 {
-          font-size: 50px;
+          font-size: 3rem;
         }
         p {
-          font-size: 16px;
-          width: 85%;
+          font-size: 0.9rem;
+          width: 90%;
         }
 
         button {
@@ -840,29 +847,30 @@
         }
       }
       .image {
-        width: 180%;
-        bottom: 0;
-        left: -50px;
+        width: 140%;
+        left: 0px;
         z-index: -1;
       }
     }
   }
 
   .mission {
-    padding: 20px !important;
     h2 {
       font-size: 25px;
       margin-bottom: 20px !important;
     }
-    p {
-      font-size: 16px;
-      font-weight: 500;
+    ul {
+      h5 {
+        font-size: 1rem;
+      }
+      li {
+        font-size: 0.8rem;
+      }
     }
   }
 
   .vision {
     padding: 30px 0px !important;
-    max-height: 920px;
     .image {
       width: 80%;
       height: 300px !important;
@@ -880,8 +888,10 @@
           }
         }
       }
-      p {
-        font-size: 0.7rem;
+      ul {
+        li {
+          list-style: none;
+        }
       }
     }
   }
