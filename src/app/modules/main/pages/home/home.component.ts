@@ -19,6 +19,7 @@ import { CarouselComponent, OwlOptions } from 'ngx-owl-carousel-o';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { Apartments } from 'src/app/core/interfaces/apartments';
+import { LoginComponent } from 'src/app/modules/authentication/pages/login/login.component';
 import { ShareModalComponent } from 'src/app/modules/product-search/components/share-modal/share-modal.component';
 import { JPSRatingModalComponent } from 'src/app/shared/components/jps-rating-modal/jps-rating-modal.component';
 import { ToastrComponent } from 'src/app/shared/components/toastr/toastr.component';
@@ -55,6 +56,8 @@ export class HomeComponent {
   apartments: Apartments[] = apartments;
   specialApartments: any[] = [];
   cities: any[] = [];
+  isRentalCollapsed = true;
+  isOwnerCollapsed = true;
 
   topRowPositionHero: number = 0;
   bottomRowPositionHero: number = 0;
@@ -158,7 +161,9 @@ export class HomeComponent {
 
   //testimonials Section Variables
   @ViewChild('testimonialsPrevBtn') testimonialsPrevBtn!: ElementRef;
+  @ViewChild('testimonialsPrevBtn2') testimonialsPrevBtn2!: ElementRef;
   @ViewChild('testimonialsNextBtn') testimonialsNextBtn!: ElementRef;
+  @ViewChild('testimonialsNextBtn2') testimonialsNextBtn2!: ElementRef;
   @ViewChild('testimonialsCarousel', { static: false })
   testimonialsCarousel!: CarouselComponent;
   @ViewChild('testimonialsDot1') testimonialsDot1!: ElementRef;
@@ -217,7 +222,6 @@ export class HomeComponent {
         ],
       ],
       confirm_password: [''],
-      termsAndConditions: [false, Validators.requiredTrue],
     },
     { validators: [this.checkPasswordMatch] } as FormControlOptions
   );
@@ -453,9 +457,18 @@ export class HomeComponent {
         'disabled',
         'false'
       );
+      this.renderer.setAttribute(
+        this.testimonialsPrevBtn2.nativeElement,
+        'disabled',
+        'false'
+      );
     } else {
       this.renderer.removeAttribute(
         this.testimonialsPrevBtn.nativeElement,
+        'disabled'
+      );
+      this.renderer.removeAttribute(
+        this.testimonialsPrevBtn2.nativeElement,
         'disabled'
       );
     }
@@ -625,12 +638,6 @@ export class HomeComponent {
     this.contentContainerHeight = div.nativeElement.offsetHeight + 16;
     this.contentIndex = index;
 
-    this.renderer.setStyle(
-      this.knowMoreBtn.nativeElement,
-      'top',
-      `${this.contentContainerHeight}px`
-    );
-
     // Calculate transform values based on the content index
     const transforms = [
       [0, 0, 0],
@@ -793,5 +800,21 @@ export class HomeComponent {
   openHostProfile(e: Event) {
     e.stopPropagation();
     this.router.navigate(['/host']);
+  }
+
+  toggleVisibility(list: string): void {
+    if (list == 'owner') {
+      this.isOwnerCollapsed = !this.isOwnerCollapsed;
+    } else {
+      this.isRentalCollapsed = !this.isRentalCollapsed;
+    }
+  }
+
+  openLoginDialog(): void {
+    const modalRef = this.modalService.open(LoginComponent, {
+      centered: true,
+      backdrop: 'static',
+      scrollable: true,
+    });
   }
 }

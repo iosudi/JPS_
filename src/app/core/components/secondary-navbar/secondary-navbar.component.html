@@ -1,9 +1,9 @@
 <nav>
-  <div class="navbar px-5">
-    <div class="logo d-flex JPS gap-3 align-items-center ps-4">
+  <div class="navbar justify-content-evenly px-5">
+    <div class="logo d-flex JPS gap-3 align-items-center ps-4 me-4">
       <div class="title">
-        <h2 class="h6 mb-0 text-start">JPS GROUPS</h2>
-        <p class="mb-0 text-start fw-lighter">Real Estate Service</p>
+        <h2 class="h6 mb-0 text-start rubik">JPS GROUPS</h2>
+        <p class="mb-0 text-start fw-lighter rubik">Real Estate Service</p>
       </div>
 
       <div
@@ -14,9 +14,9 @@
       </div>
     </div>
 
-    <div class="search-bar"><app-search-bar></app-search-bar></div>
+    <div class="search-bar ms-5"><app-search-bar></app-search-bar></div>
 
-    <ul class="nav-items d-flex gap-4 m-0 p-0">
+    <ul class="nav-items d-flex gap-4 m-0 p-0 ms-5">
       <li>
         <a routerLink="/home" routerLinkActive="active-link" class="fw-lighter"
           >الرئيسية</a
@@ -48,12 +48,12 @@
           routerLink="/how-it-works"
           routerLinkActive="active-link"
           class="fw-lighter"
-          >كيف يعمل JPS</a
+          >كيف يعمل <span class="rubik">JPS</span></a
         >
       </li>
     </ul>
 
-    <div class="nav-controls d-flex gap-3">
+    <div class="nav-controls d-flex gap-3 ms-4">
       <button (click)="showDialog()" class="currency-btn control-btn d-none">
         <i class="fa-solid fa-dollar-sign"></i>
         العملة

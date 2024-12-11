@@ -40,11 +40,8 @@ export class NavBarComponent {
   onWindowScroll() {
     const scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
-    console.log(scrollPosition);
-    console.log(this.showSecondaryNavbar);
-
     // Show the secondary navbar after scrolling down 50px
-    this.showSecondaryNavbar = scrollPosition > 350;
+    this.showSecondaryNavbar = scrollPosition > 500;
   }
 
   toggleDropdown(): void {

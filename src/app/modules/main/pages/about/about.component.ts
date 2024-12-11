@@ -59,7 +59,9 @@ export class AboutComponent implements OnInit {
 
   //testimonials Section Variables
   @ViewChild('testimonialsPrevBtn') testimonialsPrevBtn!: ElementRef;
+  @ViewChild('testimonialsPrevBtn2') testimonialsPrevBtn2!: ElementRef;
   @ViewChild('testimonialsNextBtn') testimonialsNextBtn!: ElementRef;
+  @ViewChild('testimonialsNextBtn2') testimonialsNextBtn2!: ElementRef;
   @ViewChild('testimonialsCarousel', { static: false })
   testimonialsCarousel!: CarouselComponent;
   @ViewChild('testimonialsDot1') testimonialsDot1!: ElementRef;
@@ -134,9 +136,18 @@ export class AboutComponent implements OnInit {
         'disabled',
         'false'
       );
+      this.renderer.setAttribute(
+        this.testimonialsNextBtn2.nativeElement,
+        'disabled',
+        'false'
+      );
     } else {
       this.renderer.removeAttribute(
         this.testimonialsNextBtn.nativeElement,
+        'disabled'
+      );
+      this.renderer.removeAttribute(
+        this.testimonialsNextBtn2.nativeElement,
         'disabled'
       );
     }

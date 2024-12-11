@@ -1,6 +1,6 @@
 .hero {
   height: 900px;
-  padding: 20px 200px;
+  padding: 10px 150px;
   .container-fluid {
     overflow: hidden;
     border-radius: 20px;
@@ -482,20 +482,20 @@
   }
 }
 
-@media (max-width: 1399px) {
-  .tax-record {
-    .container {
-      padding: 50px;
-      position: relative;
+// @media (max-width: 1399px) {
+//   .tax-record {
+//     .container {
+//       padding: 50px;
+//       position: relative;
 
-      .verified-badge {
-        bottom: -250px;
-        width: 431px;
-        height: 432px;
-      }
-    }
-  }
-}
+//       .verified-badge {
+//         bottom: -250px;
+//         width: 431px;
+//         height: 432px;
+//       }
+//     }
+//   }
+// }
 
 @media (max-width: 1200px) {
   .hero {

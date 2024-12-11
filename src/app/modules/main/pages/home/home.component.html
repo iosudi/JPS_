@@ -12,7 +12,7 @@
   id="hero"
 >
   <div class="background">
-    <img src="./assets/imgs/unsplash_dBOZ7XL4b_E.png" alt="background" />
+    <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
     <div class="gradient"></div>
   </div>
   <div class="container d-flex justify-content-around flex-column">
@@ -20,10 +20,10 @@
       <div class="col-12 d-flex justify-content-center mt-5">
         <div class="heading w-100">
           <div class="mb-5 title">
-            <h1 class="text-center mb-3">معنا للإيجار معنى</h1>
+            <h1 class="text-center mb-4 fw-bold">معنا للإيجار معنى</h1>
             <h2 class="fw-light text-center">
-              ابحث واستاجر بسهولة من مكانك <br />
-              في اي وقت
+              إبحث وإستاجر بسهولة من مكانك <br />
+              في أي وقت
             </h2>
           </div>
           <div class="search-field px-3 py-2">
@@ -73,7 +73,7 @@
 <!-- popular Apartments section -->
 <section
   appAnimateOnScroll
-  class="popular-apartments overflow-hidden p-5 position-relative"
+  class="popular-apartments overflow-hidden p-5 pb-3 position-relative"
   id="popular_apartment"
 >
   <div class="container-fluid mx-auto my-5 position-relative">
@@ -220,29 +220,28 @@
                   <img src="./assets/imgs/Separator.svg" alt="separator" />
                 </div>
                 <div class="chips-badges d-flex flex-wrap gap-1">
-                  <div class="chip d-flex align-items-center gap-1">
+                  <div class="chip d-flex align-items-center gap-1 fw-bold">
                     <img
                       src="./assets/imgs/icons/door-white.png"
                       alt="door icon"
                     />
                     غرفه,صاله,بلكونه
                   </div>
-                  <div class="chip d-flex align-items-center gap-1">
+                  <div class="chip fw-bold d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/bed-white.png"
                       alt="bed icon"
                     />
                     {{ apartment.beds }}
                   </div>
-
-                  <div class="chip d-flex align-items-center gap-1">
+                  <div class="chip fw-bold d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/bath-white.png"
                       alt="bath icon"
                     />
                     {{ apartment.bathrooms }}
                   </div>
-                  <div class="chip d-flex align-items-center gap-1">
+                  <div class="chip fw-bold d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/doc-white.png"
                       alt="docs icon"
@@ -302,12 +301,12 @@
 >
   <div pDefer>
     <ng-template>
-      <div class="container-fluid my-5 position-relative">
+      <div class="container-fluid mb-3 position-relative">
         <div
-          class="header overflow-hidden d-flex justify-content-between align-items-center mx-5"
+          class="header overflow-hidden d-flex justify-content-between align-items-center"
         >
           <div class="title">
-            <h2>المدن الأكثر بحثا</h2>
+            <h2>مدننا الحاليه والقادمة</h2>
             <a
               routerLink="/best-districts"
               class="mb-0 fw-light d-flex gap-2 align-items-center"
@@ -342,7 +341,9 @@
                   <img [src]="city.image" alt="popular-district" />
                   <div class="gradient"></div>
                 </div>
+
                 <div class="hover-overlay"></div>
+
                 <div class="district-name">
                   <div class="title d-flex align-items-center gap-2">
                     <img
@@ -352,8 +353,19 @@
                     />
                     <h2>{{ city.name }}</h2>
                   </div>
-                  <p class="mb-0 text-start">{{ city.description }}</p>
                 </div>
+
+                <div
+                  *ngIf="!city.properties.length"
+                  class="countdown rounded-5 py-2 px-3 mx-auto mt-5 d-flex align-items-center justify-content-center gap-2"
+                >
+                  <span class="fw-bold">24D : 00H : 00M</span>
+                  <img
+                    src="./assets/imgs/icons/mdi_clock-time-four-outline.svg"
+                    alt="icon"
+                  />
+                </div>
+
                 <div class="apartment-list">
                   <div
                     class="more d-flex justify-content-between mb-3"
@@ -363,12 +375,12 @@
                       routerLink="/best-apartments"
                       class="fa-solid fa-arrow-right"
                     ></i>
-                    Show all ({{ city.properties.length }})
+                    <span> Show all ({{ city.properties.length }}) </span>
                   </div>
                   <ng-container *ngIf="city.properties.length > 0">
                     <div class="apartments-wrapper">
                       <div
-                        class="apartment d-flex gap-3 align-items-center my-4"
+                        class="apartment d-flex gap-3 align-items-start my-4"
                         *ngFor="let property of city.properties"
                         (click)="productDetails(property.id)"
                       >
@@ -462,18 +474,14 @@
                             class="apartment-name d-flex justify-content-between gap-2"
                           >
                             <div class="title">
-                              <p class="mb-0">
-                                المضيف : {{ property.broker_name }}
-                              </p>
-                              <h3 class="h6 my-1">
-                                {{ property.type }}
-                              </h3>
+                              <p class="mb-0 host">المضيف : Ahmed Gamal</p>
+                              <h3 class="h6 my-1">شقة دوبلكس مفروشة</h3>
                               <p class="mb-0 d-flex gap-1 align-items-center">
                                 <img
                                   src="./assets/imgs/icons/location-dark.png"
                                   alt="share icon"
                                 />
-                                {{ city.name }}
+                                6 اكتوبر, حي اول, مجاورة اولى
                               </p>
                               <p class="mb-0 fw-light">
                                 {{ property.reservedtill }}
@@ -486,21 +494,9 @@
                             />
                           </div>
 
-                          <div class="chips-badges d-flex gap-1">
-                            <div class="chip d-flex align-items-center gap-1">
-                              <img
-                                src="./assets/imgs/icons/bath-colored.png"
-                                alt="bath icon"
-                              />
-                              {{ property.bathrooms }}
-                            </div>
-                            <div class="chip d-flex align-items-center gap-1">
-                              <img
-                                src="./assets/imgs/icons/bed-colored.png"
-                                alt="bed icon"
-                              />
-                              {{ property.bedrooms }}
-                            </div>
+                          <div
+                            class="chips-badges d-flex flex-wrap align-items-center gap-1"
+                          >
                             <div class="chip d-flex align-items-center gap-1">
                               <img
                                 src="./assets/imgs/icons/door-colored.png"
@@ -508,6 +504,23 @@
                               />
                               {{ property.rooms }}
                             </div>
+                            <span class="dot"></span>
+                            <div class="chip d-flex align-items-center gap-1">
+                              <img
+                                src="./assets/imgs/icons/bed-colored.png"
+                                alt="bed icon"
+                              />
+                              5
+                            </div>
+                            <span class="dot"></span>
+                            <div class="chip d-flex align-items-center gap-1">
+                              <img
+                                src="./assets/imgs/icons/bath-colored.png"
+                                alt="bath icon"
+                              />
+                              {{ property.bathrooms }}
+                            </div>
+                            <span class="dot"></span>
                             <div class="chip d-flex align-items-center gap-1">
                               <img
                                 src="./assets/imgs/icons/doc-colored.png"
@@ -521,18 +534,23 @@
                             class="price-rating mt-1 d-flex justify-content-between align-items-center"
                           >
                             <div class="rating">
-                              <i class="fa-solid fa-star"></i
-                              >{{ property.rating }}
-                              <span>({{ property.reviewsCount }} تقييم)</span>
+                              <i class="fa-solid fa-star ms-1"></i>
+                              <span *ngIf="property.rating">{{
+                                property.rating
+                              }}</span>
+                              <span *ngIf="!property.rating">جديد</span>
+                              <span class="me-1" *ngIf="property.reviewsCount"
+                                >({{ property.reviewsCount }} تقييم)</span
+                              >
                             </div>
                             <div class="price">
-                              <h3 class="h6 mb-0">
+                              <h3 class="h6 mb-0 fw-bold text-end">
                                 {{
                                   property.price
                                     | currency : "EGP" : "code" : "1.0-0"
                                 }}
                               </h3>
-                              <p class="mb-0">لليوم الواحد</p>
+                              <p class="mb-0 text-end">لليوم الواحد</p>
                             </div>
                           </div>
                         </div>
@@ -550,8 +568,11 @@
                         alt="sand clock icon"
                       />
                       <h3 class="h1 text-center mb-4">سيكون متاح قريبا</h3>
-                      <p class="text-center w-75 mb-0">
+                      <p class="text-center w-75">
                         هذا المكان غير متوفر حاليا ولكن سيكون متاح ف المستقبل
+                      </p>
+                      <p class="text-center mb-0 fw-bold countdown-text">
+                        24D : 00H : 00M
                       </p>
                     </div>
                   </ng-container>
@@ -692,13 +713,13 @@
 </section> -->
 
 <!-- Jps advices section -->
-<section appAnimateOnScroll class="advices overflow-hidden my-5">
+<section appAnimateOnScroll class="advices overflow-hidden mt-5 mb-3">
   <div class="container-background">
     <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
     <div class="blur"></div>
     <div class="gradient"></div>
   </div>
-  <div class="container my-5">
+  <div class="container my-3">
     <div class="title mb-5">
       <h2 class="fw-bold">
         <!-- <span class="fw-bold">نصائح من JPS</span> للعملاء والمالكين -->
@@ -710,95 +731,109 @@
       </p>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4 gx-md-5">
       <div class="col-lg-6">
         <div
-          class="clients-advices d-flex flex-column justify-content-around align-items-start rounded-4 p-5 h-100"
+          class="clients-advices advice d-flex flex-column justify-content-start align-items-start rounded-4 px-5 py-3 h-100"
         >
-          <h4 class="mb-5">المستأجر</h4>
+          <h4 class="mb-4">المستأجر</h4>
 
-          <ul class="advices p-0 m-0">
+          <ul [class.collapsed]="isRentalCollapsed" class="advices p-0 m-0">
             <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
             >
               <img src="./assets/imgs/icons/searchh.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>التحقق من التفاصيل قبل الحجز</h5>
-                <p class="mb-0">
+                <p class="mb-0 fw-medium">
                   اقرأ الوصف بعناية، وشاهد الصور،واطلع علي التقييمات من مستأجرين
                   سابقين لتتأكد من أن الوحدة تناسب احتياجاتك
                 </p>
               </div>
             </li>
+
             <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/health-care.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>المحافظة على الوحدة</h5>
+                <p class="mb-0 fw-medium">
+                  تعامل مع الوحدة باحترام، وابلغ عن أي أضرار أو أعطال فور حدوثها
+                  لتجنب مشاكل لاحقة.
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/deal.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>الاحترام المتبادل</h5>
+                <p class="mb-0 fw-medium">
+                  الحفاظ على التفاهم والاحترام بينك وبين المالك يسهم في خلق
+                  تجربة إيجابية للطرفين.
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/contract-dark.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>الاحتفاظ بالمستندات</h5>
+                <p class="mb-0 fw-medium">
+                  تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم .
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/star-rate.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>التقييم والملاحظات</h5>
+                <p class="mb-0 fw-medium">
+                  اترك تقييما صادًقا بعد الإقامة، فهو يساعد المالك والمستأجرين
+                  الآخرين في اتخاذ قرارات صحيحة.
+                </p>
+                <p class="mb-0 fw-medium">
+                  إذا واجهت مشكلة، حاول التواصل مع المالك أو الموقع لحلها بدًال
+                  من ترك تقييم سلبي مباشرة.
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
             >
               <img src="./assets/imgs/icons/legal.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>الالتزام بالقواعد والقوانين</h5>
-                <p class="mb-0">
-                  •التزم بالقواعد المحددة من قِبل المالك مثل عدم التدخين في
+                <p class="mb-0 fw-medium">
+                  التزم بالقواعد المحددة من قِبل المالك مثل عدم التدخين في
                   الوحدة أو الالتزام بعدد المستأجرين المسموح بهم، وأيضا سياسة
                   الإلغاء. هذا يساعد في ضمان تجربة إيجار مريحة للطرفين كما
                   يساعدك علي التأكد من ان الوحدة تلبي احتياجاتك قبل الحجز
                 </p>
               </div>
             </li>
-            <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-            >
-              <img src="./assets/imgs/icons/health-care.png" alt="icon" />
-              <div class="d-flex flex-column">
-                <h5>المحافظة على الوحدة</h5>
-                <p class="mb-0">
-                  تعامل مع الوحدة باحترام، وابلغ عن أي أضرار أو أعطال فور حدوثها
-                  لتجنب مشاكل لاحقة.
-                </p>
-              </div>
-            </li>
-            <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-            >
-              <img src="./assets/imgs/icons/star-rate.png" alt="icon" />
-              <div class="d-flex flex-column">
-                <h5>التقييم والملاحظات</h5>
-                <p class="mb-0">
-                  اترك تقييما صادًقا بعد الإقامة، فهو يساعد المالك والمستأجرين
-                  الآخرين في اتخاذ قرارات صحيحة.
-                </p>
-                <p class="mb-0">
-                  إذا واجهت مشكلة، حاول التواصل مع المالك أو الموقع لحلها بدًال
-                  من ترك تقييم سلبي مباشرة.
-                </p>
-              </div>
-            </li>
-            <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-            >
-              <img src="./assets/imgs/icons/deal.png" alt="icon" />
-              <div class="d-flex flex-column">
-                <h5>الاحترام المتبادل</h5>
-                <p class="mb-0">
-                  •الحفاظ على التفاهم والاحترام بينك وبين المالك يسهم في خلق
-                  تجربة إيجابية للطرفين.
-                </p>
-              </div>
-            </li>
-            <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-            >
-              <img src="./assets/imgs/icons/contract-dark.png" alt="icon" />
-              <div class="d-flex flex-column">
-                <h5>الاحتفاظ بالمستندات</h5>
-                <p class="mb-0">
-                  تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم .
-                </p>
-              </div>
-            </li>
           </ul>
 
           <button
-            class="btn px-4 py-2 fs-4 rounded-5 mt-4"
+            (click)="toggleVisibility('rental')"
+            class="show-more-btn my-4 fw-bold me-auto"
+          >
+            {{
+              isRentalCollapsed ? "تعرف علي المزيد الان.." : "اخفي المحتوى.."
+            }}
+          </button>
+
+          <button
+            class="btn px-4 py-1 fs-4 rounded-5 mt-auto"
             routerLink="/home"
             fragment="hero"
           >
@@ -810,97 +845,111 @@
 
       <div class="col-lg-6">
         <div
-          class="owners-advices d-flex flex-column justify-content-around align-items-start rounded-4 p-5 h-100"
+          class="owners-advices advice d-flex flex-column justify-content-start align-items-start rounded-4 px-5 py-3 h-100"
         >
-          <h4 class="mb-5">المالك</h4>
+          <h4 class="mb-4">المالك</h4>
 
-          <ul class="advices p-0 m-0">
+          <ul class="advices p-0 m-0" [class.collapsed]="isOwnerCollapsed">
             <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
             >
               <img src="./assets/imgs/icons/painting.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>توفير وصف دقيق لوحدتك</h5>
-                <p class="mb-0">تأكد من تقديم تفاصيل دقيقة وصادقة عن وحدتك.</p>
-                <p class="mb-0">
+                <p class="mb-0 fw-medium">
+                  تأكد من تقديم تفاصيل دقيقة وصادقة عن وحدتك.
+                </p>
+                <p class="mb-0 fw-medium">
                   قم بتحديث الصور بانتظام لتعكس الوضع الحالي للوحدة لضمان
                   مصداقية المعلومات.
                 </p>
               </div>
             </li>
+
             <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
             >
               <img src="./assets/imgs/icons/house-keeping.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>الحفاظ على نظافة وحدتك</h5>
-                <p class="mb-0">
+                <p class="mb-0 fw-medium">
                   الاهتمام بالنظافة يعكس احترافية عالية، ويزيد من رضا
                   المستأجرين، مما يساهم في تحسين التقييمات بشكل كبير.
                 </p>
               </div>
             </li>
+
             <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-            >
-              <img src="./assets/imgs/icons/easy.png" alt="icon" />
-              <div class="d-flex flex-column">
-                <h5>المرونة في التعامل</h5>
-                <p class="mb-0">
-                  حاول أن تكون مرنًا في وضع قوانين وحدتك وسياسة الإلغاء، مما
-                  يسهل تجربة المستأجر ويزيد من فرصة تأجير الوحدة بسرعة.
-                </p>
-                <p class="mb-0">
-                  في حال حدوث تغييرات أو مشكلات غير متوقعة، يجب أن يكون هناك
-                  تفاهم ومرونة من الطرفين لحل الأمور بشكل ايجابي .
-                </p>
-              </div>
-            </li>
-            <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
-            >
-              <img src="./assets/imgs/icons/cost.png" alt="icon" />
-              <div class="d-flex flex-column">
-                <h5>الشفافية في التسعير والقواعد</h5>
-                <p class="mb-0">
-                  تسعير وحدتك بشكل منطقي ومتوافق مع السوق يعزز سهولة وسرعة تأجير
-                  الوحدة ويخلق تجربة إيجابية للطرفين.
-                </p>
-                <p class="mb-0">
-                  حدد القواعد بشكل صريح&#10088;مثل عدد المستأجرين المسموح بهم،
-                  قواعد التدخين، والحيوانات الأليفة &#10089;
-                </p>
-              </div>
-            </li>
-            <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
             >
               <img src="./assets/imgs/icons/switch.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>احترام الخصوصية</h5>
-                <p class="mb-0">
+                <p class="mb-0 fw-medium">
                   يجب على المالك احترام خصوصية المستأجرين وعدم الدخول إلى الوحدة
                   دون إذن مسبق أو إشعار وهذا يزيد من التفاهم واالحترام بينك وبين
                   المستأجر ويخلق تجربة إيجابية بين الطرفين.
                 </p>
               </div>
             </li>
+
             <li
-              class="mb-3 d-flex gap-4 justify-content-start align-items-start"
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
             >
               <img src="./assets/imgs/icons/contract.png" alt="icon" />
               <div class="d-flex flex-column">
                 <h5>الاحتفاظ بالمستندات</h5>
-                <p class="mb-0">
+                <p class="mb-0 fw-medium">
                   تأكد من أن الحجز موثق على الموقع لتجنب أي لبس أو سوء فهم بينك
                   وبين المستأجر.
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/easy.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>المرونة في التعامل</h5>
+                <p class="mb-0 fw-medium">
+                  حاول أن تكون مرنًا في وضع قوانين وحدتك وسياسة الإلغاء، مما
+                  يسهل تجربة المستأجر ويزيد من فرصة تأجير الوحدة بسرعة.
+                </p>
+                <p class="mb-0 fw-medium">
+                  في حال حدوث تغييرات أو مشكلات غير متوقعة، يجب أن يكون هناك
+                  تفاهم ومرونة من الطرفين لحل الأمور بشكل ايجابي .
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="mb-2 d-flex gap-4 justify-content-start align-items-start"
+            >
+              <img src="./assets/imgs/icons/cost.png" alt="icon" />
+              <div class="d-flex flex-column">
+                <h5>الشفافية في التسعير والقواعد</h5>
+                <p class="mb-0 fw-medium">
+                  تسعير وحدتك بشكل منطقي ومتوافق مع السوق يعزز سهولة وسرعة تأجير
+                  الوحدة ويخلق تجربة إيجابية للطرفين.
+                </p>
+                <p class="mb-0 fw-medium">
+                  حدد القواعد بشكل صريح &#10088; مثل عدد المستأجرين المسموح بهم،
+                  قواعد التدخين، والحيوانات الأليفة &#10089;
                 </p>
               </div>
             </li>
           </ul>
 
           <button
-            class="btn px-4 py-2 fs-4 rounded-5 mt-4"
+            (click)="toggleVisibility('owner')"
+            class="show-more-btn my-4 fw-bold me-auto"
+          >
+            {{ isOwnerCollapsed ? "تعرف علي المزيد الان.." : "اخفي المحتوى.." }}
+          </button>
+
+          <button
+            class="btn px-4 py-1 fs-4 rounded-5 mt-auto"
             routerLink="/contact"
             fragment="contact_form"
           >
@@ -914,8 +963,8 @@
 </section>
 
 <!-- About section -->
-<section appAnimateOnScroll class="about overflow-hidden p-5" id="about_JPS">
-  <div class="container my-5">
+<section appAnimateOnScroll class="about overflow-hidden px-5" id="about_JPS">
+  <div class="container mb-4 mt-1">
     <div class="container-background">
       <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
       <div class="blur"></div>
@@ -923,8 +972,8 @@
     </div>
 
     <div class="header mx-3">
-      <h2 class="h1">عن JPS</h2>
-      <p class="d-flex align-items-center gap-2 fw-light">
+      <h2 class="h1 fw-bold">عن <span>JPS</span></h2>
+      <p class="d-flex align-items-center gap-2 fw-light pointer">
         <i class="fa-solid fa-arrow-right"></i>
         مشاهدة المزيد
       </p>
@@ -940,20 +989,27 @@
             <div
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
-              <p class="text-center mb-0 mx-auto">خد راحتك .. استأجر براحتك</p>
+              <p class="text-center mb-0 mx-auto fw-bold">
+                خد راحتك .. استأجر<br />
+                براحتك
+              </p>
             </div>
 
             <div
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
-              <p class="text-center mb-0 mx-auto">وحدتك جاهزة.. بضغطة زر</p>
+              <p class="text-center mb-0 mx-auto fw-bold">
+                وحدتك جاهزة.. بضغطة زر
+              </p>
             </div>
 
             <div
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
-              <p class="text-center mb-0 mx-auto">
-                مش مجرد وحدة... تجربة متكاملة
+              <p class="text-center mb-0 mx-auto fw-bold">
+                مش مجرد وحدة... تجربة
+                <br />
+                متكاملة
               </p>
             </div>
           </div>
@@ -1004,27 +1060,38 @@
                   'd-none': contentIndex !== index
                 }"
                 class="title"
-              >
-                {{ content.title }}
-              </h2>
+                [innerHTML]="content.title"
+              ></h2>
               <p
                 [ngClass]="{
                   'd-block': contentIndex === index,
                   'd-none': contentIndex !== index
                 }"
                 class="fw-lighter mb-0"
-              >
-                {{ content.text1 }}
-              </p>
+                [innerHTML]="content.text1"
+              ></p>
               <p
                 [ngClass]="{
                   'd-block': contentIndex === index,
                   'd-none': contentIndex !== index
                 }"
                 class="fw-lighter mb-0"
+                [innerHTML]="content.text2"
+              ></p>
+              <ul
+                *ngIf="content.list"
+                [ngClass]="{
+                  'd-block': contentIndex === index,
+                  'd-none': contentIndex !== index
+                }"
+                class="px-0 px-sm-3"
               >
-                {{ content.text2 }}
-              </p>
+                <li
+                  *ngFor="let item of content.list"
+                  class="fw-lighter mb-2"
+                  [innerHTML]="item"
+                ></li>
+              </ul>
 
               <button
                 #knowMoreBtn
@@ -1048,29 +1115,29 @@
 </section>
 
 <!-- Testimonials section -->
-<section class="testimonials overflow-hidden py-5" id="testimonials">
-  <div class="container-fluid my-5">
-    <div class="row justify-content-center align-items-center g-5">
-      <div class="col-xl-6">
-        <div class="heading d-flex flex-column gap-4">
-          <h2 class="h1 title mb-0">انظر ماذا <br />يقول عملاؤنا!</h2>
+<section class="testimonials overflow-hidden py-5">
+  <div class="container-fluid my-4">
+    <div class="row justify-content-center gx-5 gy-2">
+      <div class="col-lg-6">
+        <div class="heading d-flex flex-column gap-3">
+          <h2 class="h1 title mb-0 fw-bolder">انظر ماذا <br />يقول عملاؤنا!</h2>
           <p class="fw-light mb-0">
-            نحن نفخر بتقديم تجربة مميزة لعملائنا, ونسعى دائماًلتحسين خدماتنا
-            بناًء علي ملاحظاتهم القيمة. تجربتك معنا هي أولويتنا, ونسعد دائماً
-            بما يشاركونه من اراء تساهم في تطوير خدماتنا لتلبية احتياجاتكم بشكل
-            أفضل.
+            نحن نفخر بتقديم تجربة مميزة لعملائنا, ونسعى دائماً لتحسين خدماتنا
+            بناءً علي ملاحظاتهم القيمة.
+            <br />
+            تجربتك معنا هي أولويتنا, ونسعد دائماً بما يشاركونه من اراء تساهم في
+            تطوير خدماتنا لتلبية احتياجاتكم بشكل أفضل.
           </p>
           <button
-            class="btn ms-auto primary-btn d-flex align-items-center gap-3 fw-bold"
+            class="btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
             (click)="openFeedbackForm()"
           >
             <i class="fa-solid fa-arrow-right"></i>
-            نحن نقدر رأيك<br />
             شارك تجربتك معنا الآن
           </button>
-          <div class="carousel-arrows d-flex align-items-center gap-4">
+          <div class="carousel-arrows d-flex align-items-center gap-4 mt-4">
             <button
-              #testimonialsPrevBtn
+              #testimonialsPrevBtn2
               (click)="triggerPrev('testimonials')"
               class="prev-btn btn arr-btn"
               disabled
@@ -1078,7 +1145,7 @@
               <i class="fa-solid fa-arrow-right"></i>
             </button>
             <button
-              #testimonialsNextBtn
+              #testimonialsNextBtn2
               (click)="triggerNext('testimonials')"
               class="next-btn btn arr-btn"
             >
@@ -1088,9 +1155,9 @@
         </div>
       </div>
 
-      <div class="col-xl-6">
+      <div class="col-lg-6">
         <div class="carousel-container h-100">
-          <div class="navigation-dots d-flex flex-column gap-2 my-4">
+          <div class="navigation-dots d-flex flex-column gap-2">
             <div #testimonialsDot1 class="dot active-dot"></div>
             <div #testimonialsDot2 class="dot"></div>
             <div #testimonialsDot3 class="dot"></div>
@@ -1109,7 +1176,7 @@
                   <div
                     #testimonialsCard
                     [ngClass]="{ scaled: i === testimonialsIndex }"
-                    class="slide m-5 p-5 pb-4"
+                    class="slide my-5 mx-3 p-5 pb-4"
                   >
                     <img
                       src="./assets/imgs/quote.png"
@@ -1127,7 +1194,7 @@
                           [src]="
                             testimonial.user_image
                               ? testimonial.user_image
-                              : './assets/imgs/icons/online-user.png'
+                              : './assets/imgs/icons/online-user-green.png'
                           "
                           alt="profile-icon"
                         />
@@ -1148,6 +1215,24 @@
                 </ng-template>
               </ng-container>
             </owl-carousel-o>
+
+            <div class="carousel-arrows d-flex align-items-center gap-4 mt-4">
+              <button
+                #testimonialsPrevBtn
+                (click)="triggerPrev('testimonials')"
+                class="prev-btn btn arr-btn"
+                disabled
+              >
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+              <button
+                #testimonialsNextBtn
+                (click)="triggerNext('testimonials')"
+                class="next-btn btn arr-btn"
+              >
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1161,18 +1246,26 @@
     <div class="row align-items-center">
       <div class="col-lg-5">
         <div class="heading ps-5">
-          <h2 class="h1 fw-bolder">تواصل معنا بسهولة</h2>
-          <p class="fw-light w-75">
-            هل تواجة مشكلة؟ نحن هنا للمساعدة, اختر الطريقة التي تناسبك للتواصل
-            معنا, نحن هنا لخدمتك في أي وقت
-          </p>
-          <button
-            class="btn secondary-btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
-            routerLink="/contact"
-          >
-            <i class="fa-solid fa-arrow-right"></i>
-            اتصل بنا
-          </button>
+          <div class="form-heading">
+            <h2 class="h1 fw-bolder">ابدأ رحلتك معنا الان</h2>
+            <p class="fw-light w-75 mb-5">
+              انضم الينا للحصول على تجربة إيجار مريحة وسهلة
+            </p>
+          </div>
+          <div>
+            <h2 class="h1 fw-bolder">تواصل معنا بسهولة</h2>
+            <p class="fw-light w-75">
+              هل تواجة مشكلة؟ نحن هنا للمساعدة, اختر الطريقة التي تناسبك للتواصل
+              معنا, نحن هنا لخدمتك في أي وقت
+            </p>
+            <button
+              class="btn secondary-btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
+              routerLink="/contact"
+            >
+              <i class="fa-solid fa-arrow-right"></i>
+              اتصل بنا
+            </button>
+          </div>
           <!-- <div class="email-box d-flex gap-4 align-items-center px-4 py-3 my-5">
             <div
               class="email-icon d-flex align-items-center justify-content-center"
@@ -1487,29 +1580,37 @@
               </p>
             </div>
 
-            <div
-              class="form-controls d-flex align-items-center justify-content-between mb-3"
-            >
-              <label
-                for="termsAndConditions1"
-                class="d-flex gap-2 align-items-center fw-ligher"
-              >
-                <input
-                  type="checkbox"
-                  name="termsAndConditions1"
-                  id="termsAndConditions1"
-                  formControlName="termsAndConditions"
-                />
-                بالضغط علي سجل حسابك الآن،أنت توافق علي الشروط والأحكام وسياسة
-                الخصوصية</label
-              >
+            <div class="form-controls">
+              <p class="mb-0">
+                هل لديك حساب بالفعل؟
+                <span
+                  class="gold-text text-decoration-underline pointer"
+                  (click)="openLoginDialog()"
+                >
+                  سجل الدخول
+                </span>
+              </p>
               <button
-                class="btn secondary-btn mx-3"
+                class="btn secondary-btn my-3"
                 [disabled]="registerForm.invalid"
                 #submitBtn
               >
                 سجل حسابك الآن
               </button>
+              <p class="fw-ligher mb-0 acceptTerms">
+                بالضغط علي سجل حسابك الآن،أنت توافق علي
+                <a
+                  outerLink="/termsOfService"
+                  class="text-decoration-underline gold-text"
+                  >الشروط والأحكام</a
+                >
+                <a
+                  routerLink="/privacyPolicy"
+                  class="text-decoration-underline gold-text"
+                >
+                  و سياسة الخصوصية
+                </a>
+              </p>
             </div>
           </form>
         </div>

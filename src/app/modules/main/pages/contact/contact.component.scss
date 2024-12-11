@@ -162,7 +162,7 @@
             outline: none;
             border: 0;
             width: 100%;
-            font-size: 0.8rem;
+            font-size: 1.2rem;
             font-weight: light;
           }
           img {
@@ -187,6 +187,10 @@
           &:hover {
             background: #ecd09f;
             color: #3f514a;
+          }
+          &:disabled {
+            background: #3f514a;
+            color: #fff;
           }
         }
       }
@@ -245,6 +249,7 @@
   .heading {
     p {
       color: #8b8b8b;
+      font-size: 1.2rem;
     }
 
     .buttons {
@@ -502,6 +507,55 @@
       }
       h3 {
         display: none !important;
+      }
+    }
+  }
+
+  .contact {
+    background: #3f514a;
+    .heading {
+      padding-top: 180px;
+      h2 {
+        color: #ecd09f;
+      }
+      p {
+        color: #fff;
+        text-align: justify;
+        font-size: 1.1rem;
+      }
+      .social {
+        a {
+          transition: 0.5s;
+          width: 50px;
+          height: 50px;
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 100%;
+          text-decoration: none;
+          i {
+            color: #3f514a;
+            font-size: 25px;
+          }
+        }
+        a:hover {
+          transform: translateY(-10px);
+        }
+      }
+    }
+
+    .form-container {
+      form {
+        .inputs-container {
+          .input-field {
+            input,
+            select,
+            textarea {
+              font-size: 0.8rem;
+            }
+          }
+        }
       }
     }
   }

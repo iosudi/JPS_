@@ -3,12 +3,12 @@ nav {
   bottom: 0;
   left: 0;
   z-index: 3000;
-  transition: 0.5s;
+  transition: 1s;
 
   .navbar {
-    background-color: #ffffffbd;
-    padding: 10px 20px;
-    border-radius: 40px;
+    background-color: #a0a0a091;
+    backdrop-filter: blur(30px);
+    padding: 10px 10px;
     ul {
       li {
         transition: opacity 0.3s ease;
@@ -26,6 +26,8 @@ nav {
           &.active-link {
             background: #3f514a;
             color: white;
+            padding: 0.7rem 1rem;
+
             p {
               font-size: 16px;
               display: inline;
@@ -34,16 +36,15 @@ nav {
         }
       }
     }
+  }
 
-    &.scrolled li {
-      opacity: 0.5 !important; /* Set opacity to 50% when scrolled down */
-    }
+  &.scrolled {
+    bottom: -100%;
   }
 }
 
 @media (max-width: 460px) {
   nav {
-    padding: 6px 3px !important;
     .navbar {
       ul {
         li {
