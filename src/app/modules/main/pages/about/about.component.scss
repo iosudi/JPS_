@@ -50,7 +50,7 @@
         }
       }
       p {
-        font-size: 1.15rem;
+        font-size: 1.25rem;
         text-align: justify;
       }
       button {
@@ -856,8 +856,8 @@
 
   .mission {
     h2 {
-      font-size: 25px;
-      margin-bottom: 20px !important;
+      font-size: 2.3rem;
+      margin-bottom: 15px !important;
     }
     ul {
       h5 {
@@ -870,7 +870,7 @@
   }
 
   .vision {
-    padding: 30px 0px !important;
+    padding: 30px 0px 0px !important;
     .image {
       width: 80%;
       height: 300px !important;
@@ -891,6 +891,7 @@
       ul {
         li {
           list-style: none;
+          text-align: justify;
         }
       }
     }
@@ -923,10 +924,10 @@
   .staff-member {
     .heading {
       h3 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
       p {
-        font-size: 0.8rem;
+        font-size: 1rem;
       }
     }
   }
@@ -939,12 +940,12 @@
         padding: 0px 20px;
         p {
           width: 100% !important;
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
 
         .primary-btn {
           padding: 8px 10px;
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
       }
 
@@ -957,13 +958,13 @@
           padding: 20px !important;
           .slide {
             padding: 20px !important;
-            min-width: 300px !important;
+            min-width: 320px !important;
             margin: 0 !important;
             .quote-symbol {
               width: 40px !important;
             }
             p {
-              font-size: 0.8rem !important;
+              font-size: 1rem !important;
             }
             .feedback-content {
               min-height: 70px !important;

@@ -13,6 +13,7 @@ nav {
       li {
         transition: opacity 0.3s ease;
         a {
+          opacity: 0.5;
           img {
             width: 35px;
             height: auto;
@@ -21,17 +22,11 @@ nav {
           color: #3f514a;
           text-decoration: none;
           p {
-            display: none;
+            font-size: 0.75rem;
+            font-weight: bold;
           }
           &.active-link {
-            background: #3f514a;
-            color: white;
-            padding: 0.7rem 1rem;
-
-            p {
-              font-size: 16px;
-              display: inline;
-            }
+            opacity: 1;
           }
         }
       }
@@ -54,11 +49,6 @@ nav {
               height: auto;
             }
             font-size: 20px;
-            &.active-link {
-              p {
-                font-size: 14px;
-              }
-            }
           }
         }
       }

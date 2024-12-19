@@ -32,7 +32,7 @@
       </div>
       <div class="col-xl-8">
         <div class="image position-absolute">
-          <img src="./assets/imgs/About Imgs/hero image.png" alt="about us" />
+          <img src="./assets/imgs/About Imgs/hero image.svg" alt="about us" />
         </div>
       </div>
     </div>
@@ -45,7 +45,7 @@
   <div class="container my-5">
     <h2 class="h1 mb-4">اهدافنا</h2>
     <p>
-      في <span class="fw-bold">Groups JPS</span>، نلتزم بتقديم تجربة إيجار
+      في <span class="fw-bold rubik">JPS Groups</span>، نلتزم بتقديم تجربة إيجار
       مبتكرة وسهلة تضمن الراحة والكفاءة لجميع الأطراف، سواء المستأجرين أو
       المالكين، من خلال منصة إلكترونية متطورة تجعل عملية الإيجار أكثر احترافية
       ومرونة من خلال عدة عوامل من خلالها :
@@ -145,11 +145,11 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6">
-        <div class="image h-100" data-aos="fade-down-left">
+        <div class="image h-100 mx-auto" data-aos="fade-down-left">
           <img src="./assets/imgs/About Imgs/vision image.png" alt="image" />
         </div>
       </div>
-      <div class="col-lg-6 d-flex align-items-end pb-5">
+      <div class="col-lg-6 d-flex align-items-end pb-lg-5 pb-0">
         <div class="heading p-5" data-aos="fade-right">
           <div class="title d-flex align-items-center gap-4 mb-4">
             <div class="icon d-flex justify-content-center align-items-center">
@@ -232,7 +232,7 @@
       </p>
     </div>
 
-    <owl-carousel-o #staffCarousel [options]="customOptions">
+    <owl-carousel-o #staffCarousel [options]="carouselOptions">
       <ng-container *ngFor="let member of staffMembers">
         <ng-template carouselSlide>
           <div
@@ -276,7 +276,10 @@
       </ng-container>
     </owl-carousel-o>
 
-    <div class="carousel-arrows mt-4 px-3 d-flex align-items-center gap-3">
+    <div
+      class="carousel-arrows mt-4 px-3 d-flex align-items-center gap-3"
+      *ngIf="staffMembers.length > 4"
+    >
       <button
         #staffPrevBtn
         (click)="triggerPrev('staff')"
@@ -413,7 +416,7 @@
               <button
                 #testimonialsPrevBtn
                 (click)="triggerPrev('testimonials')"
-                class="prev-btn btn arr-btn"
+                class="prev-btn btn arr-btn d-flex align-items-center justify-content-center"
                 disabled
               >
                 <i class="fa-solid fa-arrow-right"></i>
@@ -421,7 +424,7 @@
               <button
                 #testimonialsNextBtn
                 (click)="triggerNext('testimonials')"
-                class="next-btn btn arr-btn"
+                class="next-btn btn arr-btn d-flex align-items-center justify-content-center"
               >
                 <i class="fa-solid fa-arrow-left"></i>
               </button>

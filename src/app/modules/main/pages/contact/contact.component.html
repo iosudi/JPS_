@@ -45,7 +45,7 @@
     <div class="row gx-5 gy-3">
       <div class="col-lg-6">
         <div
-          class="method p-5 text-center h-100 d-flex flex-column gap-4 align-items-center"
+          class="method px-5 py-lg-5 py-3 text-center h-100 d-flex flex-column gap-4 align-items-center"
           data-aos="fade-left"
         >
           <img
@@ -65,7 +65,9 @@
       <div class="col-lg-6">
         <div class="row gy-lg-5 gy-3" data-aos="fade-right">
           <div class="col-12">
-            <div class="method p-5 d-flex align-items-center gap-4">
+            <div
+              class="method px-5 py-lg-5 py-3 d-flex align-items-center gap-4"
+            >
               <img
                 src="./assets/imgs/contact imgs/mail.png"
                 alt="message icon"
@@ -80,7 +82,9 @@
             </div>
           </div>
           <div class="col-12">
-            <div class="method p-5 d-flex align-items-center gap-4">
+            <div
+              class="method px-5 py-lg-5 py-3 d-flex align-items-center gap-4"
+            >
               <img
                 src="./assets/imgs/contact imgs/call.png"
                 alt="message icon"
@@ -102,7 +106,7 @@
 <!-- Contact section -->
 <section class="contact p-5 overflow-hidden" id="contact_form">
   <div class="container">
-    <div class="row align-items-start g-5">
+    <div class="row align-items-start gx-5 gy-lg-5 gy-3">
       <div class="col-lg-5">
         <div class="heading ps-2">
           <h2 class="fw-bolder" data-aos="fade-left">
@@ -211,7 +215,9 @@
                 #submitBtn
                 [disabled]="contactForm.invalid"
               >
-                <i class="fa-solid fa-arrow-right"></i>
+                <i
+                  class="fa-solid fa-arrow-right d-flex align-items-center justify-content-center"
+                ></i>
                 أرسل الأن
               </button>
             </div>
@@ -284,15 +290,15 @@
 <section class="faqs my-4 overflow-hidden" id="faqs">
   <div class="container">
     <div class="heading text-center">
-      <h3 class="h1 fw-bold" data-aos="fade-down">الأسئلة الشائعة</h3>
-      <p data-aos="fade-down">
+      <h3 class="h1 fw-bold pt-1" data-aos="fade-down">الأسئلة الشائعة</h3>
+      <p data-aos="fade-down" class="fw-medium">
         إجابات دقيقة وواضحة لأكثر الأسئلة تكراراً لضمان تجربة سلسة ومفهومة
       </p>
       <div
         class="buttons d-flex gap-3 align-items-center justify-content-center"
       >
         <button
-          class="btn"
+          class="btn d-flex align-items-center justify-content-center"
           data-aos="fade-left"
           [ngClass]="{ active: activeFaq == 'buyer' }"
           (click)="showFaq('buyer')"
@@ -300,7 +306,7 @@
           مالك
         </button>
         <button
-          class="btn"
+          class="btn d-flex align-items-center justify-content-center"
           data-aos="fade-right"
           [ngClass]="{ active: activeFaq == 'provider' }"
           (click)="showFaq('provider')"
@@ -311,7 +317,7 @@
     </div>
 
     <div
-      class="row gy-4 justify-content-center mt-4"
+      class="row gy-4 justify-content-center mt-2"
       *ngIf="activeFaq == 'buyer'; else provider"
     >
       <div class="col-12 w-75" *ngFor="let faq of buyerFaq; let i = index">
@@ -343,10 +349,10 @@
     </div>
 
     <ng-template #provider>
-      <div class="row gy-4 justify-content-center mt-4">
+      <div class="row gy-4 justify-content-center mt-2">
         <div class="col-12 w-75" *ngFor="let faq of providerFaq; let i = index">
           <div
-            class="faq p-4"
+            class="faq p-sm-4 px-4 py-3"
             (click)="toggleExpand(i)"
             [class.expand]="expandedIndex === i"
             data-aos="fade-up"

@@ -21,7 +21,7 @@
         <div class="heading w-100">
           <div class="mb-5 title">
             <h1 class="text-center mb-4 fw-bold">معنا للإيجار معنى</h1>
-            <h2 class="fw-light text-center">
+            <h2 class="fw-normal text-center">
               إبحث وإستاجر بسهولة من مكانك <br />
               في أي وقت
             </h2>
@@ -73,10 +73,10 @@
 <!-- popular Apartments section -->
 <section
   appAnimateOnScroll
-  class="popular-apartments overflow-hidden p-5 pb-3 position-relative"
+  class="popular-apartments overflow-hidden p-5 pb-2 position-relative"
   id="popular_apartment"
 >
-  <div class="container-fluid mx-auto my-5 position-relative">
+  <div class="container-fluid mx-auto my-3 position-relative">
     <div class="container-background">
       <img src="./assets/imgs/popular-wallpaper.png" alt="background" />
       <div class="gradient"></div>
@@ -89,9 +89,7 @@
     <div
       class="container h-100 d-flex justify-content-center flex-column py-5 mx-0"
     >
-      <div
-        class="header d-flex justify-content-between align-items-center px-5"
-      >
+      <div class="header d-flex justify-content-between align-items-start px-5">
         <div class="title">
           <h2>الأفضل لك</h2>
           <p
@@ -193,7 +191,7 @@
                   <div
                     class="d-flex align-items-center justify-content-between gap-2 w-100"
                   >
-                    <h3 class="mb-0 h4 fw-bold">شقة دوبلكس مفروشة</h3>
+                    <h3 class="mb-0 h4 fw-bolder">شقة دوبلكس مفروشة</h3>
                     <span class="rating p-1 rounded-2 fw-bold overflow-hidden">
                       <img
                         class="ms-1"
@@ -203,14 +201,14 @@
                       <span class="ps-1"> 5.0 </span>
                     </span>
                   </div>
-                  <p class="my-1 d-flex align-items-center gap-1 fw-bold">
+                  <p class="my-1 d-flex align-items-center gap-1 fw-bolder">
                     <img
                       src="./assets/imgs/icons/location-light.png"
                       alt="location icon"
                     />
                     6 اكتوبر , حي اول , مجاوره اولى
                   </p>
-                  <p class="mb-0 fw-bold reservedDuration">
+                  <p class="mb-0 fw-bolder reservedDuration">
                     {{ apartment.reservedtill }}
                   </p>
                 </div>
@@ -220,28 +218,28 @@
                   <img src="./assets/imgs/Separator.svg" alt="separator" />
                 </div>
                 <div class="chips-badges d-flex flex-wrap gap-1">
-                  <div class="chip d-flex align-items-center gap-1 fw-bold">
+                  <div class="chip d-flex align-items-center gap-1 fw-bolder">
                     <img
                       src="./assets/imgs/icons/door-white.png"
                       alt="door icon"
                     />
                     غرفه,صاله,بلكونه
                   </div>
-                  <div class="chip fw-bold d-flex align-items-center gap-1">
+                  <div class="chip fw-bolder d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/bed-white.png"
                       alt="bed icon"
                     />
                     {{ apartment.beds }}
                   </div>
-                  <div class="chip fw-bold d-flex align-items-center gap-1">
+                  <div class="chip fw-bolder d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/bath-white.png"
                       alt="bath icon"
                     />
                     {{ apartment.bathrooms }}
                   </div>
-                  <div class="chip fw-bold d-flex align-items-center gap-1">
+                  <div class="chip fw-bolder d-flex align-items-center gap-1">
                     <img
                       src="./assets/imgs/icons/doc-white.png"
                       alt="docs icon"
@@ -255,7 +253,7 @@
                   <div>
                     <h4 class="price mb-1 h5 fw-bolder">
                       {{ apartment.price | currency : "EGP" : "code" : "1.0-0"
-                      }}<span class="fw-light">/يوم</span>
+                      }}<span class="fw-normal">/يوم</span>
                     </h4>
                     <p class="mb-0 fw-bold" (click)="openHostProfile($event)">
                       المضيف : Ahmed Gamal
@@ -317,17 +315,23 @@
           </div>
 
           <div class="slider-arrows d-flex align-items-center gap-4">
-            <button (click)="triggerPrev('district')" class="prev-btn btn">
+            <button
+              (click)="triggerPrev('district')"
+              class="prev-btn btn d-flex align-items-center justify-content-center"
+            >
               <i class="fa-solid fa-arrow-right"></i>
             </button>
-            <button (click)="triggerNext('district')" class="next-btn btn">
+            <button
+              (click)="triggerNext('district')"
+              class="next-btn btn d-flex align-items-center justify-content-center"
+            >
               <i class="fa-solid fa-arrow-left"></i>
             </button>
           </div>
         </div>
 
         <!-- Districts auto generated from JS -->
-        <div class="carousel-container mt-5">
+        <div class="carousel-container mt-3">
           <swiper-container
             #districtSwiper
             [slidesPerView]="4"
@@ -370,6 +374,7 @@
                   <div
                     class="more d-flex justify-content-between mb-3"
                     routerLink="/best-apartments"
+                    *ngIf="city.properties.length"
                   >
                     <i
                       routerLink="/best-apartments"
@@ -394,28 +399,6 @@
                             "
                             alt="image"
                           />
-                          <div
-                            class="heart-icon"
-                            (click)="
-                              removeFromFav(
-                                property.id,
-                                property.images[0],
-                                $event
-                              )
-                            "
-                            *ngIf="favProperties.includes(property.id)"
-                          >
-                            <i class="fa-solid fa-heart"></i>
-                          </div>
-                          <div
-                            class="heart-icon"
-                            (click)="
-                              addToFav(property.id, property.images[0], $event)
-                            "
-                            *ngIf="!favProperties.includes(property.id)"
-                          >
-                            <i class="fa-regular fa-heart"></i>
-                          </div>
 
                           <!-- Previous Button -->
                           <div
@@ -471,11 +454,11 @@
                           class="apartment-details d-flex flex-column gap-2 w-100"
                         >
                           <div
-                            class="apartment-name d-flex justify-content-between gap-2"
+                            class="apartment-name d-flex justify-content-between align-items-start gap-2"
                           >
                             <div class="title">
                               <p class="mb-0 host">المضيف : Ahmed Gamal</p>
-                              <h3 class="h6 my-1">شقة دوبلكس مفروشة</h3>
+                              <h3 class="h6 my-1 fw-bold">شقة دوبلكس مفروشة</h3>
                               <p class="mb-0 d-flex gap-1 align-items-center">
                                 <img
                                   src="./assets/imgs/icons/location-dark.png"
@@ -487,11 +470,43 @@
                                 {{ property.reservedtill }}
                               </p>
                             </div>
-                            <img
-                              (click)="openShareModal($event)"
-                              src="./assets/imgs/icons/share-dark.png"
-                              alt="share icon"
-                            />
+
+                            <div class="icons d-flex align-items-center gap-1">
+                              <div
+                                class="heart-icon d-flex align-items-center"
+                                (click)="
+                                  removeFromFav(
+                                    property.id,
+                                    property.images[0],
+                                    $event
+                                  )
+                                "
+                                *ngIf="favProperties.includes(property.id)"
+                              >
+                                <i class="fa-solid fa-heart"></i>
+                              </div>
+
+                              <div
+                                class="heart-icon d-flex align-items-center"
+                                (click)="
+                                  addToFav(
+                                    property.id,
+                                    property.images[0],
+                                    $event
+                                  )
+                                "
+                                *ngIf="!favProperties.includes(property.id)"
+                              >
+                                <i class="fa-regular fa-heart"></i>
+                              </div>
+                              <div class="share d-flex align-items-center">
+                                <img
+                                  (click)="openShareModal($event)"
+                                  src="./assets/imgs/icons/share-dark.png"
+                                  alt="share icon"
+                                />
+                              </div>
+                            </div>
                           </div>
 
                           <div
@@ -550,7 +565,7 @@
                                     | currency : "EGP" : "code" : "1.0-0"
                                 }}
                               </h3>
-                              <p class="mb-0 text-end">لليوم الواحد</p>
+                              <p class="mb-0 text-start">لليوم الواحد</p>
                             </div>
                           </div>
                         </div>
@@ -567,9 +582,12 @@
                         src="./assets/imgs/icons/sand hour.png"
                         alt="sand clock icon"
                       />
-                      <h3 class="h1 text-center mb-4">سيكون متاح قريبا</h3>
+                      <h3 class="h1 text-center mb-4 fw-bold">
+                        سيكون متاح قريبا
+                      </h3>
                       <p class="text-center w-75">
-                        هذا المكان غير متوفر حاليا ولكن سيكون متاح ف المستقبل
+                        نأسف لعدم توفر هذه المدينة حالياً، لكنها ستكون متاحة
+                        قريباً ضمن خططنا المستقبلية
                       </p>
                       <p class="text-center mb-0 fw-bold countdown-text">
                         24D : 00H : 00M
@@ -759,7 +777,7 @@
               <div class="d-flex flex-column">
                 <h5>المحافظة على الوحدة</h5>
                 <p class="mb-0 fw-medium">
-                  تعامل مع الوحدة باحترام، وابلغ عن أي أضرار أو أعطال فور حدوثها
+                  تعامل مع الوحدة بعناية، وابلغ عن أي أضرار أو أعطال فور حدوثها
                   لتجنب مشاكل لاحقة.
                 </p>
               </div>
@@ -801,7 +819,7 @@
                   الآخرين في اتخاذ قرارات صحيحة.
                 </p>
                 <p class="mb-0 fw-medium">
-                  إذا واجهت مشكلة، حاول التواصل مع المالك أو الموقع لحلها بدًال
+                  إذا واجهت مشكلة، حاول التواصل مع المالك أو الموقع لحلها بدلاً
                   من ترك تقييم سلبي مباشرة.
                 </p>
               </div>
@@ -887,7 +905,7 @@
                 <h5>احترام الخصوصية</h5>
                 <p class="mb-0 fw-medium">
                   يجب على المالك احترام خصوصية المستأجرين وعدم الدخول إلى الوحدة
-                  دون إذن مسبق أو إشعار وهذا يزيد من التفاهم واالحترام بينك وبين
+                  دون إذن مسبق أو إشعار وهذا يزيد من التفاهم والاحترام بينك وبين
                   المستأجر ويخلق تجربة إيجابية بين الطرفين.
                 </p>
               </div>
@@ -999,7 +1017,9 @@
               class="user-card border-0 d-flex flex-row-reverse justify-content-start align-items-center gap-3"
             >
               <p class="text-center mb-0 mx-auto fw-bold">
-                وحدتك جاهزة.. بضغطة زر
+                وحدتك جاهزة.. بضغطة
+                <br />
+                زر
               </p>
             </div>
 
@@ -1067,7 +1087,7 @@
                   'd-block': contentIndex === index,
                   'd-none': contentIndex !== index
                 }"
-                class="fw-lighter mb-0"
+                class="fw-normal mb-0"
                 [innerHTML]="content.text1"
               ></p>
               <p
@@ -1075,7 +1095,7 @@
                   'd-block': contentIndex === index,
                   'd-none': contentIndex !== index
                 }"
-                class="fw-lighter mb-0"
+                class="fw-normal mb-0"
                 [innerHTML]="content.text2"
               ></p>
               <ul
@@ -1088,7 +1108,7 @@
               >
                 <li
                   *ngFor="let item of content.list"
-                  class="fw-lighter mb-2"
+                  class="fw-normal mb-2"
                   [innerHTML]="item"
                 ></li>
               </ul>
@@ -1139,7 +1159,7 @@
             <button
               #testimonialsPrevBtn2
               (click)="triggerPrev('testimonials')"
-              class="prev-btn btn arr-btn"
+              class="prev-btn btn arr-btn d-flex align-items-center justify-content-center"
               disabled
             >
               <i class="fa-solid fa-arrow-right"></i>
@@ -1147,7 +1167,7 @@
             <button
               #testimonialsNextBtn2
               (click)="triggerNext('testimonials')"
-              class="next-btn btn arr-btn"
+              class="next-btn btn arr-btn d-flex align-items-center justify-content-center"
             >
               <i class="fa-solid fa-arrow-left"></i>
             </button>
@@ -1220,7 +1240,7 @@
               <button
                 #testimonialsPrevBtn
                 (click)="triggerPrev('testimonials')"
-                class="prev-btn btn arr-btn"
+                class="prev-btn btn arr-btn d-flex align-items-center justify-content-center"
                 disabled
               >
                 <i class="fa-solid fa-arrow-right"></i>
@@ -1228,7 +1248,7 @@
               <button
                 #testimonialsNextBtn
                 (click)="triggerNext('testimonials')"
-                class="next-btn btn arr-btn"
+                class="next-btn btn arr-btn d-flex align-items-center justify-content-center"
               >
                 <i class="fa-solid fa-arrow-left"></i>
               </button>
@@ -1262,7 +1282,9 @@
               class="btn secondary-btn ms-auto primary-btn d-flex align-items-center gap-2 fw-bold"
               routerLink="/contact"
             >
-              <i class="fa-solid fa-arrow-right"></i>
+              <i
+                class="fa-solid fa-arrow-right d-flex align-items-center justify-content-center"
+              ></i>
               اتصل بنا
             </button>
           </div>

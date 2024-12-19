@@ -32,7 +32,7 @@ export class AboutComponent implements OnInit {
   staffMembers: any[] = staffMembers;
   @ViewChild('staffCarousel', { static: false })
   staffCarousel!: CarouselComponent;
-  customOptions: OwlOptions = {
+  carouselOptions: OwlOptions = {
     rtl: true,
     loop: false,
     mouseDrag: false,

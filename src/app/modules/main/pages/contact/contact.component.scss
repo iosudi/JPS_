@@ -121,7 +121,7 @@
     p {
       color: #fff;
       text-align: justify;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
     }
     .social {
       a {
@@ -344,7 +344,7 @@
   }
 
   .contact-methods {
-    padding: 30px 10px !important;
+    padding: 20px 10px !important;
   }
 }
 
@@ -485,7 +485,7 @@
 
   .contact-methods {
     .method {
-      padding: 40px 20px !important;
+      padding: 20px 20px !important;
       flex-direction: row !important;
       border-radius: 15px !important;
       img {
@@ -514,7 +514,6 @@
   .contact {
     background: #3f514a;
     .heading {
-      padding-top: 180px;
       h2 {
         color: #ecd09f;
       }
@@ -563,7 +562,7 @@
 
 @media (max-width: 420px) {
   .hero {
-    padding: 10px 10px 20px;
+    padding: 10px 10px 0px;
 
     .container-fluid {
       padding: 30px 20px 0 !important;
@@ -577,7 +576,7 @@
       }
 
       .house {
-        width: 400px;
+        width: 100%;
         // right: -200px;
       }
       .shape {

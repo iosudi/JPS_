@@ -77,9 +77,7 @@ export class EditUserInformationService {
     formData.append('id', userId);
 
     return this.http.post(environment.baseURL + 'usersimage.php', formData, {
-      headers: new HttpHeaders({
-        // 'Content-Type': 'application/x-www-form-urlencoded', // Don't set this for FormData
-      }),
+      headers: new HttpHeaders({}),
     });
   }
 

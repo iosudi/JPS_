@@ -498,6 +498,13 @@ ngx-spinner ::ng-deep {
       padding-right: 6%;
       transition: 1.5s;
       transform: translateX(-150%);
+
+      swiper-container {
+        &::part(wrapper) {
+          padding-bottom: 1.25rem;
+        }
+      }
+
       .card {
         min-height: 750px;
         border-radius: 13px;
@@ -605,7 +612,10 @@ ngx-spinner ::ng-deep {
             display: none;
           }
           .more {
-            opacity: 30%;
+            i,
+            span {
+              color: #4a594f;
+            }
             & span:hover {
               text-decoration: underline;
             }
@@ -660,15 +670,6 @@ ngx-spinner ::ng-deep {
               }
             }
 
-            .heart-icon {
-              position: absolute;
-              top: 15px;
-              right: 0;
-              padding: 8px 15px;
-              font-size: 10px;
-              backdrop-filter: blur(5px);
-            }
-
             .paginator {
               position: absolute;
               bottom: 10px;
@@ -709,8 +710,17 @@ ngx-spinner ::ng-deep {
               }
 
               img {
-                width: 13px;
-                height: 13px;
+                width: 17px;
+                height: 17px;
+              }
+
+              .heart-icon {
+                position: unset;
+                font-size: 1.1rem;
+                background-color: unset;
+                padding: unset;
+                color: #3f514a;
+                border-radius: unset;
               }
             }
             .chips-badges {
@@ -780,9 +790,6 @@ ngx-spinner ::ng-deep {
             position: absolute;
             bottom: 580px;
             transition: 1s;
-            img {
-              display: none;
-            }
           }
           .apartment-list {
             min-height: 500px;
@@ -1570,7 +1577,7 @@ ngx-spinner ::ng-deep {
             width: 70px;
           }
           p {
-            font-size: 1rem;
+            font-size: 1.3rem;
           }
 
           .feedback-content {
@@ -2145,7 +2152,7 @@ ngx-spinner ::ng-deep {
               }
             }
             .district-name {
-              bottom: 505px;
+              bottom: 495px;
             }
             .apartment-list {
               min-height: 450px;
@@ -2456,7 +2463,10 @@ ngx-spinner ::ng-deep {
           padding: 0 !important;
           .title {
             h2 {
-              font-size: 22px;
+              font-size: 1.6875rem;
+            }
+            p {
+              font-size: 0.8rem !important;
             }
           }
           .slider-arrows {
@@ -2487,10 +2497,14 @@ ngx-spinner ::ng-deep {
               }
 
               p {
-                font-size: 0.6rem;
+                font-size: 0.8rem;
                 img {
                   width: 12px;
                 }
+              }
+
+              .reservedDuration {
+                font-size: 0.8rem;
               }
             }
 
@@ -2573,7 +2587,7 @@ ngx-spinner ::ng-deep {
   .about {
     padding: 1rem 0.5rem !important;
     .container {
-      padding: 1rem;
+      padding: 0.5rem;
       .row {
         margin: 0;
         .col-lg-4,
@@ -2728,7 +2742,7 @@ ngx-spinner ::ng-deep {
         text-align: center;
         margin-bottom: 20px !important;
         h1 {
-          font-size: 35px;
+          font-size: 2.5rem;
         }
         h2 {
           font-size: 1.15rem;
@@ -2960,14 +2974,17 @@ ngx-spinner ::ng-deep {
       padding: 0px 5%;
       .heading {
         padding: 0px 20px;
+        h2 {
+          font-size: 1.9rem;
+        }
         p {
           width: 100% !important;
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
 
         .primary-btn {
           padding: 8px 10px;
-          font-size: 0.8rem;
+          font-size: 0.9rem;
         }
       }
 
@@ -2980,13 +2997,13 @@ ngx-spinner ::ng-deep {
           padding: 20px !important;
           .slide {
             padding: 20px !important;
-            min-width: 300px !important;
+            min-width: 340px !important;
             margin: 0 !important;
             .quote-symbol {
               width: 40px !important;
             }
             p {
-              font-size: 0.8rem !important;
+              font-size: 1rem !important;
             }
             .feedback-content {
               min-height: 70px !important;
@@ -3031,16 +3048,16 @@ ngx-spinner ::ng-deep {
               }
 
               &:nth-child(1) {
-                top: 119px;
-                right: -37px;
+                top: 112px;
+                right: -32px;
               }
               &:nth-child(2) {
-                left: -12%;
+                left: -9%;
                 top: 13px;
               }
               &:nth-child(3) {
                 bottom: 16px;
-                left: -11%;
+                left: -9%;
               }
             }
           }
