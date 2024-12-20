@@ -21,7 +21,7 @@
         <div class="heading w-100">
           <div class="mb-5 title">
             <h1 class="text-center mb-4 fw-bold">معنا للإيجار معنى</h1>
-            <h2 class="fw-normal text-center">
+            <h2 class="fw-medium text-center">
               إبحث وإستاجر بسهولة من مكانك <br />
               في أي وقت
             </h2>
@@ -294,7 +294,7 @@
 <!-- popular districts section -->
 <section
   appAnimateOnScroll
-  class="popular-districts overflow-hidden"
+  class="popular-districts overflow-hidden mt-3"
   id="popular_districts"
 >
   <div pDefer>
@@ -374,7 +374,7 @@
                   <div
                     class="more d-flex justify-content-between mb-3"
                     routerLink="/best-apartments"
-                    *ngIf="city.properties.length"
+                    *ngIf="city.properties.length; else noApartments"
                   >
                     <i
                       routerLink="/best-apartments"
@@ -382,6 +382,14 @@
                     ></i>
                     <span> Show all ({{ city.properties.length }}) </span>
                   </div>
+
+                  <ng-template #noApartments>
+                    <div class="more d-flex justify-content-between mb-3">
+                      <i class="fa-solid fa-arrow-right"></i>
+                      <span> Show all (0) </span>
+                    </div>
+                  </ng-template>
+
                   <ng-container *ngIf="city.properties.length > 0">
                     <div class="apartments-wrapper">
                       <div
@@ -1073,45 +1081,47 @@
             class="content d-flex flex-column gap-4 position-relative z-0"
             *ngFor="let content of contents; let index = index"
           >
-            <div #contentContainer class="d-flex flex-column gap-3">
-              <h2
-                [ngClass]="{
-                  'd-block': contentIndex === index,
-                  'd-none': contentIndex !== index
-                }"
-                class="title"
-                [innerHTML]="content.title"
-              ></h2>
-              <p
-                [ngClass]="{
-                  'd-block': contentIndex === index,
-                  'd-none': contentIndex !== index
-                }"
-                class="fw-normal mb-0"
-                [innerHTML]="content.text1"
-              ></p>
-              <p
-                [ngClass]="{
-                  'd-block': contentIndex === index,
-                  'd-none': contentIndex !== index
-                }"
-                class="fw-normal mb-0"
-                [innerHTML]="content.text2"
-              ></p>
-              <ul
-                *ngIf="content.list"
-                [ngClass]="{
-                  'd-block': contentIndex === index,
-                  'd-none': contentIndex !== index
-                }"
-                class="px-0 px-sm-3"
-              >
-                <li
-                  *ngFor="let item of content.list"
-                  class="fw-normal mb-2"
-                  [innerHTML]="item"
-                ></li>
-              </ul>
+            <div #contentContainer class="d-flex flex-column gap-1">
+              <div class="content_text d-flex flex-column gap-3">
+                <h2
+                  [ngClass]="{
+                    'd-block': contentIndex === index,
+                    'd-none': contentIndex !== index
+                  }"
+                  class="title"
+                  [innerHTML]="content.title"
+                ></h2>
+                <p
+                  [ngClass]="{
+                    'd-block': contentIndex === index,
+                    'd-none': contentIndex !== index
+                  }"
+                  class="fw-normal mb-0"
+                  [innerHTML]="content.text1"
+                ></p>
+                <p
+                  [ngClass]="{
+                    'd-block': contentIndex === index,
+                    'd-none': contentIndex !== index
+                  }"
+                  class="fw-normal mb-0"
+                  [innerHTML]="content.text2"
+                ></p>
+                <ul
+                  *ngIf="content.list"
+                  [ngClass]="{
+                    'd-block': contentIndex === index,
+                    'd-none': contentIndex !== index
+                  }"
+                  class="px-0 px-sm-3 mb-0"
+                >
+                  <li
+                    *ngFor="let item of content.list"
+                    class="fw-normal mb-2"
+                    [innerHTML]="item"
+                  ></li>
+                </ul>
+              </div>
 
               <button
                 #knowMoreBtn

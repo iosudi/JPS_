@@ -1,6 +1,7 @@
 import {
   Component,
   ElementRef,
+  HostListener,
   inject,
   OnInit,
   Renderer2,
@@ -25,13 +26,16 @@ export class AboutComponent implements OnInit {
     private renderer: Renderer2,
     private spinner: NgxSpinnerService,
     private _InfoService: InfoService
-  ) {}
+  ) {
+    this.updateItemsPerView();
+  }
 
   private modalService = inject(NgbModal);
   features: any[] = Features;
   staffMembers: any[] = staffMembers;
   @ViewChild('staffCarousel', { static: false })
   staffCarousel!: CarouselComponent;
+  itemsPerView: number = 0;
   carouselOptions: OwlOptions = {
     rtl: true,
     loop: false,
@@ -114,6 +118,21 @@ export class AboutComponent implements OnInit {
     Aos.init({
       duration: 1000,
     });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  updateItemsPerView() {
+    const width = window.innerWidth;
+
+    if (width >= 1100 && this.carouselOptions.responsive) {
+      this.itemsPerView = this.carouselOptions.responsive[1100]?.items ?? 0;
+    } else if (width >= 900 && this.carouselOptions.responsive) {
+      this.itemsPerView = this.carouselOptions.responsive[900]?.items ?? 0;
+    } else if (width >= 550 && this.carouselOptions.responsive) {
+      this.itemsPerView = this.carouselOptions.responsive[550]?.items ?? 0;
+    } else if (this.carouselOptions.responsive) {
+      this.itemsPerView = this.carouselOptions.responsive[0]?.items ?? 0;
+    }
   }
 
   checkIndex(): void {

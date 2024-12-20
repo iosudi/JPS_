@@ -3,7 +3,8 @@ nav {
   bottom: 0;
   left: 0;
   z-index: 3000;
-  transition: 1s;
+  transform: translateY(0%);
+  transition: 0.7s;
 
   .navbar {
     background-color: #a0a0a091;
@@ -34,7 +35,7 @@ nav {
   }
 
   &.scrolled {
-    bottom: -100%;
+    transform: translateY(100%);
   }
 }
 
