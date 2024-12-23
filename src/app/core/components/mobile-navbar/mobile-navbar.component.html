@@ -1,9 +1,9 @@
-<nav class="w-100" [class.scrolled]="isScrolled">
-  <div class="navbar py-1" *ngIf="userLogged == null; else userLoggedDropdown">
+<nav class="w-100" *ngIf="userLogged == null; else userLoggedDropdown">
+  <div class="navbar py-1">
     <ul class="d-flex justify-content-around align-items-center m-0 p-0 w-100">
       <li class="py-2">
         <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
+          class="d-flex align-items-center justify-content-between flex-column gap-2"
           routerLink="/home"
           routerLinkActive="active-link"
         >
@@ -14,7 +14,7 @@
 
       <li class="py-2">
         <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
+          class="d-flex align-items-center justify-content-between flex-column gap-2"
           routerLink="/about"
           routerLinkActive="active-link"
         >
@@ -25,7 +25,7 @@
 
       <li class="py-2">
         <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
+          class="d-flex align-items-center justify-content-between flex-column gap-2"
           routerLink="/contact"
           routerLinkActive="active-link"
         >
@@ -36,7 +36,7 @@
 
       <li class="py-2">
         <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
+          class="d-flex align-items-center justify-content-between flex-column gap-2"
           routerLink="/auth"
           routerLinkActive="active-link"
         >
@@ -49,62 +49,66 @@
 </nav>
 
 <ng-template #userLoggedDropdown>
-  <div class="navbar py-1">
-    <ul class="d-flex justify-content-around align-items-center m-0 p-0 w-100">
-      <li>
-        <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
-          routerLink="/home"
-          routerLinkActive="active-link"
-        >
-          <img src="./assets/imgs/icons/home_nav.svg" alt="home icon" />
-          <p class="mb-0">الرئيسية</p>
-        </a>
-      </li>
+  <nav class="w-100">
+    <div class="navbar py-1">
+      <ul
+        class="d-flex justify-content-around align-items-center m-0 p-0 w-100"
+      >
+        <li class="py-2">
+          <a
+            class="d-flex align-items-center justify-content-between flex-column gap-2"
+            routerLink="/home"
+            routerLinkActive="active-link"
+          >
+            <img src="./assets/imgs/icons/home_nav.svg" alt="home icon" />
+            <p class="mb-0">الرئيسية</p>
+          </a>
+        </li>
 
-      <li>
-        <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
-          routerLink="/your-favorites"
-          routerLinkActive="active-link"
-        >
-          <img src="./assets/imgs/icons/fav_nav.svg" alt="heart icon" />
-          <p class="mb-0">المفضلة</p>
-        </a>
-      </li>
+        <li class="py-2">
+          <a
+            class="d-flex align-items-center justify-content-between flex-column gap-2"
+            routerLink="/your-favorites"
+            routerLinkActive="active-link"
+          >
+            <img src="./assets/imgs/icons/fav_nav.svg" alt="heart icon" />
+            <p class="mb-0">المفضلة</p>
+          </a>
+        </li>
 
-      <li>
-        <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
-          routerLink="/my-bookings"
-          routerLinkActive="active-link"
-        >
-          <img src="./assets/imgs/icons/bookings_nav.svg" alt="heart icon" />
-          <p class="mb-0">إدراة الحجوزات</p>
-        </a>
-      </li>
+        <li class="py-2">
+          <a
+            class="d-flex align-items-center justify-content-between flex-column gap-2"
+            routerLink="/my-bookings"
+            routerLinkActive="active-link"
+          >
+            <img src="./assets/imgs/icons/bookings_nav.svg" alt="heart icon" />
+            <p class="mb-0">إدراة الحجوزات</p>
+          </a>
+        </li>
 
-      <li>
-        <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
-          routerLink="/contact"
-          routerLinkActive="active-link"
-        >
-          <img src="./assets/imgs/icons/about_nav.svg" alt="phone icon" />
-          <p class="mb-0">اتصل بنا</p>
-        </a>
-      </li>
+        <li class="py-2">
+          <a
+            class="d-flex align-items-center justify-content-between flex-column gap-2"
+            routerLink="/contact"
+            routerLinkActive="active-link"
+          >
+            <img src="./assets/imgs/icons/contact_nav.svg" alt="phone icon" />
+            <p class="mb-0">اتصل بنا</p>
+          </a>
+        </li>
 
-      <li>
-        <a
-          class="d-flex align-items-center justify-content-between flex-column rounded-5 gap-2"
-          routerLink="/auth"
-          routerLinkActive="active-link"
-        >
-          <img src="./assets/imgs/icons/account_nav.svg" alt="user icon" />
-          <p class="mb-0">الحساب</p>
-        </a>
-      </li>
-    </ul>
-  </div>
+        <li class="py-2">
+          <a
+            class="d-flex align-items-center justify-content-between flex-column gap-2"
+            routerLink="/auth"
+            routerLinkActive="active-link"
+          >
+            <img src="./assets/imgs/icons/account_nav.svg" alt="user icon" />
+            <p class="mb-0">الحساب</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </ng-template>
