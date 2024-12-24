@@ -44,7 +44,7 @@ const routes: Routes = [
     title: 'Check your email',
     canActivate: [widthGuard],
   },
-  { path: 'auth/createNewPassword', component: CreateNewPasswordComponent },
+  { path: 'createNewPassword', component: CreateNewPasswordComponent },
 ];
 
 @NgModule({

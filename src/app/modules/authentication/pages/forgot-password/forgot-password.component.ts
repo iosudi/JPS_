@@ -80,19 +80,19 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.forgotPasswordForm.status === 'VALID') {
-      this.auth.forgotPassword(this.forgotPasswordForm.value).subscribe({
-        next: (res) => {
-          console.log(res);
-          if (res.message) {
-            this.toastr.success('تم ارسال كود للايميل الخاص بك');
-          }
-        },
-        error: (error) => {
-          console.error('Error forgotting password:', error);
-        },
-      });
-    }
+    // if (this.forgotPasswordForm.status === 'VALID') {
+    //   this.auth.forgotPassword(this.forgotPasswordForm.value).subscribe({
+    //     next: (res) => {
+    //       console.log(res);
+    //       if (res.message) {
+    //         this.toastr.success('تم ارسال كود للايميل الخاص بك');
+    //       }
+    //     },
+    //     error: (error) => {
+    //       console.error('Error forgotting password:', error);
+    //     },
+    //   });
+    // }
   }
 
   close(): void {

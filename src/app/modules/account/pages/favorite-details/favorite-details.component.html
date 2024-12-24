@@ -43,7 +43,7 @@
     </div>
   </div>
 
-  <div class="row g-4" *ngIf="apartments.length > 0; else emptyList">
+  <div class="row g-2 g-sm-4" *ngIf="apartments.length > 0; else emptyList">
     <div class="col-xl-4 col-md-6" *ngFor="let apartment of apartments">
       <div class="card p-3" (click)="productDetails(apartment.id)">
         <div class="apartment-preview mb-2">
